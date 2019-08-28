@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+* {
+  font-family: 'Montserrat';
+}
+
+body {
+  margin: 0;
+}
+
+img:first-of-type {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  z-index: -1;
+}
+
+header {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  padding: 0.5em 1.5em;
+  position: absolute;
+  top: 0;
+}
+
+header a {
+  text-decoration: none;
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+header a h2 {
+  color: #514bff;
+  font-size: 1.7em;
+  margin: 0;
+  font-family: 'Montserrat';
+  font-weight: 700;
+}
+
+main {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+}
+
+main .wrapper {
+  position: relative;
+  width: 70%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: #fff;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  border-radius: 0.5em;
+}
+
+main .wrapper h1 {
+  text-align: center;
+  background: #003bfb;
+  color: #fff;
+  padding: 0.4em;
+  font-size: 2.3em;
+  font-weight: 600;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  margin: 0;
+}
+
+main .wrapper .steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1.5em 0;
+}
+
+main .wrapper .steps .step {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  cursor: default;
+}
+
+main .wrapper .steps .step .step-number {
+  background: #dbdbdb;
+  width: 2em;
+  height: 2em;
+  padding: 0.4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.7em;
+}
+
+main .wrapper .steps .step .description {
+  width: 7em;
+  text-align: center;
+  font-size: 1em;
+  position: absolute;
+  margin-top: 5em;
+}
+
+main .wrapper .steps .line-step {
+  width: 15%;
+  height: 3px;
+  background: #dbdbdb;
+}
+
+main form {
+  position: relative;
+  max-width: 720px;
+  margin: 5em auto 2em;
+}
+
+main form div.form-step {
+  display: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+main form div.form-step input,
+main form div.form-step label {
+  font-size: 1.2em;
+}
+
+main form div.form-step h3 {
+  margin: auto;
+  text-align: center;
+  font-weight: 600;
+  width: 100%;
+}
+
+main form div.form-step p {
+  width: 100%;
+  text-align: center;
+  max-width: 500px;
+  font-size: 1.3em;
+  line-height: 1.2em;
+  margin: 2em auto;
+}
+
+main .form-name,
+main .form-email {
+  width: 250px;
+}
+
+main .mdl-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-column-gap: 0.5em;
+}
+
+@media screen and (max-width: 950px) {
+  main .mdl-cell {
+    width: 100%;
+  }
+}
+
+.submit-button {
+  position: absolute;
+  padding: 1.5em;
+  right: 0;
+}
+
+.back-button {
+  visibility: hidden;
+}
+
+img.desktop-bottom-background {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+}
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+.step-number.active {
+  background: #003bfb;
+}
+/*# sourceMappingURL=main.css.map */

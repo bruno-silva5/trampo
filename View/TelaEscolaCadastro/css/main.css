@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+* {
+  font-family: 'Montserrat';
+}
+
+body {
+  margin: 0;
+}
+
+.top-desktop-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  z-index: -1;
+}
+
+header {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 0.5em 1.5em;
+}
+
+header a {
+  text-decoration: none;
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+header a h2 {
+  color: #514bff;
+  font-size: 1.7em;
+  margin: 0;
+  font-family: 'Montserrat';
+  font-weight: 700;
+}
+
+main {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+}
+
+main .wrapper {
+  position: relative;
+  width: 70%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: #fff;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  border-radius: 0.5em;
+}
+
+main .wrapper h1 {
+  text-align: center;
+  background: #003bfb;
+  color: #fff;
+  padding: 0.4em;
+  font-size: 2.3em;
+  font-weight: 600;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  margin: 0;
+  font-family: 'Montserrat';
+}
+
+main .wrapper h2 {
+  font-size: 2.2em;
+  text-align: center;
+  margin-bottom: 0;
+  font-family: 'Montserrat';
+}
+
+main .wrapper .profiles {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2em;
+  padding-top: 1em;
+  padding-bottom: 3.5em;
+}
+
+main .wrapper .profiles a {
+  text-decoration: none;
+}
+
+main .wrapper .profiles h1 {
+  background: none;
+  color: #514bff;
+}
+
+main .wrapper .profiles .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1em 3em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main .wrapper .profiles .profile img {
+  border-radius: 0.3em;
+  width: 130px;
+  margin: auto;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  padding: 4em 2em;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+main .wrapper .profiles .profile img:hover {
+  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
+}
+
+main .wrapper .profiles .profile h3 {
+  margin-top: 0;
+  color: #514bff;
+  text-align: center;
+  font-size: 1.3em;
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
+img.desktop-bottom-background {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+}
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+.step-number.active {
+  background: #003bfb;
+}
+/*# sourceMappingURL=main.css.map */
