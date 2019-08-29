@@ -10,7 +10,7 @@ function showTab(n) {
 
     if (n == 0) {
         document.getElementsByClassName("back-button")[0].style.visibility = "visible";
-    }else {
+    } else {
         document.getElementsByClassName("back-button")[0].style.visibility = "hidden";
     }
     fixStepIndicator(n);
@@ -65,11 +65,11 @@ function validateForm() {
         if (y[i].getElementsByTagName("input")[0].value == "" && !y[i].getElementsByTagName("input")[0].classList.contains("no-required") || y[i].getElementsByTagName("input")[0].type == "email") {
             x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.add("is-invalid");
             valid = false;
-            if(y[i].getElementsByTagName("input")[0].type == "email"){
-                if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(y[i].getElementsByTagName("input")[0].value)){
+            if (y[i].getElementsByTagName("input")[0].type == "email") {
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(y[i].getElementsByTagName("input")[0].value)) {
                     valid = true;
                     x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.remove("is-invalid");
-                }else {
+                } else {
                     valid = false;
                 }
             }
@@ -88,6 +88,127 @@ function validatePassword() {
         txt_confirm_password.classList.add("is-invalid");
     } else {
         txt_confirm_password.classList.remove("is-invalid");
+    }
+}
+
+function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('input-street').value = ("");
+    document.getElementById('input-neighborhood').value = ("");
+
+}
+
+function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+        //Atualiza os campos com os valores.
+        document.getElementById('input-street').value = (conteudo.logradouro);
+        document.getElementsByClassName("form-street")[0].classList.add("is-dirty");
+        document.getElementById('input-neighborhood').value = (conteudo.bairro);
+        document.getElementsByClassName("form-neighborhood")[0].classList.add("is-dirty");
+        document.getElementById("estadosBrasil").value = (conteudo.uf);
+        document.getElementById("input-number").focus();
+
+
+    } //end if.
+    else {
+        //CEP não Encontrado.
+        limpa_formulário_cep();
+        document.getElementsByClassName("form-cep")[0].classList.add("is-invalid");
+    }
+}
+
+function pesquisacep(valor) {
+
+    //variável cep somente com numeros.
+    var cep = valor.replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if (validacep.test(cep)) {
+            var script = document.createElement('script');
+
+
+            script.src = '//viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+
+            document.body.appendChild(script);
+
+        }
+        else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            document.getElementsByClassName("form-cep")[0].classList.add("is-invalid");
+
+        }
+    }
+    else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+    }
+};
+
+function validaCPF(cpf1) {
+    var cpf = cpf1.replace(/\D/g, '');
+    var aux = 0;
+    if (cpf.length == 0) {
+
+    }
+    else if (cpf.length > 11) {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "00000000000") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "11111111111") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "22222222222") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "33333333333") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "44444444444") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "55555555555") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "66666666666") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "77777777777") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "88888888888") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    }
+    else if (cpf == "99999999999") {
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+    } else {
+        var digitoA = 0;
+        var digitoB = 0;
+
+
+        for (i = 0, j = 10; i <= 8; i++ , j--) {
+            digitoA += cpf[i] * j;
+        }
+        for (i = 0, j = 11; i <= 9; i++ , j--) {
+
+            digitoB += cpf[i] * j;
+        }
+        var somaA = ((digitoA % 11) < 2) ? 0 : 11 - (digitoA % 11);
+
+        var somaB = ((digitoB % 11) < 2) ? 0 : 11 - (digitoB % 11);
+
+        if (somaA != cpf[9] || somaB != cpf[10]) {
+            document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        }
     }
 }
 
