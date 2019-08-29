@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Ago-2019 às 03:25
+-- Generation Time: 29-Ago-2019 às 22:33
 -- Versão do servidor: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -51,10 +51,7 @@ CREATE TABLE `tbcliente` (
 --
 
 INSERT INTO `tbcliente` (`idCliente`, `nomeCliente`, `emailCliente`, `senhaCliente`, `contatoCliente`, `dataNascCliente`, `sexoCliente`, `cnpjCliente`, `cpfCliente`, `ufCliente`, `cidadeCliente`, `logradouroCliente`, `bairroCliente`, `numCasaCliente`, `complementoCliente`) VALUES
-(1, 'Roberty', 'asfas@afsf', '77777777', '', '1995-06-01', 'M', NULL, '1345343', 'AC', '', 'rhjyrjej', 'ffag', 57275, 'afgag'),
-(2, 'Roberty', 'fasdfa@afsf', '77777777', '', '1995-06-01', 'M', NULL, 'asdfdasf', 'AC', '', 'dfadsfd', 'dsfad', 727, 'agfgda'),
-(6, 'Roberty', 'sla@sla', '77777777', '', '1995-06-01', 'M', NULL, '68294436011', 'AC', '', 'Rua JosÃ© Amato', 'Cidade Tiradentes', 157, 'a'),
-(7, 'Roberty', 'sla@sla.br', '77777777', '', '1995-06-01', 'M', NULL, '68294436011', 'AC', '', 'Rua JosÃ© Amato', 'Cidade Tiradentes', 157, 'a');
+(8, 'Roberval', 'adm@adm.com', '12345678', '', '2019-08-29', 'M', NULL, '986.069.630-62', 'SP', '', 'Rua JosÃ© Amato', 'Cidade Tiradentes', 54, 'A');
 
 -- --------------------------------------------------------
 
@@ -90,14 +87,7 @@ CREATE TABLE `tbprestador` (
 --
 
 INSERT INTO `tbprestador` (`idPrestador`, `nomePrestador`, `sexoPrestador`, `emailPrestador`, `senhaPrestador`, `contatoPrestador`, `cpfPrestador`, `dataNascPrestador`, `logradouroPrestador`, `ufPrestador`, `cidadePrestador`, `bairroPrestador`, `numCasaPrestador`, `complementoPrestador`, `cnpjPrestador`, `servicoPrestador`, `cargoPrestador`, `anoAtuacaoPrestador`, `curriculoPrestador`, `disponivelEmpregoPrestador`) VALUES
-(1, 'Roberty', 'M', 'careca@careca.com', '77777777', '', 'asfsafaaf', '0000-00-00', 'wtehwht', 'AC', 'sp ', 'thshb', 8752, 'trjjhbydt', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(3, 'Roberty', 'M', 'berty@berty.com', '741852963', '', '89360243027', '0000-00-00', 'Rua JosÃ© Amato', 'SP', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(4, 'Roberty', 'M', 'berty@berty.com.br', '741852963', '', '89360243027', '0000-00-00', 'Rua JosÃ© Amato', 'SP', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(5, 'Roberty', 'M', 'berty@berty.com.br.krl', '741852963', '', '89360243027', '0000-00-00', 'Rua JosÃ© Amato', 'SP', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(6, 'Roberty', 'M', 'roberval@roberval.com', '741852963', '', '68294436011', '0000-00-00', 'Rua JosÃ© Amato', 'AC', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(7, 'Roberty', 'M', 'roberval@roberval.com.br', '741852963', '', '68294436011', '0000-00-00', 'Rua JosÃ© Amato', 'AC', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(8, 'Roberty', 'M', 'chama@chama.com', '741852963', '', '68294436011', '0000-00-00', 'Rua JosÃ© Amato', 'AC', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes'),
-(9, 'Roberty', 'M', 'roberval@roberval.com.vsf', '741852963', '', '68294436011', '0000-00-00', 'Rua JosÃ© Amato', 'AC', 'sp ', 'Cidade Tiradentes', 157, 'a', NULL, 'AnimaÃ§Ã£o', '', '1995', NULL, 'yes');
+(10, 'Leonardo', 'M', 'leo@leo.com', '12345678', '', '986.069.630-62', '0000-00-00', 'Rua JosÃ© Amato', 'SP', 'sp ', 'Cidade Tiradentes', 54, 'A', NULL, 'Teatro', '', '1995', NULL, 'yes');
 
 --
 -- Indexes for dumped tables
@@ -123,13 +113,13 @@ ALTER TABLE `tbprestador`
 -- AUTO_INCREMENT for table `tbcliente`
 --
 ALTER TABLE `tbcliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbprestador`
 --
 ALTER TABLE `tbprestador`
-  MODIFY `idPrestador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idPrestador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
