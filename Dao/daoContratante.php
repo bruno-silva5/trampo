@@ -5,9 +5,11 @@
             $conn = mysqli_connect("localhost","root","") or die(mysql_error());
             $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
             $verifica = mysqli_query($conn, "select emailCliente from tbCliente where emailCliente = '".$contratante->getEmail()."' ");
+            $verifica2 = mysqli_query($conn, "select emailPrestador from tbPrestador where emailPrestador = '".$contratante->getEmail()."' ");
             $linha = mysqli_num_rows($verifica);
-            if($linha > 0){
-                header("Location: ../../Trampo/View/UsuarioJaCadastrado/index.html");
+            $linha2 = mysqli_num_rows($verifica2);
+            if($linha > 0 && $linha2>0){
+                header("Location: ../View/UsuarioJaCadastrado/index.html");
             }else{
                 $query = "insert into tbCliente(nomeCliente, emailCliente, senhaCliente, dataNascCliente, sexoCliente, cpfCliente, ufCliente, cidadeCliente, logradouroCliente, bairroCliente, numCasaCliente, complementoCliente)
                             values('".$contratante->getNome()."', '".$contratante->getEmail()."',
@@ -19,9 +21,9 @@
 
                 $insert = mysqli_query($conn, $query);               
                 if($insert){
-                    header("Location: ../../Trampo/View/TelaLogin/");
+                    header("Location: ../View/TelaLogin/");
                 }else{
-                    echo("Erro ao cadastrar");
+                    echo("Location: ../View/UsuarioJaCadastrado/index.html");
                 }
             }
         }
@@ -36,7 +38,7 @@
                 session_start();
                 $_SESSION['email'] = $contratante->getEmail();
                 $_SESSION['senha'] = $contratante->getSenha();
-                header("Location: ../../Trampo/View/SISTEMA/PRESTADOR/");
+                header("Location: ../View/SISTEMA/CLIENTE/");
             }else{
                 header("Location: ../View/TelaErro/index.php");    
             }
@@ -80,6 +82,5 @@
             }
             return $retorno;
         }
-
     }
 ?>

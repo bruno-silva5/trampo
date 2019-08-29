@@ -4,10 +4,12 @@
         public function cadastrarPrestador(Prestador $prestador){
             $conn = mysqli_connect("localhost", "root", "") or die(mysql_error());
             $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-            $verifica = mysqli_query($conn, "select emailPrestador from tbPrestador where emailPrestador = '".$prestador->getEmail()."' ");
+            $verifica = mysqli_query($conn, "select emailCliente from tbCliente where emailCliente = '".$prestador->getEmail()."' ");
+            $verifica2 = mysqli_query($conn, "select emailPrestador from tbPrestador where emailPrestador = '".$prestador->getEmail()."' ");
             $linha = mysqli_num_rows($verifica);
-            if($linha > 0){
-                header("Location: ../../Trampo/View/UsuarioJaCadastrado/index.html");
+            $linha2 = mysqli_num_rows($verifica2);
+             if($linha > 0 || $linha2 >0){
+                header("Location: ../View/UsuarioJaCadastrado/index.html");
             }else{
                 $query = "insert into tbprestador(nomePrestador, emailPrestador, senhaPrestador, dataNascPrestador,
                  sexoPrestador, cpfPrestador, ufPrestador, cidadePrestador, logradouroPrestador, bairroPrestador,
@@ -24,9 +26,9 @@
 
                 $insert = mysqli_query($conn, $query);               
                 if($insert){
-                    header("Location: ../../Trampo/View/TelaLogin/");
+                    header("Location: ../View/TelaLogin/");
                 }else{
-                    header("Location: ../../Trampo/View/TelaErro/index.html");                    
+                    header("Location: ../View/TelaErro/index.html");                    
                 }
             }
         }
@@ -41,7 +43,7 @@
                 session_start();
                 $_SESSION['email'] = $prestador->getEmail();
                 $_SESSION['senha'] = $prestador->getSenha();
-                header("Location: ../../Trampo/View/SISTEMA/CLIENTE/");
+                header("Location: ../View/SISTEMA/PRESTADOR/");
             }else{
                 header("Location: ../View/TelaErro/index.php");     
             }

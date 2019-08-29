@@ -1,2 +1,3 @@
 <?php   
-    header("Location: ../../Trampo/View/TelaLogin/index.html");
+    header("Location: ../View/TelaLogin/index.html");
+?>

@@ -71,8 +71,15 @@ main {
   text-align: center;
 }
 
-.error button {
+.error a {
   margin-top: 4em;
+}
+
+a {
+  margin: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 img.desktop-bottom-background {
