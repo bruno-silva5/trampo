@@ -5,14 +5,20 @@
 
 body {
   margin: 0;
+  position: relative;
+  min-height: 650px;
 }
 
-img:first-of-type {
+img.top-desktop-background {
   position: absolute;
   top: 0;
   right: 0;
   width: 180px;
   z-index: -1;
+}
+
+img.top-mobile-background {
+  display: none;
 }
 
 header {
@@ -24,12 +30,23 @@ header {
   top: 0;
 }
 
+@media screen and (max-width: 412px) {
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 header a {
   text-decoration: none;
-  display: block;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  display: block;
 }
 
 header a h2 {
@@ -41,17 +58,22 @@ header a h2 {
 }
 
 main {
-  height: 100vh;
-  min-height: 600px;
+  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 2em 0;
 }
 
 main .wrapper {
   position: relative;
   width: 70%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
   background: #fff;
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
@@ -155,6 +177,8 @@ main form div.form-step label {
 
 main form div.form-step h3 {
   margin: auto;
+  margin-bottom: 1em;
+  font-size: 2em;
   text-align: center;
   font-weight: 600;
   width: 100%;
@@ -169,9 +193,12 @@ main form div.form-step p {
   margin: 2em auto;
 }
 
-main .form-name,
-main .form-email {
-  width: 250px;
+main form div.form-step .form-birthday label {
+  margin-right: 1em;
+}
+
+main form div.form-step .form-birthday .mdl-textfield {
+  width: 150px;
 }
 
 main .mdl-cell {
@@ -181,12 +208,17 @@ main .mdl-cell {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   grid-column-gap: 0.5em;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 900px) {
   main .mdl-cell {
     width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 
@@ -213,5 +245,69 @@ input.invalid {
 
 .step-number.active {
   background: #003bfb;
+}
+
+@media screen and (max-width: 1150px) {
+  .top-desktop-background {
+    display: none;
+  }
+  .step .description {
+    display: none;
+  }
+  form {
+    margin-top: 2em !important;
+  }
+  .desktop-bottom-background {
+    position: relative !important;
+    bottom: 0 !important;
+  }
+  header {
+    padding-left: 1em !important;
+  }
+  header h2 {
+    color: #fff !important;
+    font-size: 2em !important;
+  }
+  .wrapper, main {
+    padding: 0;
+  }
+  .wrapper {
+    position: relative !important;
+    width: 100% !important;
+    background: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    margin-top: 4em !important;
+  }
+  .wrapper .form-birthday {
+    margin-top: 2em;
+  }
+  .wrapper .form-birthday input, .wrapper .form-birthday label {
+    text-align: center;
+  }
+  main {
+    padding-top: 3em;
+  }
+  main h1 {
+    color: #003bfb !important;
+    background: none !important;
+  }
+  .top-mobile-background {
+    display: block !important;
+    position: absolute;
+    z-index: -1;
+    max-width: 410px;
+    max-height: 120px;
+    width: 100%;
+  }
+  h3 {
+    font-size: 2em;
+  }
+  .mdl-checkbox {
+    margin-bottom: 2em;
+  }
+  .desktop-bottom-background {
+    display: none;
+  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,18 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
-* {
-  font-family: 'Montserrat';
-}
-
 body {
   margin: 0;
+  position: relative;
+  min-height: 650px;
 }
 
-img:first-of-type {
+img.top-desktop-background {
   position: absolute;
   top: 0;
   right: 0;
   width: 180px;
   z-index: -1;
+}
+
+img.top-mobile-background {
+  display: none;
 }
 
 header {
@@ -22,6 +24,17 @@ header {
   padding: 0.5em 1.5em;
   position: absolute;
   top: 0;
+}
+
+@media screen and (max-width: 412px) {
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 header a {
@@ -41,17 +54,21 @@ header a h2 {
 }
 
 main {
-  height: 100vh;
-  min-height: 600px;
+  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 main .wrapper {
   position: relative;
   width: 50%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
   background: #fff;
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
@@ -71,25 +88,50 @@ main .wrapper h1 {
   margin: 0;
 }
 
-main .wrapper form {
-  margin-top: 2em;
-  padding: 3em 0;
+main .wrapper h2 {
+  font-family: 'Montserrat';
+  font-size: 2.3em;
+  text-align: center;
 }
 
-main .wrapper form .mdl-cell {
-  margin-top: 2em;
+main .wrapper h3 {
+  font: 1.8em 'Montserrat';
+  text-align: center;
+}
+
+main .wrapper a {
+  text-decoration: none;
+}
+
+main .wrapper form {
+  padding: 2em 0;
+  padding-top: 6em;
+}
+
+main .wrapper .mdl-cell {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  grid-column-gap: 1em;
+  margin-bottom: 2em;
 }
 
-main .wrapper form input,
-main .wrapper form label {
-  font-size: 1.4em;
+main .wrapper .mdl-textfield {
+  width: 307px;
+}
+
+main .wrapper input, main .wrapper label {
+  font-size: 1.3em;
+}
+
+.mdl-button {
+  margin: 0 0.5em;
+}
+
+.back-button {
+  visibility: hidden;
 }
 
 img.desktop-bottom-background {
@@ -97,5 +139,60 @@ img.desktop-bottom-background {
   position: absolute;
   z-index: -1;
   bottom: 0;
+}
+
+@media screen and (max-width: 1150px) {
+  .top-desktop-background {
+    display: none;
+  }
+  .desktop-bottom-background {
+    position: relative !important;
+    bottom: 0 !important;
+  }
+  header {
+    padding-left: 1em !important;
+  }
+  header h2 {
+    color: #fff !important;
+    font-size: 2em !important;
+  }
+  .wrapper, main {
+    padding: 0;
+  }
+  .wrapper {
+    position: relative !important;
+    width: 100% !important;
+    background: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+  }
+  .mdl-textfield {
+    width: 90% !important;
+    max-width: 307px !important;
+  }
+  form {
+    padding: 0 !important;
+  }
+  main {
+    padding-top: 6em;
+  }
+  main h1 {
+    color: #003bfb !important;
+    background: none !important;
+  }
+  .top-mobile-background {
+    display: block !important;
+    position: absolute;
+    z-index: -1;
+    max-width: 410px;
+    max-height: 120px;
+    width: 100%;
+  }
+  .desktop-bottom-background {
+    display: none;
+  }
+  h3 {
+    font-size: 2em;
+  }
 }
 /*# sourceMappingURL=main.css.map */

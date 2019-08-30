@@ -12,13 +12,14 @@
 </head>
 
 <body>
+    <img src="img/icons/right-top-desktop-background.png" alt="background" class="top-desktop-background">
+    <img src="img/icons/top-mobile-background.png" alt="background" class="top-mobile-background">
+    <header>
+        <a href="../TelaInicial/index.html">
+            <h2>Trampo</h2>
+        </a>
+    </header>
     <main>
-        <img src="img/icons/right-top-desktop-background.png" alt="background">
-        <header>
-            <a href="../TelaInicial/index.html">
-                <h2>Trampo</h2>
-            </a>
-        </header>
 
         <div class="wrapper">
             <h1>Cadastre-se</h1>
@@ -47,12 +48,12 @@
 
                 <div class="form-step mdl-grid">
                     <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col form-name">
+                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col mdl-cell--12-col-phone form-name">
                         <input class="mdl-textfield__input" type="text" id="input-name" name="name">
                         <label class="mdl-textfield__label" for="input-full-name">Nome Completo*</label>
                     </div>
                     <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col form-email">
+                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col mdl-cell--12-col-phone form-email">
                         <input class="mdl-textfield__input" type="email" id="input-email" name="email">
                         <label class="mdl-textfield__label" for="input-email">E-mail*</label>
                     </div>
@@ -73,10 +74,14 @@
                             <span class="mdl-radio__label">Feminino</span>
                         </label>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <label for="birthday">Data de nascimento: </label>
-                        <input type="date" id="birthday" name="dataNasc" value="1995-06-01">
-                    </div>
+                    <div class="mdl-cell mdl-cell--9-col form-birthday">
+                            <label>Data de nascimento:</label>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input type="text" class="mdl-textfield__input input-date" id="birthday" name="birthday"
+                                    size="8" maxlength="8">
+                                <label for="" class="mdl-textfield__label" for="birthday">dd/mm/aaaa</label>
+                            </div>
+                        </div>
                 </div>
 
                 <div class="form-step mdl-grid">
@@ -167,10 +172,6 @@
                         </select>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
-                        <label>Atuo na área desde:</label>
-                        <input type="date" value="1995-06-01" name="atuation">
-                    </div>
-                    <div class="mdl-cell mdl-cell--12-col">
                         <label>Currículo (Opcional)</label>
                         <input type="file" name="curriculum">
                     </div>
@@ -224,8 +225,10 @@
             </button>
         </div>
 
-        <img src="img/icons/bottom-desktop-background.png" alt="background" class="desktop-bottom-background">
     </main>
+    <img src="img/icons/bottom-desktop-background.png" alt="background" class="desktop-bottom-background">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/material.min.js"></script>
 </body>

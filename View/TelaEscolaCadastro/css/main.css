@@ -1,13 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
-* {
-  font-family: 'Montserrat';
-}
-
 body {
   margin: 0;
+  position: relative;
+  min-height: 650px;
 }
 
-.top-desktop-background {
+img.top-desktop-background {
   position: absolute;
   top: 0;
   right: 0;
@@ -15,21 +13,36 @@ body {
   z-index: -1;
 }
 
+img.top-mobile-background {
+  display: none;
+}
+
 header {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
+  padding: 0.5em 1.5em;
   position: absolute;
   top: 0;
-  padding: 0.5em 1.5em;
+}
+
+@media screen and (max-width: 412px) {
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 header a {
   text-decoration: none;
-  display: block;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  display: block;
 }
 
 header a h2 {
@@ -41,17 +54,22 @@ header a h2 {
 }
 
 main {
-  height: 100vh;
-  min-height: 600px;
+  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 2em 0;
 }
 
 main .wrapper {
   position: relative;
   width: 70%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
   background: #fff;
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
@@ -69,80 +87,55 @@ main .wrapper h1 {
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
   margin: 0;
-  font-family: 'Montserrat';
 }
 
 main .wrapper h2 {
-  font-size: 2.2em;
-  text-align: center;
-  margin-bottom: 0;
   font-family: 'Montserrat';
+  font-size: 2.3em;
+  text-align: center;
 }
 
-main .wrapper .profiles {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 2em;
-  padding-top: 1em;
-  padding-bottom: 3.5em;
+main .wrapper h3 {
+  font: 1.4em 'Montserrat';
+  text-align: center;
 }
 
-main .wrapper .profiles a {
+main .wrapper a {
   text-decoration: none;
 }
 
-main .wrapper .profiles h1 {
-  background: none;
-  color: #514bff;
-}
-
-main .wrapper .profiles .profile {
+main .wrapper div.profiles {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 1em 3em;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding-bottom: 3em;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-main .wrapper .profiles .profile img {
+main .wrapper div.profiles div.profile {
+  margin: 0 2em;
+}
+
+main .wrapper div.profiles div.profile img {
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  padding: 4.5em 3em;
   border-radius: 0.3em;
-  width: 130px;
-  margin: auto;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  padding: 4em 2em;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
 }
 
-main .wrapper .profiles .profile img:hover {
-  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
+main .wrapper div.profiles div.profile img:hover {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-main .wrapper .profiles .profile h3 {
-  margin-top: 0;
-  color: #514bff;
-  text-align: center;
-  font-size: 1.3em;
-  font-family: 'Montserrat';
-  font-weight: 600;
+.back-button {
+  visibility: hidden;
 }
 
 img.desktop-bottom-background {
@@ -152,11 +145,52 @@ img.desktop-bottom-background {
   bottom: 0;
 }
 
-input.invalid {
-  background-color: #ffdddd;
-}
-
-.step-number.active {
-  background: #003bfb;
+@media screen and (max-width: 1150px) {
+  .top-desktop-background {
+    display: none;
+  }
+  .desktop-bottom-background {
+    position: relative !important;
+    bottom: 0 !important;
+  }
+  header {
+    padding-left: 1em !important;
+  }
+  header h2 {
+    color: #fff !important;
+    font-size: 2em !important;
+  }
+  .wrapper, main {
+    padding: 0;
+  }
+  .wrapper {
+    position: relative !important;
+    width: 100% !important;
+    background: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    margin-top: 4em !important;
+  }
+  main {
+    padding-top: 3em;
+  }
+  main h1 {
+    color: #003bfb !important;
+    background: none !important;
+  }
+  .top-mobile-background {
+    display: block !important;
+    position: absolute;
+    z-index: -1;
+    max-width: 410px;
+    max-height: 120px;
+    width: 100%;
+  }
+  h3 {
+    font-size: 2em;
+  }
+  .desktop-bottom-background {
+    display: none;
+  }
 }
 /*# sourceMappingURL=main.css.map */

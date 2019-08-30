@@ -54,8 +54,8 @@ function next() {
         document.getElementById("form-register").submit();
         return false;
     }
+    window.scrollTo(0, 0);
     showTab(currentTab);
-
 
 }
 
@@ -64,7 +64,7 @@ function validateForm() {
     y = x[currentTab].getElementsByClassName("mdl-textfield");
 
     for (i = 0; i < y.length; i++) {
-        if (y[i].getElementsByTagName("input")[0].value == "" && !y[i].getElementsByTagName("input")[0].classList.contains("no-required") || y[i].getElementsByTagName("input")[0].type == "email") {
+        if (y[i].getElementsByTagName("input")[0].value == "" && !y[i].getElementsByTagName("input")[0].classList.contains("no-required") || y[i].getElementsByTagName("input")[0].type == "email" ||  y[i].getElementsByTagName("input")[0].name == "cpf") {
             x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.add("is-invalid");
             valid = false;
             if (y[i].getElementsByTagName("input")[0].type == "email") {
@@ -72,6 +72,16 @@ function validateForm() {
                     valid = true;
                     x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.remove("is-invalid");
                 } else {
+                    valid = false;
+                }
+            }
+
+            if(y[i].getElementsByTagName("input")[0].name == "cpf") {
+                if(validaCPF(y[i].getElementsByTagName("input")[0].value)) {
+                    valid = true;
+                    x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.remove("is-invalid");
+                }else {
+                    x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.add("is-invalid")
                     valid = false;
                 }
             }
@@ -158,40 +168,52 @@ function validaCPF(cpf1) {
     var cpf = cpf1.replace(/\D/g, '');
     var aux = 0;
     if (cpf.length == 0) {
-
+        document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf.length > 11) {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "00000000000") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "11111111111") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "22222222222") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "33333333333") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "44444444444") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "55555555555") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "66666666666") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "77777777777") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "88888888888") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     }
     else if (cpf == "99999999999") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+        return false;
     } else {
         var digitoA = 0;
         var digitoB = 0;
@@ -210,8 +232,10 @@ function validaCPF(cpf1) {
 
         if (somaA != cpf[9] || somaB != cpf[10]) {
             document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
+            return false;
         }
     }
+    return true;
 }
 
 password.onchange = validatePassword;
@@ -223,4 +247,10 @@ function normalInput(input) {
 }
 
 document.getElementsByTagName("input").onkeyup = normalInput;
+
+$(document).ready(function(){
+    $('#input-cpf').mask('000.000.000-00', {reverse: true});
+    $('.input-date').mask('00/00/0000', {reverse: true});
+    $('#input-cep').mask('00000-000', {reverse: true});
+});
 

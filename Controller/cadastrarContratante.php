@@ -8,11 +8,9 @@
     $contratante->setNome($_POST['name']);
     $contratante->setEmail($_POST['input-email']);
     $contratante->setSenha( $_POST['input-password']);
-    $data = new DateTime($_POST['birthday']);
-    
-    $contratante->setDataNasc($data->format('Y-m-d H:i:s'));
+    $contratante->setDataNasc($_POST['birthday']);
     $contratante->setSexo($_POST['gender']);
-    $contratante->setCPF($_POST['input-cpf']);
+    $contratante->setCPF($_POST['cpf-input']);
     $contratante->setCEP($_POST['input-cep']);
     $contratante->setEstado($_POST['estados-brasil']);
     $contratante->setCidade("");

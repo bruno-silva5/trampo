@@ -17,7 +17,6 @@ $prestador->setNumero($_POST['number']);
 $prestador->setBairro($_POST['neighborhood']);
 $prestador->setComplemento($_POST['complement']);
 $prestador->setServico($_POST['profession']);
-$prestador->setAnoAtuacao($_POST['atuation']);
 $prestador->setCurriculo($_POST['curriculum']);
 $prestador->setDisponivel($_POST['option']);
 $prestador->setSenha($_POST['password']);
