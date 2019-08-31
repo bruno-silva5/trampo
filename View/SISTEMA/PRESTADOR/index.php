@@ -306,7 +306,7 @@
             </button>
             <h3>Deseja sair?</h3>
             <div class="buttons-wrapper">
-                <a href="../../../Controller/Logout.php"><button class="mdl-button mdl-js-button mdl-js-ripple-effect">Sim</button></a>
+                <a href="../../../Controller/logout.php"><button class="mdl-button mdl-js-button mdl-js-ripple-effect">Sim</button></a>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="toggleModal()">Não</button>
             </div>
         </div>

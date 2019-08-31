@@ -1,6 +1,6 @@
 <?php
-        $conn = mysqli_connect("localhost", "root", "") or die(mysql_error());
-        $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
+        $conn = mysqli_connect("localhost", "root", "") or die(mysqli_error($conn));
+        $db = mysqli_select_db($conn, "bdtrampo") or die(mysqli_error($conn));
 
         session_start();
         $usuario = $_SESSION['email'];

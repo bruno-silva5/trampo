@@ -27,6 +27,7 @@ header {
   width: 100%;
   padding: 0.5em 1.5em;
   position: absolute;
+  z-index: 1;
   top: 0;
 }
 
@@ -268,7 +269,8 @@ input.invalid {
     color: #fff !important;
     font-size: 2em !important;
   }
-  .wrapper, main {
+  .wrapper,
+  main {
     padding: 0;
   }
   .wrapper {
@@ -282,7 +284,8 @@ input.invalid {
   .wrapper .form-birthday {
     margin-top: 2em;
   }
-  .wrapper .form-birthday input, .wrapper .form-birthday label {
+  .wrapper .form-birthday input,
+  .wrapper .form-birthday label {
     text-align: center;
   }
   main {

@@ -23,5 +23,6 @@ $prestador->setSenha($_POST['password']);
 
 $daoPrestador->cadastrarPrestador($prestador);
 
+?>
 
 

@@ -151,6 +151,7 @@ a.mdl-navigation__link {
         .mdl-cell {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
         .mdl-textfield__input,
         .mdl-textfield__label,

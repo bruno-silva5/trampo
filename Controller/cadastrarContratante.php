@@ -6,7 +6,7 @@
     $contratante = new Contratante();
 
     $contratante->setNome($_POST['name']);
-    $contratante->setEmail($_POST['input-email']);
+    $contratante->setEmail($_POST['email-input']);
     $contratante->setSenha( $_POST['input-password']);
     $contratante->setDataNasc($_POST['birthday']);
     $contratante->setSexo($_POST['gender']);
@@ -20,3 +20,5 @@
     $contratante->setComplemento($_POST['input-complement']);
 
     $daoContratante->cadastrarUsuario($contratante);
+
+?>

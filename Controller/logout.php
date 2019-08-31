@@ -5,3 +5,4 @@
     unset($_SESSION['senha']);
     session_destroy();
     header("Location: ../View/TelaLogin/index.html");
+?>

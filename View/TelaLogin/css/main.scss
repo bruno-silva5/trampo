@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
-
 body {
     margin: 0;
     position: relative;
     min-height: 650px;
 }
+
 img.top-desktop-background {
     position: absolute;
     top: 0;
@@ -22,6 +22,7 @@ header {
     width: 100%;
     padding: 0.5em 1.5em;
     position: absolute;
+    z-index: 1;
     @media screen and (max-width: 412px) {
         display: flex;
         justify-content: center;
@@ -65,44 +66,35 @@ main {
             border-top-left-radius: 0.5rem;
             margin: 0;
         }
-
         h2 {
             font-family: 'Montserrat';
             font-size: 2.3em;
             text-align: center;
         }
-
         h3 {
             font: 1.8em 'Montserrat';
             text-align: center;
-            
         }
-
         a {
             text-decoration: none;
         }
-
         form {
             padding: 2em 0;
             padding-top: 6em;
         }
-
         .mdl-cell {
             display: flex;
             justify-content: center;
             margin-bottom: 2em;
         }
-
         .mdl-textfield {
             width: 307px;
         }
-
-        input,label {
+        input,
+        label {
             font-size: 1.3em;
         }
-
     }
-
 }
 
 .mdl-button {
@@ -124,12 +116,10 @@ img.desktop-bottom-background {
     .top-desktop-background {
         display: none;
     }
-
     .desktop-bottom-background {
         position: relative !important;
         bottom: 0 !important;
     }
-
     header {
         padding-left: 1em !important;
         h2 {
@@ -137,36 +127,30 @@ img.desktop-bottom-background {
             font-size: 2em !important;
         }
     }
-
-    .wrapper, main {
+    .wrapper,
+    main {
         padding: 0;
     }
-
     .wrapper {
         position: relative !important;
         width: 100% !important;
         background: none !important;
         box-shadow: none !important;
     }
-
     .mdl-textfield {
         width: 90% !important;
         max-width: 307px !important;
     }
-
     form {
         padding: 0 !important
     }
-
     main {
         padding-top: 6em;
-
         h1 {
             color: #003bfb !important;
             background: none !important;
         }
     }
-
     .top-mobile-background {
         display: block !important;
         position: absolute;
@@ -175,13 +159,10 @@ img.desktop-bottom-background {
         max-height: 120px;
         width: 100%;
     }
-
     .desktop-bottom-background {
         display: none;
     }
-
     h3 {
         font-size: 2em;
     }
-
 }

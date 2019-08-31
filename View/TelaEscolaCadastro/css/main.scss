@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
-
 body {
     margin: 0;
     position: relative;
     min-height: 650px;
 }
+
 img.top-desktop-background {
     position: absolute;
     top: 0;
@@ -22,6 +22,7 @@ header {
     width: 100%;
     padding: 0.5em 1.5em;
     position: absolute;
+    z-index: 1;
     @media screen and (max-width: 412px) {
         display: flex;
         justify-content: center;
@@ -66,29 +67,23 @@ main {
             border-top-left-radius: 0.5rem;
             margin: 0;
         }
-
         h2 {
             font-family: 'Montserrat';
             font-size: 2.3em;
             text-align: center;
         }
-
         h3 {
             font: 1.4em 'Montserrat';
             text-align: center;
-            
         }
-
         a {
             text-decoration: none;
         }
-
         div.profiles {
             display: flex;
             justify-content: space-evenly;
             padding-bottom: 3em;
             flex-wrap: wrap;
-            
             div.profile {
                 margin: 0 2em;
                 img {
@@ -97,16 +92,13 @@ main {
                     border-radius: 0.3em;
                     transition: 0.15s;
                 }
-
                 img:hover {
                     box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.3)
                 }
             }
         }
     }
-
 }
-
 
 .back-button {
     visibility: hidden;
@@ -123,12 +115,10 @@ img.desktop-bottom-background {
     .top-desktop-background {
         display: none;
     }
-
     .desktop-bottom-background {
         position: relative !important;
         bottom: 0 !important;
     }
-
     header {
         padding-left: 1em !important;
         h2 {
@@ -136,11 +126,10 @@ img.desktop-bottom-background {
             font-size: 2em !important;
         }
     }
-
-    .wrapper, main {
+    .wrapper,
+    main {
         padding: 0;
     }
-
     .wrapper {
         position: relative !important;
         width: 100% !important;
@@ -148,16 +137,13 @@ img.desktop-bottom-background {
         box-shadow: none !important;
         margin-top: 4em !important;
     }
-
     main {
         padding-top: 3em;
-
         h1 {
             color: #003bfb !important;
             background: none !important;
         }
     }
-
     .top-mobile-background {
         display: block !important;
         position: absolute;
@@ -166,13 +152,10 @@ img.desktop-bottom-background {
         max-height: 120px;
         width: 100%;
     }
-
     h3 {
         font-size: 2em;
     }
-
     .desktop-bottom-background {
         display: none;
     }
-
 }

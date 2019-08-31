@@ -8,6 +8,7 @@ body {
     position: relative;
     min-height: 650px;
 }
+
 img.top-desktop-background {
     position: absolute;
     top: 0;
@@ -25,6 +26,7 @@ header {
     width: 100%;
     padding: 0.5em 1.5em;
     position: absolute;
+    z-index: 1;
     @media screen and (max-width: 412px) {
         display: flex;
         justify-content: center;
@@ -136,21 +138,16 @@ main {
                 line-height: 1.2em;
                 margin: 2em auto;
             }
-
-
             .form-birthday {
                 label {
                     margin-right: 1em;
                 }
-
                 .mdl-textfield {
                     width: 150px;
                 }
             }
-            
         }
     }
-
     .mdl-cell {
         display: flex;
         align-items: center;
@@ -199,16 +196,13 @@ input.invalid {
             display: none;
         }
     }
-
     form {
         margin-top: 2em !important;
     }
-
     .desktop-bottom-background {
         position: relative !important;
         bottom: 0 !important;
     }
-
     header {
         padding-left: 1em !important;
         h2 {
@@ -216,36 +210,31 @@ input.invalid {
             font-size: 2em !important;
         }
     }
-
-    .wrapper, main {
+    .wrapper,
+    main {
         padding: 0;
     }
-
     .wrapper {
         position: relative !important;
         width: 100% !important;
         background: none !important;
         box-shadow: none !important;
         margin-top: 4em !important;
-
         .form-birthday {
             margin-top: 2em;
-
-                input, label {
-                    text-align: center;
-                }
+            input,
+            label {
+                text-align: center;
+            }
         }
     }
-
     main {
         padding-top: 3em;
-
         h1 {
             color: #003bfb !important;
             background: none !important;
         }
     }
-
     .top-mobile-background {
         display: block !important;
         position: absolute;
@@ -254,18 +243,13 @@ input.invalid {
         max-height: 120px;
         width: 100%;
     }
-
     h3 {
         font-size: 2em;
     }
-
     .mdl-checkbox {
         margin-bottom: 2em;
     }
-
     .desktop-bottom-background {
         display: none;
     }
-
-
 }

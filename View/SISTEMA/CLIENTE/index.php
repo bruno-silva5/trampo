@@ -53,7 +53,6 @@
             <div class="section-page section-page-services ">
                 <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                     <div class="page-content">
-                        <h1>Serviços mais procurados</h1>
                         <div class="services-list">
                             <a href="#">
                                 <img src="img/thumbs/confeiteira.jpg" alt="">
@@ -235,7 +234,7 @@
             </button>
             <h3>Deseja sair?</h3>
             <div class="buttons-wrapper">
-                <a href="../../../Controller/Logout.php"><button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="sair()   ">Sim</button></a>
+                <a href="../../../Controller/logout.php"><button class="mdl-button mdl-js-button mdl-js-ripple-effect">Sim</button></a>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="toggleModal()">Não</button>
             </div>
         </div>

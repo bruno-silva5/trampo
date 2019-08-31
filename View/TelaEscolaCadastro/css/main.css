@@ -23,6 +23,7 @@ header {
   width: 100%;
   padding: 0.5em 1.5em;
   position: absolute;
+  z-index: 1;
   top: 0;
 }
 
@@ -160,7 +161,8 @@ img.desktop-bottom-background {
     color: #fff !important;
     font-size: 2em !important;
   }
-  .wrapper, main {
+  .wrapper,
+  main {
     padding: 0;
   }
   .wrapper {
