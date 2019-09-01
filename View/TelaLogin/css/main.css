@@ -78,6 +78,7 @@ main .wrapper {
 }
 
 main .wrapper h1 {
+  font-family: 'Montserrat';
   text-align: center;
   background: #003bfb;
   color: #fff;

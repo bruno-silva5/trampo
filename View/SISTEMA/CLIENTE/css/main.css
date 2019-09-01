@@ -74,7 +74,7 @@ a.mdl-navigation__link {
 }
 
 .mdl-layout__content {
-  background: whitesmoke;
+  background: #3f51b511;
 }
 
 .mdl-layout__content .mdl-layout__tab-panel .page-content {
@@ -150,23 +150,28 @@ a.mdl-navigation__link {
 }
 
 .section-page-myAccount {
-  padding: 1em;
-  padding-bottom: 2.5em;
+  padding: 3em;
+  padding-bottom: 4em;
 }
 
 .section-page-myAccount h3,
 .section-page-myAccount h5 {
   margin: 1em auto;
   text-align: center;
+  font-family: 'Montserrat';
 }
 
 .section-page-myAccount h3 {
   margin-top: 0.5em;
+  font-family: 'Montserrat';
+}
+
+.section-page-myAccount .form-wrapper {
+  background: #fff;
 }
 
 .section-page-myAccount form {
   max-width: 900px;
-  background: #fff;
   border-radius: 0.3em;
   padding: 0 2em;
   padding-bottom: 3em;
@@ -190,6 +195,10 @@ a.mdl-navigation__link {
 .section-page-myAccount form input[type="date"],
 .section-page-myAccount form input[type="file"] {
   font-size: 1.2em;
+}
+
+.section-page-myAccount form .mdl-textfield {
+  max-width: 80%;
 }
 
 .section-page-myAccount form button {
@@ -266,10 +275,71 @@ a.mdl-navigation__link {
   font-size: 2em;
 }
 
+.modal-changePassword .modal-content {
+  width: 90%;
+  height: 80%;
+  max-width: 800px;
+  overflow-y: auto;
+}
+
+.modal-changePassword .modal-content h3 {
+  margin: 1em auto;
+}
+
+.modal-changePassword form {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.modal-changePassword input,
+.modal-changePassword label {
+  font-size: 1.3em;
+}
+
+.modal-changePassword .mdl-textfield {
+  width: 80%;
+  max-width: 400px;
+}
+
+.modal-changePassword .mdl-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .blur {
   -webkit-filter: blur(5px);
           filter: blur(5px);
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
+}
+
+@media screen and (max-width: 540px) {
+  .mdl-textfield,
+  .mdl-cell {
+    width: 100% !important;
+    max-width: 100% !important;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .mdl-button {
+    margin: auto;
+  }
+  #input-birthday,
+  .label-birthday {
+    text-align: center;
+  }
+  form {
+    width: 100%;
+    padding: 2em 0.3em !important;
+  }
+  section.section-page-myAccount {
+    padding: 0;
+  }
 }
 /*# sourceMappingURL=main.css.map */

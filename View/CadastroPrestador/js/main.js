@@ -75,11 +75,11 @@ function validateForm() {
                 }
             }
 
-            if(y[i].getElementsByTagName("input")[0].name == "cpf") {
-                if(validaCPF(y[i].getElementsByTagName("input")[0].value)) {
+            if (y[i].getElementsByTagName("input")[0].name == "cpf") {
+                if (validaCPF(y[i].getElementsByTagName("input")[0].value)) {
                     valid = true;
                     x[currentTab].getElementsByClassName("mdl-textfield")[i].classList.remove("is-invalid");
-                }else {
+                } else {
                     valid = false;
                 }
             }
@@ -148,15 +148,13 @@ function pesquisacep(valor) {
 
             document.body.appendChild(script);
 
-        }
-        else {
+        } else {
             //cep é inválido.
             limpa_formulário_cep();
             document.getElementsByClassName("form-cep")[0].classList.add("is-invalid");
 
         }
-    }
-    else {
+    } else {
         //cep sem valor, limpa formulário.
         limpa_formulário_cep();
     }
@@ -168,48 +166,37 @@ function validaCPF(cpf1) {
     if (cpf.length == 0) {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf.length > 11) {
+    } else if (cpf.length > 11) {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "00000000000") {
+    } else if (cpf == "00000000000") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "11111111111") {
+    } else if (cpf == "11111111111") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "22222222222") {
+    } else if (cpf == "22222222222") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "33333333333") {
+    } else if (cpf == "33333333333") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "44444444444") {
+    } else if (cpf == "44444444444") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "55555555555") {
+    } else if (cpf == "55555555555") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "66666666666") {
+    } else if (cpf == "66666666666") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "77777777777") {
+    } else if (cpf == "77777777777") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "88888888888") {
+    } else if (cpf == "88888888888") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
-    }
-    else if (cpf == "99999999999") {
+    } else if (cpf == "99999999999") {
         document.getElementsByClassName("form-cpf")[0].classList.add("is-invalid");
         return false;
     } else {
@@ -217,10 +204,10 @@ function validaCPF(cpf1) {
         var digitoB = 0;
 
 
-        for (i = 0, j = 10; i <= 8; i++ , j--) {
+        for (i = 0, j = 10; i <= 8; i++, j--) {
             digitoA += cpf[i] * j;
         }
-        for (i = 0, j = 11; i <= 9; i++ , j--) {
+        for (i = 0, j = 11; i <= 9; i++, j--) {
 
             digitoB += cpf[i] * j;
         }
@@ -247,8 +234,8 @@ function normalInput(input) {
 
 document.getElementsByTagName("input").onkeyup = normalInput;
 
-$(document).ready(function(){
-    $('#input-cpf').mask('000.000.000-00', {reverse: true});
-    $('.input-date').mask('00/00/0000', {reverse: true});
-    $('#input-cep').mask('00000-000', {reverse: true});
+$(document).ready(function() {
+    $('#input-cpf').mask('000.000.000-00', { reverse: true });
+    $('.input-date').mask('00/00/0000', { reverse: true });
+    $('#input-cep').mask('00000-000', { reverse: true });
 });

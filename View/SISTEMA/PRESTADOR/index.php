@@ -140,30 +140,30 @@
                 </section>
             </div>
             <section class="section-page section-page-myAccount">
-                <h3>Alterar minha conta</h3>
+            <div class="form-wrapper">
                 <form action="" class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
                         <h5>Informações pessoais</h5>
                     </div>
-                    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet ">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="input-name">
                             <label class="mdl-textfield__label" for="input-name">Nome</label>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet ">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="email" id="input-email">
                             <label class="mdl-textfield__label" for="input-email">E-mail</label>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--3-col">
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 150px">
                             <input class="mdl-textfield__input" type="text" id="input-cpf">
                             <label class="mdl-textfield__label" for="input-cpf">CPF</label>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col" style="min-width: 268px">
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--5-col-tablet" style="min-width: 300px;  margin: 2em 0;">
                         <label>Sexo: &ensp; </label>
                         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-male">
                                     <input type="radio" id="radio-male" class="mdl-radio__button" name="gender" value="M" checked>
@@ -174,9 +174,12 @@
                                     <span class="mdl-radio__label">Feminino</span>
                                 </label>
                     </div>
-                    <div class="mdl-cell mdl-cell--5-col">
-                        <label>Data de nascimento:&ensp;</label>
-                        <input type="date">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <label>Data de nascimento:&emsp;</label>
+                        <div class="mdl-textfield mdl-js-textfield" style="max-width: 130px">
+                                <input class="mdl-textfield__input input-date" type="text" id="input-birthday">
+                                <label class="mdl-textfield__label label-birthday" for="input-birthday">dd/mm/aaaa</label>
+                        </div>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
                         <h5>Endereço</h5>
@@ -190,14 +193,34 @@
                     <div class="mdl-cell mdl-cell--4-col">
                         <label>Estado &ensp;</label>
                         <select>
-                                        <option value="">Option 1</option>
-                                        <option value="">Option 1</option>
-                                        <option value="">Option 1</option>
-                                        <option value="">Option 1</option>
-                                        <option value="">Option 1</option>
-                                        <option value="">Option 1</option>
-                                        <option value="">Rio grande do sul</option>
-                                    </select>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -205,7 +228,7 @@
                             <label class="mdl-textfield__label" for="input-street">Rua</label>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--2-col">
+                    <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 90px">
                             <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input-number">
                             <label class="mdl-textfield__label" for="input-number">Número</label>
@@ -218,7 +241,7 @@
                         </div>
                     </div>
 
-                    <div class="mdl-cell mdl-cell--4-col ">
+                    <div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
                             <input class="mdl-textfield__input" type="text" id="input-addOnAdress">
                             <label class="mdl-textfield__label" for="input-addOnAdress">Complemento</label>
@@ -227,7 +250,7 @@
                     <div class="mdl-cell mdl-cell--12-col">
                         <h5>Ocupação</h5>
                     </div>
-                    <div class="mdl-cell mdl-cell--6-col">
+                    <div class="mdl-cell mdl-cell--12-col">
                         <label>Área em que atuo:&ensp;</label>
                         <select>
                             <option value="">Option 1</option>
@@ -239,10 +262,6 @@
                             <option value="">Rio grande do sul</option>
                             <option value="">Comunicação das artes do corpo</option>
                         </select>
-                    </div>
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <label>Atuo na área desde:&ensp;</label>
-                        <input type="date">
                     </div>
                     <div class="mdl-cell mdl-cell--6-col" style="margin-top: 3em;">
                         <label>Currículo:&ensp;</label>
@@ -259,31 +278,20 @@
                                 <span class="mdl-radio__label">Não</span>
                             </label>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <h5>Trocar de senha</h5>
-                    </div>
-                    <div class="mdl-cell">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 230px">
-                            <input class="mdl-textfield__input" type="password" id="input-currentlyPassword" minlength="8">
-                            <label class="mdl-textfield__label" for="input-currentlyPassword">Senha atual</label>
-                        </div>
-                    </div>
-                    <div class="mdl-cell">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 230px">
-                            <input class="mdl-textfield__input" type="password" id="input-newPassword" minlength="8">
-                            <label class="mdl-textfield__label" for="input-newPassword">Nova senha</label>
-                        </div>
-                    </div>
-                    <div class="mdl-cell">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="txt_confirm_password" style="max-width: 230px">
-                            <input class="mdl-textfield__input" type="password" id="input-confirmPassword" minlength="8">
-                            <label class="mdl-textfield__label" for="input-confirmPassword">Confirmar senha</label>
-                        </div>
-                    </div>
-                    <button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect btn-modal-account">Excluir conta</button>
-                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar alterações</button>
+                   <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                       <button type="button" class="mdl-button mdl-js-button btn-modal-account">
+                            <i class="material-icons">delete_forever</i>
+                        </button>
+                       <button type="button" class="mdl-button mdl-js-button btn-modal-changePassword">
+                       Alterar senha
+                       </button>
+                   </div>
+                   <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar alterações</button>
+                   </div>
 
                 </form>
+            </div>
             </section>
             <section class="section-page section-page-configuration ">
                 <h3>Configurações</h3>
@@ -319,7 +327,7 @@
             <button class="mdl-button mdl-js-button mdl-button--icon close-modal-style close-modalAccount">
                 <i>&times;</i>
             </button>
-            <h3>Tem certeza?</h3>
+            <h3 style="font-size:1.7em">Deseja excluir sua conta?</h3>
             <div class="buttons-wrapper">
                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Sim</button>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="toggleModalAccount()">Não</button>
@@ -327,6 +335,39 @@
         </div>
     </div>
 
+    <div class="modal-style modal-changePassword">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button class="mdl-button mdl-js-button mdl-button--icon close-modal-style close-changePassword">
+                <i>&times;</i>
+            </button>
+            <h3 style="font-size:1.7em">Alterar senha</h3>
+            <form action="#" class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="input-currentlyPassword" minlength="8">
+                        <label class="mdl-textfield__label" for="input-currentlyPassword">Senha atual</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="input-newPassword" minlength="8">
+                        <label class="mdl-textfield__label" for="input-newPassword">Nova senha</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col" style="margin-bottom: 2em">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " id="txt_confirm_password">
+                        <input class="mdl-textfield__input" type="password" id="input-confirmPassword" minlength="8">
+                        <label class="mdl-textfield__label" for="input-confirmPassword">Confirmar senha</label>
+                    </div>
+                </div>
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="toggleModalChangePassword()">Cancelar</button>
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
     <script src="js/main.js "></script>
 </body>
 

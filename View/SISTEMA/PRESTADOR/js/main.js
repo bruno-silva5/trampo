@@ -4,7 +4,6 @@ var configBtn = document.querySelector("#config-btn");
 var helpBtn = document.querySelector("#help-btn");
 var logoutBtn = document.querySelector("#logout-btn");
 
-//modal!!!!!!!!!!!!!!!!!
 
 var modal = document.querySelector(".modal");
 var mainContent = document.getElementsByClassName("mdl-layout")[0];
@@ -36,10 +35,13 @@ helpBtn.onclick = function() {
     document.querySelector(".section-page-help").style.display = "block";
 }
 
-// modal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 var modalAccount = document.querySelector(".modal-account");
 var closeModalAccount = document.querySelector(".close-modalAccount");
 var btnModalAccount = document.querySelector(".btn-modal-account");
+
+var modalChangePassword = document.querySelector(".modal-changePassword")
+var closeChangePassword = document.querySelector(".close-changePassword")
+var btnChangePassword = document.querySelector(".btn-modal-changePassword");
 
 function toggleModal() {
     mainContent.classList.toggle("blur");
@@ -51,20 +53,31 @@ function toggleModalAccount() {
     modalAccount.classList.toggle("show-modal");
 }
 
+function toggleModalChangePassword() {
+    mainContent.classList.toggle("blur");
+    modalChangePassword.classList.toggle("show-modal");
+}
+
 function windowOnClick(event) {
     if (event.target == modal) {
         toggleModal();
     } else if (event.target == modalAccount) {
         toggleModalAccount();
+    } else if (event.target == modalChangePassword) {
+        toggleModalChangePassword();
     }
 }
 
 logoutBtn.addEventListener("click", toggleModal);
 btnClose.addEventListener("click", toggleModal);
+
 window.addEventListener("click", windowOnClick);
 
 btnModalAccount.addEventListener("click", toggleModalAccount);
 closeModalAccount.addEventListener("click", toggleModalAccount);
+
+btnChangePassword.addEventListener("click", toggleModalChangePassword);
+closeChangePassword.addEventListener("click", toggleModalChangePassword);
 
 
 function removeActiveLinks() {
@@ -101,3 +114,9 @@ function checkPassword() {
 
 inputNewPassword.onchange = checkPassword;
 inputConfirmPassword.onkeyup = checkPassword;
+
+$(document).ready(function() {
+    $('#input-cpf').mask('000.000.000-00', { reverse: true });
+    $('.input-date').mask('00/00/0000', { reverse: true });
+    $('#input-cep').mask('00000-000', { reverse: true });
+});

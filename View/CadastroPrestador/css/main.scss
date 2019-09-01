@@ -61,6 +61,7 @@ main {
         margin: auto;
         border-radius: 0.5em;
         h1 {
+            font-family: 'Montserrat';
             text-align: center;
             background: #003bfb;
             color: #fff;
@@ -123,9 +124,10 @@ main {
                 font-size: 1.2em;
             }
             h3 {
+                font-family: 'Montserrat';
                 margin: auto;
                 margin-bottom: 1em;
-                font-size: 2em;
+                font-size: 1.8em;
                 text-align: center;
                 font-weight: 600;
                 width: 100%;
@@ -145,6 +147,11 @@ main {
                 .mdl-textfield {
                     width: 150px;
                 }
+            }
+            input[type="file"] {
+                width: 100%;
+                max-width: 260px;
+                margin: 1.5em 0;
             }
         }
     }

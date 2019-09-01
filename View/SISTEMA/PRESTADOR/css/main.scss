@@ -68,7 +68,7 @@ a.mdl-navigation__link {
 }
 
 .mdl-layout__content {
-    background: rgb(245, 245, 245);
+    background: #3f51b511;
 }
 
 .mdl-layout__content .mdl-layout__tab-panel .page-content {
@@ -138,25 +138,26 @@ a.mdl-navigation__link {
 }
 
 .section-page-myAccount {
-    padding: 1em;
-    padding-bottom: 2.5em;
+    padding: 3em;
+    padding-bottom: 4em;
     h3,
     h5 {
         margin: 1em auto;
         text-align: center;
+        font-family: 'Montserrat';
     }
-    h3 {
-        margin-top: 0.5em;
+    .form-wrapper {
+        background: #fff;
     }
     form {
         max-width: 900px;
-        background: #fff;
         border-radius: 0.3em;
         padding: 0 2em;
         padding-bottom: 3em;
         .mdl-cell {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
         .mdl-textfield__input,
         .mdl-textfield__label,
@@ -166,8 +167,14 @@ a.mdl-navigation__link {
         input[type="file"] {
             font-size: 1.2em;
         }
+        .mdl-textfield {
+            max-width: 80%;
+        }
+        input[type="file"] {
+            max-width: 80%;
+        }
         button {
-            margin-top: 2em;
+            margin-top: 3em;
         }
         button[type="submit"] {
             margin-left: auto;
@@ -224,7 +231,58 @@ a.mdl-navigation__link {
     font-size: 2em;
 }
 
+.modal-changePassword {
+    .modal-content {
+        width: 90%;
+        height: 80%;
+        max-width: 800px;
+        overflow-y: auto;
+        h3 {
+            margin: 1em auto;
+        }
+    }
+    form {
+        justify-content: space-around;
+    }
+    input,
+    label {
+        font-size: 1.3em;
+    }
+    .mdl-textfield {
+        width: 80%;
+        max-width: 400px;
+    }
+    .mdl-cell {
+        display: flex;
+        margin: 1em;
+        justify-content: center;
+    }
+}
+
 .blur {
     filter: blur(5px);
     transition: all 0.1s;
+}
+
+@media screen and (max-width:540px) {
+    .mdl-textfield,
+    .mdl-cell {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: center;
+    }
+    .mdl-button {
+        margin: auto;
+    }
+    #input-birthday,
+    .label-birthday {
+        text-align: center;
+    }
+    form {
+        width: 100%;
+        padding: 2em 0.3em !important;
+    }
+    section.section-page-myAccount {
+        padding: 0;
+    }
 }

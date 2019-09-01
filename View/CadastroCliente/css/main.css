@@ -83,6 +83,7 @@ main .wrapper {
 }
 
 main .wrapper h1 {
+  font-family: 'Montserrat';
   text-align: center;
   background: #003bfb;
   color: #fff;
@@ -179,10 +180,11 @@ main form div.form-step label {
 main form div.form-step h3 {
   margin: auto;
   margin-bottom: 1em;
-  font-size: 2em;
+  font-size: 1.8em;
   text-align: center;
   font-weight: 600;
   width: 100%;
+  font-family: 'Montserrat';
 }
 
 main form div.form-step p {

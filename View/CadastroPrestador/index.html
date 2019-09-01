@@ -47,51 +47,45 @@
             <form action="../../Controller/cadastrarPrestador.php" method="POST" id="form-register">
 
                 <div class="form-step mdl-grid">
-                    <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col mdl-cell--12-col-phone form-name">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col mdl-cell--12-col-phone form-name">
                         <input class="mdl-textfield__input" type="text" id="input-name" name="name">
                         <label class="mdl-textfield__label" for="input-full-name">Nome Completo*</label>
                     </div>
-                    <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col mdl-cell--12-col-phone form-email">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col mdl-cell--12-col-phone form-email">
                         <input class="mdl-textfield__input" type="email" id="input-email" name="email">
                         <label class="mdl-textfield__label" for="input-email">E-mail*</label>
                     </div>
-                    <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col form-cpf">
-                        <input class="mdl-textfield__input" type="text" id="input-cpf" name="cpf"
-                            onblur="validaCPF(this.value)">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col form-cpf">
+                        <input class="mdl-textfield__input" type="text" id="input-cpf" name="cpf" onblur="validaCPF(this.value)">
                         <label class="mdl-textfield__label" for="input-cpf">CPF*</label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col gender-cell">
-                        <label>Sexo:</label>
+                        <label>Sexo:</label>&emsp;
                         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
                             <input checked class="mdl-radio__button" id="male" name="gender" type="radio" value="M">
                             <span class="mdl-radio__label">Masculino</span>
-                        </label>
+                        </label> &emsp;
                         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female">
                             <input class="mdl-radio__button" id="female" name="gender" type="radio" value="F">
                             <span class="mdl-radio__label">Feminino</span>
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--9-col form-birthday">
-                            <label>Data de nascimento:</label>
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <input type="text" class="mdl-textfield__input input-date" id="birthday" name="birthday"
-                                    size="8" maxlength="8">
-                                <label for="" class="mdl-textfield__label" for="birthday">dd/mm/aaaa</label>
-                            </div>
+                        <label>Data de nascimento:</label>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input type="text" class="mdl-textfield__input input-date" id="birthday" name="birthday" size="8" maxlength="8">
+                            <label for="" class="mdl-textfield__label" for="birthday">dd/mm/aaaa</label>
                         </div>
+                    </div>
                 </div>
 
                 <div class="form-step mdl-grid">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col">
-                        <input type="text" class="mdl-textfield__input" id="input-cep" maxlength="9"
-                            onblur="pesquisacep(this.value);" name="cep">
+                        <input type="text" class="mdl-textfield__input" id="input-cep" maxlength="9" onblur="pesquisacep(this.value);" name="cep">
                         <label class="mdl-textfield__label" for="input-cep">CEP*</label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
-                        <label>Estado</label>
+                        <label>Estado:</label>&emsp;
                         <select name="estados-brasil" id="estadosBrasil">
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -122,25 +116,21 @@
                             <option value="TO">Tocantins</option>
                         </select>
                     </div>
-                    <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col form-street">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col form-street">
                         <input type="text" class="mdl-textfield__input" id="input-street" name="street">
                         <label class="mdl-textfield__label" for="input-street">Rua*</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--2-col">
-                        <input type="text" class="mdl-textfield__input" id="input-number" pattern="-?[0-9]*(\.[0-9]+)?"
-                            name="number">
+                        <input type="text" class="mdl-textfield__input" id="input-number" pattern="-?[0-9]*(\.[0-9]+)?" name="number">
                         <label class="mdl-textfield__label" for="input-number">Número*</label>
                     </div>
-                    <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col form-neighborhood">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col form-neighborhood">
                         <input type="text" class="mdl-textfield__input" id="input-neighborhood" name="neighborhood">
                         <label class="mdl-textfield__label" for="input-neighborhood">Bairro*</label>
 
                     </div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
-                        <input type="text" class="mdl-textfield__input no-required" id="input-complement"
-                            name="complement">
+                        <input type="text" class="mdl-textfield__input no-required" id="input-complement" name="complement">
                         <label class="mdl-textfield__label" for="input-complement">Complemento</label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col"></div>
@@ -148,7 +138,7 @@
 
                 <div class="form-step mdl-grid" style="grid-row-gap: 2em;">
                     <div class="mdl-cell mdl-cell--12-col">
-                        <label>Área em que atuo: </label>
+                        <label>Área em que atuo: </label> &emsp;
                         <select id="professional-areas" name="profession">
                             <option>Animação</option>
                             <option>Arquitetura e Urbanismo</option>
@@ -172,16 +162,16 @@
                         </select>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
-                        <label>Currículo (Opcional)</label>
+                        <label>Currículo (Opcional)</label> &emsp;
                         <input type="file" name="curriculum">
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
-                        <label>Estou disponível para vagas de emprego?</label>
+                        <label>Estou disponível para vagas de emprego?</label>&emsp;
                         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
                             <input type="radio" id="option-1" class="mdl-radio__button" name="option" value="yes"
                                 checked>
                             <span class="mdl-radio__label">Sim</span>
-                        </label>
+                        </label> &emsp;
                         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
                             <input type="radio" id="option-2" class="mdl-radio__button" name="option" value="no">
                             <span class="mdl-radio__label">Não</span>
@@ -192,25 +182,21 @@
                 <div class="form-step mdl-grid">
                     <h3>Defina uma senha</h3>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col">
-                        <input type="password" id="input-password" class="mdl-textfield__input" minlength="8"
-                            name="password">
+                        <input type="password" id="input-password" class="mdl-textfield__input" minlength="8" name="password">
                         <label for="input-password" class="mdl-textfield__label">Digite uma senha*</label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
                         <label>Sua senha deve ter no mínimo 8 caracteres</label>
                     </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col"
-                        id="txt-password-confirm">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col" id="txt-password-confirm">
                         <input type="password" id="input-password-confirm" class="mdl-textfield__input">
-                        <label for="input-password-confirm" class="mdl-textfield__label">Confirmar senha</label>
+                        <label for="input-password-confirm" class="mdl-textfield__label">Confirmar senha*</label>
                     </div>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell mdl-cell--12-col"
-                        for="checkbox-1">
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell mdl-cell--12-col" for="checkbox-1">
                         <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Concordo com termos de política do Freelas*</span>
                     </label>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell mdl-cell--12-col"
-                        for="checkbox-2">
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell mdl-cell--12-col" for="checkbox-2">
                         <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Desejo receber informações e novidades no meu e-mail</span>
                     </label>
@@ -218,9 +204,7 @@
             </form>
             <a href="../TelaEscolaCadastro/index.html"><button
                     class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary back-button">Voltar</button></a>
-            <button
-                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored submit-button"
-                onclick="next()" action="../../Controller/cadastrarPrestador.php">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored submit-button" onclick="next()" action="../../Controller/cadastrarPrestador.php">
                 <i class="material-icons">navigate_next</i>
             </button>
         </div>
