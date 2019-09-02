@@ -13,7 +13,14 @@
         private $numero;
         private $bairro;
         private $complemento;
+        private $emailAntigo;
 
+        public function setEmailAntigo(string $emailAntigo){
+            $this->emailAntigo = $emailAntigo;
+           }
+           public function getEmailAntigo() : string{
+               return $this->emailAntigo;
+           }
         public function setNome(string $nome){
          $this->nome = $nome;
         }

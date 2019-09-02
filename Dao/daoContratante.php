@@ -10,13 +10,14 @@
             if($linha > 0 || $linha2>0){
                 header("Location: ../View/UsuarioJaCadastrado/index.html");
             }else{
-                $query = "INSERT INTO tbcliente(nomeCliente, emailCliente, senhaCliente, dataNascCliente, sexoCliente, cpfCliente, ufCliente, cidadeCliente, logradouroCliente, bairroCliente, numCasaCliente, complementoCliente)
+                $query = "INSERT INTO tbcliente(nomeCliente, emailCliente, senhaCliente, dataNascCliente, sexoCliente, cpfCliente, ufCliente, cidadeCliente, logradouroCliente, bairroCliente, numCasaCliente, complementoCliente,cepCliente)
                  VALUES('".$contratante->getNome()."','".$contratante->getEmail()."',
                              '".$contratante->getSenha()."', '".$contratante->getDataNasc()."',
                               '".$contratante->getSexo()."', '".$contratante->getCPF()."',
                               '".$contratante->getEstado()."','".$contratante->getCidade()."',
                               '".$contratante->getRua()."', '".$contratante->getBairro()."',
-                              '".$contratante->getNumero()."', '".$contratante->getComplemento()."')";
+                              '".$contratante->getNumero()."', '".$contratante->getComplemento()."',
+                              '".$contratante->getCep()."')";
 
                 $insert = mysqli_query($conn, $query);               
                 if($insert){
@@ -43,27 +44,32 @@
             }
         }
 
-        public function editarUsuario(Usuario $usuario, Usuario $usuarioOld){
-            $conn = mysqli_connect("localhost","root","") or die(mysqli_error($conn));
-            $db = mysqli_select_db($conn, "bdUsuario") or die(mysqli_error($conn));
+        public function editarContratante(Contratante $usuario){
+            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
+            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
 
-            $editar = mysqli_query($conn, "update tbUsuario set nome = '".$usuario->getnome()."' , email = '".$usuario->getemail()."' , senha = '".$usuario->getSenha()."' where senha ='".$usuarioOld->getSenha()."'");
+            $editar = mysqli_query($conn, "update tbCliente set nomeCliente = '".$usuario->getnome()."' , emailCliente = '".$usuario->getemail()."' ,
+            sexoCliente = '".$usuario->getsexo()."', cpfCliente = '".$usuario->getcpf()."', ufCliente = '".$usuario->getEstado()."', logradouroCliente = '".$usuario->getrua()."', bairroCliente = '".$usuario->getbairro()."',
+             numCasaCliente = '".$usuario->getnumero()."', complementoCliente = '".$usuario->getcomplemento()."'
+               where emailCliente = '".$usuario->getemailantigo()."'");
             
             if($editar > 0){
-                echo("Editado com sucesso");
+                unset($_SESSION['email']);
+                $_SESSION['email'] = $usuario->getEmail();
+                header("Location: ../View/SISTEMA/CLIENTE/");
             }else{
-                echo("Falha na edição senha incorreta");
+                header("Location: ../View/TelaLogin");
             }
         }
 
-        public function excluirUsuario(Usuario $usuario){
-            $conn = mysqli_connect("localhost","root","") or die(mysqli_error($conn));
-            $db = mysqli_select_db($conn, "bdUsuario") or die(mysqli_error($conn));
 
-            $excluir = mysqli_query($conn,"delete from tbUsuario where senha = '".$usuario->getSenha()."' and nome = '".$usuario->getNome()."'");
+        public function excluirContratante(Contratante $contratante){
+            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
+            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
+            $excluir = mysqli_query($conn,"delete from tbcliente where emailcliente = '".$contratante->getEmail()."' ");
 
             if($excluir > 0){
-                echo("Excluido com sucesso");
+                header("Location: ../View/TelaLogin/index.html");
             }else{
                 echo("Erro ao excluir nome ou senha incorretos");
             }
