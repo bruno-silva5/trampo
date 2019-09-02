@@ -50,7 +50,7 @@
 
             $editar = mysqli_query($conn, "update tbCliente set nomeCliente = '".$usuario->getnome()."' , emailCliente = '".$usuario->getemail()."' ,
             sexoCliente = '".$usuario->getsexo()."', cpfCliente = '".$usuario->getcpf()."', ufCliente = '".$usuario->getEstado()."', logradouroCliente = '".$usuario->getrua()."', bairroCliente = '".$usuario->getbairro()."',
-             numCasaCliente = '".$usuario->getnumero()."', complementoCliente = '".$usuario->getcomplemento()."'
+             numCasaCliente = '".$usuario->getnumero()."', complementoCliente = '".$usuario->getcomplemento()."', cepCliente = '".$usuario->getCEP()."'
                where emailCliente = '".$usuario->getemailantigo()."'");
             
             if($editar > 0){

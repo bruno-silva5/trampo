@@ -13,7 +13,7 @@
             }else{
                 $query = "insert into tbprestador(nomePrestador, emailPrestador, senhaPrestador, dataNascPrestador,
                  sexoPrestador, cpfPrestador, ufPrestador, cidadePrestador, logradouroPrestador, bairroPrestador,
-                  numCasaPrestador, complementoPrestador, servicoPrestador, cepPrestador, anoAtuacaoPrestador,
+                  numCasaPrestador, complementoPrestador, servicoPrestador, cepPrestador,
                    disponivelEmpregoPrestador)
                             values('".$prestador->getNome()."', '".$prestador->getEmail()."',
                              '".$prestador->getSenha()."', '".$prestador->getDataNasc()."',
@@ -22,7 +22,7 @@
                                 '".$prestador->getRua()."', '".$prestador->getBairro()."',
                                  '".$prestador->getNumero()."', '".$prestador->getComplemento()."', 
                                  '".$prestador->getServico()."','".$prestador->getCep()."',
-                                  '".$prestador->getAnoAtuacao()."', '".$prestador->getDisponivel()."')";
+                                  '".$prestador->getDisponivel()."')";
 
                 $insert = mysqli_query($conn, $query);               
                 if($insert){
@@ -54,9 +54,12 @@
             $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
 
             $editar = mysqli_query($conn, "update tbPrestador set nomePrestador = '".$usuario->getnome()."' , emailPrestador = '".$usuario->getemail()."' ,
-            sexoPrestador = '".$usuario->getsexo()."', cpfPrestador = '".$usuario->getcpf()."', ufPrestador = '".$usuario->getEstado()."', logradouroPrestador = '".$usuario->getrua()."', bairroPrestador = '".$usuario->getbairro()."',
-             numCasaPrestador = '".$usuario->getnumero()."', complementoPrestador = '".$usuario->getcomplemento()."', servicoPrestador = '".$usuario->getservico()."',
-              disponivelEmpregoPrestador = '".$usuario->getdisponivel()."' where emailPrestador = '".$usuario->getemailantigo()."'");
+            sexoPrestador = '".$usuario->getsexo()."', cpfPrestador = '".$usuario->getcpf()."',
+             ufPrestador = '".$usuario->getEstado()."', logradouroPrestador = '".$usuario->getrua()."',
+              bairroPrestador = '".$usuario->getbairro()."', numCasaPrestador = '".$usuario->getnumero()."',
+               complementoPrestador = '".$usuario->getcomplemento()."', servicoPrestador = '".$usuario->getservico()."',
+              disponivelEmpregoPrestador = '".$usuario->getdisponivel()."', cepPrestador = '".$usuario->getCEP()."'
+               where emailPrestador = '".$usuario->getemailantigo()."'");
             
             if($editar > 0){
                 unset($_SESSION['email']);
