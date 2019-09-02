@@ -15,7 +15,6 @@
         private $complemento;
         private $servico;
         private $curriculo;
-        private $anoAtuacao;
         private $disponivel;
         private $emailAntigo;
 
@@ -128,13 +127,6 @@
        }
        public function getcurriculo() : string{
           return $this->curriculo;
-       }
-   
-       public function setAnoAtuacao(String $anoAtuacao){
-           $this->anoAtuacao = $anoAtuacao;
-       }
-       public function getAnoAtuacao() : String{
-           return $this->anoAtuacao;
        }
        
        public function setDisponivel($disponivel){
