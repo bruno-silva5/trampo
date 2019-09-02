@@ -17,7 +17,14 @@
         private $curriculo;
         private $anoAtuacao;
         private $disponivel;
+        private $emailAntigo;
 
+        public function setEmailAntigo(string $emailAntigo){
+            $this->emailAntigo = $emailAntigo;
+           }
+           public function getEmailAntigo() : string{
+               return $this->emailAntigo;
+           }
         public function setNome(string $nome){
          $this->nome = $nome;
         }

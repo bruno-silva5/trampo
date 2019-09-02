@@ -34,7 +34,16 @@
         <div class="mdl-layout__drawer">
             <div class="profile">
                 <img src="http://onehundreddates.com/wp-content/uploads/2014/03/Random-Person-Date-1.jpg" alt="profile photo">
-                <h5>Felipe Silva</h5>
+                <h5><?php 
+                $conn = mysqli_connect("localhost","root","") or die(mysql_error());
+                $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
+                $consulta = "select nomePrestador from tbPrestador where emailPrestador = '".$_SESSION['email']."'";
+                $res = mysqli_query($conn,$consulta);
+                 
+                $row = mysqli_fetch_assoc($res);
+                echo $row['nomePrestador'];
+                
+                ?></h5>
 
             </div>
             <nav class="mdl-navigation">
@@ -141,25 +150,35 @@
             </div>
             <section class="section-page section-page-myAccount">
             <div class="form-wrapper">
-                <form action="" class="mdl-grid">
+                <form action="../../../Controller/editarPrestador.php" method="POST" class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
                         <h5>Informações pessoais</h5>
-                    </div>
+                    </div><?php 
+                $conn = mysqli_connect("localhost","root","") or die(mysql_error());
+                $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
+                $consulta = "select * from tbPrestador where emailPrestador = '".$_SESSION['email']."'";
+                $res = mysqli_query($conn,$consulta);
+                 
+                $row = mysqli_fetch_assoc($res);
+                
+
+                
+                   echo('
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="input-name">
+                            <input class="mdl-textfield__input" type="text" id="input-name" name = "name" value="'.$row['nomePrestador'].'">
                             <label class="mdl-textfield__label" for="input-name">Nome</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="email" id="input-email">
+                            <input class="mdl-textfield__input" type="email" id="input-email" name = "email" value="'.$row['emailPrestador'].'">
                             <label class="mdl-textfield__label" for="input-email">E-mail</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 150px">
-                            <input class="mdl-textfield__input" type="text" id="input-cpf">
+                            <input class="mdl-textfield__input" type="text" id="input-cpf" name = "cpf" value="'.$row['cpfPrestador'].'">
                             <label class="mdl-textfield__label" for="input-cpf">CPF</label>
                         </div>
                     </div>
@@ -177,7 +196,7 @@
                     <div class="mdl-cell mdl-cell--12-col">
                         <label>Data de nascimento:&emsp;</label>
                         <div class="mdl-textfield mdl-js-textfield" style="max-width: 130px">
-                                <input class="mdl-textfield__input input-date" type="text" id="input-birthday">
+                                <input class="mdl-textfield__input input-date" type="text" id="input-birthday"  name = "birthday" value="'.$row['dataNascPrestador'].'">
                                 <label class="mdl-textfield__label label-birthday" for="input-birthday">dd/mm/aaaa</label>
                         </div>
                     </div>
@@ -186,13 +205,14 @@
                     </div>
                     <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 110px">
-                            <input class="mdl-textfield__input" type="text" id="input-cep">
+                            <input class="mdl-textfield__input" type="text" id="input-cep" name = "cep" value="'.$row['cepPrestador'].'">
                             <label class="mdl-textfield__label" for="input-cep">CEP</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <label>Estado &ensp;</label>
-                        <select>
+                        <select name="estados-brasil">
+                            <option value="">'.$row['ufPrestador'].'</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
                             <option value="AP">Amapá</option>
@@ -224,26 +244,26 @@
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="email" id="input-street">
+                            <input class="mdl-textfield__input" type="text" id="input-street" name="street" value="'.$row['logradouroPrestador'].'">
                             <label class="mdl-textfield__label" for="input-street">Rua</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 90px">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input-number">
+                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input-number"  name="number" value="'.$row['numCasaPrestador'].'">
                             <label class="mdl-textfield__label" for="input-number">Número</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col ">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 230px">
-                            <input class="mdl-textfield__input" type="text" id="input-neighborhood">
+                            <input class="mdl-textfield__input" type="text" id="input-neighborhood" name="neighborhood" value="'.$row['bairroPrestador'].'">
                             <label class="mdl-textfield__label" for="input-neighborhood">Bairro</label>
                         </div>
                     </div>
 
                     <div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-                            <input class="mdl-textfield__input" type="text" id="input-addOnAdress">
+                            <input class="mdl-textfield__input" type="text" id="input-addOnAdress" name="complement" value="'.$row['complementoPrestador'].'">
                             <label class="mdl-textfield__label" for="input-addOnAdress">Complemento</label>
                         </div>
                     </div>
@@ -252,20 +272,31 @@
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
                         <label>Área em que atuo:&ensp;</label>
-                        <select>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 1</option>
-                            <option value="">Rio grande do sul</option>
-                            <option value="">Comunicação das artes do corpo</option>
+                        <select name="profession">
+                        <option>Animação</option>
+                        <option>Arquitetura e Urbanismo</option>
+                        <option>Artes Visuais</option>
+                        <option>Comunicação das Artes do Corpo</option>
+                        <option>Conservação e Restauro</option>
+                        <option>Dança</option>
+                        <option>Design</option>
+                        <option>Design de Games</option>
+                        <option>Design de Interiores</option>
+                        <option>Design de Moda</option>
+                        <option>Fotografia</option>
+                        <option>História da Arte</option>
+                        <option>Jogos Digitais</option>
+                        <option>Luteria</option>
+                        <option>Motorista</option>
+                        <option>Música</option>
+                        <option>Produção Cênica</option>
+                        <option>Produção Fonográfica</option>
+                        <option>Teatro</option>
                         </select>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col" style="margin-top: 3em;">
                         <label>Currículo:&ensp;</label>
-                        <input type="file">
+                        <input type="file" value="'.$row['curriculoPrestador'].'" name="curriculum">
                     </div>
                     <div class="mdl-cell mdl-cell--6-col" style="margin-top: 3em;">
                         <label>Disponível para vagas:&ensp;</label>
@@ -287,10 +318,10 @@
                        </button>
                    </div>
                    <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
-                       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar alterações</button>
+                   <a href="../../../Controller/editarPrestador.php"><button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar alterações</button></a>
                    </div>
 
-                </form>
+                </form>'); ?>
             </div>
             </section>
             <section class="section-page section-page-configuration ">
@@ -329,7 +360,7 @@
             </button>
             <h3 style="font-size:1.7em">Deseja excluir sua conta?</h3>
             <div class="buttons-wrapper">
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Sim</button>
+            <a href="../../../Controller/excluirPrestador.php"><button class="mdl-button mdl-js-button mdl-js-ripple-effect">Sim</button></a>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="toggleModalAccount()">Não</button>
             </div>
         </div>
