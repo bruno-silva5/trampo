@@ -96,5 +96,17 @@
             return $retorno;
         }
 
+        public function redefinirSenha(Prestador $prestador){
+            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
+            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
+
+            $editar = mysqli_query($conn, "update tbPrestador set senhaPrestador = '".$prestador->getSenha()."'
+                                            where emailPrestador = '".$prestador->getEmail()."'");
+            
+            if($editar > 0){
+                header("Location: ../View/TelaLogin");
+            }else{
+                header("Location: ../View/TelaErro");
+            }
+        }
     }
-?>

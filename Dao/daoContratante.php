@@ -2,7 +2,7 @@
     class daoContratante{
 
         public function cadastrarUsuario(Contratante $contratante){
-            $conn = mysqli_connect("localhost","root","","bdtrampo") or die(mysqli_error());
+            $conn = mysqli_connect("localhost","root","","bdtrampo") or die(mysqli_error($conn));
             $verifica = mysqli_query($conn, "SELECT emailCliente FROM tbcliente WHERE emailCliente LIKE '".$contratante->getEmail()."' ");
             $verifica2 = mysqli_query($conn, "SELECT emailPrestador FROM tbprestador WHERE emailPrestador LIKE '".$contratante->getEmail()."' ");
             $linha = mysqli_num_rows($verifica);
@@ -86,6 +86,20 @@
                 $retorno = "null";
             }
             return $retorno;
+        }
+
+        public function redefinirSenha(Contratante $contratante){
+            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
+            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
+
+            $editar = mysqli_query($conn, "update tbCliente set senhaCliente = '".$contratante->getSenha()."'
+                                            where emailCliente = '".$contratante->getEmail()."'");
+            
+            if($editar > 0){
+                header("Location: ../View/TelaLogin");
+            }else{
+                header("Location: ../View/TelaErro");
+            }
         }
     }
 ?>
