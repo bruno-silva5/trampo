@@ -234,6 +234,7 @@ a.mdl-navigation__link {
     h3 {
         margin: 2em auto;
         width: fit-content;
+        text-align: center;
     }
     .buttons-wrapper {
         display: flex;
@@ -294,9 +295,6 @@ a.mdl-navigation__link {
         width: 100% !important;
         max-width: 100% !important;
         justify-content: center;
-    }
-    .mdl-button {
-        margin: auto;
     }
     #input-birthday,
     .label-birthday {

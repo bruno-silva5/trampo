@@ -291,6 +291,7 @@ a.mdl-navigation__link {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  text-align: center;
 }
 
 .modal-content .buttons-wrapper {
@@ -370,9 +371,6 @@ a.mdl-navigation__link {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-  }
-  .mdl-button {
-    margin: auto;
   }
   #input-birthday,
   .label-birthday {
