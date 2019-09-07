@@ -1,4 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+@font-face {
+    font-family: 'Montserrat';
+    src: url(../fonts/Montserrat-Regular.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(../fonts/Montserrat-SemiBold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(../fonts/Montserrat-Bold.ttf);
+    font-weight: 700;
+}
+
 .mdl-layout__tab span {
     width: 30px;
 }
@@ -171,8 +188,11 @@ a.mdl-navigation__link {
         button {
             margin-top: 2em;
         }
-        button[type="submit"] {
+        a {
             margin-left: auto;
+            @media screen and (max-width: 600px) {
+                margin: auto;
+            }
         }
     }
 }
@@ -259,7 +279,7 @@ a.mdl-navigation__link {
     transition: all 0.1s;
 }
 
-@media screen and (max-width:540px) {
+@media screen and (max-width:600px) {
     .mdl-textfield,
     .mdl-cell {
         width: 100% !important;

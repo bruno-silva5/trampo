@@ -1,20 +1,20 @@
 <?php
+
     class daoPrestador{
 
         public function cadastrarPrestador(Prestador $prestador){
-            $conn = mysqli_connect("localhost", "root", "") or die(mysql_error());
-            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-            $verifica = mysqli_query($conn, "select emailCliente from tbCliente where emailCliente = '".$prestador->getEmail()."' ");
-            $verifica2 = mysqli_query($conn, "select emailPrestador from tbPrestador where emailPrestador = '".$prestador->getEmail()."' ");
+            include 'conexao.php';
+            $verifica = mysqli_query($conn, "SELECT email FROM contratante WHERE email = '".$prestador->getEmail()."' ");
+            $verifica2 = mysqli_query($conn, "SELECT email FROM prestador WHERE email = '".$prestador->getEmail()."' ");
             $linha = mysqli_num_rows($verifica);
             $linha2 = mysqli_num_rows($verifica2);
              if($linha > 0 || $linha2 >0){
                 header("Location: ../View/UsuarioJaCadastrado/index.html");
             }else{
-                $query = "insert into tbprestador(nomePrestador, emailPrestador, senhaPrestador, dataNascPrestador,
-                 sexoPrestador, cpfPrestador, ufPrestador, cidadePrestador, logradouroPrestador, bairroPrestador,
-                  numCasaPrestador, complementoPrestador, servicoPrestador, cepPrestador,
-                   disponivelEmpregoPrestador)
+                $query = "INSERT INTO prestador(full_name, email, password, birth_date,
+                 gender, cpf, uf, city, address, neighborhood,
+                  home_number, address_complement, service, cep,
+                   available_for_job)
                             values('".$prestador->getNome()."', '".$prestador->getEmail()."',
                              '".$prestador->getSenha()."', '".$prestador->getDataNasc()."',
                               '".$prestador->getSexo()."', '".$prestador->getCPF()."',
@@ -34,10 +34,8 @@
         }
 
         public function logarPrestador(Prestador $prestador){
-            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
-            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-
-            $verifica = mysqli_query($conn, "select emailPrestador from tbPrestador where emailPrestador = '".$prestador->getEmail()."' and senhaPrestador = '".$prestador->getSenha()."' ");
+            include 'conexao.php';
+            $verifica = mysqli_query($conn, "SELECT email FROM prestador WHERE email = '".$prestador->getEmail()."' and password = '".$prestador->getSenha()."' ");
             $linha = mysqli_num_rows($verifica);
             if($linha > 0){
                 session_start();
@@ -45,21 +43,19 @@
                 $_SESSION['senha'] = $prestador->getSenha();
                 header("Location: ../View/SISTEMA/PRESTADOR/");
             }else{
-                header("Location: ../View/TelaErro/index.php");     
+                header("Location: ../View/TelaErro/index.html");     
             }
         }
 
         public function editarPrestador(Prestador $usuario){
-            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
-            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-
-            $editar = mysqli_query($conn, "update tbPrestador set nomePrestador = '".$usuario->getnome()."' , emailPrestador = '".$usuario->getemail()."' ,
-            sexoPrestador = '".$usuario->getsexo()."', cpfPrestador = '".$usuario->getcpf()."',
-             ufPrestador = '".$usuario->getEstado()."', logradouroPrestador = '".$usuario->getrua()."',
-              bairroPrestador = '".$usuario->getbairro()."', numCasaPrestador = '".$usuario->getnumero()."',
-               complementoPrestador = '".$usuario->getcomplemento()."', servicoPrestador = '".$usuario->getservico()."',
-              disponivelEmpregoPrestador = '".$usuario->getdisponivel()."', cepPrestador = '".$usuario->getCEP()."'
-               where emailPrestador = '".$usuario->getemailantigo()."'");
+            include 'conexao.php';
+            $editar = mysqli_query($conn, "UPDATE prestador SET nomePrestador = '".$usuario->getnome()."' , email = '".$usuario->getemail()."' ,
+            gender = '".$usuario->getsexo()."', cpf = '".$usuario->getcpf()."',
+             uf = '".$usuario->getEstado()."', adress = '".$usuario->getrua()."',
+              neighborhood = '".$usuario->getbairro()."', home_number = '".$usuario->getnumero()."',
+               adress_complement = '".$usuario->getcomplemento()."', service = '".$usuario->getservico()."',
+              available_for_job = '".$usuario->getdisponivel()."', cep = '".$usuario->getCEP()."', dataNascCliente = '".$usuario->getDataNasc()."'
+               WHERE email = '".$usuario->getemailantigo()."'");
             
             if($editar > 0){
                 unset($_SESSION['email']);
@@ -69,11 +65,28 @@
                 header("Location: ../View/TelaLogin");
             }
         }
+        public function editarSenhaPrestador(Prestador $usuario){
+            include 'conexao.php';
+            $verifica = mysqli_query($conn, "SELECT password FROM prestador WHERE email = '".$usuario->getEmail()."' ");
+            $linha = mysqli_fetch_assoc($verifica);
+            if($linha['password'] != $usuario->getSenhaAntiga()){
+                header("Location: ../View/UsuarioJaCadastrado/index.html");
+            }else{
+            $editar = mysqli_query($conn, "UPDATE prestador SET password = '".$usuario->getSenha()."' WHERE email = '".$usuario->getemail()."'");
+            if($editar > 0){
+                unset($_SESSION['senha']);
+                $_SESSION['senha'] = $usuario->getSenha();
+                header("Location: ../View/SISTEMA/PRESTADOR/");
+            }else{
+                header("Location: ../View/TelaLogin");
+            }
+        }
+            
+        }
 
         public function excluirPrestador(Prestador $prestador){
-            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
-            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-            $excluir = mysqli_query($conn,"delete from tbprestador where emailPrestador = '".$prestador->getEmail()."' ");
+            include 'conexao.php';
+            $excluir = mysqli_query($conn,"DELETE FROM prestador full_name email = '".$prestador->getEmail()."' ");
 
             if($excluir > 0){
                 header("Location: ../View/TelaLogin/index.html");
@@ -83,9 +96,8 @@
         }
 
         public function verificaContaPrestador(string $email) : string{
-            $conn = mysqli_connect("localhost","root","") or die(mysql_error());
-            $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-            $verifica = mysqli_query($conn, "select emailPrestador from tbPrestador where emailPrestador = '".$email."' ");
+            include 'conexao.php';
+            $verifica = mysqli_query($conn, "SELECT email FROM prestador WHERE email = '".$email."' ");
             $linha = mysqli_num_rows($verifica);
             if($linha > 0){
                 $retorno = "prestador";

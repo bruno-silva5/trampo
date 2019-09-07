@@ -9,3 +9,5 @@
 
     $contratante->setEmail($_SESSION['email']);
     $daoContratante->excluirContratante($contratante);
+
+?>

@@ -21,6 +21,6 @@
         $prestador->setSenha($_POST['senha']);   
         $daoPrestador->logarPrestador($prestador);
     }else{
-        header("Location: ../View/TelaErro/index.php");
+        header("Location: ../View/TelaErro/index.html");
     }
 ?>

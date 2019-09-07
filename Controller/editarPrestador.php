@@ -12,7 +12,9 @@ $prestador->setNome($_POST['name']);
 $prestador->setEmail($_POST['email']);
 $prestador->setCpf($_POST['cpf']);
 $prestador->setSexo($_POST['gender']);
-$prestador->setDataNasc("27/04/2002");
+$data = $_POST['birthday'];
+$data = implode("-", array_reverse(explode("/", $data)));
+$prestador->setDataNasc(date('Y-d-m', strtotime($data)));
 $prestador->setCep($_POST['cep']);
 $prestador->setEstado($_POST['estados-brasil']);
 $prestador->setRua($_POST['street']);
@@ -25,3 +27,4 @@ $daoPrestador->editarPrestador($prestador);
 
 
 
+?>

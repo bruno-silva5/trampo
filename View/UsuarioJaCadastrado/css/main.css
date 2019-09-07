@@ -1,4 +1,21 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../fonts/Montserrat-Regular.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../fonts/Montserrat-SemiBold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../fonts/Montserrat-Bold.ttf);
+  font-weight: 700;
+}
+
 * {
   font-family: 'Montserrat';
 }
@@ -13,6 +30,10 @@ img.top-desktop-background {
   right: 0;
   width: 180px;
   z-index: -1;
+}
+
+img.top-mobile-background {
+  display: none;
 }
 
 header {
@@ -116,6 +137,29 @@ img.desktop-bottom-background {
   }
   100% {
     width: 4.5em;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  img.top-desktop-background {
+    display: none;
+  }
+  img.top-mobile-background {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 3.3em;
+    margin: 0.7em 0.2em;
+  }
+  header h2 {
+    color: #fff !important;
+  }
+  img.desktop-bottom-background {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */

@@ -9,3 +9,5 @@
 
     $prestador->setEmail($_SESSION['email']);
     $daoPrestador->excluirPrestador($prestador);
+
+?>

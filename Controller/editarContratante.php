@@ -10,7 +10,9 @@ $contratante->setEmailAntigo($_SESSION['email']);
 
 $contratante->setNome($_POST['name']);
 $contratante->setEmail($_POST['email']);
-$contratante->setDataNasc("27/04/2002");
+$data = $_POST['birthday'];
+$data = implode("-", array_reverse(explode("/", $data)));
+$contratante->setDataNasc(date('Y-d-m', strtotime($data)));
 $contratante->setSexo($_POST['gender']);
 $contratante->setCpf($_POST['cpf']);
 $contratante->setCep($_POST['cep']);
@@ -26,3 +28,4 @@ $daoContratante->editarContratante($contratante);
 
 
 
+?>

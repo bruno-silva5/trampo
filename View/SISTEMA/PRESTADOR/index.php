@@ -1,5 +1,6 @@
 <?php
     require("../../../Controller/verifica.php");
+    include_once '../../../Dao/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,14 +35,13 @@
         <div class="mdl-layout__drawer">
             <div class="profile">
                 <img src="http://onehundreddates.com/wp-content/uploads/2014/03/Random-Person-Date-1.jpg" alt="profile photo">
-                <h5><?php 
-                $conn = mysqli_connect("localhost","root","") or die(mysql_error());
-                $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-                $consulta = "select nomePrestador from tbPrestador where emailPrestador = '".$_SESSION['email']."'";
+                <h5>
+                <?php 
+                $consulta = "SELECT full_name FROM prestador WHERE email = '".$_SESSION['email']."'";
                 $res = mysqli_query($conn,$consulta);
                  
                 $row = mysqli_fetch_assoc($res);
-                echo $row['nomePrestador'];
+                echo $row['full_name'];
                 
                 ?></h5>
 
@@ -64,10 +64,10 @@
                 <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                     <div class="page-content">
                         <h5>Filtrar por:</h5>
-                        <select>
+                        <SELECT>
                             <option value="menorDistancia">Maior Distância</option>
                             <option value="menorDistancia">Menor Distância</option>
-                        </select>
+                        </SELECT>
                         <div class="card">
                             <div class="card-wrapper">
                                 <h5>Tomada não funciona</h5>
@@ -153,32 +153,34 @@
                 <form action="../../../Controller/editarPrestador.php" method="POST" class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
                         <h5>Informações pessoais</h5>
-                    </div><?php 
-                $conn = mysqli_connect("localhost","root","") or die(mysql_error());
-                $db = mysqli_select_db($conn, "bdTrampo") or die(mysql_error());
-                $consulta = "select * from tbPrestador where emailPrestador = '".$_SESSION['email']."'";
+                    </div>
+                <?php 
+
+                $consulta = "SELECT * FROM prestador WHERE email = '".$_SESSION['email']."'";
                 $res = mysqli_query($conn,$consulta);
                  
                 $row = mysqli_fetch_assoc($res);
                 
-
+                $data = date('d-m-Y');
+                $data = $row['birth_date'];
+                $data = implode("/", array_reverse(explode("-", $data)));
                 
                    echo('
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="input-name" name = "name" value="'.$row['nomePrestador'].'">
+                            <input class="mdl-textfield__input" type="text" id="input-name" name = "name" value="'. $row['full_name'].'">
                             <label class="mdl-textfield__label" for="input-name">Nome</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="email" id="input-email" name = "email" value="'.$row['emailPrestador'].'">
+                            <input class="mdl-textfield__input" type="email" id="input-email" name = "email" value="'.$row['email'].'">
                             <label class="mdl-textfield__label" for="input-email">E-mail</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 150px">
-                            <input class="mdl-textfield__input" type="text" id="input-cpf" name = "cpf" value="'.$row['cpfPrestador'].'">
+                            <input class="mdl-textfield__input" type="text" id="input-cpf" name = "cpf" value="'.$row['cpf'].'">
                             <label class="mdl-textfield__label" for="input-cpf">CPF</label>
                         </div>
                     </div>
@@ -196,7 +198,7 @@
                     <div class="mdl-cell mdl-cell--12-col">
                         <label>Data de nascimento:&emsp;</label>
                         <div class="mdl-textfield mdl-js-textfield" style="max-width: 130px">
-                                <input class="mdl-textfield__input input-date" type="text" id="input-birthday"  name = "birthday" value="'.$row['dataNascPrestador'].'">
+                                <input class="mdl-textfield__input input-date" type="text" id="input-birthday"  name = "birthday" value="'.$data.'">
                                 <label class="mdl-textfield__label label-birthday" for="input-birthday">dd/mm/aaaa</label>
                         </div>
                     </div>
@@ -205,14 +207,14 @@
                     </div>
                     <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 110px">
-                            <input class="mdl-textfield__input" type="text" id="input-cep" name = "cep" value="'.$row['cepPrestador'].'">
+                            <input class="mdl-textfield__input" type="text" id="input-cep" name = "cep" value="'.$row['cep'].'">
                             <label class="mdl-textfield__label" for="input-cep">CEP</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <label>Estado &ensp;</label>
-                        <select name="estados-brasil">
-                            <option value="">'.$row['ufPrestador'].'</option>
+                        <SELECT name="estados-brasil">
+                            <option value="">'.$row['uf'].'</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
                             <option value="AP">Amapá</option>
@@ -240,30 +242,30 @@
                             <option value="SP">São Paulo</option>
                             <option value="SE">Sergipe</option>
                             <option value="TO">Tocantins</option>
-                        </select>
+                        </SELECT>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="input-street" name="street" value="'.$row['logradouroPrestador'].'">
+                            <input class="mdl-textfield__input" type="text" id="input-street" name="street" value="'.$row['address'].'">
                             <label class="mdl-textfield__label" for="input-street">Rua</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 90px">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input-number"  name="number" value="'.$row['numCasaPrestador'].'">
+                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input-number"  name="number" value="'.$row['home_number'].'">
                             <label class="mdl-textfield__label" for="input-number">Número</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col ">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 230px">
-                            <input class="mdl-textfield__input" type="text" id="input-neighborhood" name="neighborhood" value="'.$row['bairroPrestador'].'">
+                            <input class="mdl-textfield__input" type="text" id="input-neighborhood" name="neighborhood" value="'.$row['neighborhood'].'">
                             <label class="mdl-textfield__label" for="input-neighborhood">Bairro</label>
                         </div>
                     </div>
 
                     <div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-                            <input class="mdl-textfield__input" type="text" id="input-addOnAdress" name="complement" value="'.$row['complementoPrestador'].'">
+                            <input class="mdl-textfield__input" type="text" id="input-addOnAdress" name="complement" value="'.$row['address_complement'].'">
                             <label class="mdl-textfield__label" for="input-addOnAdress">Complemento</label>
                         </div>
                     </div>
@@ -272,7 +274,7 @@
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
                         <label>Área em que atuo:&ensp;</label>
-                        <select name="profession">
+                        <SELECT name="profession">
                         <option>Animação</option>
                         <option>Arquitetura e Urbanismo</option>
                         <option>Artes Visuais</option>
@@ -292,14 +294,14 @@
                         <option>Produção Cênica</option>
                         <option>Produção Fonográfica</option>
                         <option>Teatro</option>
-                        </select>
+                        </SELECT>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col" style="margin-top: 3em;">
                         <label>Currículo:&ensp;</label>
-                        <input type="file" value="'.$row['curriculoPrestador'].'" name="curriculum">
+                        <input type="file" value="" name="curriculum">
                     </div>
                     <div class="mdl-cell mdl-cell--6-col" style="margin-top: 3em;">
-                        <label>Disponível para vagas:&ensp;</label>
+                        <label>Disponível p/ vagas:&ensp;</label>
                         <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-yes">
                                 <input type="radio" id="radio-yes" class="mdl-radio__button" name="choose" value="yes" checked>
                                 <span class="mdl-radio__label">Sim &ensp;</span>
@@ -373,16 +375,16 @@
                 <i>&times;</i>
             </button>
             <h3 style="font-size:1.7em">Alterar senha</h3>
-            <form action="#" class="mdl-grid">
+            <form action="../../../Controller/EditarSenhaPrestador.php" method="POST" class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="password" id="input-currentlyPassword" minlength="8">
+                        <input class="mdl-textfield__input" type="password" id="input-currentlyPassword" minlength="8" name="senha">
                         <label class="mdl-textfield__label" for="input-currentlyPassword">Senha atual</label>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="password" id="input-newPassword" minlength="8">
+                        <input class="mdl-textfield__input" type="password" id="input-newPassword" minlength="8" name="senhaNova">
                         <label class="mdl-textfield__label" for="input-newPassword">Nova senha</label>
                     </div>
                 </div>
@@ -393,7 +395,7 @@
                     </div>
                 </div>
                     <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="toggleModalChangePassword()">Cancelar</button>
-                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar</button>
+                   <a href="../../../Controller/EditarSenhaPrestador.php"> <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Salvar</button></a>
             </form>
         </div>
     </div>

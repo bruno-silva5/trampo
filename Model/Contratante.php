@@ -14,7 +14,14 @@
         private $bairro;
         private $complemento;
         private $emailAntigo;
+        private $senhaAntiga;
 
+        public function setSenhaAntiga($senhaAntiga){
+            $this->senhaAntiga = $senhaAntiga;
+           }
+        public function getSenhaAntiga() : string{
+           return $this->senhaAntiga;
+       }
         public function setEmailAntigo(string $emailAntigo){
             $this->emailAntigo = $emailAntigo;
            }
