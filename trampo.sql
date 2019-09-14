@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 07, 2019 at 05:06 PM
+-- Generation Time: Sep 14, 2019 at 11:10 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -25,54 +25,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contratante`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `contratante` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `full_name` varchar(200) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
-  `birth_date` varchar(20) DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
+  `cpf` varchar(20) DEFAULT NULL,
   `cnpj` varchar(20) DEFAULT NULL,
-  `cpf` varchar(20) DEFAULT NULL,
-  `cep` varchar(20) DEFAULT NULL,
-  `uf` varchar(2) DEFAULT NULL,
-  `city` varchar(100) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `neighborhood` varchar(100) DEFAULT NULL,
-  `home_number` varchar(10) DEFAULT NULL,
-  `address_complement` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `contratante`
---
-
-INSERT INTO `contratante` (`id`, `full_name`, `email`, `password`, `phone_number`, `birth_date`, `gender`, `cnpj`, `cpf`, `cep`, `uf`, `city`, `address`, `neighborhood`, `home_number`, `address_complement`) VALUES
-(13, 'Bruno Silva', 'bruno@live.com', '12345678', NULL, '1970-01-01', 'M', NULL, '494.022.368-05', '08246-106', 'SP', '', 'Rua Juçaral', 'Parada XV de Novembro', '345', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `prestador`
---
-
-CREATE TABLE `prestador` (
-  `id` int(11) NOT NULL,
-  `full_name` varchar(200) DEFAULT NULL,
-  `email` varchar(150) DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `phone_number` varchar(20) DEFAULT NULL,
-  `cpf` varchar(20) DEFAULT NULL,
-  `cnpj` varchar(30) DEFAULT NULL,
   `birth_date` varchar(20) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
   `cep` varchar(20) DEFAULT NULL,
-  `uf` varchar(2) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `uf` varchar(5) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `neighborhood` varchar(100) DEFAULT NULL,
   `home_number` varchar(10) DEFAULT NULL,
@@ -82,27 +50,20 @@ CREATE TABLE `prestador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `prestador`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `prestador` (`id`, `full_name`, `email`, `gender`, `password`, `phone_number`, `cpf`, `cnpj`, `birth_date`, `address`, `cep`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `service`, `available_for_job`) VALUES
-(2, 'Marcos Aurélio', 'marcao@live.com', 'M', 'Defina uma senha', NULL, '494.022.368-05', NULL, '1970-01-01', 'Rua Juçaral', '08246-106', 'SP', 'sp ', 'Parada XV de Novembro', '45', '', 'Música', 'yes'),
-(3, 'César Cordél', 'cesar@live.com', 'M', '12345678', NULL, '494.022.368-05', NULL, '1970-01-01', 'Rua Juçaral', '08246-106', 'SP', 'sp ', 'Parada XV de Novembro', '345', 'perto da escola julio dinis', 'Conservação e Restauro', 'no');
+INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `cnpj`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `service`, `available_for_job`) VALUES
+(8, 'Marcos Silva', 'marcao@Live.com', 'Defina uma senha', 'M', '(11) 93425-4333', '272.882.290-50', NULL, '1970-01-01', '55190-536', 'Rua Paulo Lucena de Mendonça', 'PE', 'sp ', 'Malaquias Cardoso', '32', '(Lot S Jorge)', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `contratante`
+-- Indexes for table `user`
 --
-ALTER TABLE `contratante`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `prestador`
---
-ALTER TABLE `prestador`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -110,16 +71,10 @@ ALTER TABLE `prestador`
 --
 
 --
--- AUTO_INCREMENT for table `contratante`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `contratante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `prestador`
---
-ALTER TABLE `prestador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

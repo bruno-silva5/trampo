@@ -1,26 +1,16 @@
 <?php
-    require("../Dao/daoContratante.php");
-    $daoContratante = new daoContratante();
-    require("../Dao/daoPrestador.php");
-    $daoPrestador = new daoPrestador();
+    require("../Dao/daoUser.php");
+    $daoUser = new daoUser();
     
     $email = $_POST['email'];
-    if($daoContratante->verificaContaContratante($email) == "contratante"){
-        require("../Model/Contratante.php");
-        $contratante = new Contratante();
-        
-        $contratante->setEmail($_POST['email']);
-        $contratante->setSenha($_POST['senha']);
-        $daoContratante->logarUsuario($contratante);
-
-    }else if($daoPrestador->verificaContaPrestador($_POST['email']) == "prestador"){
-        require("../Model/Prestador.php");
-        $prestador = new Prestador();
+    if($daoUser->verificaContaUser($_POST['email']) == "user"){
+        require("../Model/User.php");
+        $prestador = new User();
         
         $prestador->setEmail($_POST['email']);
         $prestador->setSenha($_POST['senha']);   
-        $daoPrestador->logarPrestador($prestador);
+        $daoUser->logarUser($prestador);
     }else{
-        header("Location: ../View/TelaErro/index.html");
+        header("Location: ../View/Error/DadosInvalidos");
     }
 ?>

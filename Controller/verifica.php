@@ -4,6 +4,6 @@
     $senha = $_SESSION['senha'];
 
     if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
-        header("Location: ../../../View/TelaLogin/index.html");
+        header("Location: ../../View/TelaLogin/index.html");
     }
 ?>
