@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="sass/materialize.css">
+    <title>trampo</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav-extended red">
+            <div class="nav-wrapper">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#!" class="brand-logo center">Progresso</a>
+                <ul class="right">
+                    <li><a href="#" class="waves-effect waves-light"><i class="material-icons">chat</i></a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <!-- tab starts hidden -->
+                <ul class="tabs tabs-transparent tabs-fixed-width">
+                    <li class="tab"><a href="#hires" id="tab2">Contratos</a></li>
+                    <li class="tab"><a href="#services" id="tab1">Serviços</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- padding top due the fixed navbar -->
+    <main style="padding-top: 8em;">
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <h5 class="center-align">trampo</h5>
+            <li>
+                <div class="user-view">
+                    <a href="#user"><img class="circle z-depth-1"
+                            src="https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png"
+                            alt="user profile picture"></a>
+                    <div class="user-info">
+                        <a href="#name"><span class="black-text name">Mariana Silva</span></a>
+                        <a href="#email"><span class="black-text email">mary@live.com</span></a>
+                    </div>
+                </div>
+            </li>
+            <li id="li-progress" class="active"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-progress','#li-progress','Progresso')"><i
+                        class="material-icons">cached</i>Em
+                    progresso</a></li>
+            <li id="li-hire"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-hire','#li-hire','Contratar')"><i
+                        class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li id="li-work"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-work','#li-work','Trabalhar')"><i
+                        class="material-icons">build</i>Trabalhar</a></li>
+            <li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Configurações</a></li>
+            <li id="li-myAccount"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-myAccount','#li-myAccount','Minha conta')">Minha conta</a></li>
+            <li id="li-preferences"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-preferences', '#li-preferences', 'Preferências')">Preferências</a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="#modalLeave" class="waves-effect modal-trigger"><i
+                        class="material-icons">power_settings_new</i>Sair</a></li>
+        </ul>
+
+        <!-- Section HIRE and yours tabs -->
+
+        <section class="section-hire">
+            <div class="container">
+                <div class="row">
+                    <form action="#" class="col s12" id="form-search">
+                        <br>
+                        <div class="row valign-wrapper">
+                            <div class="input-field col s10 m6 offset-m3">
+                                <input placeholder="Digite o que procura" id="first_name" type="text" class="validate">
+                            </div>
+                            <a class="btn-floating waves-effect waves-light hide-on-med-and-up"><i
+                                    class="material-icons">search</i></a>
+                            <a class="btn-floating btn-large waves-effect waves-light hide-on-small-only"><i
+                                    class="material-icons">search</i></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <h4 class="center-align">Serviços populares</h4>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="https://materializecss.com/images/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="https://materializecss.com/images/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="https://materializecss.com/images/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="https://materializecss.com/images/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="https://materializecss.com/images/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="https://materializecss.com/images/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section WORK -->
+        <section class="section-work">
+            po ficou maneiro kkk
+        </section>
+
+        <!-- Section progress and yours tabs -->
+        <section class="section-progress">
+            <div id="hires">
+                maneiro kkk
+            </div>
+            <div id="services">
+                services in progress
+            </div>
+        </section>
+
+        <!-- Section myAccount -->
+        <section class="section-myAccount">
+            <div class="row blue z-depth-1">
+                <div class="user-view">
+                    <img class="circle z-depth-3"
+                        src="https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png"
+                        alt="user profile picture" width="200">
+                    <div class="user-info">
+                        <h5 class="white-text">Mariana Silva</h5>
+                        <h5 class="white-text">mary@live.com</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row z-depth-1">
+                <div class="col s12">
+                    <h5 class="center-align">Informações pessoais</h5>
+                </div>
+                <div class="input-field col s12 m5">
+                    <input type="text" id="full_name">
+                    <label for="full_name">Nome Completo</label>
+                </div>
+                <div class="input-field col s12 m5 offset-m2">
+                    <input type="email" id="email" class="validate">
+                    <label for="email">E-mail</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input type="email" id="cpf">
+                    <label for="cpf">CPF</label>
+                </div>
+
+                <div class="input-field col s12 m7 offset-m2">
+                    <p>
+                        Sexo:
+                        <label>
+                            <input class="with-gap" type="radio" name="gender" value="M">
+                            <span>Masculino</span>
+                        </label>
+                    </p> 
+                    <p>
+                        <label>
+                            <input class="with-gap" type="radio" name="gender" value="F">
+                            <span>Feminino</span>
+                        </label>
+                    </p>
+                </div>
+
+                <div class="input-field col s12 m4 l3">
+                    <input type="text" class="datepicker" placeholder="Data de nascimento">
+                </div>
+
+            </div>
+            <div class="row z-depth-1">
+                <h5 class="center-align">Endereço</h5>
+            </div>
+        </section>
+
+        <!-- Section preferences -->
+        <section class="section-preferences">
+            asd
+        </section>
+
+    </main>
+
+    <!-- Modal leave -->
+    <div id="modalLeave" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Deseja sair?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect btn-flat">Sim</a>
+            <a href="#" class="modal-close waves-effect btn">Não</a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/bin/materialize.min.js"></script>
+    <script type="text/javascript" src="js/bin/main.js"></script>
+</body>
+
+</html>
