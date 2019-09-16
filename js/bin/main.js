@@ -13,12 +13,18 @@ var instance_tabs = M.Tabs.init(elem_tabs, {
 var elem_modal = document.querySelectorAll('.modal');
 var elem_instance = M.Modal.init(elem_modal);
 
-//datepicker
-var elem_datepicker = document.querySelectorAll('.datepicker');
-var instance_datepicker = M.Datepicker.init(elem_datepicker, {
-    format: 'dd/mm/yyyy',
-    yearRange: [1970]
+//init datepicker
+$(document).ready(function () {
+    $('.datepicker').datepicker();
 });
+
+//init select
+$(document).ready(function () {
+    $('select').formSelect();
+});
+
+
+var body = document.querySelector("body");
 
 function showSection(sectionClass, liId, title) {
     //remove active links
@@ -42,7 +48,7 @@ function showSection(sectionClass, liId, title) {
     let navContent = document.querySelector(".tabs");
     let main = document.querySelector('main');
 
-    if(sectionClass != ".section-progress") {
+    if (sectionClass != ".section-progress") {
         navContent.style.display = "none";
         main.style.paddingTop = "4em";
     } else {
