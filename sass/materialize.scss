@@ -49,18 +49,19 @@ header {
 main {
   padding-top: 4em;
 
-  h5 {
-    margin-bottom: 1em !important;
+  .section-progress {
+    .no-hire,
+    .no-work {
+      margin-top: 7em;
+    }
   }
 
-  .collapsible {
-    .collapsible-header {
-      padding: 0 32px;
-    }
+  .section-work {
+    padding: 2em;
+  }
 
-    ul a {
-      padding: 0 50px !important;
-    }
+  h5 {
+    margin-bottom: 1em !important;
   }
 
   .user-view {
@@ -84,9 +85,18 @@ main {
       display: inline-block;
     }
 
+    .btn {
+      margin-top: 2em !important;
+    }
+
     @media only screen and (max-width: 600px) {
       .user-view {
         flex-direction: column;
+      }
+
+      .btn {
+        margin-top: 0em !important;
+        width: 100%;
       }
 
       padding: 1em;
@@ -98,12 +108,21 @@ main {
         padding-left: 2.7em !important;
       }
     }
-    
   }
 
-  section:not(.section-myAccount) {
+  section:not(.section-progress) {
     display: none;
   }
+}
+
+//fix tab height
+.tabs-content.carousel.carousel-slider .carousel-item.active {
+  position: relative;
+}
+
+.tabs-content {
+  height: auto !important;
+  min-height: 100%;
 }
 
 .card-content {

@@ -7,23 +7,18 @@ var instance_sideNav = M.Sidenav.init(elem_sideNav);
 var elem_tabs = document.querySelector(".tabs");
 var instance_tabs = M.Tabs.init(elem_tabs, {
     swipeable: true
-});
+});     
 
 //init modal
 var elem_modal = document.querySelectorAll('.modal');
-var elem_instance = M.Modal.init(elem_modal);
-
-//init datepicker
-$(document).ready(function () {
-    $('.datepicker').datepicker();
-});
+var instance_modal = M.Modal.init(elem_modal);
 
 //init select
 $(document).ready(function () {
     $('select').formSelect();
 });
 
-
+//displaying tabs
 var body = document.querySelector("body");
 
 function showSection(sectionClass, liId, title) {

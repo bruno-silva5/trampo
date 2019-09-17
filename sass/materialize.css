@@ -9026,16 +9026,17 @@ main {
   padding-top: 4em;
 }
 
+main .section-progress .no-hire,
+main .section-progress .no-work {
+  margin-top: 7em;
+}
+
+main .section-work {
+  padding: 2em;
+}
+
 main h5 {
   margin-bottom: 1em !important;
-}
-
-main .collapsible .collapsible-header {
-  padding: 0 32px;
-}
-
-main .collapsible ul a {
-  padding: 0 50px !important;
 }
 
 main .user-view {
@@ -9064,6 +9065,10 @@ main .section-myAccount p {
   display: inline-block;
 }
 
+main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-myAccount .btn-small {
+  margin-top: 2em !important;
+}
+
 @media only screen and (max-width: 600px) {
   main .section-myAccount {
     padding: 1em;
@@ -9074,6 +9079,10 @@ main .section-myAccount p {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-myAccount .btn-small {
+    margin-top: 0em !important;
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 350px) {
@@ -9082,8 +9091,17 @@ main .section-myAccount p {
   }
 }
 
-main section:not(.section-myAccount) {
+main section:not(.section-progress) {
   display: none;
+}
+
+.tabs-content.carousel.carousel-slider .carousel-item.active {
+  position: relative;
+}
+
+.tabs-content {
+  height: auto !important;
+  min-height: 100%;
 }
 
 .card-content {
