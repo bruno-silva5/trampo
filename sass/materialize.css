@@ -9044,6 +9044,10 @@ main .section-work {
   overflow: auto;
 }
 
+main .section-work h4 {
+  margin-top: 0;
+}
+
 main .section-work .divider {
   margin: 1em 0;
 }
@@ -9064,6 +9068,32 @@ main .section-work .row:not(:first-of-type) {
   padding: 2em;
   padding-top: 3em;
   width: 92%;
+}
+
+main .section-work .row:not(:first-of-type) .work-info {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  margin-top: 2em;
+  gap: 1em;
+}
+
+main .section-work .row:not(:first-of-type) .work-info .work-img {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-area: 1 / 1 / 5 / 2;
+}
+
+@media screen and (max-width: 600px) {
+  main .section-work .row:not(:first-of-type) .work-info {
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+  }
 }
 
 main .section-work .row:not(:first-of-type) div.card-flexWrapper {
@@ -9263,5 +9293,65 @@ footer {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+#modalChat {
+  width: 95% !important;
+  max-width: 1100px !important;
+  max-height: 100%;
+}
+
+#modalChat .modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#modalChat .modal-content h6, #modalChat .modal-content h4, #modalChat .modal-content p {
+  margin: 0;
+}
+
+#modalChat .modal-content .conversations {
+  width: 40%;
+  height: 100%;
+  overflow: auto;
+}
+
+#modalChat .modal-content .conversations .boxConversation {
+  background: red;
+  margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#modalChat .modal-content .conversation {
+  width: 60%;
+  height: 100%;
+}
+
+#modalChat .modal-content .conversation .header {
+  background: blue;
+}
+
+#modalChat .modal-content .conversation .conversation-content {
+  background: #a6a9aa;
+  overflow: auto;
+  height: 300px;
+}
+
+#modalChat .modal-content .conversation .send-message {
+  background: green;
+  height: 60px;
+  overflow: auto;
+}
+
+@media screen and (max-width: 800px) {
+  #modalChat .conversation {
+    display: none;
+  }
 }
 /*# sourceMappingURL=materialize.css.map */

@@ -70,6 +70,10 @@ main {
     position: relative;
     overflow: auto;
 
+    h4 {
+      margin-top: 0;
+    }
+
     .divider {
       margin: 1em 0;
     }
@@ -91,6 +95,21 @@ main {
       padding-top: 3em;
       width: 92%;
 
+      .work-info {
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-top: 2em;
+        gap: 1em;
+
+        .work-img {
+          grid-area: 1 / 1 / 5 / 2;
+        }
+
+        @media screen and (max-width: 600px) {
+          grid-template-columns: auto;
+        }
+      }
 
       div.card-flexWrapper {
         max-width: 930px;
@@ -273,5 +292,60 @@ footer {
     margin-top: 2em !important;
     display: flex;
     justify-content: space-around;
+  }
+}
+
+#modalChat {
+  width: 95% !important;
+  max-width: 1100px !important;
+  max-height: 100%;
+
+  .modal-content {
+    display: flex;
+
+    h6, h4, p {
+      margin: 0;
+    }
+
+    .conversations {
+      width: 40%;
+      height: 100%;
+      overflow: auto;
+
+      .boxConversation {
+        background: red;
+        margin-bottom: 1em;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .conversation { 
+      width: 60%;
+      height: 100%;
+
+      .header {
+        background: blue;
+      }
+
+      .conversation-content {
+        background: #a6a9aa;
+        overflow: auto;
+        height: 300px;
+      }
+
+      .send-message {
+        background: green;
+        height: 60px;
+        overflow: auto;
+      }
+    }
+
+  }
+
+  @media screen and (max-width: 800px) {
+    .conversation {
+      display: none;
+    }
   }
 }
