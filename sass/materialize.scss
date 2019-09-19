@@ -217,7 +217,7 @@ main {
     }
   }
 
-  section:not(.section-progress) {
+  section:not(.section-work) {
     display: none;
   }
 }
@@ -271,7 +271,7 @@ footer {
   top: 30% !important;
   .modal-footer {
     margin-top: 2em !important;
-    display: flex !important;
-    justify-content: space-evenly !important;
+    display: flex;
+    justify-content: space-around;
   }
 }

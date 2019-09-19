@@ -9204,7 +9204,7 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
   }
 }
 
-main section:not(.section-progress) {
+main section:not(.section-work) {
   display: none;
 }
 
@@ -9258,11 +9258,10 @@ footer {
 
 #modalLeave.modal .modal-footer {
   margin-top: 2em !important;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-box-pack: space-evenly !important;
-      -ms-flex-pack: space-evenly !important;
-          justify-content: space-evenly !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=materialize.css.map */
