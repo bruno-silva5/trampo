@@ -70,13 +70,11 @@ main {
     position: relative;
     overflow: auto;
 
-    h4 {}
-
     .divider {
       margin: 1em 0;
     }
 
-    .row:first-of-type {
+    .row:first-child {
       background: #1e88e5;
       position: fixed;
       width: 100%;

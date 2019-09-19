@@ -9048,7 +9048,7 @@ main .section-work .divider {
   margin: 1em 0;
 }
 
-main .section-work .row:first-of-type {
+main .section-work .row:first-child {
   background: #1e88e5;
   position: fixed;
   width: 100%;
