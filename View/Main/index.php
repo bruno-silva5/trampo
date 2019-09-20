@@ -1,0 +1,703 @@
+<?php
+    require("../../Controller/verifica.php");
+    include_once '../../Dao/conexao.php';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="sass/materialize.css">
+    <script src="js/jquery/jquery-3.4.1.min.js"></script>
+    <title>trampo</title>
+</head>
+
+<body>
+    <?php 
+        $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
+        $res = mysqli_query($conn,$consulta);
+        $row = mysqli_fetch_assoc($res);
+    ?>
+
+    <header>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#!" class="brand-logo center">Progresso</a>
+                <ul class="right">
+                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
+                                class="material-icons">chat</i></a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <!-- tab starts hidden -->
+                <ul class="tabs tabs-transparent tabs-fixed-width">
+                    <li class="tab"><a href="#hires" id="tab2">Contratos</a></li>
+                    <li class="tab"><a href="#services" id="tab1">Serviços</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- padding top due the fixed navbar -->
+    <main style="padding-top: 8em;">
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <h5 class="center-align blue-text ">trampo</h5>
+            <li>
+                <div class="user-view">
+                    <a href="#user"><img class="circle z-depth-1" src="img/user.svg" alt="user profile picture"></a>
+                    <div class="user-info">
+                        <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
+                        <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
+                    </div>
+                </div>
+            </li>
+            <li id="li-progress" class="active"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-progress','#li-progress','Progresso')"><i
+                        class="material-icons">cached</i>Em
+                    progresso</a></li>
+            <li id="li-hire"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-hire','#li-hire','Contratar')"><i
+                        class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li id="li-work"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-work','#li-work','Trabalhar')"><i
+                        class="material-icons">build</i>Trabalhar</a></li>
+            <li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Configurações</a></li>
+            <li id="li-myAccount"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-myAccount','#li-myAccount','Minha conta')">Minha conta</a></li>
+            <li id="li-preferences"><a href="#" class="waves-effect"
+                    onclick="showSection('.section-preferences', '#li-preferences', 'Preferências')">Preferências</a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="#modalLeave" class="waves-effect modal-trigger"><i
+                        class="material-icons">power_settings_new</i>Sair</a></li>
+        </ul>
+
+        <!-- Section HIRE and yours tabs -->
+
+        <section class="section-hire">
+            <div class="container">
+                <div class="row">
+                    <form action="#" class="col s12" id="form-search">
+                        <br>
+                        <div class="row valign-wrapper">
+                            <div class="input-field col s10 m6 offset-m3">
+                                <input placeholder="Digite o que procura" id="first_name" type="text" class="validate">
+                            </div>
+                            <a class="btn-floating waves-effect waves-light hide-on-med-and-up"><i
+                                    class="material-icons">search</i></a>
+                            <a class="btn-floating btn-large waves-effect waves-light hide-on-small-only"><i
+                                    class="material-icons">search</i></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <h4 class="center-align">Serviços populares</h4>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="img/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="img/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="img/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="img/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="img/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="img/office.jpg" alt="card image">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Encanador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section WORK -->
+        <section class="section-work">
+            <div class="row blue-background"></div>
+            <div class="row z-depth-3">
+
+                <!-- if it's missing dates -->
+                <!-- <div class="become-worker">
+                    <form class="row">
+                        <div class="col s12">
+                            <h4 class="center-align hide-on-small-only">Tornar-se um prestador</h4>
+                            <h5 class="center-align hide-on-med-and-up">Tornar-se um prestador</h5>
+                        </div>
+                        <div class="col s12">
+                            <h6 class="center-align">Para tornar-se um prestador de serviços, você preencher alguns
+                                campos antes</h6>
+                        </div>
+                        <div class="input-field col s12"></div>
+                        <div class="input-field col s12">
+                            Eu sou:
+                            <div class="input-field inline">
+                                <input type="text" class="center-align"
+                                    placeholder="Digite e pressione enter para adiconar" size="30">
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <p>
+                                Disponível para vagas de emprego:
+                                <label>
+                                    <input class="with-gap" name="available_job" type="radio" value="yes" checked>
+                                    <span>Sim</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input class="with-gap" name="available_job" value="no" type="radio">
+                                    <span>Não</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col s12 m2 l3 offset-m9 offset-l9 center-align">
+                            <button class="btn waves-effect waves-light">Continuar</button>
+                        </div>
+
+                    </form>
+                </div> -->
+
+
+                <!-- showing the works -->
+                <!-- <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
+                <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
+                <div class="divider"></div>
+                <div class="card-flexWrapper">
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect  waves-light">
+                                <img src="img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                <!-- showing the work -->
+                <!-- <h4 class="center-align hide-on-small-only">Nome do trabalho</h4>
+                <h5 class="center-align hide-on-med-and-up">Nome do trabalho</h5>
+                <div class="work-info">
+                    <div class="work-img">
+                        <img src="img/user.svg" alt="service picture" width="250">
+                    </div>
+                    <h6><strong>Nome do contratante</strong></h6>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente illo maxime nisi ullam illum
+                        molestiae esse quam officia obcaecati nobis.</p>
+                    <h5>2.2 KM distante</h5>
+                    <a href="#modalChat" class="btn waves-effect waves-light modal-trigger">Entrar em contato</a>
+                </div> -->
+
+            </div>
+
+
+
+        </section>
+
+        <!-- Section progress and yours tabs -->
+        <section class="section-progress">
+            <div id="hires">
+                <!-- if there is no hire -->
+                <div class="container center-align no-hire">
+                    <div class="row">
+                        <div class="col s12">
+                            <img src="img/icon/dislike.svg" alt="dislike icon" width="130">
+                        </div>
+                        <div class="col s12">
+                            <h4>Ops!</h4>
+                            <h6>Você não tem nenhum serviço contratado. Clique na aba <strong>Contratar</strong><br> e
+                                comece a contratar
+                                agora mesmo!</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="services">
+                <!-- if there is no work -->
+                <div class="container center-align no-work">
+                    <div class="row">
+                        <div class="col s12">
+                            <img src="img/icon/dislike.svg" alt="dislike icon" width="130">
+                        </div>
+                        <div class="col s12">
+                            <h4>Ops!</h4>
+                            <h6>Você não tem nenhum serviço contratado. Clique na aba contratar<br> e comece a contratar
+                                agora mesmo!</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section myAccount -->
+        <section class="section-myAccount">
+            <form action="#">
+                <div class="row z-depth-1">
+                    <img class="user-background" src="img/user-background.jpg" alt="user background">
+                    <div class="user-view">
+                        <img class="circle z-depth-3" src="img/user.svg" alt="user profile picture">
+                        <div class="user-info z-depth-2">
+                            <h5><?php echo $row['full_name'] ?></h5>
+                            <h5><?php echo $row['email'] ?></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row z-depth-1">
+                    <div class="col s12">
+                        <h5 class="center-align">Informações pessoais</h5>
+                    </div>
+                    <div class="input-field col s12 m5">
+                        <input type="text" id="full_name" value="<?php echo $row['full_name'] ?>">
+                        <label for="full_name">Nome Completo</label>
+                    </div>
+                    <div class="input-field col s12 m5 offset-m2">
+                        <input type="email" id="email" class="validate" value="<?php echo $row['email'] ?>">
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <input type="text" id="cpf" value="<?php echo $row['cpf'] ?>">
+                        <label for="cpf">CPF</label>
+                    </div>
+
+                    <div class="input-field col s12 m7 offset-m2">
+                        <p>
+                            Sexo:
+                            <label>
+                                <input class="with-gap" type="radio" name="gender" value="M"
+                                    <?php echo($row['gender'] == 'M')?'checked':'' ?>>
+                                <span>Masculino</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" type="radio" name="gender" value="F"
+                                    <?php echo($row['gender'] == 'F')?'checked':'' ?>>
+                                <span>Feminino</span>
+                            </label>
+                        </p>
+                    </div>
+
+                    <div class="col s12 m8 l7">
+                        Data de nascimento:
+                        <div class="input-field inline">
+                            <input type="date" class="center-align">
+                        </div>
+                    </div>
+                    <div class="input-field col s12 m3 offset-m1">
+                        <input type="text" id="phone_number" value="<?php echo $row['phone_number'] ?>">
+                        <label for="phone_number">Celular</label>
+                    </div>
+                </div>
+                <div class="row z-depth-1">
+                    <div class="col s12">
+                        <h5 class="center-align">Endereço</h5>
+                    </div>
+                    <div class="input-field col s12 m2">
+                        <input type="text" id="cep" value="<?php echo $row['cep'] ?>">
+                        <label for="cep">CEP</label>
+                    </div>
+                    <div class="input-field col s12 m5 l4 offset-m1 offset-l1">
+                        <select id="states" name="states">
+                            <option value="<?php echo $row['uf'] ?>" selected><?php echo $row['uf']?> </option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12 m3 l4 offset-m1 offset-l1">
+                        <input type="text" id="street" value="<?php echo $row['address'] ?>">
+                        <label for="street">Rua</label>
+                    </div>
+                    <div class="input-field col s12 m2 l2">
+                        <input type="text" id="number" value="<?php echo $row['home_number'] ?>">
+                        <label for="number">Número</label>
+                    </div>
+                    <div class="input-field col s12 m5 l4 offset-m1 offset-l1">
+                        <input type="text" id="neighborhood" value="<?php echo $row['neighborhood'] ?>">
+                        <label for="neighborhood">Bairro</label>
+                    </div>
+                    <div class="input-field col s12 m3 l4 offset-m1 offset-l1">
+                        <input type="text" id="adress_complement" value="<?php echo $row['address_complement'] ?>">
+                        <label for="adress_complement">Complemento</label>
+                    </div>
+                </div>
+                <div class="row z-depth-1">
+                    <div class="col s12">
+                        <h5 class="center-align">Informações de trabalho</h5>
+                    </div>
+                    <div class="input-field col s12">
+                        Eu sou:
+                        <div class="input-field inline">
+                            <input type="text" class="center-align" placeholder="Digite e pressione enter para adiconar"
+                                size="30">
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <p>
+                            Disponível para vagas de emprego:
+                            <label>
+                                <input class="with-gap" name="available_job" type="radio" value="yes" checked>
+                                <span>Sim</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="available_job" value="no" type="radio">
+                                <span>Não</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="input-field col s6 m1 l1">
+                        <a href="#modalDesactiveAccount" class="waves-effect waves-light btn modal-trigger"><i
+                                class="material-icons">delete</i></a>
+                    </div>
+                    <div class="input-field col s6 m5 l4 offset-m0 offset-l0 center-align">
+                        <a href="#modalPassword" class="waves-effect waves-light btn modal-trigger">Alterar senha</a>
+                    </div>
+                    <div class="input-field col s12 m2 l2 offset-m4 offset-l5 right-align">
+                        <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section preferences -->
+        <section class="section-preferences">
+
+        </section>
+    </main>
+    <!-- Modal leave -->
+    <div id="modalLeave" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Deseja sair?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <button class="modal-close waves-effect waves-light btn">Não</button>
+        </div>
+    </div>
+
+    <!-- Modal chat -->
+    <div class="modal" id="modalChat">
+        <div class="modal-content">
+            <div class="conversations">
+                <div class="boxConversation">
+                    <img src="img/user.svg" alt="" width="70" class="circle">
+                    <div>
+                        <h6>Fulano de tal</h6>
+                        <p>Lorem ipsum dolor sit amet </p>
+                    </div>
+                </div>
+
+                <div class="boxConversation">
+                    <img src="img/user.svg" alt="" width="70" class="circle">
+                    <div>
+                        <h6>Fulano de tal</h6>
+                        <p>Lorem ipsum dolor sit amet </p>
+                    </div>
+                </div>
+
+                <div class="boxConversation">
+                    <img src="img/user.svg" alt="" width="70" class="circle">
+                    <div>
+                        <h6>Fulano de tal</h6>
+                        <p>Lorem ipsum dolor sit amet </p>
+                    </div>
+                </div>
+            </div>
+            <div class="conversation">
+                <div class="header">
+                    <h4>Fulano de tal - servio de tal coisa</h4>
+                </div>
+                <div class="conversation-content">
+
+                </div>
+                <div class="send-message">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal password -->
+    <div class="modal" id="modalPassword">
+        <div class="modal-content">
+            <h4 class="center-align hide-on-small-only">Alterar senha</h4>
+            <h5 class="center-align hide-on-med-and-up">Alterar senha</h5>
+            <br>
+            <form action="#" class="row">
+                <div class="input-field col s12">
+                    <input type="password" id="old-password">
+                    <label for="old-password">Senha atual</label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="password" id="new-password">
+                    <label for="old-password">Nova senha</label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="password" id="confirm-password">
+                    <label for="confirm-password">Confirmar senha</label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col s12 m3 l2 offset-m6 offset-l7 center-align">
+                    <a href="#!" class="btn-flat modal-close waves-light">Cancelar</a>
+                </div>
+                <div class="col s12 m3 center-align">
+                    <a href="#!" class="btn modal-close waves-effect waves-light">Salvar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- desactive account -->
+    <div class="modal" id="modalDesactiveAccount">
+        <div class="modal-content">
+            <h5 class="center-align hide-on-med-and-up">Deseja desativar sua conta?</h5>
+            <h4 class="center-align hide-on-small-only">Deseja desativar sua conta?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <button class="modal-close waves-effect btn">Não</button>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/bin/materialize.min.js"></script>
+    <script type="text/javascript" src="js/bin/main.js"></script>
+</body>
+
+</html>
