@@ -9044,6 +9044,40 @@ main .section-hire .card-title {
   margin: 0 !important;
 }
 
+main .workers-list {
+  padding: 2em;
+  width: 90%;
+  margin-top: 2em;
+}
+
+main .workers-list .list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .workers-list .list .list-item {
+  width: 200px;
+  background: red;
+  margin: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 main .section-work {
   position: relative;
   overflow: auto;

@@ -41,7 +41,7 @@ $("#hire_search").keyup(function () {
                     if (Object.keys(data).length > 0) {
                         $(".result").html(''); //clear before insert
                         $.each(data, function (key, value) {
-                            $(".result").append("<a href='requestService?service_type="+value+"' id='service_suggestion'><h5>" + value + "</h5></a>");
+                            $(".result").append("<a href='../requestService?service_type="+value+"' id='service_suggestion'><h5>" + value + "</h5></a>");
                         });
                         $(".result").show();
                     }

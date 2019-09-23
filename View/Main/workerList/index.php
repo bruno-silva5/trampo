@@ -1,6 +1,6 @@
 <?php
-    require("../../../../Controller/verifica.php");
-    include_once '../../../../Dao/conexao.php';
+    require("../../../Controller/verifica.php");
+    include_once '../../../Dao/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../../_sass/materialize.css">
+    <link type="text/css" rel="stylesheet" href="../_sass/materialize.css">
     <title>trampo</title>
 </head>
 
@@ -41,7 +41,7 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../../_img/user.svg"
+                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg"
                             alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
@@ -49,18 +49,18 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../../" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li id="li-progress"><a href="../" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire" class="active"><a href="../" class="waves-effect"><i
+            <li id="li-hire" class="active"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
             <li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../../myAccount" class="waves-effect">Minha conta</a></li>
+            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
             <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
@@ -73,8 +73,28 @@
         <!-- Section HIRE and yours tabs -->
 
         <section class="section-hire">
-            <div class="container z-depth-1">
-                g
+            <div class="row z-depth-1 workers-list">
+                <h4 class="center-align">Lista de prestadores</h4>
+                <div class="list">
+                    <div class="list-item">
+                        <img src="../_img/user.svg" alt="user profile" width="130">
+                        <h6>nome do cara</h6>
+                        <h6>Avaliação: X X X</h6>
+                        <a href="../workerProfile" class="btn">ver perfil</a>
+                    </div>
+                    <div class="list-item">
+                        <img src="../_img/user.svg" alt="user profile" width="130">
+                        <h6>nome do cara</h6>
+                        <h6>Avaliação: X X X</h6>
+                        <a href="../workerProfile" class="btn">ver perfil</a>
+                    </div>
+                    <div class="list-item">
+                        <img src="../_img/user.svg" alt="user profile" width="130">
+                        <h6>nome do cara</h6>
+                        <h6>Avaliação: X X X</h6>
+                        <a href="../workerProfile" class="btn">ver perfil</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -98,7 +118,7 @@
         <div class="modal-content">
             <div class="conversations">
                 <div class="boxConversation">
-                    <img src="../../_img/user.svg" alt="" width="70" class="circle">
+                    <img src="../_img/user.svg" alt="" width="70" class="circle">
                     <div>
                         <h6>Fulano de tal</h6>
                         <p>Lorem ipsum dolor sit amet </p>
@@ -106,7 +126,7 @@
                 </div>
 
                 <div class="boxConversation">
-                    <img src="../../_img/user.svg" alt="" width="70" class="circle">
+                    <img src="../_img/user.svg" alt="" width="70" class="circle">
                     <div>
                         <h6>Fulano de tal</h6>
                         <p>Lorem ipsum dolor sit amet </p>
@@ -114,7 +134,7 @@
                 </div>
 
                 <div class="boxConversation">
-                    <img src="../../_img/user.svg" alt="" width="70" class="circle">
+                    <img src="../_img/user.svg" alt="" width="70" class="circle">
                     <div>
                         <h6>Fulano de tal</h6>
                         <p>Lorem ipsum dolor sit amet </p>
@@ -136,9 +156,9 @@
     </div>
 
 
-    <script src="../../_js/jquery/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../_js/bin/materialize.min.js"></script>
-    <script type="text/javascript" src="../../_js/bin/main.js"></script>
+    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
+    <script type="text/javascript" src="../_js/bin/main.js"></script>
 </body>
 
 </html>
