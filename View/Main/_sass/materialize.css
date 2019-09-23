@@ -9035,6 +9035,11 @@ main .section-hire .card-content {
   padding: 1em !important;
 }
 
+main .section-hire .form-hire {
+  padding: 2em;
+  margin-top: 2em;
+}
+
 main .section-hire .card-title {
   margin: 0 !important;
 }
@@ -9245,10 +9250,6 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
   main .section-myAccount p:nth-child(2) {
     padding-left: 2.72em !important;
   }
-}
-
-main section:not(.section-progress) {
-  display: none;
 }
 
 .tabs-content.carousel.carousel-slider .carousel-item.active {

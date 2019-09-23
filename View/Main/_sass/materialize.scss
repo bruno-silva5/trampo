@@ -61,6 +61,11 @@ main {
       padding: 1em !important;
     }
 
+    .form-hire {
+      padding: 2em;
+      margin-top: 2em;
+    }
+
     .card-title {
       margin: 0 !important;
     }
@@ -245,9 +250,6 @@ main {
     }
   }
 
-  section:not(.section-progress) {
-    display: none;
-  }
 }
 
 //fix tab height
