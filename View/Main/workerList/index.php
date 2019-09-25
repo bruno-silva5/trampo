@@ -23,7 +23,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended z-depth-0">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
@@ -41,8 +41,7 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg"
-                            alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -73,27 +72,77 @@
         <!-- Section HIRE and yours tabs -->
 
         <section class="section-hire">
-            <div class="row z-depth-1 workers-list">
-                <h4 class="center-align">Lista de prestadores</h4>
+            <div class="blue-background"></div>
+            <div class="z-depth-1 container-extended padding">
+                <h5 class="center-align">Lista de prestadores</h5>
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="collapsible z-depth-0">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">search</i>Filtros de busca
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="row">
+                                        <div class="col s12 m6">
+                                            <h6><strong>Formas de pagamento</strong></h6>
+                                            <div class="switch">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <span class="lever"></span>
+                                                    <span class="switch-description">Cartão de cŕedito</span>
+                                                </label>
+                                            </div>
+                                            <div class="switch">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <span class="lever"></span>
+                                                    <span class="switch-description">Cartão de débito</span>
+                                                </label>
+                                            </div>
+                                            <div class="switch">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <span class="lever"></span>
+                                                    <span class="switch-description">Boleto</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <h6><strong>Ordenar por</strong></h6>
+                                            <select>
+                                                <option value="">Avaliação</option>
+                                                <option value="">Distância</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="list">
+
                     <div class="list-item">
                         <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6>nome do cara</h6>
-                        <h6>Avaliação: X X X</h6>
+                        <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
+                        <h6>X X X</h6>
                         <a href="../workerProfile" class="btn">ver perfil</a>
                     </div>
+
                     <div class="list-item">
                         <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6>nome do cara</h6>
-                        <h6>Avaliação: X X X</h6>
+                        <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
+                        <h6>X X X</h6>
                         <a href="../workerProfile" class="btn">ver perfil</a>
                     </div>
+
                     <div class="list-item">
                         <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6>nome do cara</h6>
-                        <h6>Avaliação: X X X</h6>
+                        <h6><strong>Bruno</strong></h6>
+                        <h6>X X X</h6>
                         <a href="../workerProfile" class="btn">ver perfil</a>
                     </div>
+
                 </div>
             </div>
         </section>

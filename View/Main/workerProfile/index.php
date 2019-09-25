@@ -23,7 +23,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extende z-depth-0">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
@@ -41,8 +41,7 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg"
-                            alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -73,9 +72,20 @@
         <!-- Section HIRE and yours tabs -->
 
         <section class="section-hire">
-            <div class="row z-depth-1 workers-list">
-                <h4 class="center-align">Perfil</h4>
-                
+            <div class="blue-background"></div>
+            <div class="z-depth-1 padding container-extended">
+                <a href="../workerList" class="btn circle waves-effect waves-light hide-on-small-only"><i
+                        class="material-icons">arrow_back</i></a>
+                <a href="../workerList" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
+                        class="material-icons">arrow_back</i></a>
+
+                <h5 class="center-align">Perfil do prestador</h5>
+                <div class="worker-profile">
+                    <img src="../_img/user.svg" alt="user profile" width="150">
+                    <h5 class="blue">Nome do prestador</h5>
+                    <h6>Avaliação</h6>
+                    <a href="#" class="btn">Entrar em contato</a>
+                </div>
             </div>
         </section>
 

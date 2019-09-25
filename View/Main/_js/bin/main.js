@@ -19,6 +19,9 @@ $(document).ready(function () {
     $('#service-description').characterCounter();
 });
 
+//init collapsible
+var elem_collapsible = document.querySelectorAll('.collapsible');
+var instances_collapsible = M.Collapsible.init(elem_collapsible);
 
 //search bar section-hire
 
@@ -41,7 +44,7 @@ $("#hire_search").keyup(function () {
                     if (Object.keys(data).length > 0) {
                         $(".result").html(''); //clear before insert
                         $.each(data, function (key, value) {
-                            $(".result").append("<a href='../requestService?service_type="+value+"' id='service_suggestion'><h5>" + value + "</h5></a>");
+                            $(".result").append("<a href='../requestService?service_type=" + value + "' id='service_suggestion'><h5>" + value + "</h5></a>");
                         });
                         $(".result").show();
                     }
@@ -62,13 +65,28 @@ $("#hire_search").keyup(function () {
 try {
     var service_suggestion = document.querySelectorAll("#service_suggestion");
     for (let i = 0; i < array.length; i++) {
-        service_suggestion[i].addEventListener('click', function() {
+        service_suggestion[i].addEventListener('click', function () {
             document.querySelector(".search-service").style.display = "none";
             document.querySelector(".form-hire").style.display = "block";
         });
     }
 } catch (error) {
-    
+
+}
+
+//add shadow on navbar when scroll
+
+var navbar = document.querySelector(".nav-extended");
+
+if(navbar.classList.contains("z-depth-0")) {
+    window.onscroll = function() {
+        if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            navbar.classList.add("z-depth-1");
+            navbar.classList.remove("z-depth-0");
+        } else {
+            navbar.classList.add("z-depth-0");
+        }
+    }
 }
 
 

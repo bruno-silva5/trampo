@@ -160,11 +160,9 @@
                         </div>
                     </div>
 
-                    <div class="row result">
-                    </div>
+                    <div class="row result"></div>
 
                 </div>
-
 
             </div>
         </section>

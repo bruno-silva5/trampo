@@ -9022,6 +9022,11 @@ header {
   width: 100%;
 }
 
+header .nav-extended {
+  -webkit-transition: 0.3s !important;
+  transition: 0.3s !important;
+}
+
 main {
   padding-top: 4em;
 }
@@ -9035,47 +9040,101 @@ main .section-hire .card-content {
   padding: 1em !important;
 }
 
-main .section-hire .form-hire {
+main .section-hire .step {
+  padding: 1em;
+  margin-top: 1em;
+}
+
+main .section-hire .step h6 {
+  margin-top: 1em !important;
+  margin: auto;
+  max-width: 200px;
+}
+
+main .section-hire .worker-profile {
+  margin-top: 2em;
+  text-align: center;
+}
+
+main .section-hire .worker-profile h5 {
+  margin: 0 !important;
+}
+
+main .section-hire .worker-profile img {
+  margin: auto;
+}
+
+main .section-hire .container-extended {
+  width: 92%;
+  margin: 2em auto;
+  background: #fff;
+}
+
+main .section-hire .container-extended .switch {
+  margin: 1em 0;
+}
+
+main .section-hire .container-extended .switch .lever {
+  margin-left: 0;
+}
+
+main .section-hire .container-extended .switch .switch-description {
+  font-size: 1.3em;
+  color: black;
+}
+
+main .section-hire .container-extended .collapsible {
+  border: none !important;
+}
+
+main .section-hire .container-extended .collapsible .collapsible-header {
+  font-size: 1.3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1565c0;
+}
+
+main .section-hire .container-extended .collapsible .collapsible-body h6 {
+  margin: 1.5em 0;
+}
+
+main .section-hire .container-extended .list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+main .section-hire .container-extended .list .list-item {
+  max-width: 130px;
+  margin: 2em;
+  text-align: center;
+}
+
+main .section-hire .container-extended .list .list-item a {
+  margin-top: 0.8em;
+}
+
+main .section-hire .container-extended .list .list-item h6 {
+  height: 2.2em;
+  overflow: hidden;
+}
+
+main .section-hire .padding {
   padding: 2em;
   margin-top: 2em;
 }
 
 main .section-hire .card-title {
   margin: 0 !important;
-}
-
-main .workers-list {
-  padding: 2em;
-  width: 90%;
-  margin-top: 2em;
-}
-
-main .workers-list .list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 2em;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-main .workers-list .list .list-item {
-  width: 200px;
-  background: red;
-  margin: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 main .section-work {
@@ -9093,16 +9152,6 @@ main .section-work .divider {
 
 main .section-work .become-worker p {
   display: inline-block;
-}
-
-main .section-work .blue-background {
-  background: #1e88e5;
-  position: fixed;
-  width: 100%;
-  padding-left: 2em;
-  color: #fff;
-  height: 14em;
-  z-index: -1;
 }
 
 main .section-work .row:not(:first-of-type) {
@@ -9237,7 +9286,7 @@ main .section-myAccount .user-view .user-info {
   background: #fff;
   position: absolute;
   left: 170px;
-  padding-left: 2em;
+  padding-left: 3em;
   padding-right: 1em;
   z-index: 1;
   text-align: right;
@@ -9284,6 +9333,17 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
   main .section-myAccount p:nth-child(2) {
     padding-left: 2.72em !important;
   }
+}
+
+.blue-background {
+  background: #1e88e5;
+  position: fixed;
+  width: 100%;
+  padding-left: 2em;
+  color: #fff;
+  height: 25em;
+  top: 0;
+  z-index: -1;
 }
 
 .tabs-content.carousel.carousel-slider .carousel-item.active {

@@ -74,12 +74,12 @@
         <!-- Section myAccount -->
         <section class="section-myAccount">
             <form action="#">
-                <div class="row z-depth-1">
-                    <img class="user-background" src="../_img/user-background.jpg" alt="user background">
+                <div class="row z-depth-1" style="background:#1e88e54b">
+                    <!-- <img class="user-background" src="../_img/user-background.jpg" alt="user background"> -->
                     <div class="user-view">
                         <img class="circle z-depth-3" src="../_img/user.svg" alt="user profile picture">
                         <div class="user-info z-depth-2">
-                            <h5><?php echo $row['full_name'] ?></h5>
+                            <h5>Marcos Silva da Lima Marcondes</h5>
                             <h5><?php echo $row['email'] ?></h5>
                         </div>
                     </div>

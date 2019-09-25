@@ -23,7 +23,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended z-depth-0">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
@@ -73,9 +73,9 @@
         <!-- Section HIRE and yours tabs -->
 
         <section class="section-hire">
-            <div class="container">
-
-                <form action="#" class="row z-depth-1 form-hire">
+        <div class="blue-background"></div>
+            <div class="container z-depth-1">
+                <form action="#" class="row padding white">
                     <a href="../hire" class="btn circle waves-effect waves-light hide-on-small-only"><i
                             class="material-icons">arrow_back</i></a>
                     <a href="../hire" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
@@ -106,6 +106,21 @@
                             maxlength="500"></textarea>
                         <label for="service-description">Digite uma descrição do serviço</label>
                     </div>
+                    <div class="col s12">
+                        <h6 class="center-align"><strong>Quais os próximos passos?</strong></h6>
+                    </div>
+                    <div class="col s12 m6 step">
+                        <div class="center-align">
+                            <img src="../_img/user.svg" alt="" width="100">
+                            <h6 class="center-align">Você pode escolher se deseja receber propostas para o seu serviço  </h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 step">
+                        <div class="center-align">
+                            <img src="../_img/user.svg" alt="" width="100">
+                            <h6 class="center-align">Em seguida, você verá profissionais qualificados para o seu serviço  </h6>
+                        </div>
+                    </div>
                     <div class="input-field col s12">
                         <p>
                             <label>
@@ -115,7 +130,7 @@
                         </p>
                     </div>
                     <div class="input-field col s12 right-align">
-                        <a href="../workerList" class="btn waves-effect waves-light">Ver prestadores</a>
+                        <a href="../workerList" class="btn waves-effect waves-light" onclick="M.toast({html: 'I am a toast'})">Ver prestadores</a>
                     </div>
                 </form>
 
