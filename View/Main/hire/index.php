@@ -18,7 +18,7 @@
 <body>
     <?php 
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
-        $res = mysqli_query($conn,$consulta);
+        $res = mysqli_query($conn, $consulta);
         $row = mysqli_fetch_assoc($res);
     ?>
 
@@ -74,17 +74,22 @@
         <section class="section-hire">
             <div class="container">
                 <div class="search-service">
-                    <div class="row">
-                        <form action="#" class="col s12" id="form-search">
+                    <div class="row center-align pink">
+                        <form action="#" class="red" id="form-search">
                             <br>
-                            <div class="row valign-wrapper">
-                                <div class="input-field col s10 m6 offset-m3">
-                                    <input placeholder="Digite o que procura" id="hire_search" type="text">
+                            <div class="row blue">
+                                <div class="input-field col s10">
+                                    <i class="material-icons prefix">search</i>
+                                    <input type="text" id="teste">
+                                    <label for="teste">Digite o serviço que procura</label>
+                                    <div class="collection" style="border:none">
+                                        <a href="#!" class="collection-item">Alvin</a>
+                                        <a href="#!" class="collection-item active">Alvin</a>
+                                        <a href="#!" class="collection-item">Alvin</a>
+                                        <a href="#!" class="collection-item">Alvin</a>
+                                    </div>
+
                                 </div>
-                                <a class="btn-floating waves-effect waves-light hide-on-med-and-up"><i
-                                        class="material-icons">search</i></a>
-                                <a class="btn-floating btn-large waves-effect waves-light hide-on-small-only"><i
-                                        class="material-icons">search</i></a>
                             </div>
                         </form>
                     </div>
