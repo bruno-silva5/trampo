@@ -74,25 +74,26 @@
         <section class="section-hire">
             <div class="container">
                 <div class="search-service">
-                    <div class="row center-align pink">
-                        <form action="#" class="red" id="form-search">
-                            <br>
-                            <div class="row blue">
-                                <div class="input-field col s10">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" id="teste">
-                                    <label for="teste">Digite o serviço que procura</label>
-                                    <div class="collection" style="border:none">
-                                        <a href="#!" class="collection-item">Alvin</a>
-                                        <a href="#!" class="collection-item active">Alvin</a>
-                                        <a href="#!" class="collection-item">Alvin</a>
-                                        <a href="#!" class="collection-item">Alvin</a>
-                                    </div>
-
+                    <form action="#" id="form-search">
+                        <br>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" id="search-bar">
+                                <label for="search-bar">Digite o serviço que procura</label>
+                                <div class="collection z-depth-2">
+                                    <?php
+                                        $query = mysqli_query($conn, "SELECT * FROM occupation_subcategory");
+                                        while($row = mysqli_fetch_assoc($query)) {
+                                            echo "<a href='#' class='collection-item'>".$row['name']."</a> ";
+                                        }
+                                    ?>
+                                    <a href="#" class="collection-item">Pedido personalizado</a>
                                 </div>
+
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                     <div class="row">
                         <h4 class="center-align hire-title">Serviços Populares</h4>
                     </div>

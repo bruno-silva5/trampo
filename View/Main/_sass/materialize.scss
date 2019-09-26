@@ -62,6 +62,16 @@ main {
 
   .section-hire {
 
+    .search-service {
+      .collection {
+        position: absolute; 
+        width: 100%;
+        z-index: 10;
+        display: none;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+    }
     
     .card-image {
       height: 150px !important;

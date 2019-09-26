@@ -23,52 +23,72 @@ $(document).ready(function () {
 var elem_collapsible = document.querySelectorAll('.collapsible');
 var instances_collapsible = M.Collapsible.init(elem_collapsible);
 
+
 //search bar section-hire
+// $("#hire_search").keyup(function () {
+//     var search = $(this).val();
 
-$("#hire_search").keyup(function () {
-    var search = $(this).val();
+//     if (search == "") {
+//         $(".result").html('');
+//         $(".result").hide();
+//         $(".hire-title").html("Serviços Populares");
+//         $(".popular-services").show();
+//     } else {
+//         $(".hire-title").html("Sugestões");
+//         $(".popular-services").hide();
+//         if (search.length >= 2) {
+//             $.ajax({
+//                 type: 'GET',
+//                 url: 'http://apps.diogomachado.com/api-profissoes/v1?callback=CALLBACK_JSONP&s=' + search,
+//                 success: function (data) {
+//                     if (Object.keys(data).length > 0) {
+//                         $(".result").html(''); //clear before insert
+//                         $.each(data, function (key, value) {
+//                             $(".result").append("<a href='../requestService?professional=" + value + "' id='service_suggestion'><h5>" + value + "</h5></a>");
+//                         });
+//                         $(".result").show();
+//                     }
+//                 }, statusCode: {
+//                     404: function () {
+//                         console.error('Não conseguimos buscar as profissões');
+//                     },
+//                     500: function () {
+//                         console.error('Erro ao buscar profissões no servidor');
+//                     }
+//                 },
+//                 dataType: 'jsonp'
+//             })
+//         }
+//     }
+// })
 
-    if (search == "") {
-        $(".result").html('');
-        $(".result").hide();
-        $(".hire-title").html("Serviços Populares");
-        $(".popular-services").show();
-    } else {
-        $(".hire-title").html("Sugestões");
-        $(".popular-services").hide();
-        if (search.length >= 2) {
-            $.ajax({
-                type: 'GET',
-                url: 'http://apps.diogomachado.com/api-profissoes/v1?callback=CALLBACK_JSONP&s=' + search,
-                success: function (data) {
-                    if (Object.keys(data).length > 0) {
-                        $(".result").html(''); //clear before insert
-                        $.each(data, function (key, value) {
-                            $(".result").append("<a href='../requestService?professional=" + value + "' id='service_suggestion'><h5>" + value + "</h5></a>");
-                        });
-                        $(".result").show();
-                    }
-                }, statusCode: {
-                    404: function () {
-                        console.error('Não conseguimos buscar as profissões');
-                    },
-                    500: function () {
-                        console.error('Erro ao buscar profissões no servidor');
-                    }
-                },
-                dataType: 'jsonp'
-            })
+try {
+
+    var service_list = $(".section-hire .collection"); 
+    $("#search-bar").click(function () {
+        service_list.show();
+    });
+
+    $(document).click(function(event) {
+        $target = $(event.target);
+        if(!$target.closest(service_list).lenght && $(service_list).is(":visible")) {
+            $(service_list).hide();
         }
-    }
-})
+    })
+
+} catch (error) {
+
+}
+
+
 
 
 //add shadow on navbar when scroll
 var navbar = document.querySelector(".nav-extended");
 
-if(navbar.classList.contains("z-depth-0")) {
-    window.onscroll = function() {
-        if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+if (navbar.classList.contains("z-depth-0")) {
+    window.onscroll = function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             navbar.classList.add("z-depth-1");
             navbar.classList.remove("z-depth-0");
         } else {
@@ -87,7 +107,7 @@ $("#form-requestService").submit(function (event) {
     var submit = $("#submit").val();
     $("#form-message").load("../../../Controller/cadastrarService.php", {
         professional: professional,
-        time_remaining:  time_remaining,
+        time_remaining: time_remaining,
         service_title: service_title,
         service_description: service_description,
         submit: submit
@@ -95,8 +115,8 @@ $("#form-requestService").submit(function (event) {
 });
 
 try {
-    
-    
+
+
 } catch (error) {
-    
+
 }
