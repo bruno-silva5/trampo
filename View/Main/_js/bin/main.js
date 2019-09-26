@@ -44,7 +44,7 @@ $("#hire_search").keyup(function () {
                     if (Object.keys(data).length > 0) {
                         $(".result").html(''); //clear before insert
                         $.each(data, function (key, value) {
-                            $(".result").append("<a href='../requestService?service_type=" + value + "' id='service_suggestion'><h5>" + value + "</h5></a>");
+                            $(".result").append("<a href='../requestService?professional=" + value + "' id='service_suggestion'><h5>" + value + "</h5></a>");
                         });
                         $(".result").show();
                     }
@@ -62,20 +62,8 @@ $("#hire_search").keyup(function () {
     }
 })
 
-try {
-    var service_suggestion = document.querySelectorAll("#service_suggestion");
-    for (let i = 0; i < array.length; i++) {
-        service_suggestion[i].addEventListener('click', function () {
-            document.querySelector(".search-service").style.display = "none";
-            document.querySelector(".form-hire").style.display = "block";
-        });
-    }
-} catch (error) {
-
-}
 
 //add shadow on navbar when scroll
-
 var navbar = document.querySelector(".nav-extended");
 
 if(navbar.classList.contains("z-depth-0")) {
@@ -89,5 +77,20 @@ if(navbar.classList.contains("z-depth-0")) {
     }
 }
 
-
+//register service
+$("#form-requestService").submit(function (event) {
+    event.preventDefault();
+    var professional = $("#professional").val();
+    var time_remaining = $("#time-remaining").val();
+    var service_title = $("#service-title").val();
+    var service_description = $("#service-description").val();
+    var submit = $("#submit").val();
+    $("#form-message").load("../../../Controller/cadastrarService.php", {
+        professional: professional,
+        time_remaining:  time_remaining,
+        service_title: service_title,
+        service_description: service_description,
+        submit: submit
+    });
+});
 

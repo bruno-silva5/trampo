@@ -75,7 +75,7 @@
         <section class="section-hire">
         <div class="blue-background"></div>
             <div class="container z-depth-1">
-                <form action="#" class="row padding white">
+                <form action="../../../Controller/cadastrarService.php" method="POST" class="row padding white" id="form-requestService">
                     <a href="../hire" class="btn circle waves-effect waves-light hide-on-small-only"><i
                             class="material-icons">arrow_back</i></a>
                     <a href="../hire" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
@@ -84,12 +84,12 @@
                         <h5 class="center-align">Descrever serviço</h5>
                     </div>
                     <div class="input-field col s12">
-                        <input type="text" id="service-type"
-                            value="<?php echo(isset($_GET['service_type'])?$_GET['service_type']:'') ?>">
-                        <label for="service-type">Profissional</label>
+                        <input type="text" id="professional"
+                            value="<?php echo(isset($_GET['professional'])?$_GET['professional']:'') ?>">
+                        <label for="professional">Profissional</label>
                     </div>
                     <div class="input-field col s12">
-                        <select name="service-time">
+                        <select name="time-remaining" id="time-remaining">
                             <option value="now">O quanto antes</option>
                             <option value="next_week">A próxima semana</option>
                             <option value="two_weeks">Duas semanas</option>
@@ -102,8 +102,8 @@
                         <label for="service-title">Título do serviço</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="service-description" class="materialize-textarea" data-length="500"
-                            maxlength="500"></textarea>
+                        <textarea id="service-description" class="materialize-textarea" data-length="200"
+                            maxlength="200"></textarea>
                         <label for="service-description">Digite uma descrição do serviço</label>
                     </div>
                     <div class="col s12">
@@ -130,8 +130,9 @@
                         </p>
                     </div>
                     <div class="input-field col s12 right-align">
-                        <a href="../workerList" class="btn waves-effect waves-light" onclick="M.toast({html: 'I am a toast'})">Ver prestadores</a>
+                        <button class="btn waves-effect waves-light" id="submit">Continuar</button>
                     </div>
+                    <div id="form-message"></div>
                 </form>
 
             </div>

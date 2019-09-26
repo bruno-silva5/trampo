@@ -23,7 +23,7 @@
     ?>
 
     <header>
-        <nav class="nav-extende z-depth-0">
+        <nav class="nav-extended z-depth-0">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>

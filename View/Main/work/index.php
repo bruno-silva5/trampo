@@ -48,8 +48,7 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../" class="waves-effect"><i
-                        class="material-icons">cached</i>Em
+            <li id="li-progress"><a href="../" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
@@ -77,46 +76,60 @@
             <div class="row z-depth-3">
 
                 <!-- if it's missing dates -->
-                <!-- <div class="become-worker">
+                <div class="become-worker">
                     <form class="row">
                         <div class="col s12">
                             <h4 class="center-align hide-on-small-only">Tornar-se um prestador</h4>
                             <h5 class="center-align hide-on-med-and-up">Tornar-se um prestador</h5>
                         </div>
                         <div class="col s12">
-                            <h6 class="center-align">Para tornar-se um prestador de serviços, você preencher alguns
-                                campos antes</h6>
+                            <h6 class="center-align">Antes de tornar-se um prestador de serviços, conte-nos alguns detalhes</h6>
                         </div>
                         <div class="input-field col s12"></div>
-                        <div class="input-field col s12">
-                            Eu sou:
+                        <div class="input-field col s12 center-align">
+                            Atuo com/como:
                             <div class="input-field inline">
-                                <input type="text" class="center-align"
-                                    placeholder="Digite e pressione enter para adiconar" size="30">
+                                <select multiple>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="input-field col s12">
-                            <p>
-                                Disponível para vagas de emprego:
-                                <label>
-                                    <input class="with-gap" name="available_job" type="radio" value="yes" checked>
-                                    <span>Sim</span>
-                                </label>
-                            </p>
-                            <p>
-                                <label>
-                                    <input class="with-gap" name="available_job" value="no" type="radio">
-                                    <span>Não</span>
-                                </label>
-                            </p>
+                        <div class="input-field col s12 center-align">
+                            Dias em que atuo:
+                            <div class="input-field inline">
+                                <select multiple>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                            </div>
                         </div>
+
+                        <div class="input-field col s12 center-align">
+                            Quanto eu cobro: 
+                            <div class="input-field inline">
+                                <select multiple>
+                                    <option value="1">$</option>
+                                    <option value="2">$$</option>
+                                    <option value="3">$$$</option>
+                                    <option value="3">$$$$</option>
+                                    <option value="3">$$$$$</option>
+                                    <option value="3">$$$$$$$</option>
+                                    <option value="3">$$$$$$$$$$$+</option>
+                                    <option value="3">caro pra caralho+</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col s12 m2 l3 offset-m9 offset-l9 center-align">
                             <button class="btn waves-effect waves-light">Continuar</button>
                         </div>
 
                     </form>
-                </div> -->
+                </div>
 
 
                 <!-- showing the works -->

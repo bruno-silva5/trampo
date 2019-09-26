@@ -61,6 +61,16 @@ main {
   }
 
   .section-hire {
+
+    
+    .card-image {
+      height: 150px !important;
+      img {
+        object-fit: cover;
+        height: 100% !important;
+      }
+    }
+
     .card-content {
       padding: 1em !important;
     }
@@ -335,7 +345,7 @@ main {
   width: 100%;
   padding-left: 2em;
   color: #fff;
-  height: 25em;
+  height: 18em;
   top: 0;
   z-index: -1;
 }

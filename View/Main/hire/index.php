@@ -48,13 +48,12 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../" class="waves-effect"><i
-                        class="material-icons">cached</i>Em
+            <li id="li-progress"><a href="../" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire" class="active"><a href="" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i
-                        class="material-icons">build</i>Trabalhar</a></li>
+            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
             <li>
             <li>
                 <div class="divider"></div>
@@ -93,72 +92,84 @@
                         <h4 class="center-align hire-title">Serviços Populares</h4>
                     </div>
                     <div class="row popular-services">
-                        <div class="col s12 m4 l4">
-                            <div class="card hoverable">
-                                <div class="card-image">
-                                    <img src="../_img/office.jpg" alt="card image">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title">Encanador</span>
+                        <a href="../requestService?professional=Transitário%20de%20cargas">
+                            <div class="col s12 m4 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="../_img/workers/fretes.webp" alt="card image">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title black-text">Fretes</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="col s12 m4 l4">
-                            <div class="card hoverable">
-                                <div class="card-image">
-                                    <img src="../_img/office.jpg" alt="card image">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title">Encanador</span>
+                        <a href="../requestService?professional=Doceiro%20(exclusive%20no%20comércio%20ambulante)">
+                            <div class="col s12 m4 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="../_img/workers/confeiteira.jpg" alt="card image">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title black-text">Confeitaria</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="col s12 m4 l4">
-                            <div class="card hoverable">
-                                <div class="card-image">
-                                    <img src="../_img/office.jpg" alt="card image">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title">Encanador</span>
+                        <a href="../requestService?professional=Encanador%20de%20manutenção">
+                            <div class="col s12 m4 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="../_img/workers/encanador.jpg" alt="card image">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title black-text">Encanador</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="col s12 m4 l4">
-                            <div class="card hoverable">
-                                <div class="card-image">
-                                    <img src="../_img/office.jpg" alt="card image">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title">Encanador</span>
+                        <a href="../requestService?professional=Pedreiro%20de%20reforma%20geral">
+                            <div class="col s12 m4 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="../_img/workers/pedreiro.jpg" alt="card image">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title black-text">Pedreiro</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="col s12 m4 l4">
-                            <div class="card hoverable">
-                                <div class="card-image">
-                                    <img src="../_img/office.jpg" alt="card image">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title">Encanador</span>
+                        <a href="../requestService?professional=Eletricista%20auxiliar">
+                            <div class="col s12 m4 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="../_img/workers/eletricista.jpg" alt="card image">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title black-text">Eletricista</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="col s12 m4 l4">
-                            <div class="card hoverable">
-                                <div class="card-image">
-                                    <img src="../_img/office.jpg" alt="card image">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title">Encanador</span>
+                        <a href="">
+                            <div class="col s12 m4 l4">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="../_img/workers/mecanico.jpg" alt="card image">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title black-text">Mecânico</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                    </a>
 
                     <div class="row result"></div>
 
