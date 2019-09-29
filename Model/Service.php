@@ -1,17 +1,18 @@
 <?php
     class Service {
-        private $professional;
+        private $id_occupation_subcategory;
         private $time_remaining;
         private $title;
         private $description;
         private $is_visible;
+        private $id_user;
 
-        public function setProfessional($professional) {
-            $this->professional = $professional;
+        public function setIdOccupationSubcategory($id_occupation_subcategory) {
+            $this->id_occupation_subcategory = $id_occupation_subcategory;
         }
 
-        public function getProfessional() {
-            return $this->professional;
+        public function getIdOccupationSubcategory() {
+            return $this->id_occupation_subcategory;
         }
 
         public function setTimeRemaining($time_remaining) {
@@ -44,6 +45,14 @@
 
         public function getIsVisible() {
             return $this->is_visible;
+        }
+
+        public function setIdUser($id_user) {
+            $this->id_user = $id_user;
+        }
+
+        public function getIdUser() {
+            return $this->id_user;
         }
 
     }

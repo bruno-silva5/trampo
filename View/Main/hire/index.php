@@ -83,9 +83,9 @@
                                 <label for="search-bar">Digite o serviço que procura</label>
                                 <div class="collection z-depth-2">
                                     <?php
-                                        $query = mysqli_query($conn, "SELECT * FROM occupation_subcategory");
+                                        $query = mysqli_query($conn, "SELECT id, name FROM occupation_subcategory");
                                         while($row = mysqli_fetch_assoc($query)) {
-                                            echo "<a href='#' class='collection-item'>".$row['name']."</a> ";
+                                            echo "<a href='../requestService?occupation_subcategory=".$row['id']."' class='collection-item'>".$row['name']."</a> ";
                                         }
                                     ?>
                                     <a href="#" class="collection-item">Pedido personalizado</a>
@@ -98,7 +98,7 @@
                         <h4 class="center-align hire-title">Serviços Populares</h4>
                     </div>
                     <div class="row popular-services">
-                        <a href="../requestService?professional=Transitário%20de%20cargas">
+                        <a href="../requestService?occupation_subcategory=43">
                             <div class="col s12 m4 l4">
                                 <div class="card hoverable">
                                     <div class="card-image">
@@ -111,7 +111,7 @@
                             </div>
                         </a>
 
-                        <a href="../requestService?professional=Doceiro%20(exclusive%20no%20comércio%20ambulante)">
+                        <a href="../requestService?occupation_subcategory=46">
                             <div class="col s12 m4 l4">
                                 <div class="card hoverable">
                                     <div class="card-image">
@@ -124,7 +124,7 @@
                             </div>
                         </a>
 
-                        <a href="../requestService?professional=Encanador%20de%20manutenção">
+                        <a href="../requestService?occupation_subcategory=24">
                             <div class="col s12 m4 l4">
                                 <div class="card hoverable">
                                     <div class="card-image">
@@ -137,7 +137,7 @@
                             </div>
                         </a>
 
-                        <a href="../requestService?professional=Pedreiro%20de%20reforma%20geral">
+                        <a href="../requestService?occupation_subcategory=47">
                             <div class="col s12 m4 l4">
                                 <div class="card hoverable">
                                     <div class="card-image">
@@ -150,7 +150,7 @@
                             </div>
                         </a>
 
-                        <a href="../requestService?professional=Eletricista%20auxiliar">
+                        <a href="../requestService?occupation_subcategory=15">
                             <div class="col s12 m4 l4">
                                 <div class="card hoverable">
                                     <div class="card-image">
@@ -163,7 +163,7 @@
                             </div>
                         </a>
 
-                        <a href="">
+                        <a href="../requestService?occupation_subcategory=48">
                             <div class="col s12 m4 l4">
                                 <div class="card hoverable">
                                     <div class="card-image">

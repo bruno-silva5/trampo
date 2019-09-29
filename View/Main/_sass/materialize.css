@@ -9039,7 +9039,7 @@ main .section-progress .no-work {
 main .section-hire .search-service .collection {
   position: absolute;
   width: 100%;
-  z-index: 10;
+  z-index: 2;
   display: none;
   max-height: 400px;
   overflow-y: auto;
@@ -9068,6 +9068,12 @@ main .section-hire .step h6 {
   margin-top: 1em !important;
   margin: auto;
   max-width: 200px;
+}
+
+main .section-hire .step img {
+  height: 70px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 main .section-hire .worker-profile {
@@ -9157,8 +9163,8 @@ main .section-hire .card-title {
 }
 
 main .section-work {
+  height: 100%;
   position: relative;
-  overflow: auto;
 }
 
 main .section-work h4 {
@@ -9171,6 +9177,11 @@ main .section-work .divider {
 
 main .section-work .become-worker p {
   display: inline-block;
+}
+
+main .section-work .become-worker .occupation-option,
+main .section-work .become-worker textarea {
+  width: 100%;
 }
 
 main .section-work .row:not(:first-of-type) {
@@ -9216,42 +9227,24 @@ main .section-work .row:not(:first-of-type) .work-info .work-img {
   }
 }
 
-main .section-work .row:not(:first-of-type) div.card-flexWrapper {
-  max-width: 930px;
-  padding-top: 1em;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: 3em;
-}
-
-main .section-work .row:not(:first-of-type) div.card-flexWrapper .card {
-  margin-right: 1.6em;
+main .section-work .row:not(:first-of-type) .card {
   width: -webkit-fit-content !important;
   width: -moz-fit-content !important;
   width: fit-content !important;
 }
 
-main .section-work .row:not(:first-of-type) div.card-flexWrapper .card-content {
+main .section-work .row:not(:first-of-type) .card-content {
   padding: 0.8em;
   padding-bottom: 0.3em;
 }
 
-main .section-work .row:not(:first-of-type) div.card-flexWrapper .card-title {
-  font-size: 1.5em;
-  line-height: 1.3em;
+main .section-work .row:not(:first-of-type) .card-content i {
+  margin: 0;
 }
 
-main .section-work .row:not(:first-of-type) div.card-flexWrapper img {
-  width: 200px;
-  height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
+main .section-work .row:not(:first-of-type) .card-title {
+  font-size: 1.5em;
+  line-height: 1.3em;
 }
 
 main h5 {
@@ -9360,7 +9353,7 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
   width: 100%;
   padding-left: 2em;
   color: #fff;
-  height: 18em;
+  height: 20em;
   top: 0;
   z-index: -1;
 }
@@ -9407,13 +9400,15 @@ footer {
   background: #828485;
 }
 
-#modalLeave, #modalDesactiveAccount {
+#modalLeave,
+#modalDesactiveAccount {
   max-width: 400px !important;
   padding: 2em;
   top: 20% !important;
 }
 
-#modalLeave .modal-footer, #modalDesactiveAccount .modal-footer {
+#modalLeave .modal-footer,
+#modalDesactiveAccount .modal-footer {
   margin-top: 2em !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9434,7 +9429,9 @@ footer {
   display: flex;
 }
 
-#modalChat .modal-content h6, #modalChat .modal-content h4, #modalChat .modal-content p {
+#modalChat .modal-content h6,
+#modalChat .modal-content h4,
+#modalChat .modal-content p {
   margin: 0;
 }
 
@@ -9480,5 +9477,9 @@ footer {
   #modalChat .conversation {
     display: none;
   }
+}
+
+#modal-warning img {
+  margin: 2em;
 }
 /*# sourceMappingURL=materialize.css.map */

@@ -19,6 +19,8 @@
         private $disponivel;
         private $emailAntigo;
         private $senhaAntiga;
+        private $id_user_occupation;
+        private $work_info;
 
         public function setSenhaAntiga($senhaAntiga){
             $this->senhaAntiga = $senhaAntiga;
@@ -143,6 +145,22 @@
 
         public function getDisponivel(){
             return $this->disponivel;
+        }
+
+        public function setIdUserOccupation(int $id_user_occupation){
+            $this->id_user_occupation = $id_user_occupation;
+        }
+        
+        public function getIdUserOccupation() {
+            return $this->id_user_occupation;
+        }
+
+        public function setWorkInfo(string $work_info){
+            $this->work_info = $work_info;
+        }
+
+        public function getWorkInfo() {
+            return $this->work_info;
         }
 
         

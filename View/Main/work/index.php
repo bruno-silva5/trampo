@@ -73,11 +73,14 @@
         <!-- Section WORK -->
         <section class="section-work">
             <div class="row blue-background"></div>
-            <div class="row z-depth-3">
 
-                <!-- if it's missing dates -->
+            <!-- If it is missing data -->
+            <?php
+                if(empty($row['work_info'])) {
+                    echo '
+                <div class="row z-depth-3">
                 <div class="become-worker">
-                    <form class="row">
+                    <form class="row" id="form-becomeWorker" action="../../../Controller/becomeWorker.php" method="POST">
                         <div class="col s12">
                             <h4 class="center-align hide-on-small-only">Tornar-se um prestador</h4>
                             <h5 class="center-align hide-on-med-and-up">Tornar-se um prestador</h5>
@@ -86,213 +89,110 @@
                             <h6 class="center-align">Antes de tornar-se um prestador de serviços, conte-nos alguns detalhes</h6>
                         </div>
                         <div class="input-field col s12"></div>
-                        <div class="input-field col s12 center-align">
+                        <div class="input-field col s12">
                             Atuo com/como:
-                            <div class="input-field inline">
-                                <select multiple>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                            <div class="input-field inline occupation-option">
+                                <select multiple id="select-occupation">
+                                '?>
+            <?php
+                                        $query = mysqli_query($conn, "SELECT * FROM occupation");
+                                        while($row = mysqli_fetch_assoc($query)) {
+                                            echo "<option value='".$row['name']."'>".$row['name']."</option>";
+                                        }
+                                    ?>
+            <?php 
+                                echo '
                                 </select>
                             </div>
                         </div>
-
-                        <div class="input-field col s12 center-align">
-                            Dias em que atuo:
-                            <div class="input-field inline">
-                                <select multiple>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                </select>
-                            </div>
+                        <div class="input-field col s12">Dê uma descrição sobre seus serviços:</div>
+                        <div class="input-field col s12">
+                            <textarea class="materialize-textarea" id="work-info"></textarea>
+                            <label for="work-info">Informações adicionais</label>
                         </div>
-
-                        <div class="input-field col s12 center-align">
-                            Quanto eu cobro: 
-                            <div class="input-field inline">
-                                <select multiple>
-                                    <option value="1">$</option>
-                                    <option value="2">$$</option>
-                                    <option value="3">$$$</option>
-                                    <option value="3">$$$$</option>
-                                    <option value="3">$$$$$</option>
-                                    <option value="3">$$$$$$$</option>
-                                    <option value="3">$$$$$$$$$$$+</option>
-                                    <option value="3">caro pra caralho+</option>
-                                </select>
-                            </div>
+                        <div class="input-field col s12">
+                            <p>
+                                <label>
+                                    <input type="checkbox" id="work-agreement">
+                                    <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da plataforma Trampo</span>
+                                </label>
+                            </p>
                         </div>
-
-                        <div class="col s12 m2 l3 offset-m9 offset-l9 center-align">
-                            <button class="btn waves-effect waves-light">Continuar</button>
+                        <div id="message-becomeWorker"></div>
+                        <div class="col s12 m2 l3 offset-m9 offset-l9 right-align">
+                            <button class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
                         </div>
-
                     </form>
+                </div>
+                        ' ;
+                    } else {
+                        
+                        echo '
+
+
+            
+            <!-- showing the works -->
+            <div class="row z-depth-2">
+                <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
+                <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
+                
+                <!-- space -->
+                <div class="row"></div>
+
+                <div class="col s12 m4 l3">
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect waves-light">
+                                <img src="../_img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m4 l3">
+
+                    <div class="card hoverable">
+                        <a href="#!">
+                            <div class="card-image waves-effect waves-light">
+                                <img src="../_img/office.jpg">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator">Pedreiro<i
+                                    class="material-icons right">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                parede toda detonada rapidao</span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.
+                            </p>
+                            <p><a href="#!">Ver mais > ></a></p>
+                        </div>
+                    </div>
                 </div>
 
 
-                <!-- showing the works -->
-                <!-- <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
-                <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
-                <div class="divider"></div>
-                <div class="card-flexWrapper">
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect  waves-light">
-                                <img src="../_img/office.jpg">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-                </div> -->
+            '; 
+        }
+            ?>
 
 
-                <!-- showing the work -->
-                <!-- <h4 class="center-align hide-on-small-only">Nome do trabalho</h4>
+            <!-- showing the work -->
+            <!-- <h4 class="center-align hide-on-small-only">Nome do trabalho</h4>
                 <h5 class="center-align hide-on-med-and-up">Nome do trabalho</h5>
                 <div class="work-info">
                     <div class="work-img">
@@ -320,7 +220,7 @@
             <h4 class="center-align">Deseja sair?</h4>
         </div>
         <div class="modal-footer">
-            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>

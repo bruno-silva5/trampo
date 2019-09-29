@@ -2,7 +2,6 @@
 var elem_sideNav = document.querySelector(".sidenav");
 var instance_sideNav = M.Sidenav.init(elem_sideNav);
 
-
 //init tabs
 var elem_tabs = document.querySelector(".tabs");
 var instance_tabs = M.Tabs.init(elem_tabs, {
@@ -23,64 +22,34 @@ $(document).ready(function () {
 var elem_collapsible = document.querySelectorAll('.collapsible');
 var instances_collapsible = M.Collapsible.init(elem_collapsible);
 
-
-//search bar section-hire
-// $("#hire_search").keyup(function () {
-//     var search = $(this).val();
-
-//     if (search == "") {
-//         $(".result").html('');
-//         $(".result").hide();
-//         $(".hire-title").html("Serviços Populares");
-//         $(".popular-services").show();
-//     } else {
-//         $(".hire-title").html("Sugestões");
-//         $(".popular-services").hide();
-//         if (search.length >= 2) {
-//             $.ajax({
-//                 type: 'GET',
-//                 url: 'http://apps.diogomachado.com/api-profissoes/v1?callback=CALLBACK_JSONP&s=' + search,
-//                 success: function (data) {
-//                     if (Object.keys(data).length > 0) {
-//                         $(".result").html(''); //clear before insert
-//                         $.each(data, function (key, value) {
-//                             $(".result").append("<a href='../requestService?professional=" + value + "' id='service_suggestion'><h5>" + value + "</h5></a>");
-//                         });
-//                         $(".result").show();
-//                     }
-//                 }, statusCode: {
-//                     404: function () {
-//                         console.error('Não conseguimos buscar as profissões');
-//                     },
-//                     500: function () {
-//                         console.error('Erro ao buscar profissões no servidor');
-//                     }
-//                 },
-//                 dataType: 'jsonp'
-//             })
-//         }
-//     }
-// })
-
 try {
 
-    var service_list = $(".section-hire .collection"); 
+    var service_list = $(".section-hire .collection");
+
     $("#search-bar").click(function () {
-        service_list.show();
+        service_list.fadeIn();
     });
 
-    $(document).click(function(event) {
-        $target = $(event.target);
-        if(!$target.closest(service_list).lenght && $(service_list).is(":visible")) {
-            $(service_list).hide();
+    $(document).mouseup(function (e) {
+        var container = service_list;
+
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.fadeOut();
         }
-    })
+    });
+
+    $("#search-bar").keyup(function() {
+        var search_value = $("#search-bar").val();
+        $.post("../../../Controller/searchOccupation.php", {
+            suggestion: search_value
+        },function(data) {
+            $(service_list).html(data);
+        });  
+    });
 
 } catch (error) {
 
 }
-
-
 
 
 //add shadow on navbar when scroll
@@ -100,23 +69,44 @@ if (navbar.classList.contains("z-depth-0")) {
 //register service
 $("#form-requestService").submit(function (event) {
     event.preventDefault();
-    var professional = $("#professional").val();
+    var id_occupation_subcategory = $("#id_occupation_subcategory").val();
     var time_remaining = $("#time-remaining").val();
     var service_title = $("#service-title").val();
     var service_description = $("#service-description").val();
-    var submit = $("#submit").val();
+    var submit = $("#submit-requestService").val();
+    var is_visible;
+    if($("#visible-agreement").is(":checked")) {
+        is_visible = true;
+    } else {
+        is_visible = false;
+    }
     $("#form-message").load("../../../Controller/cadastrarService.php", {
-        professional: professional,
+        id_occupation_subcategory: id_occupation_subcategory,
         time_remaining: time_remaining,
         service_title: service_title,
         service_description: service_description,
+        is_visible: is_visible,
         submit: submit
     });
 });
 
-try {
 
-
-} catch (error) {
-
-}
+//become worker
+$("#form-becomeWorker").submit(function (event){
+    event.preventDefault();
+    var select_occupation = $("#select-occupation").val();
+    var work_info = $("#work-info").val();
+    var work_agreement;
+    var submit = $("#submit-becomeWorker").val();
+    if($("#work-agreement").is(":checked")) {
+        work_agreement = true;
+    } else {
+        work_agreement = false;
+    }
+    $("#message-becomeWorker").load("../../../Controller/becomeWorker.php", {
+        select_occupation: select_occupation,
+        work_info: work_info,
+        work_agreement: work_agreement,
+        submit: submit
+    });
+});

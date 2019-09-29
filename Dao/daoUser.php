@@ -11,22 +11,20 @@
             }else {
                 $query = "INSERT INTO user(full_name, email, password, birth_date,
                  gender, cpf, uf, city, address, neighborhood,
-                  home_number, address_complement, service, cep,
-                   available_for_job, phone_number)
+                  home_number, address_complement, cep, phone_number)
                             values('".$user->getNome()."', '".$user->getEmail()."',
                              '".$user->getSenha()."', '".$user->getDataNasc()."',
                               '".$user->getSexo()."', '".$user->getCPF()."',
                                '".$user->getEstado()."', '".$user->getCidade()."',
                                 '".$user->getRua()."', '".$user->getBairro()."',
                                  '".$user->getNumero()."', '".$user->getComplemento()."', 
-                                 '".$user->getServico()."','".$user->getCep()."',
-                                  '".$user->getDisponivel()."', '".$user->getCelular()."')";
+                                 '".$user->getCep()."','".$user->getCelular()."')";
 
                 $insert = mysqli_query($conn, $query);               
                 if($insert){
                     header("Location: ../View/TelaLogin/");
                 }else{
-                    header("Location: ../View/Error/DadosInvalidos");                    
+                    header("Location: ../../View/Error/DadosInvalidos");                    
                 }
             }
         }
@@ -63,6 +61,7 @@
                 header("Location: ../View/TelaLogin");
             }
         }
+
         public function editarSenhaUser(User $user){
             include 'conexao.php';
             $verifica = mysqli_query($conn, "SELECT password FROM user WHERE email = '".$user->getEmail()."' ");
@@ -70,15 +69,15 @@
             if($linha['password'] != $user->getSenhaAntiga()){
                 header("Location: ../View/userJaCadastrado/index.html");
             }else{
-            $editar = mysqli_query($conn, "UPDATE user SET password = '".$user->getSenha()."' WHERE email = '".$user->getemail()."'");
-            if($editar > 0){
-                unset($_SESSION['senha']);
-                $_SESSION['senha'] = $user->getSenha();
-                header("Location: ../View/SISTEMA/PRESTADOR/");
-            }else{
-                header("Location: ../View/TelaLogin");
+                $editar = mysqli_query($conn, "UPDATE user SET password = '".$user->getSenha()."' WHERE email = '".$user->getemail()."'");
+                if($editar > 0){
+                    unset($_SESSION['senha']);
+                    $_SESSION['senha'] = $user->getSenha();
+                    header("Location: ../View/SISTEMA/PRESTADOR/");
+                }else{
+                    header("Location: ../View/TelaLogin");
+                }
             }
-        }
             
         }
 
@@ -106,5 +105,16 @@
             return $retorno;
         }
 
+        public function becomeWorker($email, $occupation_name, $work_info ) {
+            include 'conexao.php';
+            $query = mysqli_query($conn, "SELECT id FROM user WHERE email LIKE '".$email."'");
+            $row = mysqli_fetch_assoc($query);
+            $user_id = $row['id'];
+            foreach ($occupation_name as $occupation) {
+                $query = mysqli_query($conn, "INSERT INTO user_occupation(name, id_user) VALUES('".$occupation."', '".$user_id."')");    
+            }
+            $query = mysqli_query($conn, "UPDATE user SET work_info = '".$work_info."' WHERE id = '".$user_id."'");  
+        }
     }
+
 ?>
