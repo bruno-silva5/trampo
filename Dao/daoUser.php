@@ -37,7 +37,7 @@
                 session_start();
                 $_SESSION['email'] = $user->getEmail();
                 $_SESSION['senha'] = $user->getSenha();
-                header("Location: ../View/Main");
+                header("Location: ../View/Main/progress");
             }else{
                 header("Location: ../View/Error/DadosInvalidos");     
             }

@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire" class="active"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
@@ -157,7 +157,7 @@
             <h4 class="center-align">Deseja sair?</h4>
         </div>
         <div class="modal-footer">
-            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>

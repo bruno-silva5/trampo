@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>

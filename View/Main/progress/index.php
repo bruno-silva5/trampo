@@ -1,6 +1,6 @@
 <?php
-    require "../../Controller/verifica.php";
-    require '../../Dao/conexao.php';
+    require "../../../Controller/verifica.php";
+    require '../../../Dao/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="_sass/materialize.css">
+    <link type="text/css" rel="stylesheet" href="../_sass/materialize.css">
     <title>trampo</title>
 </head>
 
@@ -48,7 +48,7 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="_img/user.svg" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -57,15 +57,15 @@
             </li>
             <li id="li-progress" class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire"><a href="hire" class="waves-effect"><i
+            <li id="li-hire"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a></li>
+            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a></li>
             <li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="myAccount" class="waves-effect">Minha conta</a></li>
+            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
             <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
@@ -98,7 +98,7 @@
                                 <div class="card hoverable">
                                     <a href="#!">
                                         <div class="card-image waves-effect waves-light">
-                                            <img src="_img/icon/tools.png">
+                                            <img src="../_img/icon/tools.png">
                                         </div>
                                     </a>
                                     <div class="card-content">
@@ -121,7 +121,7 @@
                     <div class="container center-align no-hire">
                         <div class="row">
                             <div class="col s12">
-                                <img src="_img/icon/dislike.svg" alt="dislike icon" width="130">
+                                <img src="../_img/icon/dislike.svg" alt="dislike icon" width="130">
                             </div>
                             <div class="col s12">
                                 <h4>Ops!</h4>
@@ -142,7 +142,7 @@
                 <div class="container center-align no-work">
                     <div class="row">
                         <div class="col s12">
-                            <img src="_img/icon/dislike.svg" alt="dislike icon" width="130">
+                            <img src="../_img/icon/dislike.svg" alt="dislike icon" width="130">
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
@@ -161,7 +161,7 @@
             <h4 class="center-align">Deseja sair?</h4>
         </div>
         <div class="modal-footer">
-            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
@@ -171,7 +171,7 @@
         <div class="modal-content">
             <div class="conversations">
                 <div class="boxConversation">
-                    <img src="_img/user.svg" alt="" width="70" class="circle">
+                    <img src="../_img/user.svg" alt="" width="70" class="circle">
                     <div>
                         <h6>Fulano de tal</h6>
                         <p>Lorem ipsum dolor sit amet </p>
@@ -179,7 +179,7 @@
                 </div>
 
                 <div class="boxConversation">
-                    <img src="_img/user.svg" alt="" width="70" class="circle">
+                    <img src="../_img/user.svg" alt="" width="70" class="circle">
                     <div>
                         <h6>Fulano de tal</h6>
                         <p>Lorem ipsum dolor sit amet </p>
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="boxConversation">
-                    <img src="_img/user.svg" alt="" width="70" class="circle">
+                    <img src="../_img/user.svg" alt="" width="70" class="circle">
                     <div>
                         <h6>Fulano de tal</h6>
                         <p>Lorem ipsum dolor sit amet </p>
@@ -208,9 +208,9 @@
         </div>
     </div>
 
-    <script src="_js/jquery/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="_js/bin/materialize.min.js"></script>
-    <script type="text/javascript" src="_js/bin/main.js"></script>
+    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
+    <script type="text/javascript" src="../_js/bin/main.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
-    require("../../../Controller/verifica.php");
-    include_once '../../../Dao/conexao.php';
+    require "../../../Controller/verifica.php";
+    require '../../../Dao/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../" class="waves-effect"><i
+            <li id="li-progress"><a href="../progress" class="waves-effect"><i
                         class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire"><a href="../hire" class="waves-effect"><i
@@ -234,7 +234,7 @@
             <h4 class="center-align">Deseja sair?</h4>
         </div>
         <div class="modal-footer">
-            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
@@ -321,7 +321,7 @@
             <h4 class="center-align hide-on-small-only">Deseja desativar sua conta?</h4>
         </div>
         <div class="modal-footer">
-            <a href="../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
+            <a href="#" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect btn">Não</button>
         </div>
     </div>
