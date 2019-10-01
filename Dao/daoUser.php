@@ -92,6 +92,16 @@
             }
         }
 
+        public function RecuperaSenha(User $user){
+            include 'conexao.php';
+            $recuperar = mysqli_query($conn,"UPDATE user SET password = '{$user->getSenha()}' WHERE  email = '{$user->getEmail()}'");
+            if($recuperar > 0){
+                header("Location: ../View/TelaLogin/index.html");
+            }else{
+                echo("Erro ao recuperar nome ou senha incorretos");
+            }
+        }
+
         public function verificaContaUser(string $email) : string{
             include 'conexao.php';
             $verifica = mysqli_query($conn, "SELECT email FROM user WHERE email = '".$email."' ");
