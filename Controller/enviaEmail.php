@@ -35,5 +35,5 @@ if($dao->verificaContaUser($email) == "user"){
         header("Location: ../View/PasswordRecovery/EmailWarning/Success/index.html");
     }
 }else{
-    header("Location: ../View/TelaErro/index.html");
+    header("Location: ../View/Error/DadosInvalidos/index.html");
 }

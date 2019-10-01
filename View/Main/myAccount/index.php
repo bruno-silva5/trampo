@@ -79,7 +79,7 @@
                     <div class="user-view">
                         <img class="circle z-depth-3" src="../_img/user.svg" alt="user profile picture">
                         <div class="user-info z-depth-2">
-                            <h5>Marcos Silva da Lima Marcondes</h5>
+                            <h5><?=$row['full_name']?></h5>
                             <h5><?php echo $row['email'] ?></h5>
                         </div>
                     </div>
