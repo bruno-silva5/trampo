@@ -58,6 +58,39 @@ main {
     .no-work {
       margin-top: 7em;
     }
+
+    .wrapper-content {
+      width: 92%;
+      padding: 2em 1em;
+      margin: auto;
+    }
+
+    .card {
+      width: fit-content !important;
+    }
+
+    .card-content {
+      padding: 0.8em;
+      padding-bottom: 0.3em;
+
+      i {
+        margin: 0;
+      }
+    }
+
+    .card-image {
+      height: 150px !important;
+      width: 200px;
+      img {
+        object-fit: cover;
+        height: 100% !important;
+      }
+    }
+
+    .card-title {
+      font-size: 1.5em;
+      line-height: 1.3em;
+    }
   }
 
   .section-hire {
@@ -183,6 +216,15 @@ main {
     height: 100%;
     position: relative;
 
+    .card-image {
+      height: 150px !important;
+      width: 200px;
+      img {
+        object-fit: cover;
+        height: 100% !important;
+      }
+    }
+
     h4 {
       margin-top: 0;
     }
@@ -239,14 +281,12 @@ main {
         i {
           margin: 0;
         }
-
       }
 
       .card-title {
         font-size: 1.5em;
         line-height: 1.3em;
       }
-
     }
   }
 

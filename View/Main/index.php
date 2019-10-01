@@ -55,13 +55,11 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress" class="active"><a href="" class="waves-effect"><i
-                        class="material-icons">cached</i>Em
+            <li id="li-progress" class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire"><a href="hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="work" class="waves-effect"><i
-                        class="material-icons">build</i>Trabalhar</a></li>
+            <li id="li-work"><a href="work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a></li>
             <li>
             <li>
                 <div class="divider"></div>
@@ -82,19 +80,62 @@
         <section class="section-progress">
             <div id="hires">
                 <!-- if there is no hire -->
-                <div class="container center-align no-hire">
-                    <div class="row">
-                        <div class="col s12">
-                            <img src="_img/icon/dislike.svg" alt="dislike icon" width="130">
+                
+
+                <?php
+                    $query = mysqli_query($conn, "SELECT id FROM user WHERE email = '".$_SESSION['email']."'");
+                    $row = mysqli_fetch_assoc($query);
+                    $id_user = $row['id'];
+                    $query = mysqli_query($conn, "SELECT * FROM service WHERE id_user = '".$id_user."'");
+                    $rows = mysqli_fetch_assoc($query);
+                    if($rows > 0) {
+                        echo '
+                    <div class="wrapper-content">
+                        <div class="row">
+    
+                            <div class="col s12 m4 l3">
+    
+                                <div class="card hoverable">
+                                    <a href="#!">
+                                        <div class="card-image waves-effect waves-light">
+                                            <img src="_img/icon/tools.png">
+                                        </div>
+                                    </a>
+                                    <div class="card-content">
+                                        <span class="card-title activator">João<i
+                                                class="material-icons right">keyboard_arrow_up</i></span>
+                                    </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title"><i class="material-icons right">close</i>
+                                        '.$rows['title'].'
+                                        <p>'.$rows['description'].'
+                                        </p>
+                                        <p><a href="#!">Ver mais > ></a></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col s12">
-                            <h4>Ops!</h4>
-                            <h6>Você não tem nenhum serviço contratado. Clique na aba <strong>Contratar</strong><br> e
-                                comece a contratar
-                                agora mesmo!</h6>
+                    </div>';
+                    } else {
+                        echo '
+                    <div class="container center-align no-hire">
+                        <div class="row">
+                            <div class="col s12">
+                                <img src="_img/icon/dislike.svg" alt="dislike icon" width="130">
+                            </div>
+                            <div class="col s12">
+                                <h4>Ops!</h4>
+                                <h6>Você não tem nenhum serviço contratado. Clique na aba <strong>Contratar</strong><br> e
+                                    comece a contratar
+                                    agora mesmo!</h6>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>';
+                    }
+                ?>
+                <!-- if there is hire -->
+                
+
             </div>
             <div id="services">
                 <!-- if there is no work -->

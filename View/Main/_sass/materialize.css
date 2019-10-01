@@ -9036,6 +9036,43 @@ main .section-progress .no-work {
   margin-top: 7em;
 }
 
+main .section-progress .wrapper-content {
+  width: 92%;
+  padding: 2em 1em;
+  margin: auto;
+}
+
+main .section-progress .card {
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
+main .section-progress .card-content {
+  padding: 0.8em;
+  padding-bottom: 0.3em;
+}
+
+main .section-progress .card-content i {
+  margin: 0;
+}
+
+main .section-progress .card-image {
+  height: 150px !important;
+  width: 200px;
+}
+
+main .section-progress .card-image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100% !important;
+}
+
+main .section-progress .card-title {
+  font-size: 1.5em;
+  line-height: 1.3em;
+}
+
 main .section-hire .search-service .collection {
   position: absolute;
   width: 100%;
@@ -9165,6 +9202,17 @@ main .section-hire .card-title {
 main .section-work {
   height: 100%;
   position: relative;
+}
+
+main .section-work .card-image {
+  height: 150px !important;
+  width: 200px;
+}
+
+main .section-work .card-image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100% !important;
 }
 
 main .section-work h4 {

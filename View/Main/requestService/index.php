@@ -218,7 +218,7 @@
             <h4 class="center-align">Cuidado!</h4>
             <div class="row center-align">
                 <img src="../_img/icon/warning.svg" alt="warning icon" width="80">
-                <h6>Não forneça informações pessoais, tais como seu <strong>telefone, Whatsapp ou e-mail</strong> para os profissionais. Para ter direito a garantia, é necessário que toda negociação fique registrado no chat do trampo</h6>
+                <h6>Não forneça informações pessoais, tais como seu <b>telefone, Whatsapp ou e-mail</b> para os profissionais. Para ter direito a garantia, é necessário que toda negociação fique registrado no chat do trampo</h6>
             </div>
             <div class="switch valign-wrapper">
                 <label>

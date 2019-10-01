@@ -144,7 +144,7 @@
                     <div class="card hoverable">
                         <a href="#!">
                             <div class="card-image waves-effect waves-light">
-                                <img src="../_img/office.jpg">
+                                <img src="../_img/icon/tools.png">
                             </div>
                         </a>
                         <div class="card-content">
@@ -166,7 +166,7 @@
                     <div class="card hoverable">
                         <a href="#!">
                             <div class="card-image waves-effect waves-light">
-                                <img src="../_img/office.jpg">
+                                <img src="../_img/icon/tools.png">
                             </div>
                         </a>
                         <div class="card-content">
