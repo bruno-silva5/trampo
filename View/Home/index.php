@@ -1,3 +1,7 @@
+<?php
+    require "../../Dao/conexao.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,9 +36,20 @@
             <h1>Precisando de um serviço?</h1>
             <h2>Aqui você encontra a pessoa certa</h2>
             <form action="#">
-                <input type="search" placeholder="Digite o que precisa">
+                <input type="search" placeholder="Digite o que precisa" id="search-bar">
                 <button type="submit">Buscar <img src="img/icon/magnifying-glass-white.svg"></button>
                 <img src="img/icon/magnifying-glass-black.svg" alt="search icon" class="search-icon show-tablet">
+                <div id="search-result" class="search">
+                    <?php
+                        $query = mysqli_query($conn, "SELECT id, name FROM occupation_subcategory");
+                        while($row = mysqli_fetch_assoc($query)) {
+                            echo "<a href='../TelaLogin'>".$row['name']."</a> ";
+                        }
+                    ?>
+                    <a href="#">Resultado</a>
+                    <a href="#">Resultado</a>
+                    <a href="#">Resultado</a>
+                </div>
             </form>
             <div class="satisfaction show-tablet">
                 <img src="img/icon/five-stars-icon.svg" alt="five stars icons" class="stars-icon">
@@ -42,47 +57,47 @@
             </div>
             <div class="home-services-icons show-tablet">
                 <div class="service-icon show-desktop">
-                    <a href="#"><img src="img/icon/graduation-cap.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/graduation-cap.svg" alt="home icon">
                         <h2>Aulas</h2>
                     </a>
                 </div>
                 <div class="service-icon">
-                    <a href="#"><img src="img/icon/spray-bottle.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/spray-bottle.svg" alt="home icon">
                         <h2>Beleza</h2>
                     </a>
                 </div>
                 <div class="service-icon show-desktop">
-                    <a href="#"><img src="img/icon/delivery-truck.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/delivery-truck.svg" alt="home icon">
                         <h2>Carretos</h2>
                     </a>
                 </div>
                 <div class="service-icon show-desktop">
-                    <a href="#"><img src="img/icon/cake.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/cake.svg" alt="home icon">
                         <h2>Doces</h2>
                     </a>
                 </div>
                 <div class="service-icon show-desktop">
-                    <a href="#"><img src="img/icon/pencil.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/pencil.svg" alt="home icon">
                         <h2>Escrita</h2>
                     </a>
                 </div>
                 <div class="service-icon">
-                    <a href="#"><img src="img/icon/farming-and-gardening.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/farming-and-gardening.svg" alt="home icon">
                         <h2>Jardim</h2>
                     </a>
                 </div>
                 <div class="service-icon show-desktop">
-                    <a href="#"><img src="img/icon/cello.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/cello.svg" alt="home icon">
                         <h2>Músico</h2>
                     </a>
                 </div>
                 <div class="service-icon">
-                    <a href="#"><img src="img/icon/edit-tools.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/edit-tools.svg" alt="home icon">
                         <h2>Pintura</h2>
                     </a>
                 </div>
                 <div class="service-icon">
-                    <a href="#"><img src="img/icon/wheelbarrow.svg" alt="home icon">
+                    <a href="../TelaLogin"><img src="img/icon/wheelbarrow.svg" alt="home icon">
                         <h2>Reforma</h2>
                     </a>
                 </div>
@@ -169,9 +184,8 @@
         </div>
     </footer>
 
-
-
-
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>

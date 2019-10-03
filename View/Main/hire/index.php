@@ -80,7 +80,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">search</i>
                                 <input type="text" id="search-bar">
-                                <label for="search-bar">Digite o serviço que procura</label>
+                                <label for="search-bar" class="noselect" id="label-search-bar">Digite o serviço que procura</label>
                                 <div class="collection z-depth-2">
                                     <?php
                                         $query = mysqli_query($conn, "SELECT id, name FROM occupation_subcategory");

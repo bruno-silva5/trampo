@@ -87,8 +87,8 @@
                     $row = mysqli_fetch_assoc($query);
                     $id_user = $row['id'];
                     $query = mysqli_query($conn, "SELECT * FROM service WHERE id_user = '".$id_user."'");
-                    $rows = mysqli_fetch_assoc($query);
-                    if($rows > 0) {
+                    $row = mysqli_fetch_assoc($query);
+                    if($row > 0) {
                         echo '
                     <div class="wrapper-content">
                         <div class="row">
@@ -107,8 +107,8 @@
                                     </div>
                                     <div class="card-reveal">
                                         <span class="card-title"><i class="material-icons right">close</i>
-                                        '.$rows['title'].'
-                                        <p>'.$rows['description'].'
+                                        '.$row['title'].'
+                                        <p>'.$row['description'].'
                                         </p>
                                         <p><a href="#!">Ver mais > ></a></p>
                                     </div>
@@ -133,7 +133,6 @@
                     </div>';
                     }
                 ?>
-                <!-- if there is hire -->
                 
 
             </div>

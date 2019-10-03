@@ -76,7 +76,9 @@
 
             <!-- If it is missing data -->
             <?php
-                if(empty($row['work_info'])) {
+                $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$row['id']."'");
+                $rows = mysqli_num_rows($query);
+                if(!$rows > 0) {
                     echo '
                 <div class="row z-depth-3">
                 <div class="become-worker">
@@ -94,13 +96,13 @@
                             <div class="input-field inline occupation-option">
                                 <select multiple id="select-occupation">
                                 '?>
-            <?php
+                         <?php
                                         $query = mysqli_query($conn, "SELECT * FROM occupation");
                                         while($row = mysqli_fetch_assoc($query)) {
-                                            echo "<option value='".$row['name']."'>".$row['name']."</option>";
+                                            echo "<option value='".$row['id']."'>".$row['name']."</option>";
                                         }
                                     ?>
-            <?php 
+                         <?php 
                                 echo '
                                 </select>
                             </div>
@@ -131,7 +133,6 @@
 
 
             
-            <!-- showing the works -->
             <div class="row z-depth-2">
                 <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
                 <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>

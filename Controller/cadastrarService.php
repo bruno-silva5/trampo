@@ -38,6 +38,6 @@
         $("#submit-requestService").addClass("disabled");
         setTimeout(function () {
             window.location.href = "../workerList";
-        }, 2000);
+        }, 600);
     }
 </script>

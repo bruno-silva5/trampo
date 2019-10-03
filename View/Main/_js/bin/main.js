@@ -25,15 +25,19 @@ var instances_collapsible = M.Collapsible.init(elem_collapsible);
 try {
 
     var service_list = $(".section-hire .collection");
+    var search_bar = $("#search-bar"); 
+    var label_search_bar = $("#label-search-bar");
 
-    $("#search-bar").click(function () {
-        service_list.fadeIn();
+    $(search_bar).click(function () {
+        if(!$(service_list).is(':visible')) {
+            service_list.fadeIn();
+        }
     });
 
     $(document).mouseup(function (e) {
         var container = service_list;
 
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
+        if (!container.is(e.target) && container.has(e.target).length === 0 && !search_bar.is(e.target) && !label_search_bar.is(e.target)) {
             container.fadeOut();
         }
     });

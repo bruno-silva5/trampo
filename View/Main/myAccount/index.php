@@ -26,7 +26,7 @@
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="#!" class="brand-logo center">Minha conta</a>
+                <a href="#!" class="brand-logo center">Conta</a>
                 <ul class="right">
                     <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
                                 class="material-icons">chat</i></a></li>
@@ -48,13 +48,12 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../progress" class="waves-effect"><i
-                        class="material-icons">cached</i>Em
+            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li id="li-hire"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i
-                        class="material-icons">build</i>Trabalhar</a></li>
+            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
             <li>
             <li>
                 <div class="divider"></div>
@@ -79,7 +78,7 @@
                     <div class="user-view">
                         <img class="circle z-depth-3" src="../_img/user.svg" alt="user profile picture">
                         <div class="user-info z-depth-2">
-                            <h5><?=$row['full_name']?></h5>
+                            <h5><?php echo $row['full_name'] ?></h5>
                             <h5><?php echo $row['email'] ?></h5>
                         </div>
                     </div>
@@ -191,28 +190,47 @@
                     <div class="col s12">
                         <h5 class="center-align">Informações de trabalho</h5>
                     </div>
-                    <div class="input-field col s12">
-                        Eu sou:
-                        <div class="input-field inline">
-                            <input type="text" class="center-align" placeholder="Digite e pressione enter para adiconar"
-                                size="30">
-                        </div>
+                    <div class="input-field col s12 m5">
+                            <select multiple id="select-occupation">
+                                <?php 
+                                    // select all occupations
+                                    $query = mysqli_query($conn, "SELECT * FROM occupation");
+
+                                    //create an array to get the users occupations and an variable to description
+                                    $row_check = array();
+                                    $description = "";
+                                    $query_check = mysqli_query($conn, "SELECT * FROM user_occupation WHERE id_user = '".$row['id']."'"); 
+                                    
+
+                                    //add values to the array
+                                    while($row = mysqli_fetch_assoc($query_check)) {
+                                        array_push($row_check, $row['id_occupation']);
+                                        if(!empty($row['description'])) {
+                                            $description = $row['description'];
+                                        }
+
+                                    }
+                                    
+                                    //check if the available occupations match the users occupations
+                                    $i = 0;
+                                    while($row = mysqli_fetch_assoc($query)) {
+                                        if(in_array($row['id'], $row_check)) {
+                                            echo "<option value='".$row['id']."' selected>".$row['name']."</option>";
+                                        } else {
+                                            echo "<option value='".$row['id']."'>".$row['name']."</option>";
+                                        }
+                                        $i++;
+                                    }
+                                ?>
+                            </select>
+                            <label>Atuo com/como:</label>
                     </div>
-                    <div class="input-field col s12">
-                        <p>
-                            Disponível para vagas de emprego:
-                            <label>
-                                <input class="with-gap" name="available_job" type="radio" value="yes" checked>
-                                <span>Sim</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap" name="available_job" value="no" type="radio">
-                                <span>Não</span>
-                            </label>
-                        </p>
+                    <!-- add the description to the text area -->
+                    <div class="input-field col s12 m5 offset-m2">
+                        <textarea class="materialize-textarea" id="work-info"><?php echo $description ?></textarea>
+                        <label for="work-info">Informações adicionais</label>
                     </div>
+                    <div class="col s12"></div>
                     <div class="input-field col s6 m1 l1">
                         <a href="#modalDesactiveAccount" class="waves-effect waves-light btn modal-trigger"><i
                                 class="material-icons">delete</i></a>

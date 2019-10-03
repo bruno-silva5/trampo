@@ -135,15 +135,14 @@ class daoUser
         return $retorno;
     }
 
-    public function becomeWorker($email, $occupation_name, $work_info)
+    public function becomeWorker($email, $occupation_id, $work_info)
     {
         include 'conexao.php';
         $query = mysqli_query($conn, "SELECT id FROM user WHERE email LIKE '" . $email . "'");
         $row = mysqli_fetch_assoc($query);
         $user_id = $row['id'];
-        foreach ($occupation_name as $occupation) {
-            $query = mysqli_query($conn, "INSERT INTO user_occupation(name, id_user) VALUES('" . $occupation . "', '" . $user_id . "')");
+        foreach ($occupation_id as $occupation) {
+            $query = mysqli_query($conn, "INSERT INTO user_occupation(description, id_occupation, id_user) VALUES('".$work_info."','" . $occupation . "', '" . $user_id . "')");
         }
-        $query = mysqli_query($conn, "UPDATE user SET work_info = '" . $work_info . "' WHERE id = '" . $user_id . "'");
     }
 }
