@@ -6076,16 +6076,16 @@ label {
    ========================================================================== */
 /* Style Placeholders */
 ::-webkit-input-placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 :-ms-input-placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 ::-ms-input-placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 ::placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 
 /* Text inputs */
@@ -9295,6 +9295,132 @@ main .section-work .row:not(:first-of-type) .card-title {
   line-height: 1.3em;
 }
 
+main .chat {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 2em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+main .chat h5 {
+  padding-top: 1.3em;
+  color: #1B8AE3;
+}
+
+main .chat .conversations {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+main .chat .conversations .boxConversation {
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer !important;
+  padding: 1em 1.3em;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+main .chat .conversations .boxConversation p:first-of-type {
+  font-weight: 500;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+main .chat .conversations .boxConversation:hover {
+  background: #e7e7e7;
+}
+
+main .chat .conversation {
+  width: 100%;
+  height: 100%;
+}
+
+main .chat .conversation .header {
+  background: #1364C0;
+  padding: 0.5em 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 !important;
+  border-top-right-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+}
+
+main .chat .conversation .header h5 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+main .chat .conversation .conversation-content {
+  background-image: url(../_img/background/chat-background.png);
+  background-size: cover;
+  overflow: auto;
+  height: 80vh;
+  max-height: 400px;
+}
+
+main .chat .conversation .conversation-content .message {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 40%;
+  padding: 0.7em;
+  margin: 0.8em 0;
+  cursor: default;
+  word-break: normal;
+  border-radius: 0.2em;
+}
+
+main .chat .conversation .conversation-content .message-left {
+  margin-right: auto;
+  background: #fff;
+  margin-left: 1em;
+}
+
+main .chat .conversation .conversation-content .message-right {
+  margin-left: auto;
+  margin-right: 1em;
+  background: #1B8AE3;
+  color: white;
+}
+
+main .chat .conversation .send-message {
+  background: #fff;
+  overflow: auto;
+  padding: 1em;
+}
+
+main .chat .conversation .send-message .row {
+  height: 100%;
+  margin: 0 !important;
+}
+
+main .chat .conversation .send-message .col {
+  height: 100% !important;
+}
+
+main .chat .conversation .send-message input {
+  width: 100%;
+  height: 100% !important;
+  padding: 0.6em;
+  border-radius: 0.2em;
+  border: none;
+  font-size: 1em;
+  background: rgba(0, 0, 0, 0.061);
+}
+
+main .chat .conversation .send-message button {
+  width: 100%;
+}
+
 main h5 {
   margin-bottom: 1em !important;
 }
@@ -9468,58 +9594,18 @@ footer {
 
 #modalChat {
   width: 95% !important;
-  max-width: 1100px !important;
+  max-width: 600px !important;
   max-height: 100%;
 }
 
 #modalChat .modal-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  padding: 0;
 }
 
 #modalChat .modal-content h6,
 #modalChat .modal-content h4,
 #modalChat .modal-content p {
   margin: 0;
-}
-
-#modalChat .modal-content .conversations {
-  width: 40%;
-  height: 100%;
-  overflow: auto;
-}
-
-#modalChat .modal-content .conversations .boxConversation {
-  background: red;
-  margin-bottom: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#modalChat .modal-content .conversation {
-  width: 60%;
-  height: 100%;
-}
-
-#modalChat .modal-content .conversation .header {
-  background: blue;
-}
-
-#modalChat .modal-content .conversation .conversation-content {
-  background: #a6a9aa;
-  overflow: auto;
-  height: 300px;
-}
-
-#modalChat .modal-content .conversation .send-message {
-  background: green;
-  height: 60px;
-  overflow: auto;
 }
 
 @media screen and (max-width: 800px) {

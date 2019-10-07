@@ -59,7 +59,8 @@
                     progresso</a></li>
             <li id="li-hire"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a></li>
+            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
             <li>
             <li>
                 <div class="divider"></div>
@@ -80,7 +81,7 @@
         <section class="section-progress">
             <div id="hires">
                 <!-- if there is no hire -->
-                
+
 
                 <?php
                     $query = mysqli_query($conn, "SELECT id FROM user WHERE email = '".$_SESSION['email']."'");
@@ -133,7 +134,7 @@
                     </div>';
                     }
                 ?>
-                
+
 
             </div>
             <div id="services">
@@ -169,40 +170,18 @@
     <div class="modal" id="modalChat">
         <div class="modal-content">
             <div class="conversations">
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
+                
 
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
             </div>
+
             <div class="conversation">
                 <div class="header">
-                    <h4>Fulano de tal - servio de tal coisa</h4>
+                    <button class="btn" id="back">V</button>
+                    a
                 </div>
-                <div class="conversation-content">
 
-                </div>
-                <div class="send-message">
-
-                </div>
+                <div class="conversation-content"></div>
+                <div class="send-message"></div>
             </div>
         </div>
     </div>

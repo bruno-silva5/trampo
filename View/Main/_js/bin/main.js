@@ -25,11 +25,11 @@ var instances_collapsible = M.Collapsible.init(elem_collapsible);
 try {
 
     var service_list = $(".section-hire .collection");
-    var search_bar = $("#search-bar"); 
+    var search_bar = $("#search-bar");
     var label_search_bar = $("#label-search-bar");
 
     $(search_bar).click(function () {
-        if(!$(service_list).is(':visible')) {
+        if (!$(service_list).is(':visible')) {
             service_list.fadeIn();
         }
     });
@@ -42,13 +42,13 @@ try {
         }
     });
 
-    $("#search-bar").keyup(function() {
+    $("#search-bar").keyup(function () {
         var search_value = $("#search-bar").val();
         $.post("../../../Controller/searchOccupation.php", {
             suggestion: search_value
-        },function(data) {
+        }, function (data) {
             $(service_list).html(data);
-        });  
+        });
     });
 
 } catch (error) {
@@ -79,7 +79,7 @@ $("#form-requestService").submit(function (event) {
     var service_description = $("#service-description").val();
     var submit = $("#submit-requestService").val();
     var is_visible;
-    if($("#visible-agreement").is(":checked")) {
+    if ($("#visible-agreement").is(":checked")) {
         is_visible = true;
     } else {
         is_visible = false;
@@ -96,13 +96,13 @@ $("#form-requestService").submit(function (event) {
 
 
 //become worker
-$("#form-becomeWorker").submit(function (event){
+$("#form-becomeWorker").submit(function (event) {
     event.preventDefault();
     var select_occupation = $("#select-occupation").val();
     var work_info = $("#work-info").val();
     var work_agreement;
     var submit = $("#submit-becomeWorker").val();
-    if($("#work-agreement").is(":checked")) {
+    if ($("#work-agreement").is(":checked")) {
         work_agreement = true;
     } else {
         work_agreement = false;
@@ -114,3 +114,77 @@ $("#form-becomeWorker").submit(function (event){
         submit: submit
     });
 });
+
+//chat list conversation
+try {
+
+    $(document).ready(function () {
+        var id_user = $("#id_user").val();
+
+        function loadConversations() {
+            $("section.chat .conversations").load("../../../Controller/chatList.php", {
+                id_user: id_user
+            });
+        }
+
+        loadConversations();
+        setInterval(function () { loadConversations(); }, 2000);
+
+    });
+
+
+} catch (error) {
+
+}
+
+//chat conversation
+
+try {
+    $(document).ready(function () {
+        var id_user_to = $("#id_user_to").val();
+        var id_user_from = $("#id_user_from").val();
+        var id_conversation = $("#id_conversation").val();
+
+        function loadMessages() {
+            $("section.chat .conversation .conversation-content").load("../../../Controller/chatMessage.php", {
+                id_user_to: id_user_to,
+                id_user_from: id_user_from,
+                id_conversation: id_conversation
+            });
+        }
+
+        loadMessages();
+        setInterval(function () { loadMessages() }, 100);
+
+    });
+} catch (error) {
+
+}
+
+//chat send message
+
+try {
+    $(".conversation #form-chat").submit(function(event) {
+        event.preventDefault();
+        var id_user_to = $("#id_user_to").val();
+        var id_user_from = $("#id_user_from").val();
+        var id_conversation = $("#id_conversation").val();
+        var text_message = $("#text-message").val();
+        var new_message = $("#new_message").val();
+        
+
+        $("#form-chat-result").load("../../../Controller/chatSend.php", {
+            id_user_to: id_user_to,
+            id_user_from: id_user_from,
+            id_conversation: id_conversation,
+            text_message: text_message,
+            new_message: new_message
+        });
+
+    });
+
+} catch (error) {
+
+}
+
+

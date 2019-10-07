@@ -290,6 +290,126 @@ main {
     }
   }
 
+  .chat {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 2em;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+
+    h5 {
+      padding-top: 1.3em;
+      color: #1B8AE3;
+    }
+
+    .conversations {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+
+      .boxConversation {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        cursor: pointer !important;
+        padding: 1em 1.3em;
+        transition: 0.3s;
+
+        p:first-of-type {
+          font-weight: 500;
+          font-size: 1.2em;
+          margin: 0;
+        }
+
+      }
+      .boxConversation:hover {
+        background: rgb(231, 231, 231);
+        
+      }
+    }
+
+    .conversation {
+      width: 100%;
+      height: 100%;
+
+      .header {
+        background: #1364C0;
+        padding: 0.5em 0;
+        box-sizing: border-box;
+        margin: 0 !important;
+        border-top-right-radius: 0.5em;
+        border-top-left-radius: 0.5em;
+
+        h5 {
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+      }
+
+      .conversation-content {
+        background-image: url(../_img/background/chat-background.png);
+        background-size: cover;
+        overflow: auto;
+        height: 80vh;
+        max-height: 400px;
+
+        .message {
+          width: fit-content;
+          max-width: 40%;
+          padding: 0.7em;
+          margin: 0.8em 0;
+          cursor: default;
+          word-break: normal;
+          border-radius: 0.2em;
+        }
+        
+        .message-left{
+          margin-right: auto;
+          background: #fff;
+          margin-left: 1em;
+        }
+        
+        .message-right {
+          margin-left: auto;
+          margin-right: 1em;
+          background: #1B8AE3;
+          color: white;
+        }
+
+      }
+
+      .send-message {
+        background: #fff;
+        overflow: auto;
+        padding: 1em;
+
+        .row {
+          height: 100%;
+          margin: 0 !important;
+        }
+
+        .col {
+          height: 100% !important;
+        }
+
+        input {
+          width: 100%;
+          height: 100% !important;
+          padding: 0.6em;
+          border-radius: 0.2em;
+          border: none;
+          font-size: 1em;
+          background: rgba(0, 0, 0, 0.061);
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
   h5 {
     margin-bottom: 1em !important;
   }
@@ -298,7 +418,7 @@ main {
     padding-top: 0 !important;
     display: flex;
     align-items: center;
-    
+
     .user-info {
       padding-left: 1em;
       overflow-x: auto !important;
@@ -454,50 +574,15 @@ footer {
 
 #modalChat {
   width: 95% !important;
-  max-width: 1100px !important;
+  max-width: 600px !important;
   max-height: 100%;
 
   .modal-content {
-    display: flex;
-
+    padding: 0;
     h6,
     h4,
     p {
       margin: 0;
-    }
-
-    .conversations {
-      width: 40%;
-      height: 100%;
-      overflow: auto;
-
-      .boxConversation {
-        background: red;
-        margin-bottom: 1em;
-        display: flex;
-        align-items: center;
-      }
-    }
-
-    .conversation {
-      width: 60%;
-      height: 100%;
-
-      .header {
-        background: blue;
-      }
-
-      .conversation-content {
-        background: #a6a9aa;
-        overflow: auto;
-        height: 300px;
-      }
-
-      .send-message {
-        background: green;
-        height: 60px;
-        overflow: auto;
-      }
     }
   }
 
@@ -516,10 +601,10 @@ footer {
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
 }
