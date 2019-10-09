@@ -9477,6 +9477,7 @@ main .section-myAccount .user-view .profile-picture a {
 
 main .section-myAccount .user-view .profile-picture img {
   width: 200px;
+  height: 200px;
 }
 
 main .section-myAccount .user-view .user-info {
@@ -9609,6 +9610,17 @@ footer {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+#modalProfilePicture img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#modalProfilePicture .space {
+  margin: 0.5em;
 }
 
 #modalChat {

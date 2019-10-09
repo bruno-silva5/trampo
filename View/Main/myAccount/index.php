@@ -41,7 +41,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="../_img/user_profile_picture/user.svg"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -77,7 +78,8 @@
                     <!-- <img class="user-background" src="../_img/user-background.jpg" alt="user background"> -->
                     <div class="user-view">
                         <div class="profile-picture">
-                            <img class="circle z-depth-3" src="../_img/user.svg" alt="user profile picture">
+                            <img class="circle z-depth-3" src="../_img/user_profile_picture/user.svg"
+                                alt="user profile picture">
                             <a href="#modalProfilePicture" class="waves-effect waves-light btn modal-trigger"><i
                                     class="material-icons">photo_camera</i></a>
                         </div>
@@ -312,29 +314,34 @@
             <h5 class="center-align">Alterar foto do perfil</h5>
             <div class="divider"></div>
             <br>
-            <form action="#">
+            <form action="../../../Controller/storeImage.php" method="POST" enctype="multipart/form-data">
                 <div class="file-field input-field">
                     <div class="btn">
-                        <span>Enviar imagem</span>
-                        <input type="file">
+                        <span>Enviar</span>
+                        <input type="file" accept="image/*"
+                            onchange="document.getElementById('demo-user-profile-picture').src = window.URL.createObjectURL(this.files[0])">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
                     </div>
                 </div>
+                <h6 class="center-align">Para que a sua foto de perfil fique ajustada, é necessário um tamanho de
+                    200x200</h6>
+                <br>
+                <div class="row center-align">
+                    <img src="../_img/background/placeholder-200x200.png" class="center-align circle z-depth-1"
+                        id="demo-user-profile-picture">
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 center-align">
+                        <button class="btn-flat waves-effect modal-close">Fechar</button>
+                    </div>
+                    <div class="col s12 space hide-on-med-and-up"></div>
+                    <div class="col s12 m6 center-align">
+                        <button class="btn waves-effect waves-light">Salvar</button>
+                    </div>
+                </div>
             </form>
-
-
-        </div>
-        <div class="modal-footer"> 
-            <div class="row">
-                <div class="col s12 m6 center-align">
-                    <button class="btn-flat waves-effect modal-close">Fechar</button>
-                </div>
-                <div class="col s12 m6 center-align">
-                    <button class="btn waves-effect waves-light">Enviar</button>
-                </div>
-            </div>
         </div>
     </div>
 

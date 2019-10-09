@@ -458,6 +458,7 @@ main {
 
         img {
           width: 200px;
+          height: 200px;
         }
       }
 
@@ -589,6 +590,19 @@ footer {
     display: flex;
     justify-content: space-around;
   }
+}
+
+#modalProfilePicture {
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .space {
+    margin: 0.5em;
+  }
+
 }
 
 #modalChat {
