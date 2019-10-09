@@ -76,7 +76,11 @@
                 <div class="row z-depth-1" style="background:#1e88e54b">
                     <!-- <img class="user-background" src="../_img/user-background.jpg" alt="user background"> -->
                     <div class="user-view">
-                        <img class="circle z-depth-3" src="../_img/user.svg" alt="user profile picture">
+                        <div class="profile-picture">
+                            <img class="circle z-depth-3" src="../_img/user.svg" alt="user profile picture">
+                            <a href="#modalProfilePicture" class="waves-effect waves-light btn modal-trigger"><i
+                                    class="material-icons">photo_camera</i></a>
+                        </div>
                         <div class="user-info z-depth-2">
                             <h5><?php echo $row['full_name'] ?></h5>
                             <h5><?php echo $row['email'] ?></h5>
@@ -92,11 +96,11 @@
                         <label for="full_name">Nome Completo</label>
                     </div>
                     <div class="input-field col s12 m5 offset-m2">
-                        <input type="email" id="email" class="validate" value="<?php echo $row['email'] ?>">
+                        <input disabled type="email" id="email" class="validate" value="<?php echo $row['email'] ?>">
                         <label for="email">E-mail</label>
                     </div>
                     <div class="input-field col s12 m3">
-                        <input type="text" id="cpf" value="<?php echo $row['cpf'] ?>">
+                        <input disabled type="text" id="cpf" value="<?php echo $row['cpf'] ?>">
                         <label for="cpf">CPF</label>
                     </div>
 
@@ -191,8 +195,8 @@
                         <h5 class="center-align">Informações de trabalho</h5>
                     </div>
                     <div class="input-field col s12 m5">
-                            <select multiple id="select-occupation">
-                                <?php 
+                        <select multiple id="select-occupation">
+                            <?php 
                                     // select all occupations
                                     $query = mysqli_query($conn, "SELECT * FROM occupation");
 
@@ -222,8 +226,8 @@
                                         $i++;
                                     }
                                 ?>
-                            </select>
-                            <label>Atuo com/como:</label>
+                        </select>
+                        <label>Atuo com/como:</label>
                     </div>
                     <!-- add the description to the text area -->
                     <div class="input-field col s12 m5 offset-m2">
@@ -232,7 +236,7 @@
                     </div>
                     <div class="col s12"></div>
                     <div class="input-field col s6 m1 l1">
-                        <a href="#modalDesactiveAccount" class="waves-effect waves-light btn modal-trigger"><i
+                        <a href="#modalDesactiveAccount" class="waves-effect waves-light btn modal-trigger red"><i
                                 class="material-icons">delete</i></a>
                     </div>
                     <div class="input-field col s6 m5 l4 offset-m0 offset-l0 center-align">
@@ -254,48 +258,6 @@
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
-        </div>
-    </div>
-
-    <!-- Modal chat -->
-    <div class="modal" id="modalChat">
-        <div class="modal-content">
-            <div class="conversations">
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation">
-                <div class="header">
-                    <h4>Fulano de tal - servio de tal coisa</h4>
-                </div>
-                <div class="conversation-content">
-
-                </div>
-                <div class="send-message">
-
-                </div>
-            </div>
         </div>
     </div>
 
@@ -332,7 +294,7 @@
         </div>
     </div>
 
-    <!-- desactive account -->
+    <!-- modal desactive account -->
     <div class="modal" id="modalDesactiveAccount">
         <div class="modal-content">
             <h5 class="center-align hide-on-med-and-up">Deseja desativar sua conta?</h5>
@@ -341,6 +303,38 @@
         <div class="modal-footer">
             <a href="#" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect btn">Não</button>
+        </div>
+    </div>
+
+    <!-- Modal profile picture -->
+    <div class="modal" id="modalProfilePicture">
+        <div class="modal-content">
+            <h5 class="center-align">Alterar foto do perfil</h5>
+            <div class="divider"></div>
+            <br>
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Enviar imagem</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <div class="modal-footer"> 
+            <div class="row">
+                <div class="col s12 m6 center-align">
+                    <button class="btn-flat waves-effect modal-close">Fechar</button>
+                </div>
+                <div class="col s12 m6 center-align">
+                    <button class="btn waves-effect waves-light">Enviar</button>
+                </div>
+            </div>
         </div>
     </div>
 

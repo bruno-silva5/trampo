@@ -84,11 +84,10 @@
             <div class="container z-depth-1">
                 <form action="../../../Controller/cadastrarService.php" method="POST" class="row padding white"
                     id="form-requestService">
-                    <a href="../hire" class="btn circle waves-effect waves-light hide-on-small-only"><i
-                            class="material-icons">arrow_back</i></a>
-                    <a href="../hire" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
+                    <a href="../hire" class="btn circle waves-effect waves-light"><i
                             class="material-icons">arrow_back</i></a>
                     <div class="col s12">
+                        <br class="hide-on-med-and-up">
                         <h5 class="center-align">Descrever serviço</h5>
                     </div>
                     <!-- necessary to pass the id to the javascript -->
@@ -242,7 +241,8 @@
 
     var elem_modal_warning = document.querySelector('#modal-warning');
     var instance_modal_warning = M.Modal.init(elem_modal_warning, {
-        dismissible: false
+        dismissible: false,
+        preventScrolling: false
     });
     var btn_warning = document.querySelector(".warning-btn");
     var warning_agreement = document.querySelector("#warning-agreement");

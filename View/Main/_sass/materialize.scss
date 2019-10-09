@@ -446,10 +446,21 @@ main {
     .user-view {
       position: relative !important;
 
-      img {
-        width: 200px;
+      .profile-picture {
+        position: relative;
         z-index: 2;
+
+        a {
+          position: absolute;
+          bottom: 0%;
+          left: 0;
+        }
+
+        img {
+          width: 200px;
+        }
       }
+
 
       .user-info {
         background: #fff;
@@ -479,6 +490,10 @@ main {
     @media only screen and (max-width: 600px) {
       .user-view {
         flex-direction: column;
+
+        .btn {
+          width: fit-content;
+        }
 
         .user-info {
           position: relative;
@@ -515,6 +530,10 @@ main {
   height: 20em;
   top: 0;
   z-index: -1;
+}
+
+.z-index-materialBoxed {
+  z-index: 9999;
 }
 
 //fix tab height

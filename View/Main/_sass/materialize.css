@@ -9464,9 +9464,19 @@ main .section-myAccount .user-view {
   position: relative !important;
 }
 
-main .section-myAccount .user-view img {
-  width: 200px;
+main .section-myAccount .user-view .profile-picture {
+  position: relative;
   z-index: 2;
+}
+
+main .section-myAccount .user-view .profile-picture a {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+}
+
+main .section-myAccount .user-view .profile-picture img {
+  width: 200px;
 }
 
 main .section-myAccount .user-view .user-info {
@@ -9503,6 +9513,11 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  main .section-myAccount .user-view .btn, main .section-myAccount .user-view .btn-large, main .section-myAccount .user-view .btn-small {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
   main .section-myAccount .user-view .user-info {
     position: relative;
     left: 0;
@@ -9531,6 +9546,10 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
   height: 20em;
   top: 0;
   z-index: -1;
+}
+
+.z-index-materialBoxed {
+  z-index: 9999;
 }
 
 .tabs-content.carousel.carousel-slider .carousel-item.active {

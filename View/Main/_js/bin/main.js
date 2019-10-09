@@ -10,7 +10,9 @@ var instance_tabs = M.Tabs.init(elem_tabs, {
 
 //init modal
 var elem_modal = document.querySelectorAll('.modal');
-var instance_modal = M.Modal.init(elem_modal);
+var instance_modal = M.Modal.init(elem_modal, {
+    preventScrolling: false
+});
 
 //init select && characterCounter
 $(document).ready(function () {
@@ -21,6 +23,7 @@ $(document).ready(function () {
 //init collapsible
 var elem_collapsible = document.querySelectorAll('.collapsible');
 var instances_collapsible = M.Collapsible.init(elem_collapsible);
+
 
 try {
 
@@ -164,14 +167,14 @@ try {
 //chat send message
 
 try {
-    $(".conversation #form-chat").submit(function(event) {
+    $(".conversation #form-chat").submit(function (event) {
         event.preventDefault();
         var id_user_to = $("#id_user_to").val();
         var id_user_from = $("#id_user_from").val();
         var id_conversation = $("#id_conversation").val();
         var text_message = $("#text-message").val();
         var new_message = $("#new_message").val();
-        
+
 
         $("#form-chat-result").load("../../../Controller/chatSend.php", {
             id_user_to: id_user_to,
