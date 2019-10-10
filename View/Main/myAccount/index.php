@@ -37,7 +37,7 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user_profile_picture/user.svg"
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
                             alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
@@ -75,7 +75,7 @@
                     <!-- <img class="user-background" src="../_img/user-background.jpg" alt="user background"> -->
                     <div class="user-view">
                         <div class="profile-picture">
-                            <img class="circle z-depth-3" src="../_img/user_profile_picture/user.svg"
+                            <img class="circle z-depth-3" src="<?php echo $row['profile_picture']; ?>"
                                 alt="user profile picture">
                             <a href="#modalProfilePicture" class="waves-effect waves-light btn modal-trigger"><i
                                     class="material-icons">photo_camera</i></a>
