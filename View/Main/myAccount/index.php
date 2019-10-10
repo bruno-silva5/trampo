@@ -27,10 +27,6 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Conta</a>
-                <ul class="right">
-                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
-                                class="material-icons">chat</i></a></li>
-                </ul>
             </div>
         </nav>
     </header>
@@ -49,19 +45,20 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire"><a href="../hire" class="waves-effect"><i
+            <li><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
-            <li>
+            <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
+            </li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount" class="active"><a href="" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li class="active"><a href="" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -314,12 +311,14 @@
             <h5 class="center-align">Alterar foto do perfil</h5>
             <div class="divider"></div>
             <br>
-            <form action="../../../Controller/storeImage.php" method="POST" enctype="multipart/form-data">
+            <form action="../../../Controller/storeImage.php" method="POST" enctype="multipart/form-data"
+                id="form-profilePicture">
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Enviar</span>
                         <input type="file" accept="image/*"
-                            onchange="document.getElementById('demo-user-profile-picture').src = window.URL.createObjectURL(this.files[0])">
+                            onchange="document.getElementById('demo-user-profile-picture').src = window.URL.createObjectURL(this.files[0])"
+                            name="image" id="img-profilePicture" required>
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
@@ -334,11 +333,11 @@
                 </div>
                 <div class="row">
                     <div class="col s12 m6 center-align">
-                        <button class="btn-flat waves-effect modal-close">Fechar</button>
+                        <button type="button" class="btn-flat waves-effect modal-close">Fechar</button>
                     </div>
                     <div class="col s12 space hide-on-med-and-up"></div>
                     <div class="col s12 m6 center-align">
-                        <button class="btn waves-effect waves-light">Salvar</button>
+                        <button type="submit" class="btn waves-effect waves-light" name="submit">Salvar</button>
                     </div>
                 </div>
             </form>

@@ -27,10 +27,6 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Progresso</a>
-                <ul class="right">
-                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
-                                class="material-icons">chat</i></a></li>
-                </ul>
             </div>
             <div class="nav-content">
                 <!-- tab starts hidden -->
@@ -55,19 +51,21 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress" class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire"><a href="../hire" class="waves-effect"><i
+            <li><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
+            <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
             </li>
             <li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li><a href="../myAccount" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -166,25 +164,6 @@
         </div>
     </div>
 
-    <!-- Modal chat -->
-    <div class="modal" id="modalChat">
-        <div class="modal-content">
-            <div class="conversations">
-                
-
-            </div>
-
-            <div class="conversation">
-                <div class="header">
-                    <button class="btn" id="back">V</button>
-                    a
-                </div>
-
-                <div class="conversation-content"></div>
-                <div class="send-message"></div>
-            </div>
-        </div>
-    </div>
 
     <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>

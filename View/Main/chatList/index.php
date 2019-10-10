@@ -45,21 +45,21 @@
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire"><a href="" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a>
             </li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
-            <li id="li-work" class="active"><a href="" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
+            <li class="active"><a href="" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
             </li>
             <li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li><a href="../myAccount" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
