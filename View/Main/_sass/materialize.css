@@ -9440,6 +9440,11 @@ main .user-view .user-info {
   overflow-x: auto !important;
 }
 
+main .user-view img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 main .section-myAccount {
   padding: 2em;
 }
@@ -9520,6 +9525,7 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
     width: fit-content;
   }
   main .section-myAccount .user-view .user-info {
+    padding: 0 1em;
     position: relative;
     left: 0;
     text-align: center;

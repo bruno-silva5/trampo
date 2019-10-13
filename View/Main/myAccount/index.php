@@ -16,11 +16,27 @@
 </head>
 
 <body>
+    <?php
+        $changed = false;
+        $profile_picture = false;
+
+        if(isset($_GET['changed'])) {
+            $changed = true;
+        }
+
+        if(isset($_GET['profile_picture'])) {
+            $profile_picture = true;
+        }
+
+
+    ?>
+
     <?php 
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
     ?>
+
 
     <header>
         <nav class="nav-extended">
@@ -47,8 +63,7 @@
             </li>
             <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li><a href="../hire" class="waves-effect"><i
-                        class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
             <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
             <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
@@ -70,7 +85,7 @@
 
         <!-- Section myAccount -->
         <section class="section-myAccount">
-            <form action="#">
+            <form action="../../../Controller/editarUser.php" method="POST">
                 <div class="row z-depth-1" style="background:#1e88e54b">
                     <!-- <img class="user-background" src="../_img/user-background.jpg" alt="user background"> -->
                     <div class="user-view">
@@ -91,15 +106,15 @@
                         <h5 class="center-align">Informações pessoais</h5>
                     </div>
                     <div class="input-field col s12 m5">
-                        <input type="text" id="full_name" value="<?php echo $row['full_name'] ?>">
+                        <input type="text" id="full_name" value="<?php echo $row['full_name'] ?>" name="name">
                         <label for="full_name">Nome Completo</label>
                     </div>
                     <div class="input-field col s12 m5 offset-m2">
-                        <input disabled type="email" id="email" class="validate" value="<?php echo $row['email'] ?>">
+                        <input type="email" id="email" class="validate" value="<?php echo $row['email'] ?>" name="email">
                         <label for="email">E-mail</label>
                     </div>
                     <div class="input-field col s12 m3">
-                        <input disabled type="text" id="cpf" value="<?php echo $row['cpf'] ?>">
+                        <input type="text" id="cpf" value="<?php echo $row['cpf'] ?>" name="cpf" readonly="true">
                         <label for="cpf">CPF</label>
                     </div>
 
@@ -124,11 +139,12 @@
                     <div class="col s12 m8 l7">
                         Data de nascimento:
                         <div class="input-field inline">
-                            <input type="date" class="center-align">
+                            <input type="date" max="1999-01-01" class="center-align"
+                                value="<?php echo $row['birth_date'] ?>" name="birth_date">
                         </div>
                     </div>
                     <div class="input-field col s12 m3 offset-m1">
-                        <input type="text" id="phone_number" value="<?php echo $row['phone_number'] ?>">
+                        <input type="text" id="phone_number" value="<?php echo $row['phone_number'] ?>" name="phone_number">
                         <label for="phone_number">Celular</label>
                     </div>
                 </div>
@@ -137,11 +153,11 @@
                         <h5 class="center-align">Endereço</h5>
                     </div>
                     <div class="input-field col s12 m2">
-                        <input type="text" id="cep" value="<?php echo $row['cep'] ?>">
+                        <input type="text" id="cep" value="<?php echo $row['cep'] ?>" name="cep">
                         <label for="cep">CEP</label>
                     </div>
                     <div class="input-field col s12 m5 l4 offset-m1 offset-l1">
-                        <select id="states" name="states">
+                        <select id="states" name="state">
                             <option value="<?php echo $row['uf'] ?>" selected><?php echo $row['uf']?> </option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -173,28 +189,56 @@
                         </select>
                     </div>
                     <div class="input-field col s12 m3 l4 offset-m1 offset-l1">
-                        <input type="text" id="street" value="<?php echo $row['address'] ?>">
+                        <input type="text" id="street" value="<?php echo $row['address'] ?>" name="address">
                         <label for="street">Rua</label>
                     </div>
                     <div class="input-field col s12 m2 l2">
-                        <input type="text" id="number" value="<?php echo $row['home_number'] ?>">
+                        <input type="text" id="number" value="<?php echo $row['home_number'] ?>" name="number">
                         <label for="number">Número</label>
                     </div>
                     <div class="input-field col s12 m5 l4 offset-m1 offset-l1">
-                        <input type="text" id="neighborhood" value="<?php echo $row['neighborhood'] ?>">
+                        <input type="text" id="neighborhood" value="<?php echo $row['neighborhood'] ?>" name="neighborhood">
                         <label for="neighborhood">Bairro</label>
                     </div>
                     <div class="input-field col s12 m3 l4 offset-m1 offset-l1">
-                        <input type="text" id="adress_complement" value="<?php echo $row['address_complement'] ?>">
+                        <input type="text" id="adress_complement" value="<?php echo $row['address_complement'] ?>" name="adress_complement">
                         <label for="adress_complement">Complemento</label>
                     </div>
+                    
+                    <?php
+                        $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$row['id']."'");
+                        $is_worker = false;
+                        if(mysqli_num_rows($query) > 0) {
+                            $is_worker = true;
+                        }
+
+                        if(!$is_worker) {
+                    ?>
+                    <div class="col s12"></div>
+                    <div class="input-field col s6 m1 l1">
+                        <a href="#modalDesactiveAccount" class="waves-effect waves-light btn modal-trigger red"><i
+                                class="material-icons">delete</i></a>
+                    </div>
+                    <div class="input-field col s6 m5 l4 offset-m0 offset-l0 center-align">
+                        <a href="#modalPassword" class="waves-effect waves-light btn modal-trigger">Alterar senha</a>
+                    </div>
+                    <div class="input-field col s12 m2 l2 offset-m4 offset-l5 right-align">
+                        <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
+
+                <?php
+                    if($is_worker) {
+                ?>
                 <div class="row z-depth-1">
                     <div class="col s12">
                         <h5 class="center-align">Informações de trabalho</h5>
                     </div>
                     <div class="input-field col s12 m5">
-                        <select multiple id="select-occupation">
+                        <select multiple id="select-occupation" name="select-occupation[]">
                             <?php 
                                     // select all occupations
                                     $query = mysqli_query($conn, "SELECT * FROM occupation");
@@ -228,9 +272,9 @@
                         </select>
                         <label>Atuo com/como:</label>
                     </div>
-                    <!-- add the description to the text area -->
+
                     <div class="input-field col s12 m5 offset-m2">
-                        <textarea class="materialize-textarea" id="work-info"><?php echo $description ?></textarea>
+                        <textarea class="materialize-textarea" id="work-info" name="work_info"><?php echo $description ?></textarea>
                         <label for="work-info">Informações adicionais</label>
                     </div>
                     <div class="col s12"></div>
@@ -245,6 +289,9 @@
                         <button type="submit" class="waves-effect waves-light btn">Salvar</button>
                     </div>
                 </div>
+                <?php
+                    }
+                ?>
             </form>
         </section>
 
@@ -347,6 +394,22 @@
     <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
+    <script type="text/javascript">
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var changed = "<?php echo $changed ?>";
+        var profile_picture = "<?php echo $profile_picture ?>";
+        if (changed) {
+            M.toast({html: 'Alterações salvas!'});
+        }
+
+        if (profile_picture) {
+            M.toast({html: 'Foto alterada!'});
+        }
+
+    }, false);
+
+    </script>
 </body>
 
 </html>

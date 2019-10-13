@@ -423,6 +423,10 @@ main {
       padding-left: 1em;
       overflow-x: auto !important;
     }
+
+    img {
+      object-fit: cover;
+    }
   }
 
   .section-myAccount {
@@ -497,6 +501,7 @@ main {
         }
 
         .user-info {
+          padding: 0 1em;
           position: relative;
           left: 0;
           text-align: center;

@@ -12,19 +12,19 @@ $user->setNome($_POST['name']);
 $user->setEmail($_POST['email']);
 $user->setCpf($_POST['cpf']);
 $user->setSexo($_POST['gender']);
-$data = $_POST['birthday'];
-$data = implode("-", array_reverse(explode("/", $data)));
-$user->setDataNasc(date('Y-d-m', strtotime($data)));
+$user->setDataNasc($_POST['birth_date']);
+$user->setCelular($_POST['phone_number']); 
 $user->setCep($_POST['cep']);
-$user->setEstado($_POST['estados-brasil']);
-$user->setRua($_POST['street']);
+$user->setEstado($_POST['state']);
+$user->setRua($_POST['address']);
 $user->setNumero($_POST['number']);
 $user->setBairro($_POST['neighborhood']);
-$user->setComplemento($_POST['complement']);
-$user->setCelular($_POST['phone-number']);
-//$user->setServico($_POST['profession']);   
+$user->setComplemento($_POST['adress_complement']);
 
-$daoUser->editarUser($user);
+$occupation = $_POST['select-occupation'];
+$work_info = $_POST['work_info'];
+
+$daoUser->editarUser($user, $occupation, $work_info);
 
 
 

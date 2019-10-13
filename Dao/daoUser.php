@@ -46,21 +46,37 @@ class daoUser
         }
     }
 
-    public function editarUser(User $user)
+    public function editarUser(User $user, $occupation, $work_info)
     {
         include 'conexao.php';
-        $editar = mysqli_query($conn, "UPDATE user SET full_name = '" . $user->getNome() . "' , email = '" . $user->getemail() . "' ,
-            gender = '" . $user->getsexo() . "', cpf = '" . $user->getcpf() . "',
-             uf = '" . $user->getEstado() . "', address = '" . $user->getrua() . "',
-              neighborhood = '" . $user->getbairro() . "', home_number = '" . $user->getnumero() . "',
-               address_complement = '" . $user->getcomplemento() . "', service = '" . $user->getservico() . "',
-              available_for_job = '" . $user->getdisponivel() . "', cep = '" . $user->getCEP() . "', birth_date = '" . $user->getDataNasc() . "', phone_number = '" . $user->getCelular() . "'
-               WHERE email = '" . $user->getemailantigo() . "'");
+
+        $editar = mysqli_query($conn, 
+        "UPDATE user SET 
+        full_name = '".$user->getNome()."',
+        email = '".$user->getEmail()."',
+        cpf = '".$user->getCPF()."',
+        gender = '".$user->getSexo()."',
+        birth_date = '".$user->getDatanasc()."',
+        phone_number = '".$user->getCelular()."',
+        cep = '".$user->getCep()."',
+        uf = '".$user->getEstado()."',
+        address = '".$user->getRua()."',
+        home_number = '".$user->getNumero()."',
+        neighborhood = '".$user->getBairro()."',
+        address_complement = '".$user->getComplemento()."'
+        WHERE email = '".$user->getEmailAntigo()."'
+        ");
+
+        $delete_occupation = mysqli_query($conn, 
+        "DELETE FROM user_occupation 
+        WHERE id_user IN (SELECT id FROM user WHERE email LIKE '".$user->getEmail()."')");
+        $this->becomeWorker($user->getEmail(), $occupation, $work_info);
+        
 
         if ($editar > 0) {
             unset($_SESSION['email']);
             $_SESSION['email'] = $user->getEmail();
-            header("Location: ../View/Main");
+            header("Location: ../View/Main/myAccount/?changed");
         } else {
             header("Location: ../View/TelaLogin");
         }
@@ -145,4 +161,5 @@ class daoUser
             $query = mysqli_query($conn, "INSERT INTO user_occupation(description, id_occupation, id_user) VALUES('".$work_info."','" . $occupation . "', '" . $user_id . "')");
         }
     }
+    
 }

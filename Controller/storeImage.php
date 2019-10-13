@@ -22,7 +22,7 @@
         }
     }
 
-    header("Location: ../View/Main/myAccount");
+    header("Location: ../View/Main/myAccount/?profile_picture");
 
 ?>
 
