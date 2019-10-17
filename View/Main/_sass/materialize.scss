@@ -597,13 +597,13 @@ footer {
   }
 }
 
-#modalProfilePicture {
-  img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-  }
+#demo-user-profile-picture, #demo-service-picture {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
 
+#modalProfilePicture {
   .space {
     margin: 0.5em;
   }

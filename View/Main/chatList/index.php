@@ -72,7 +72,50 @@
         <section class="chat z-depth-1">
             <h5 class="center-align">Conversas recentes</h5>
             <div class="conversations">
+            <?php
+            //who is the people that the users session is talking
+            $id_user_to = null;
+
+            $query = mysqli_query($conn, "SELECT * FROM message m JOIN conversation c ON c.id = m.conversation WHERE m.id IN ( SELECT MAX(ID) FROM message WHERE m.id_user_from = '".$row['id']."' OR m.id_user_to = '".$row['id']."' GROUP BY conversation) GROUP BY m.conversation");
+
+            if(mysqli_num_rows($query) > 0){
+                while($row_message = mysqli_fetch_assoc($query)){
+                    if($row_message['id_user_1'] != $row['id']) {
+                        $id_user_to = $row_message['id_user_1'];
+                    } else {
+                        $id_user_to = $row_message['id_user_2'];
+                    };
+                    $query_user_to = mysqli_query($conn, "SELECT id, full_name FROM user WHERE id = '".$id_user_to."'");
+                    $row_user_to = mysqli_fetch_assoc($query_user_to);
+                    echo "
+                    <a href='../chatMessage?id_user_from=".$row['id']."&id_user_to=".$row_user_to['id']."&name_user_to=".$row_user_to['full_name']."&id_conversation=".$row_message['conversation']."' class='black-text'>
+                    <div class='divider'></div>
+                    <div class='boxConversation waves-effect'>
+                    <div>
+                    <p>";
+                    echo $row_user_to['full_name'];
+                    echo "
+                    </p>
+                    <h6>"; echo $row_message['text']; echo " </h6>
+                    </div>
+                    </div>
+                    </a>
+                    ";
+                }
+            } else {
+                echo "
+                <div class='divider'></div>
+                <br><br>
+                <div class='row center-align'>
+                    <div class='col s12 m6 offset-m3'>
+                        <img src='../_img/icon/dislike.svg' width='100'>
+                    </div>
+                    <div class='col s12 m6 offset-m3'><h6>Você não tem nenhuma conversa, <a href='../hire'>contrate</a> ou <a href='../work'>preste um serviço</a> para iniciar uma conversa</h6></div>
+                </div>
+                ";
+            }
             
+            ?>
             </div>
         </section>
 

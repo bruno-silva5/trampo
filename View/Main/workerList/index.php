@@ -16,6 +16,18 @@
 </head>
 
 <body>
+
+    <?php
+        $service_register = false;
+        $occupation_subcategory;
+        if(isset($_GET['service_register'])) {
+            $service_register = true;
+        }
+        if(isset($_GET['occupation_subcategory'])) {
+            $occupation_subcategory = $_GET['occupation_subcategory'];
+        }
+    ?>
+
     <?php 
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
@@ -71,7 +83,7 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 container-extended padding">
-                <h5 class="center-align">Lista de prestadores</h5>
+                <h5 class="center-align">Lista de prestadores p/ seu serviço</h5>
                 <div class="row">
                     <div class="col s12">
                         <ul class="collapsible z-depth-0">
@@ -118,7 +130,7 @@
                     </div>
                 </div>
                 <div class="list">
-
+                    
                     <div class="list-item">
                         <img src="../_img/user.svg" alt="user profile" width="130">
                         <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
@@ -162,6 +174,12 @@
     <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
+    <script type="text/javascript">
+        var service_register = "<?php echo $service_register ?>";
+        if(service_register) {
+            M.toast({html: 'Serviço cadastrado!'});
+        }
+    </script>
 </body>
 
 </html>

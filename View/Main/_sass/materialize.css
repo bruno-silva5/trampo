@@ -9618,7 +9618,7 @@ footer {
       justify-content: space-around;
 }
 
-#modalProfilePicture img {
+#demo-user-profile-picture, #demo-service-picture {
   width: 200px;
   height: 200px;
   -o-object-fit: cover;

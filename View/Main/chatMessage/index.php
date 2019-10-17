@@ -92,7 +92,7 @@
                 <div class="conversation-content">
                 </div>
                 <div class="send-message">
-                    <form action="#" id="form-chat" class="row valign-wrapper">
+                    <form action="#" id="form-chat" class="row valign-wrapper" autocomplete="off">
                         <div class="col s10">
                             <input type="text" class="browser-default" id="text-message" placeholder="Digite uma mensagem">
                         </div>

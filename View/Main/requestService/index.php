@@ -22,6 +22,11 @@
         if(!isset($_GET['occupation_subcategory'])) {
             header("Location: ../hire");
         }
+
+        $error = false;
+        if(isset($_GET['error'])) {
+            $error = true;
+        }
     ?>
 
     <?php 
@@ -45,7 +50,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -75,28 +81,31 @@
                         class="material-icons">power_settings_new</i>Sair</a></li>
         </ul>
 
-        <!-- Section HIRE and yours tabs -->
+        <!-- Section HIRE-->
 
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="container z-depth-1">
-                <form action="../../../Controller/cadastrarService.php" method="POST" class="row padding white"
-                    id="form-requestService">
+                <form
+                    action="../../../Controller/cadastrarService.php/?id_occupation_subcategory=<?php echo $_GET['occupation_subcategory'];?>"
+                    method="POST" class="row padding white" enctype="multipart/form-data" autocomplete="off">
                     <a href="../hire" class="btn circle waves-effect waves-light"><i
                             class="material-icons">arrow_back</i></a>
                     <div class="col s12">
                         <br class="hide-on-med-and-up">
                         <h5 class="center-align">Descrever serviço</h5>
                     </div>
-                    <!-- necessary to pass the id to the javascript -->
-                    <input type="text" class="hide" id="id_occupation_subcategory" value="<?php echo $_GET['occupation_subcategory'] ?>">
+
                     <!-- get occupation name -->
                     <?php
                         $query = mysqli_query($conn, "SELECT name FROM occupation_subcategory WHERE id = '".$_GET['occupation_subcategory']."'");
                         $row = mysqli_fetch_assoc($query); 
                     ?>
+
+
                     <div class="input-field col s12">
-                        <input disabled type="text" id="professional" value="<?php echo $row['name'] ?>">
+                        <input disabled type="text" id="professional" value="<?php echo $row['name'] ?>"
+                            name="professional">
                         <label for="professional">Serviço</label>
                     </div>
                     <div class="input-field col s12">
@@ -109,21 +118,39 @@
                         <label>Para quando é o serviço?</label>
                     </div>
                     <div class="input-field col s12">
-                        <input type="text" id="service-title">
-                        <label for="service-title">Título do serviço</label>
+                        <input type="text" id="service-title" name="service-title" required>
+                        <label for="service-title">Título do serviço*</label>
                     </div>
                     <div class="input-field col s12">
                         <textarea id="service-description" class="materialize-textarea" data-length="200"
-                            maxlength="200"></textarea>
-                        <label for="service-description">Digite uma descrição do serviço</label>
+                            maxlength="200" name="service-description" required></textarea>
+                        <label for="service-description">Digite uma descrição do serviço*</label>
                     </div>
-                    <div class="col s12">
+                    <div class="input-field col s12">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Foto</span>
+                                <input type="file" name="service-picture" accept="image/*"
+                                    onchange="document.getElementById('demo-service-picture').src = window.URL.createObjectURL(this.files[0])">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text"
+                                    placeholder="Se quiser, mostre uma foto do serviço (200x200)">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- inserir onchange function -->
+                    <div class="col s12 m6 offset-m3 center-align">
+                        <img src="../_img/icon/tools.png" class="center-align z-depth-1" id="demo-service-picture">
+                    </div>
+                    <div class="col s12" style="margin-top:1.5em">
                         <h6 class="center-align"><strong>Quais os próximos passos?</strong></h6>
                     </div>
                     <div class="col s12 m6 step">
                         <div class="center-align">
                             <img src="../_img/icon/smartphone-text-icon.svg" alt="smartphone icon" width="70">
-                            <h6 class="center-align">Logo abaixo, você pode escolher se deseja receber propostas para o seu serviço
+                            <h6 class="center-align">Logo abaixo, você pode escolher se deseja receber propostas para o
+                                seu serviço
                             </h6>
                         </div>
                     </div>
@@ -137,23 +164,20 @@
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input type="checkbox" id="visible-agreement"/>
+                                <input type="checkbox" id="visible-agreement" name="visible-agreement" />
                                 <span class="black-text">Permitir que meu pedido seja visto por prestadores (Poderei
-                                    receber até 3 mensagens)</span>
+                                    receber propostas)</span>
                             </label>
                         </p>
                     </div>
                     <div id="form-message"></div>
                     <div class="input-field col s12 right-align">
-                        <button class="btn waves-effect waves-light" id="submit-requestService">Continuar</button>
+                        <button class="btn waves-effect waves-light">Continuar</button>
                     </div>
                 </form>
 
             </div>
         </section>
-
-
-
 
     </main>
     <!-- Modal leave -->
@@ -173,7 +197,9 @@
             <h4 class="center-align">Cuidado!</h4>
             <div class="row center-align">
                 <img src="../_img/icon/warning.svg" alt="warning icon" width="80">
-                <h6>Não forneça informações pessoais, tais como seu <b>telefone, Whatsapp ou e-mail</b> para os profissionais. Para ter direito a garantia, é necessário que toda negociação fique registrado no chat do trampo</h6>
+                <h6>Não forneça informações pessoais, tais como seu <b>telefone, Whatsapp ou e-mail</b> para os
+                    profissionais. Para ter direito a garantia, é necessário que toda negociação fique registrado no
+                    chat do trampo</h6>
             </div>
             <div class="switch valign-wrapper">
                 <label>
@@ -204,19 +230,21 @@
     var warning_agreement = document.querySelector("#warning-agreement");
 
     document.addEventListener('DOMContentLoaded', function() {
+
         setTimeout(function() {
-            instance_modal_warning.open();
+            // instance_modal_warning.open();
         }, 800);
+
+
     }, false);
 
     warning_agreement.addEventListener('click', function() {
-        if(!warning_agreement.checked) {
+        if (!warning_agreement.checked) {
             btn_warning.classList.toggle("disabled");
         } else {
             btn_warning.classList.toggle("disabled");
         }
     });
-
     </script>
 </body>
 

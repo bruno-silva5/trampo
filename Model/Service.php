@@ -4,6 +4,7 @@
         private $time_remaining;
         private $title;
         private $description;
+        private $picture;
         private $is_visible;
         private $id_user;
 
@@ -37,6 +38,14 @@
 
         public function getDescription() {
             return $this->description;
+        }
+
+        public function setPicture($picture) {
+            $this->picture = $picture;
+        }
+
+        public function getPicture() {
+            return $this->picture;
         }
 
         public function setIsVisible($is_visible) {

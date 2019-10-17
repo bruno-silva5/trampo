@@ -73,30 +73,6 @@ if (navbar.classList.contains("z-depth-0")) {
     }
 }
 
-//register service
-$("#form-requestService").submit(function (event) {
-    event.preventDefault();
-    var id_occupation_subcategory = $("#id_occupation_subcategory").val();
-    var time_remaining = $("#time-remaining").val();
-    var service_title = $("#service-title").val();
-    var service_description = $("#service-description").val();
-    var submit = $("#submit-requestService").val();
-    var is_visible;
-    if ($("#visible-agreement").is(":checked")) {
-        is_visible = true;
-    } else {
-        is_visible = false;
-    }
-    $("#form-message").load("../../../Controller/cadastrarService.php", {
-        id_occupation_subcategory: id_occupation_subcategory,
-        time_remaining: time_remaining,
-        service_title: service_title,
-        service_description: service_description,
-        is_visible: is_visible,
-        submit: submit
-    });
-});
-
 
 //become worker
 $("#form-becomeWorker").submit(function (event) {
@@ -130,7 +106,6 @@ try {
             });
         }
 
-        loadConversations();
         setInterval(function () { loadConversations(); }, 2000);
 
     });
