@@ -49,7 +49,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -83,7 +84,7 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 container-extended padding">
-                <h5 class="center-align">Lista de prestadores p/ seu serviço</h5>
+                <h5 class="center-align">Lista de prestadores para seu serviço</h5>
                 <div class="row">
                     <div class="col s12">
                         <ul class="collapsible z-depth-0">
@@ -129,28 +130,32 @@
                         </ul>
                     </div>
                 </div>
-                <div class="list">
-                    
-                    <div class="list-item">
-                        <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
-                        <h6>X X X</h6>
-                        <a href="../workerProfile" class="btn">ver perfil</a>
-                    </div>
+                <div class="list center-align">
 
-                    <div class="list-item">
-                        <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
-                        <h6>X X X</h6>
-                        <a href="../workerProfile" class="btn">ver perfil</a>
-                    </div>
+                    <?php
+                        $query = mysqli_query($conn, 
+                        "SELECT * FROM user WHERE user.id IN 
+                        (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
+                        (SELECT occupation.id FROM occupation WHERE occupation.id IN 
+                        (SELECT occupation_subcategory.id_occupation FROM occupation_subcategory 
+                        WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$row['id']."' ");
 
-                    <div class="list-item">
-                        <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6><strong>Bruno</strong></h6>
-                        <h6>X X X</h6>
-                        <a href="../workerProfile" class="btn">ver perfil</a>
-                    </div>
+                        if(mysqli_num_rows($query) > 0) {
+                            while($row_worker = mysqli_fetch_assoc($query)) {
+
+                    ?>
+                        <div class="list-item">
+                            <img src="../_img/user_profile_picture/user.svg" alt="user profile" width="130">
+                            <h6><strong><?php echo $row_worker['full_name']; ?></strong></h6>
+                            <a href="../workerProfile?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&service_id=<?php echo $_GET['service_id']?>&id_user=<?php echo $row_worker['id']; ?>" class="btn waves-effect waves-light">Ver perfil</a>
+                        </div>
+
+                    <?php
+                            }
+                        } else {
+                            echo 'there is no worker for your service';
+                        }
+                    ?>
 
                 </div>
             </div>
@@ -175,10 +180,12 @@
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
     <script type="text/javascript">
-        var service_register = "<?php echo $service_register ?>";
-        if(service_register) {
-            M.toast({html: 'Serviço cadastrado!'});
-        }
+    var service_register = "<?php echo $service_register ?>";
+    if (service_register) {
+        M.toast({
+            html: 'Serviço cadastrado!'
+        });
+    }
     </script>
 </body>
 

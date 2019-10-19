@@ -4,9 +4,7 @@ var instance_sideNav = M.Sidenav.init(elem_sideNav);
 
 //init tabs
 var elem_tabs = document.querySelector(".tabs");
-var instance_tabs = M.Tabs.init(elem_tabs, {
-    swipeable: true
-});
+var instance_tabs = M.Tabs.init(elem_tabs);
 
 //init modal
 var elem_modal = document.querySelectorAll('.modal');

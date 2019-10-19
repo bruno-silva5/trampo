@@ -40,6 +40,11 @@
 @import "components/datepicker";
 @import "components/timepicker";
 
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 header {
   z-index: 5 !important;
   position: fixed;
@@ -63,14 +68,24 @@ main {
       width: 92%;
       padding: 2em 1em;
       margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .col {
+        margin: 1em;
+        padding: 0;
+      }
+
     }
 
-    .card {
-      width: fit-content !important;
+    .card-reveal {
+      text-align: justify;
+      padding: 1em !important;
     }
 
     .card-content {
-      padding: 0.8em;
+      padding: 0.6em;
       padding-bottom: 0.3em;
 
       i {
@@ -81,6 +96,26 @@ main {
     .card-image {
       height: 150px !important;
       width: 200px;
+
+      .title-over-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        background: rgba($color: #1468b1, $alpha: 0.4);
+        text-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.3);
+        color: #fff;
+        padding: 8.4px 8.4px;
+
+        h5 {
+          margin: 0;
+          height: 100%;
+          line-height: 1.2em;
+          overflow: auto;
+          font-size: 1.5em;
+        }
+      }
+
       img {
         object-fit: cover;
         height: 100% !important;
@@ -88,8 +123,9 @@ main {
     }
 
     .card-title {
-      font-size: 1.5em;
+      font-size: 1.4em;
       line-height: 1.3em;
+      text-align: left;
     }
   }
 
@@ -133,18 +169,6 @@ main {
       }
     }
 
-    .worker-profile {
-      margin-top: 2em;
-      text-align: center;
-
-      h5 {
-        margin: 0 !important;
-      }
-
-      img {
-        margin: auto;
-      }
-    }
 
     .container-extended {
       width: 92%;
@@ -186,18 +210,25 @@ main {
         flex-wrap: wrap;
 
         .list-item {
-          max-width: 130px;
-          margin: 2em;
-          text-align: center;
+          border: 1px solid rgba($color: #000000, $alpha: 0.1);
+          border-radius: 0.3em;
+          margin: 1em;
+          max-width: 200px;
+          padding: 0.8em;
+          transition: 0.4s;
+        }
 
-          a {
-            margin-top: 0.8em;
-          }
+        .list-item:hover {
+          border: 1px solid rgba($color: #000000, $alpha: 0.25);
+        }
 
-          h6 {
-            height: 2.2em;
-            overflow: hidden;
-          }
+        a {
+          margin-top: 0.8em;
+        }
+
+        h6 {
+          height: 2.2em;
+          overflow: hidden;
         }
       }
     }
@@ -300,7 +331,7 @@ main {
 
     h5 {
       padding-top: 1.3em;
-      color: #1B8AE3;
+      color: #1b8ae3;
     }
 
     .conversations {
@@ -321,11 +352,9 @@ main {
           font-size: 1.2em;
           margin: 0;
         }
-
       }
       .boxConversation:hover {
         background: rgb(231, 231, 231);
-        
       }
     }
 
@@ -334,7 +363,7 @@ main {
       height: 100%;
 
       .header {
-        background: #1364C0;
+        background: #1364c0;
         padding: 0.5em 0;
         box-sizing: border-box;
         margin: 0 !important;
@@ -363,20 +392,19 @@ main {
           word-break: normal;
           border-radius: 0.2em;
         }
-        
-        .message-left{
+
+        .message-left {
           margin-right: auto;
           background: #fff;
           margin-left: 1em;
         }
-        
+
         .message-right {
           margin-left: auto;
           margin-right: 1em;
-          background: #1B8AE3;
+          background: #1b8ae3;
           color: white;
         }
-
       }
 
       .send-message {
@@ -465,7 +493,6 @@ main {
           height: 200px;
         }
       }
-
 
       .user-info {
         background: #fff;
@@ -597,7 +624,8 @@ footer {
   }
 }
 
-#demo-user-profile-picture, #demo-service-picture {
+#demo-user-profile-picture,
+#demo-service-picture {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -607,7 +635,6 @@ footer {
   .space {
     margin: 0.5em;
   }
-
 }
 
 #modalChat {

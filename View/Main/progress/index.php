@@ -31,8 +31,8 @@
             <div class="nav-content">
                 <!-- tab starts hidden -->
                 <ul class="tabs tabs-transparent tabs-fixed-width">
-                    <li class="tab"><a href="#hires" id="tab2">Contratos</a></li>
-                    <li class="tab"><a href="#services" id="tab1">Serviços</a></li>
+                    <li class="tab"><a href="#hires" id="tab2" class="waves-effect waves-light">Contratos</a></li>
+                    <li class="tab"><a href="#services" id="tab1" class="waves-effect waves-light">Serviços</a></li>
                 </ul>
             </div>
         </nav>
@@ -44,7 +44,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -53,8 +54,7 @@
             </li>
             <li class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li><a href="../hire" class="waves-effect"><i
-                        class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
             <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
             <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
@@ -77,64 +77,57 @@
 
         <!-- Section progress and yours tabs -->
         <section class="section-progress">
+
             <div id="hires">
-                <!-- if there is no hire -->
-
-
-                <?php
-                    $query = mysqli_query($conn, "SELECT id FROM user WHERE email = '".$_SESSION['email']."'");
-                    $row = mysqli_fetch_assoc($query);
-                    $id_user = $row['id'];
-                    $query = mysqli_query($conn, "SELECT * FROM service WHERE id_user = '".$id_user."'");
-                    $row = mysqli_fetch_assoc($query);
-                    if($row > 0) {
-                        echo '
-                    <div class="wrapper-content">
-                        <div class="row">
-    
-                            <div class="col s12 m4 l3">
-    
-                                <div class="card hoverable">
-                                    <a href="#!">
-                                        <div class="card-image waves-effect waves-light">
-                                            <img src="../_img/icon/tools.png">
-                                        </div>
-                                    </a>
-                                    <div class="card-content">
-                                        <span class="card-title activator">João<i
-                                                class="material-icons right">keyboard_arrow_up</i></span>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title"><i class="material-icons right">close</i>
-                                        '.$row['title'].'
-                                        <p>'.$row['description'].'
-                                        </p>
-                                        <p><a href="#!">Ver mais > ></a></p>
-                                    </div>
+            
+                <div class="wrapper-content">
+                    <?php
+                        $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id_user IN (SELECT id FROM user WHERE email LIKE '".$row['email']."')");
+                        if(mysqli_num_rows($query) > 0) {
+                            while($row = mysqli_fetch_assoc($query)) {
+                    ?>
+                    
+                    <div class="card hoverable col s12 m4 l3">
+                        <a href="../workerList/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&service_id=<?php echo $row['id'] ?>">
+                            <div class="card-image">
+                                <div class="title-over-image">
+                                    <h5><?php echo $row['title'] ?> </h5>
                                 </div>
+                                <?php 
+                                    if(!empty($row['picture'])) {
+                                ?>
+                                    <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                <?php
+                                    }
+                                ?>
                             </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator orange-text text-darken-4">Pendente <i class="material-icons md-18">schedule</i> <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
                         </div>
-                    </div>';
-                    } else {
-                        echo '
-                    <div class="container center-align no-hire">
-                        <div class="row">
-                            <div class="col s12">
-                                <img src="../_img/icon/dislike.svg" alt="dislike icon" width="130">
+                        <div class="card-reveal">
+                            <div class="card-title">
+                                <i class="material-icons right">close</i>
                             </div>
-                            <div class="col s12">
-                                <h4>Ops!</h4>
-                                <h6>Você não tem nenhum serviço contratado. Clique na aba <strong>Contratar</strong><br> e
-                                    comece a contratar
-                                    agora mesmo!</h6>
-                            </div>
+                            <span class="card-title">
+                                <strong> <?php echo $row['title'] ?> </strong>
+                            </span>
+                            <p>
+                                <?php echo $row['description'] ?>
+                            </p>
+                            <p><a href="../workerList/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&service_id=<?php echo $row['id'] ?>" class="valign-wrapper">Ver mais <i class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
-                    </div>';
-                    }
-                ?>
+                    </div>
+                    
+                    <?php
+                            }
+                        }
+                    ?>
 
-
+                </div>
             </div>
+
+
             <div id="services">
                 <!-- if there is no work -->
                 <div class="container center-align no-work">
@@ -150,6 +143,7 @@
                     </div>
                 </div>
             </div>
+
         </section>
 
     </main>

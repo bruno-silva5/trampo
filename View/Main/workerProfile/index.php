@@ -72,16 +72,22 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../workerList" class="btn circle waves-effect waves-light hide-on-small-only"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&service_id=<?php echo $_GET['service_id'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
                         class="material-icons">arrow_back</i></a>
                 <a href="../workerList" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
                         class="material-icons">arrow_back</i></a>
 
+                <?php
+                    $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$_GET['id_user']."'");
+                    $row = mysqli_fetch_assoc($query);
+                ?>
                 <h5 class="center-align">Perfil do prestador</h5>
-                <div class="worker-profile">
-                    <img src="../_img/user.svg" alt="user profile" width="150">
-                    <h5 class="blue">Nome do prestador</h5>
-                    <h6>Avaliação</h6>
+                <div class="divider"></div>
+                <div class="row center-align" style="padding: 2em 2em 1em">
+
+                    <img src="<?php echo $row['profile_picture']; ?>" alt="user profile" width="150">
+                    <h5><?php echo $row['full_name']; ?></h5>
+                    <h6>Avaliação XXX</h6><br>
                     <a href="#" class="btn">Entrar em contato</a>
                 </div>
             </div>
