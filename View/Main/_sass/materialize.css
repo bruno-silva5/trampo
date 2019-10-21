@@ -9418,7 +9418,10 @@ main .chat .conversation .conversation-content .message {
   padding: 0.7em;
   margin: 0.8em 0;
   cursor: default;
-  word-break: normal;
+  word-break: break-all;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
   border-radius: 0.2em;
 }
 

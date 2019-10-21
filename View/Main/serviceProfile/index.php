@@ -44,9 +44,9 @@
                     </div>
                 </div>
             </li>
-            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li class="active"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li class="active"><a href="../hire" class="waves-effect"><i
+            <li><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
             <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
@@ -67,37 +67,50 @@
                         class="material-icons">power_settings_new</i>Sair</a></li>
         </ul>
 
-        <!-- Section HIRE and yours tabs -->
 
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&service_id=<?php echo $_GET['service_id'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
+                <a href="../progress/" class="btn circle waves-effect waves-light hide-on-small-only"><i
                         class="material-icons">arrow_back</i></a>
-                <a href="../workerList" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
+                <a href="../progress/" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
                         class="material-icons">arrow_back</i></a>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$_GET['id_user']."'");
+                    $query = mysqli_query($conn, "SELECT service.description, service.title, service.picture, occupation.name FROM `service` 
+                    INNER JOIN occupation_subcategory
+                    ON service.id_occupation_subcategory = occupation_subcategory.id
+                    INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id WHERE service.id = '".$_GET['id_service']."'");
                     $row = mysqli_fetch_assoc($query);
                 ?>
-                <!-- arrumar o botao pra entrar em contato -->
-                <h5 class="center-align"><strong>Perfil do prestador</strong></h5>
+                <h5 class="center-align"><strong>Detalhes do serviço</strong></h5>
                 <div class="divider"></div>
                 <div class="row center-align" style="padding: 2em 2em 1em">
 
-                    <img src="<?php echo $row['profile_picture']; ?>" alt="user profile" width="150">
-                    <h5><?php echo $row['full_name']; ?></h5>
-                    <h6>Avaliação XXX</h6><br>
-                    <a href="#modal_confirm_hire" class="btn modal-trigger">Entrar em contato</a>
+                    <img src="<?php echo(!empty($row['picture']))?$row['picture']:'../_img/icon/no_service_image.png'; ?>" alt="service picture" width="200">
+                    <h5><?php echo $row['title']; ?></h5>
+                    <div class="divider" style="margin-bottom:1em"></div>
+                    <div class="col s12 m2 left-align">
+                        <p><strong>Descrição: </strong></p>
+                    </div>
+                    <div class="col s12 m10 left-align">
+                        <p><?php echo $row['description']; ?></p>
+                    </div>
+                    <div class="col s12 m2 left-align">
+                        <p><strong>Categoria: </strong></p>
+                    </div>
+                    <div class="col s12 m10 left-align">
+                        <p><?php echo $row['name']; ?></p>
+                    </div>
+
+                    <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>" class="btn waves-effect waves-light" style="margin-top:1.5em">Ver prestadores disponíveis</a>
                 </div>
             </div>
         </section>
 
-
-
-
     </main>
+
+
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
         <div class="modal-content">
@@ -109,24 +122,6 @@
         </div>
     </div>
 
-     <!-- Modal confirm hire -->
-    <div id="modal_confirm_hire" class="modal">
-        <div class="modal-content">
-            <h4 class="center-align">Tem certeza?</h4>
-            <div class="divider"></div>
-            <br>
-            <h6 class="center-align">Será enviado uma mensagem para o prestador, com a oferta do seu serviço</h6>
-        </div>
-        
-        <div class="modal-footer row center-align">
-            <div class="col s12 m6 center-align">
-                <a href="#!" class="btn waves-effect waves-light">Sim</a>
-            </div>
-            <div class="col s12 m6 center-align">
-                <button class="btn-flat waves-effect modal-close">Não</button>
-            </div>
-        </div>
-    </div>
 
     <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>

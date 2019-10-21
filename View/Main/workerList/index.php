@@ -153,7 +153,12 @@
                     <?php
                             }
                         } else {
-                            echo 'there is no worker for your service';
+                    ?>
+                        <div>
+                            <img src="../_img/icon/tools_black_and_white.png" alt="black and white tools icon" width="200">
+                            <h6><b>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</b></h6>
+                        </div>
+                    <?php
                         }
                     ?>
 

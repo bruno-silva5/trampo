@@ -88,7 +88,7 @@
                     ?>
                     
                     <div class="card hoverable col s12 m4 l3">
-                        <a href="../workerList/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&service_id=<?php echo $row['id'] ?>">
+                        <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
                             <div class="card-image">
                                 <div class="title-over-image">
                                     <h5><?php echo $row['title'] ?> </h5>
@@ -115,7 +115,7 @@
                             <p>
                                 <?php echo $row['description'] ?>
                             </p>
-                            <p><a href="../workerList/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&service_id=<?php echo $row['id'] ?>" class="valign-wrapper">Ver mais <i class="material-icons">keyboard_arrow_right</i></a></p>
+                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>" class="valign-wrapper">Ver mais <i class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
                     </div>
                     
