@@ -35,7 +35,7 @@
         $service->setIdUser($id_user);
         $dao_service->cadastrarService($service);
         $last_id = $dao_service->getLastRegisteredId();
-        header("Location: ../../View/Main/workerList/?service_register&occupation_subcategory=".$_GET['id_occupation_subcategory']."&service_id=".$last_id['MAX(id)']);
+        header("Location: ../../View/Main/workerList/?service_register&occupation_subcategory=".$_GET['id_occupation_subcategory']."&id_service=".$last_id['MAX(id)']);
     } else {
         header("Location: ../../View/Main/requestService/?occupation_subcategory=".$_GET['id_occupation_subcategory']);
     }

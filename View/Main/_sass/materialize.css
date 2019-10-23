@@ -9048,11 +9048,14 @@ main {
 }
 
 main .section-progress .no-hire,
-main .section-progress .no-work {
+main .section-progress .no-work,
+main .user-profile .no-hire,
+main .user-profile .no-work {
   margin-top: 7em;
 }
 
-main .section-progress .wrapper-content {
+main .section-progress .wrapper-content,
+main .user-profile .wrapper-content {
   width: 92%;
   padding: 2em 1em;
   margin: auto;
@@ -9066,31 +9069,37 @@ main .section-progress .wrapper-content {
       flex-wrap: wrap;
 }
 
-main .section-progress .wrapper-content .col {
+main .section-progress .wrapper-content .col,
+main .user-profile .wrapper-content .col {
   margin: 1em;
   padding: 0;
 }
 
-main .section-progress .card-reveal {
+main .section-progress .card-reveal,
+main .user-profile .card-reveal {
   text-align: justify;
   padding: 1em !important;
 }
 
-main .section-progress .card-content {
+main .section-progress .card-content,
+main .user-profile .card-content {
   padding: 0.6em;
   padding-bottom: 0.3em;
 }
 
-main .section-progress .card-content i {
+main .section-progress .card-content i,
+main .user-profile .card-content i {
   margin: 0;
 }
 
-main .section-progress .card-image {
+main .section-progress .card-image,
+main .user-profile .card-image {
   height: 150px !important;
   width: 200px;
 }
 
-main .section-progress .card-image .title-over-image {
+main .section-progress .card-image .title-over-image,
+main .user-profile .card-image .title-over-image {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -9101,7 +9110,8 @@ main .section-progress .card-image .title-over-image {
   padding: 8.4px 8.4px;
 }
 
-main .section-progress .card-image .title-over-image h5 {
+main .section-progress .card-image .title-over-image h5,
+main .user-profile .card-image .title-over-image h5 {
   margin: 0;
   height: 100%;
   line-height: 1.2em;
@@ -9109,13 +9119,15 @@ main .section-progress .card-image .title-over-image h5 {
   font-size: 1.5em;
 }
 
-main .section-progress .card-image img {
+main .section-progress .card-image img,
+main .user-profile .card-image img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100% !important;
 }
 
-main .section-progress .card-title {
+main .section-progress .card-title,
+main .user-profile .card-title {
   font-size: 1.4em;
   line-height: 1.3em;
   text-align: left;
@@ -9418,10 +9430,7 @@ main .chat .conversation .conversation-content .message {
   padding: 0.7em;
   margin: 0.8em 0;
   cursor: default;
-  word-break: break-all;
-  -webkit-hyphens: auto;
-      -ms-hyphens: auto;
-          hyphens: auto;
+  word-wrap: break-word;
   border-radius: 0.2em;
 }
 
@@ -9700,6 +9709,10 @@ footer {
 
 #modal-warning img {
   margin: 2em;
+}
+
+.text-underline {
+  text-decoration: underline !important;
 }
 
 .noselect {

@@ -232,7 +232,7 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         setTimeout(function() {
-            // instance_modal_warning.open();
+            instance_modal_warning.open();
         }, 800);
 
 

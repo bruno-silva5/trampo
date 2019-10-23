@@ -19,16 +19,16 @@
             $row_user_to = mysqli_fetch_assoc($query_user_to);
             echo "
             <a href='../chatMessage?id_user_from=".$id_user."&id_user_to=".$row_user_to['id']."&name_user_to=".$row_user_to['full_name']."&id_conversation=".$row['conversation']."' class='black-text'>
-            <div class='divider'></div>
-            <div class='boxConversation waves-effect'>
-            <div>
-            <p>";
-            echo $row_user_to['full_name'];
-            echo "
-            </p>
-            <h6>"; echo $row['text']; echo " </h6>
-            </div>
-            </div>
+                <div class='divider'></div>
+                <div class='boxConversation waves-effect'>
+                    <div>
+                        <p>";
+                        echo $row_user_to['full_name'];
+                        echo "
+                        </p>
+                        <h6>"; echo(strpos($row['text'], "</a>") !== false)?'Olá, gostaria de lhe contratar! Clique aqui para acessar meu serviço':$row['text']; echo "</h6>
+                    </div>
+                </div>
             </a>
             ";
         }

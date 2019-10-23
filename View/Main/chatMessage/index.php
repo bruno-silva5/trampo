@@ -20,12 +20,28 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn, $consulta);
         $row = mysqli_fetch_assoc($res);
+
+        if(!isset($_GET['id_user_from']) || !isset($_GET['id_user_to'])) {
+            header("Location: ../chatList");
+        } else {
+            if(isset($_GET['hire_contact'])) {
+                $query  = mysqli_query($conn, "SELECT id FROM conversation WHERE id_user_1 = '".$_GET['id_user_from']."' AND id_user_2 = '".$_GET['id_user_to']."' OR id_user_1 = '".$_GET['id_user_to']."' AND id_user_2 = '".$_GET['id_user_from']."'");
+                if(mysqli_num_rows($query) == 0) {
+                    mysqli_query($conn, "INSERT INTO conversation (id_user_1, id_user_2) VALUES ('".$_GET['id_user_from']."', '".$_GET['id_user_to']."') ");
+                    $query = mysqli_query($conn, "SELECT * FROM conversation WHERE id_user_1 = '".$_GET['id_user_from']."' AND id_user_2 = '".$_GET['id_user_to']."'");
+                }
+                $id_conversation = mysqli_fetch_assoc($query);
+            }
+        }
     ?>
+
 
     <input type="hidden" value="<?php echo $_GET['id_user_from'] ?>" id="id_user_from">
     <input type="hidden" value="<?php echo $_GET['id_user_to'] ?>" id="id_user_to">
-    <input type="hidden" value="<?php echo $_GET['id_conversation'] ?>" id="id_conversation">
-    
+    <input type="hidden"
+        value="<?php echo (isset($id_conversation['id']))?$id_conversation['id']:$_GET['id_conversation'] ?>"
+        id="id_conversation">
+
 
     <header>
         <nav class="nav-extended">
@@ -42,7 +58,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -78,14 +95,17 @@
 
                 <div class="header row valign-wrapper left-align">
                     <div class="col">
-                    <a href="../chatList" class="btn-flat waves-effect white-text">
-                        <i class="material-icons">
-                            arrow_back
-                        </i>
-                    </a>
+                        <a href="../chatList" class="btn-flat waves-effect white-text">
+                            <i class="material-icons">
+                                arrow_back
+                            </i>
+                        </a>
                     </div>
                     <div class="col">
-                        <h5 class="white-text"><?php echo $_GET['name_user_to']; ?></h5>
+                        <a
+                            href="../userProfile/?id_user_from=<?php echo $_GET['id_user_from'] ?>&id_user_to=<?php echo $_GET['id_user_to'] ?>&name_user_to=<?php echo $_GET['name_user_to'] ?>&id_conversation=<?php echo (isset($id_conversation['id']))?$id_conversation['id']:$_GET['id_conversation'] ?>">
+                            <h5 class="white-text"><?php echo $_GET['name_user_to']; ?></h5>
+                        </a>
                     </div>
                 </div>
 
@@ -94,7 +114,8 @@
                 <div class="send-message">
                     <form action="#" id="form-chat" class="row valign-wrapper" autocomplete="off">
                         <div class="col s10">
-                            <input type="text" class="browser-default" id="text-message" placeholder="Digite uma mensagem">
+                            <input type="text" class="browser-default" id="text-message"
+                                placeholder="Digite uma mensagem">
                         </div>
                         <div class="col s2">
                             <button class="btn waves-effect waves-light"><i class="material-icons">send</i></button>
@@ -108,7 +129,17 @@
 
     </main>
 
-
+    <div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+  </ul>
+</div>
 
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
@@ -118,6 +149,15 @@
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-conversation-already-started">
+        <div class="modal-content">
+            <h4 class="center-align">Você já iniciou uma conversa!</h4>
+        </div>
+        <div class="modal-footer center-align row">
+            <button class="modal-close waves-effect waves-light btn col s4 offset-2 green">Ok</button>
         </div>
     </div>
 

@@ -20,6 +20,7 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
+        $id_user = $row['id'];
     ?>
 
     <header>
@@ -37,7 +38,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -46,8 +48,7 @@
             </li>
             <li class="active"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li><a href="../hire" class="waves-effect"><i
-                        class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
             <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
             <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
@@ -77,7 +78,7 @@
                         class="material-icons">arrow_back</i></a>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.description, service.title, service.picture, occupation.name FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.title, service.id_user, service.picture, occupation.name FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
                     INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id WHERE service.id = '".$_GET['id_service']."'");
@@ -87,9 +88,14 @@
                 <div class="divider"></div>
                 <div class="row center-align" style="padding: 2em 2em 1em">
 
-                    <img src="<?php echo(!empty($row['picture']))?$row['picture']:'../_img/icon/no_service_image.png'; ?>" alt="service picture" width="200">
+                    <img src="<?php echo(!empty($row['picture']))?$row['picture']:'../_img/icon/no_service_image.png'; ?>"
+                        alt="service picture" height="230"
+                        class="<?php echo(!empty($row['picture'])?'z-depth-3':'') ?>">
                     <h5><?php echo $row['title']; ?></h5>
                     <div class="divider" style="margin-bottom:1em"></div>
+                    <div class="col s12">
+                        <p><strong>Informações do serviço</strong></p>
+                    </div>
                     <div class="col s12 m2 left-align">
                         <p><strong>Descrição: </strong></p>
                     </div>
@@ -102,8 +108,50 @@
                     <div class="col s12 m10 left-align">
                         <p><?php echo $row['name']; ?></p>
                     </div>
-
-                    <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>" class="btn waves-effect waves-light" style="margin-top:1.5em">Ver prestadores disponíveis</a>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <p class="center-align"><strong>Solicitações de trabalho</strong></p>
+                </div>
+                <?php 
+                     if($row['id_user'] == $id_user) {
+                        $query = mysqli_query($conn, "SELECT * FROM service_request WHERE id_service = '".$row['id']."'");
+                        if(mysqli_num_rows($query) > 0) {
+                            while($row = mysqli_fetch_assoc($query)) {
+                ?>
+                <div class="row valign-wrapper" style="flex-wrap: wrap; padding:0.5em; border-radius:0.2em">
+                    <div class="col s12 m2 center-align">
+                        <img src="../_img/service_picture/mecanico.jpg" alt="user profile" class="circle z-depth-2"
+                            width="100" height="100" style="object-fit:cover">
+                        <h6><strong>Fulano de tal oliveira</strong></h6>
+                    </div>
+                    <div class="col s12 m4">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quam.</p>
+                    </div>
+                    <div class="col s12 m3 center-align">
+                        <h5>R$ 200</h5>
+                    </div>
+                    <div class="col s12 m3 center-align">
+                        <button class="btn"><i class="material-icons">chat</i></button>
+                        <button class="btn green"><i class="material-icons">done</i></button>
+                        <button class="btn red"><i class="material-icons">clear</i></button>
+                    </div>
+                </div>
+                <?php
+                            }
+                        }else {
+                ?>
+                <div class="row">
+                    <h6 class="center-align">Não há solicitações para seu serviço!</h6>
+                </div>
+                <?php
+                        }
+                    }
+                ?>
+                <div class="row right-align" style="margin-top:3em">
+                    <button class="btn-flat">Editar serviço</button>
+                    <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                        class="btn waves-effect waves-light">Procurar por prestadores</a>
                 </div>
             </div>
         </section>

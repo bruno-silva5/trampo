@@ -40,10 +40,18 @@
 @import "components/datepicker";
 @import "components/timepicker";
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
 
 header {
   z-index: 5 !important;
@@ -58,7 +66,8 @@ header {
 main {
   padding-top: 4em;
 
-  .section-progress {
+  .section-progress,
+  .user-profile {
     .no-hire,
     .no-work {
       margin-top: 7em;
@@ -76,7 +85,6 @@ main {
         margin: 1em;
         padding: 0;
       }
-
     }
 
     .card-reveal {
@@ -168,7 +176,6 @@ main {
         object-fit: contain;
       }
     }
-
 
     .container-extended {
       width: 92%;
@@ -389,8 +396,7 @@ main {
           padding: 0.7em;
           margin: 0.8em 0;
           cursor: default;
-          word-break: break-all;
-          hyphens: auto;
+          word-wrap: break-word;
           border-radius: 0.2em;
         }
 
@@ -663,6 +669,10 @@ footer {
   img {
     margin: 2em;
   }
+}
+
+.text-underline {
+  text-decoration: underline !important;
 }
 
 .noselect {

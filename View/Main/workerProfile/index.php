@@ -72,24 +72,23 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&service_id=<?php echo $_GET['service_id'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
                         class="material-icons">arrow_back</i></a>
                 <a href="../workerList" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
                         class="material-icons">arrow_back</i></a>
 
                 <?php
                     $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$_GET['id_user']."'");
-                    $row = mysqli_fetch_assoc($query);
+                    $row_worker = mysqli_fetch_assoc($query);
                 ?>
-                <!-- arrumar o botao pra entrar em contato -->
                 <h5 class="center-align"><strong>Perfil do prestador</strong></h5>
                 <div class="divider"></div>
                 <div class="row center-align" style="padding: 2em 2em 1em">
 
-                    <img src="<?php echo $row['profile_picture']; ?>" alt="user profile" width="150">
-                    <h5><?php echo $row['full_name']; ?></h5>
+                    <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" width="150">
+                    <h5><?php echo $row_worker['full_name']; ?></h5>
                     <h6>Avaliação XXX</h6><br>
-                    <a href="#modal_confirm_hire" class="btn modal-trigger">Entrar em contato</a>
+                    <a href="../chatMessage/?id_user_from=<?php echo $row['id'] ?>&id_user_to=<?php echo $row_worker['id'] ?>&name_user_to=<?php echo $row_worker['full_name'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>&hire_contact" class="btn modal-trigger">Entrar em contato</a>
                 </div>
             </div>
         </section>
@@ -109,24 +108,6 @@
         </div>
     </div>
 
-     <!-- Modal confirm hire -->
-    <div id="modal_confirm_hire" class="modal">
-        <div class="modal-content">
-            <h4 class="center-align">Tem certeza?</h4>
-            <div class="divider"></div>
-            <br>
-            <h6 class="center-align">Será enviado uma mensagem para o prestador, com a oferta do seu serviço</h6>
-        </div>
-        
-        <div class="modal-footer row center-align">
-            <div class="col s12 m6 center-align">
-                <a href="#!" class="btn waves-effect waves-light">Sim</a>
-            </div>
-            <div class="col s12 m6 center-align">
-                <button class="btn-flat waves-effect modal-close">Não</button>
-            </div>
-        </div>
-    </div>
 
     <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
