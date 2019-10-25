@@ -15,13 +15,16 @@ var instance_modal = M.Modal.init(elem_modal, {
 //init select && characterCounter
 $(document).ready(function () {
     $('select').formSelect();
-    $('#service-description').characterCounter();
+    $('#service-description, #service_request_description').characterCounter();
 });
 
 //init collapsible
 var elem_collapsible = document.querySelectorAll('.collapsible');
 var instances_collapsible = M.Collapsible.init(elem_collapsible);
 
+//init floating action button
+var elems_floating_action_button = document.querySelectorAll('.fixed-action-btn');
+var instances_floating_action_button = M.FloatingActionButton.init(elems_floating_action_button);
 
 try {
 
@@ -162,4 +165,8 @@ try {
 } catch (error) {
 
 }
+
+$(document).ready(function() {
+    $("#service_request_price").mask('000.000.000,00', {reverse: true});
+});
 

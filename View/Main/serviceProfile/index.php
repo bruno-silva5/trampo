@@ -78,10 +78,12 @@
                         class="material-icons">arrow_back</i></a>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.title, service.id_user, service.picture, occupation.name FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.title, service.id_user, service.picture, occupation.name, user.full_name FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
-                    INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id WHERE service.id = '".$_GET['id_service']."'");
+                    INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id 
+                    INNER JOIN user ON service.id_user = user.id
+                    WHERE service.id = '".$_GET['id_service']."'");
                     $row = mysqli_fetch_assoc($query);
                 ?>
                 <h5 class="center-align"><strong>Detalhes do serviço</strong></h5>
@@ -108,17 +110,24 @@
                     <div class="col s12 m10 left-align">
                         <p><?php echo $row['name']; ?></p>
                     </div>
+                    <div class="col s12 m2 left-align">
+                        <p><strong>Contratante: </strong></p>
+                    </div>
+                    <div class="col s12 m10 left-align">
+                        <p><?php echo $row['full_name']; ?></p>
+                    </div>
                 </div>
                 <div class="divider"></div>
-                <div class="row">
-                    <p class="center-align"><strong>Solicitações de trabalho</strong></p>
-                </div>
+
                 <?php 
                      if($row['id_user'] == $id_user) {
                         $query = mysqli_query($conn, "SELECT * FROM service_request WHERE id_service = '".$row['id']."'");
                         if(mysqli_num_rows($query) > 0) {
                             while($row = mysqli_fetch_assoc($query)) {
                 ?>
+                <div class="row">
+                    <p class="center-align"><strong>Solicitações de trabalho</strong></p>
+                </div>
                 <div class="row valign-wrapper" style="flex-wrap: wrap; padding:0.5em; border-radius:0.2em">
                     <div class="col s12 m2 center-align">
                         <img src="../_img/service_picture/mecanico.jpg" alt="user profile" class="circle z-depth-2"
@@ -142,17 +151,60 @@
                         }else {
                 ?>
                 <div class="row">
+                    <p class="center-align"><strong>Solicitações de trabalho</strong></p>
+                </div>
+                <div class="row">
                     <h6 class="center-align">Não há solicitações para seu serviço!</h6>
                 </div>
+
                 <?php
                         }
-                    }
                 ?>
-                <div class="row right-align" style="margin-top:3em">
+                <div class="row right-align">
                     <button class="btn-flat">Editar serviço</button>
                     <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
                         class="btn waves-effect waves-light">Procurar por prestadores</a>
                 </div>
+                <?php
+                    } else {
+                        //check if the user can do the job/ is worker
+                        $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$id_user."'");
+                        if(mysqli_num_rows($query) > 0) {
+                            $is_worker = true;
+                ?>
+                <div class="row">
+                    <h5 class="center-align blue-text"><strong>Oferecer serviço</strong></h5>
+                </div>
+                <form
+                    action="../../../Controller/insertServiceRequest.php/?id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"
+                    method="POST" class="row">
+                    <div class="input-field col s12 m12">
+                        <i class="material-icons prefix">create</i>
+                        <textarea class="materialize-textarea" data-length="200" maxlength="200" id="service_request_description" name="description" required></textarea>
+                        <label for="service_request_description">Proposta de serviço</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <i class="material-icons prefix">attach_money</i>
+                        <input type="text" id="service_request_price" name="price" placeholder="320,00" required>
+                        <label for="service_request_price">Preço R$</label>
+                    </div>
+                    <div class="input-field col s12 right-align">
+                        <button type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
+                    </div>
+                </form>
+                <?php
+                        } else {
+                ?>
+                <div class="row">
+                    <h5 class="center-align blue-text"><strong>Oferecer serviço</strong></h5>
+                </div>
+                <div class="row">
+                    <h6 class="center-align">Você não pode prestar serviço, pois ainda não é prestador</h6>
+                </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
         </section>
 
@@ -171,7 +223,8 @@
     </div>
 
 
-    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
 </body>

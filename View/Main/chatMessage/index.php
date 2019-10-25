@@ -130,16 +130,14 @@
     </main>
 
     <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-  </ul>
-</div>
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">help</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red darken-4"><i class="material-icons">assignment_ind</i></a></li>
+            <li><a class="btn-floating red darken-4"><i class="material-icons">build</i></a></li>
+        </ul>
+    </div>
 
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
