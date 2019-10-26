@@ -26,7 +26,7 @@ class daoUser
             if ($insert) {
                 header("Location: ../View/TelaLogin/");
             } else {
-                header("Location: ../../View/Error/DadosInvalidos");
+                header("Location: ../View/Error/DadosInvalidos");
             }
         }
     }

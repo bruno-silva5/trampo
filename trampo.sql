@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2019 at 03:04 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Tempo de geração: 26-Out-2019 às 13:18
+-- Versão do servidor: 10.3.16-MariaDB
+-- versão do PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `trampo`
+-- Banco de dados: `trampo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversation`
+-- Estrutura da tabela `conversation`
 --
 
 CREATE TABLE `conversation` (
@@ -35,16 +35,17 @@ CREATE TABLE `conversation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `conversation`
+-- Extraindo dados da tabela `conversation`
 --
 
 INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
-(25, 30, 31);
+(25, 30, 31),
+(26, 31, 36);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Estrutura da tabela `message`
 --
 
 CREATE TABLE `message` (
@@ -56,18 +57,20 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `message`
+-- Extraindo dados da tabela `message`
 --
 
 INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text`) VALUES
 (226, 25, 30, 31, 'oi, tudo bem, gostaria de saber se você pd fazer o bolo'),
 (227, 25, 31, 30, 'oiii!'),
-(228, 25, 31, 30, 'sim, posso sim');
+(228, 25, 31, 30, 'sim, posso sim'),
+(229, 26, 31, 36, 'oi me ajude por favor'),
+(230, 26, 36, 31, 'ola ajudo sim');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `occupation`
+-- Estrutura da tabela `occupation`
 --
 
 CREATE TABLE `occupation` (
@@ -76,7 +79,7 @@ CREATE TABLE `occupation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `occupation`
+-- Extraindo dados da tabela `occupation`
 --
 
 INSERT INTO `occupation` (`id`, `name`) VALUES
@@ -94,7 +97,7 @@ INSERT INTO `occupation` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `occupation_subcategory`
+-- Estrutura da tabela `occupation_subcategory`
 --
 
 CREATE TABLE `occupation_subcategory` (
@@ -104,7 +107,7 @@ CREATE TABLE `occupation_subcategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `occupation_subcategory`
+-- Extraindo dados da tabela `occupation_subcategory`
 --
 
 INSERT INTO `occupation_subcategory` (`id`, `name`, `id_occupation`) VALUES
@@ -160,7 +163,7 @@ INSERT INTO `occupation_subcategory` (`id`, `name`, `id_occupation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Estrutura da tabela `service`
 --
 
 CREATE TABLE `service` (
@@ -175,7 +178,7 @@ CREATE TABLE `service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `service`
+-- Extraindo dados da tabela `service`
 --
 
 INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`) VALUES
@@ -186,7 +189,7 @@ INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_request`
+-- Estrutura da tabela `service_request`
 --
 
 CREATE TABLE `service_request` (
@@ -198,85 +201,19 @@ CREATE TABLE `service_request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `service_request`
+-- Extraindo dados da tabela `service_request`
 --
 
 INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(1, 103, 31, '0.00', ''),
-(2, 105, 30, '0.00', ''),
-(3, 105, 30, '1.00', 'ASDSADADA'),
-(4, 105, 30, '32.00', 'ASDADAS'),
-(5, 105, 30, '34.00', 'ddddd'),
-(6, 105, 30, '13.00', 'asdsad'),
-(7, 105, 30, '133.00', 'a'),
-(8, 105, 30, '322.00', 'sda'),
-(9, 105, 30, '4.00', '56'),
-(10, 105, 30, '3.00', 'yr'),
-(11, 105, 30, '32.00', 'daskdma'),
-(12, 103, 30, '23.00', 'dasda'),
-(13, 103, 31, '23.23', 'asda'),
-(14, 105, 30, '13.12', 'asdsada'),
-(15, 105, 30, '320.50', 'asdada'),
-(16, 105, 30, '1.53', 'dddddddddd'),
-(17, 105, 30, '213234.00', 'ds'),
-(18, 105, 30, '250050.00', 'asdad'),
-(19, 105, 30, '1.23', 'asda'),
-(20, 105, 30, '2112.00', 'asda'),
-(21, 105, 30, '212.00', 'sda'),
-(22, 105, 30, '1231.00', 'asdsad'),
-(23, 105, 30, '1231.00', 'a'),
-(24, 105, 30, '0.00', 'asda'),
-(25, 105, 30, '1232.00', 'asd'),
-(26, 105, 30, '1251232.00', 'asda'),
-(27, 105, 30, '1.00', 'asda'),
-(28, 105, 30, '1.00', 's'),
-(29, 105, 30, '1.00', 'd'),
-(30, 105, 30, '1251232.00', 'd'),
-(31, 105, 30, '1251232.00', 'd'),
-(32, 105, 30, '1251232.00', 'd'),
-(33, 105, 30, '1251232.00', 'd'),
-(34, 105, 30, '1251232.00', 'd'),
-(35, 105, 30, '1251232.00', 'd'),
-(36, 105, 30, '12512.00', 'd'),
-(37, 105, 30, '1251232.00', 'd'),
-(38, 105, 30, '1251232.00', 'd'),
-(39, 105, 30, '1251232.00', 'd'),
-(40, 105, 30, '12512.00', 'd'),
-(41, 105, 30, '12512.00', 'd'),
-(42, 105, 30, '1251232.00', 'd'),
-(43, 105, 30, '1251232.00', 'd'),
-(44, 105, 30, '1251232.00', 'd'),
-(45, 105, 30, '1251232.00', 'd'),
-(46, 105, 30, '12512.00', 'd'),
-(47, 105, 30, '12512.00', 'd'),
-(48, 105, 30, '12512.00', 'd'),
-(49, 105, 30, '12512.00', 'd'),
-(50, 105, 30, '12512.00', 'd'),
-(51, 105, 30, '1251232.00', 'd'),
-(52, 105, 30, '12512.00', 'd'),
-(53, 105, 30, '1.00', 'd'),
-(54, 105, 30, '12512.00', 'd'),
-(55, 105, 30, '1251232.00', 'd'),
-(56, 105, 30, '1251232.00', 'd'),
-(57, 105, 30, '1251232.00', 'd'),
-(58, 105, 30, '12512.00', 'd'),
-(59, 105, 30, '1251232.00', 'd'),
-(60, 105, 30, '1251232.00', 'd'),
-(61, 105, 30, '12512.00', 'd'),
-(62, 105, 30, '12512.00', 'd'),
-(63, 105, 30, '12512.32', 'd'),
-(64, 105, 30, '12512.32', 'd'),
-(65, 105, 30, '12512.32', 'jdadbjadbjaj'),
-(66, 105, 30, '12512.32', 'dsjnfdsjf'),
-(67, 105, 30, '12512.32', 'kdmskdmak'),
-(68, 105, 30, '1500.50', 'teste maneiro'),
-(69, 105, 30, '1500.50', 'teste bom'),
-(70, 105, 30, '3.20', 'servio ajsdnajdansdj');
+(71, 105, 30, '250.50', 'trampo bem'),
+(72, 105, 30, '15.00', 'faço mais barato ta bom?'),
+(73, 105, 30, '10.00', 'faço mais barato ainda'),
+(74, 105, 36, '200.00', 'conserto rapidao mando po pai');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estrutura da tabela `user`
 --
 
 CREATE TABLE `user` (
@@ -287,7 +224,6 @@ CREATE TABLE `user` (
   `gender` varchar(20) DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `cpf` varchar(20) DEFAULT NULL,
-  `cnpj` varchar(20) DEFAULT NULL,
   `birth_date` varchar(20) DEFAULT NULL,
   `cep` varchar(20) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
@@ -300,17 +236,23 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Extraindo dados da tabela `user`
 --
 
-INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `cnpj`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`) VALUES
-(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', NULL, '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
-(31, 'Marcela Tavares', 'marcela@live.com', 'Defina uma senha', 'F', '(11) 97987-9879', '491.024.080-23', NULL, '1998-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '4', 'de 135/136 ao fim', '../_img/user_profile_picture/xmarcela-temer2.jpg.pagespeed.ic.zF7HsPE9tu.jpg');
+INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`) VALUES
+(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(31, 'Marcela Tavares', 'marcela@live.com', 'Defina uma senha', 'F', '(11) 97987-9879', '491.024.080-23', '1998-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '4', 'de 135/136 ao fim', '../_img/user_profile_picture/xmarcela-temer2.jpg.pagespeed.ic.zF7HsPE9tu.jpg'),
+(33, 'sfgsgs', 'julia@live.com', 'Defina uma senha', 'M', '(11) 97123-7983', '503.850.338-18', '1333-12-13', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '2', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(35, 'Contratante Teste', 'julio@live.com', 'Defina uma senha', 'M', '(11) 21413-4242', '882.422.920-43', '1998-09-16', '29120-050', 'Rua Luiz Americano', 'ES', 'sp ', 'Aribiri', '45', '', '../_img/user_profile_picture/user.svg'),
+(36, 'Paulo Almeida Alencar', 'paulo@live.com', 'Defina uma senha', 'M', '(11) 98987-8986', '882.422.920-43', '1998-12-20', '71725-100', 'QR 1', 'DF', 'sp ', 'Candangolândia', '5', '', '../_img/user_profile_picture/user.svg'),
+(37, 'Mariana Almeida', 'mariana@live.com', 'Defina uma senha', 'F', '(11) 98798-4764', '882.422.920-43', '1999-04-20', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '5', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(38, 'Poliana Almeida Tavares Cabral', 'almeida@live.com', 'Defina uma senha', 'F', '(11) 98748-9498', '086.675.870-44', '1991-09-18', '68903-627', 'Travessa SétimaConj. Habitacional da Embrapa', 'AP', 'sp ', 'Universidade', '2', '', '../_img/user_profile_picture/user.svg'),
+(39, 'Roberty Santos', 'ricardo@live.com', 'Defina uma senha', 'M', '(11) 98749-6764', '518.037.678-55', '1990-09-04', '64039-530', 'Quadra F5', 'PI', 'sp ', 'Esplanada', '2', '(Cj P Alegre)', '../_img/user_profile_picture/user.svg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_occupation`
+-- Estrutura da tabela `user_occupation`
 --
 
 CREATE TABLE `user_occupation` (
@@ -321,19 +263,21 @@ CREATE TABLE `user_occupation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_occupation`
+-- Extraindo dados da tabela `user_occupation`
 --
 
 INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) VALUES
 (143, 'Já trabalhei nos correios, hoje eu trabalho fazendo fretes por conta própria com o meu caminhão próprio', 7, 31),
-(144, 'monto imoveis ', 6, 30);
+(144, 'monto imoveis ', 6, 30),
+(145, 'aaaaaaaa', 4, 36),
+(146, 'aaaaaaaa', 7, 36);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `conversation`
+-- Índices para tabela `conversation`
 --
 ALTER TABLE `conversation`
   ADD PRIMARY KEY (`id`),
@@ -341,7 +285,7 @@ ALTER TABLE `conversation`
   ADD KEY `id_user_2` (`id_user_2`);
 
 --
--- Indexes for table `message`
+-- Índices para tabela `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
@@ -350,20 +294,20 @@ ALTER TABLE `message`
   ADD KEY `id_user_to` (`id_user_to`);
 
 --
--- Indexes for table `occupation`
+-- Índices para tabela `occupation`
 --
 ALTER TABLE `occupation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `occupation_subcategory`
+-- Índices para tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_occupation` (`id_occupation`);
 
 --
--- Indexes for table `service`
+-- Índices para tabela `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`id`),
@@ -371,7 +315,7 @@ ALTER TABLE `service`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `service_request`
+-- Índices para tabela `service_request`
 --
 ALTER TABLE `service_request`
   ADD PRIMARY KEY (`id`),
@@ -379,13 +323,13 @@ ALTER TABLE `service_request`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `user`
+-- Índices para tabela `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_occupation`
+-- Índices para tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
   ADD PRIMARY KEY (`id`),
@@ -393,70 +337,70 @@ ALTER TABLE `user_occupation`
   ADD KEY `id_occupation` (`id_occupation`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `conversation`
+-- AUTO_INCREMENT de tabela `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `message`
+-- AUTO_INCREMENT de tabela `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
 
 --
--- AUTO_INCREMENT for table `occupation`
+-- AUTO_INCREMENT de tabela `occupation`
 --
 ALTER TABLE `occupation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `occupation_subcategory`
+-- AUTO_INCREMENT de tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `service`
+-- AUTO_INCREMENT de tabela `service`
 --
 ALTER TABLE `service`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
--- AUTO_INCREMENT for table `service_request`
+-- AUTO_INCREMENT de tabela `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `user_occupation`
+-- AUTO_INCREMENT de tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
--- Constraints for table `conversation`
+-- Limitadores para a tabela `conversation`
 --
 ALTER TABLE `conversation`
   ADD CONSTRAINT `conversation_ibfk_1` FOREIGN KEY (`id_user_1`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `conversation_ibfk_2` FOREIGN KEY (`id_user_2`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `message`
+-- Limitadores para a tabela `message`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`conversation`) REFERENCES `conversation` (`id`),
@@ -464,27 +408,27 @@ ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`id_user_to`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `occupation_subcategory`
+-- Limitadores para a tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   ADD CONSTRAINT `occupation_subcategory_ibfk_1` FOREIGN KEY (`id_occupation`) REFERENCES `occupation` (`id`);
 
 --
--- Constraints for table `service`
+-- Limitadores para a tabela `service`
 --
 ALTER TABLE `service`
   ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`id_occupation_subcategory`) REFERENCES `occupation_subcategory` (`id`),
   ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `service_request`
+-- Limitadores para a tabela `service_request`
 --
 ALTER TABLE `service_request`
   ADD CONSTRAINT `service_request_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `service` (`id`),
   ADD CONSTRAINT `service_request_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `user_occupation`
+-- Limitadores para a tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
   ADD CONSTRAINT `user_occupation_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),

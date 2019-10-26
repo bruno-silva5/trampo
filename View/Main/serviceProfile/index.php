@@ -92,7 +92,7 @@
 
                     <img src="<?php echo(!empty($row['picture']))?$row['picture']:'../_img/icon/no_service_image.png'; ?>"
                         alt="service picture" height="230"
-                        class="<?php echo(!empty($row['picture'])?'z-depth-3':'') ?>">
+                        class="<?php echo(!empty($row['picture'])?'z-depth-3':'') ?>" style="width:100%; max-width:230px; object-fit:cover">
                     <h5><?php echo $row['title']; ?></h5>
                     <div class="divider" style="margin-bottom:1em"></div>
                     <div class="col s12">
@@ -121,26 +121,31 @@
 
                 <?php 
                      if($row['id_user'] == $id_user) {
-                        $query = mysqli_query($conn, "SELECT * FROM service_request WHERE id_service = '".$row['id']."'");
+                        $query = mysqli_query($conn, "SELECT service_request.*, user.full_name, user.profile_picture FROM `service_request` 
+                        INNER JOIN user ON service_request.id_user = user.id
+                        WHERE service_request.id IN (SELECT MAX(id) FROM service_request WHERE id_service = '".$row['id']."' GROUP BY id_user) ORDER BY service_request.id DESC");
                         if(mysqli_num_rows($query) > 0) {
-                            while($row = mysqli_fetch_assoc($query)) {
                 ?>
                 <div class="row">
                     <p class="center-align"><strong>Solicitações de trabalho</strong></p>
                 </div>
-                <div class="row valign-wrapper" style="flex-wrap: wrap; padding:0.5em; border-radius:0.2em">
-                    <div class="col s12 m2 center-align">
-                        <img src="../_img/service_picture/mecanico.jpg" alt="user profile" class="circle z-depth-2"
+                <?php
+                            while($row = mysqli_fetch_assoc($query)) {
+                ?>
+                
+                <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
+                    <div class="col s12 m12 l3 center-align">
+                        <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
-                        <h6><strong>Fulano de tal oliveira</strong></h6>
+                        <h6><b><?php echo $row['full_name'] ?></b></h6>
                     </div>
-                    <div class="col s12 m4">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quam.</p>
+                    <div class="col s12 m12 l3 center-align">
+                        <p><?php echo $row['description'] ?></p>
                     </div>
-                    <div class="col s12 m3 center-align">
-                        <h5>R$ 200</h5>
+                    <div class="col s12 m12 l3 center-align">
+                        <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
-                    <div class="col s12 m3 center-align">
+                    <div class="col s12 m12 l3 center-align">
                         <button class="btn"><i class="material-icons">chat</i></button>
                         <button class="btn green"><i class="material-icons">done</i></button>
                         <button class="btn red"><i class="material-icons">clear</i></button>
@@ -160,7 +165,7 @@
                 <?php
                         }
                 ?>
-                <div class="row right-align">
+                <div class="row right-align" style="margin-top:4em">
                     <button class="btn-flat">Editar serviço</button>
                     <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
                         class="btn waves-effect waves-light">Procurar por prestadores</a>

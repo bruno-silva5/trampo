@@ -166,7 +166,11 @@ try {
 
 }
 
-$(document).ready(function() {
-    $("#service_request_price").mask('000.000.000,00', {reverse: true});
-});
+try {
+    $(document).ready(function() {
+        $("#service_request_price").mask('000.000.000,00', {reverse: true});
+    });
+} catch (error) {
+    
+}
 
