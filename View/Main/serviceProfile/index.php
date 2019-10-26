@@ -91,8 +91,8 @@
                 <div class="row center-align" style="padding: 2em 2em 1em">
 
                     <img src="<?php echo(!empty($row['picture']))?$row['picture']:'../_img/icon/no_service_image.png'; ?>"
-                        alt="service picture" height="230"
-                        class="<?php echo(!empty($row['picture'])?'z-depth-3':'') ?>" style="width:100%; max-width:230px; object-fit:cover">
+                        alt="service picture" height="230" class="<?php echo(!empty($row['picture'])?'z-depth-3':'') ?>"
+                        style="width:100%; max-width:230px; object-fit:cover">
                     <h5><?php echo $row['title']; ?></h5>
                     <div class="divider" style="margin-bottom:1em"></div>
                     <div class="col s12">
@@ -121,7 +121,7 @@
 
                 <?php 
                      if($row['id_user'] == $id_user) {
-                        $query = mysqli_query($conn, "SELECT service_request.*, user.full_name, user.profile_picture FROM `service_request` 
+                        $query = mysqli_query($conn, "SELECT service_request.*, user.full_name, user.id id_user, user.profile_picture FROM `service_request` 
                         INNER JOIN user ON service_request.id_user = user.id
                         WHERE service_request.id IN (SELECT MAX(id) FROM service_request WHERE id_service = '".$row['id']."' GROUP BY id_user) ORDER BY service_request.id DESC");
                         if(mysqli_num_rows($query) > 0) {
@@ -132,13 +132,13 @@
                 <?php
                             while($row = mysqli_fetch_assoc($query)) {
                 ?>
-                
+
                 <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
-                    <div class="col s12 m12 l3 center-align">
+                    <a href="../workerProfile/?id_user=<?php echo $row['id_user'] ?>" class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
-                        <h6><b><?php echo $row['full_name'] ?></b></h6>
-                    </div>
+                        <h6><?php echo $row['full_name'] ?></h6>
+                    </a>
                     <div class="col s12 m12 l3 center-align">
                         <p><?php echo $row['description'] ?></p>
                     </div>
@@ -146,9 +146,13 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <a href="#!" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a><!-- talk to the worker-->
-                        <a href="#!" class="btn green waves-effect"><i class="material-icons">done</i></a><!-- accept service-->
-                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"><i class="material-icons">clear</i></a><!-- dismiss service-->
+                        <a href="#!" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
+                        <!-- talk to the worker-->
+                        <a href="#!" class="btn green waves-effect"><i class="material-icons">done</i></a>
+                        <!-- accept service-->
+                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
+                            onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
+                                class="material-icons">clear</i></a><!-- dismiss service-->
                     </div>
                 </div>
                 <?php
@@ -185,7 +189,8 @@
                     method="POST" class="row">
                     <div class="input-field col s12 m12">
                         <i class="material-icons prefix">create</i>
-                        <textarea class="materialize-textarea" data-length="200" maxlength="200" id="service_request_description" name="description" required></textarea>
+                        <textarea class="materialize-textarea" data-length="200" maxlength="200"
+                            id="service_request_description" name="description" required></textarea>
                         <label for="service_request_description">Proposta de serviço</label>
                     </div>
                     <div class="input-field col s12 m3">
@@ -234,7 +239,7 @@
             <p>Clicando em aceitar, você irá <b>contratar</b> o prestador! </p>
         </div>
         <div class="modal-footer">
-            
+
         </div>
     </div>
 
@@ -247,7 +252,8 @@
         <div class="modal-footer">
             <div class="row">
                 <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
-                <div class="col s6 center-align"><button class="btn green waves-effect">Confirmar</button></div>
+                <div class="col s6 center-align"><a href="#!" id="delete-service-request"
+                        class="btn waves-effect red">Excluir</a></div>
             </div>
         </div>
     </div>

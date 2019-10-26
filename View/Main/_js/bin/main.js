@@ -174,3 +174,10 @@ try {
     
 }
 
+
+function delete_service_request(id_service_request, id_service, occupation_subcategory) {
+    var link_delete = document.getElementById("delete-service-request");
+    link_delete.href = "../../../Controller/dismissService.php?id_service_request="+id_service_request+"&id_service="+id_service+"&occupation_subcategory="+occupation_subcategory;
+}
+
+

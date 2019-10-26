@@ -20,6 +20,7 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
+        $id_user = $row['id'];
     ?>
 
     <header>
@@ -79,16 +80,21 @@
         <section class="section-progress">
 
             <div id="hires">
-            
+
+                <?php
+                    $query = mysqli_query($conn, "SELECT * FROM service WHERE 
+                    service.id_user = '".$id_user."'");
+                    if(mysqli_num_rows($query) > 0) {
+                ?>
+
                 <div class="wrapper-content">
                     <?php
-                        $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id_user IN (SELECT id FROM user WHERE email LIKE '".$row['email']."')");
-                        if(mysqli_num_rows($query) > 0) {
-                            while($row = mysqli_fetch_assoc($query)) {
+                        while($row = mysqli_fetch_assoc($query)) {
                     ?>
-                    
+
                     <div class="card hoverable col s12 m4 l3">
-                        <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                        <a
+                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
                             <div class="card-image">
                                 <div class="title-over-image">
                                     <h5><?php echo $row['title'] ?> </h5>
@@ -96,14 +102,16 @@
                                 <?php 
                                     if(!empty($row['picture'])) {
                                 ?>
-                                    <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                <img src="<?php echo $row['picture'] ?>" alt="card-image">
                                 <?php
                                     }
                                 ?>
                             </div>
                         </a>
                         <div class="card-content">
-                            <span class="card-title activator orange-text text-darken-4">Pendente <i class="material-icons md-18">schedule</i> <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                            <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                    class="material-icons md-18">schedule</i> <i
+                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
                         </div>
                         <div class="card-reveal">
                             <div class="card-title">
@@ -115,21 +123,21 @@
                             <p>
                                 <?php echo $row['description'] ?>
                             </p>
-                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>" class="valign-wrapper">Ver mais <i class="material-icons">keyboard_arrow_right</i></a></p>
+                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                                    class="valign-wrapper">Ver mais <i
+                                        class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
                     </div>
-                    
+
                     <?php
-                            }
                         }
-                    ?>
+                ?>
 
                 </div>
-            </div>
 
-
-            <div id="services">
-                <!-- if there is no work -->
+                <?php
+                    } else {
+                ?>
                 <div class="container center-align no-work">
                     <div class="row">
                         <div class="col s12">
@@ -137,11 +145,94 @@
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
-                            <h6>Você não tem nenhum serviço contratado. Clique na aba contratar<br> e comece a contratar
+                            <h6>Você não tem nenhum serviço <a href="../hire">contratado</a>. Clique na aba <a href="../hire">contratar</a><br> e comece a contratar
                                 agora mesmo!</h6>
                         </div>
                     </div>
                 </div>
+                <?php 
+                    }
+                ?>
+
+            </div>
+
+
+            <div id="services">
+
+
+                <?php
+                    $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id IN (SELECT id_service FROM service_request WHERE 
+                    service_request.id_user  = '".$id_user."')");
+                    if(mysqli_num_rows($query) > 0) {
+                ?>
+
+                <div class="wrapper-content">
+                    <?php
+                        while($row = mysqli_fetch_assoc($query)) {
+                    ?>
+
+                    <div class="card hoverable col s12 m4 l3">
+                        <a
+                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                            <div class="card-image">
+                                <div class="title-over-image">
+                                    <h5><?php echo $row['title'] ?> </h5>
+                                </div>
+                                <?php 
+                                    if(!empty($row['picture'])) {
+                                ?>
+                                <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                    class="material-icons md-18">schedule</i> <i
+                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <div class="card-title">
+                                <i class="material-icons right">close</i>
+                            </div>
+                            <span class="card-title">
+                                <strong> <?php echo $row['title'] ?> </strong>
+                            </span>
+                            <p>
+                                <?php echo $row['description'] ?>
+                            </p>
+                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                                    class="valign-wrapper">Ver mais <i
+                                        class="material-icons">keyboard_arrow_right</i></a></p>
+                        </div>
+                    </div>
+
+                    <?php
+                        }
+                ?>
+
+                </div>
+
+                <?php
+                    } else {
+                ?>
+                <div class="container center-align no-work">
+                    <div class="row">
+                        <div class="col s12">
+                            <img src="../_img/icon/tools_black_and_white.png" alt="dislike icon" width="130">
+                        </div>
+                        <div class="col s12">
+                            <h4>Ops!</h4>
+                            <h6>Você não tem nenhum <a href="../work">serviço</a> realizado ou em andamento. Clique na aba <a href="../work">trabalhar</a><br> e comece a trabalhar
+                                agora mesmo!</h6>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    }
+                ?>
+
             </div>
 
         </section>

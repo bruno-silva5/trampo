@@ -74,7 +74,7 @@
             <div class="z-depth-1 padding container-extended">
                 <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
                         class="material-icons">arrow_back</i></a>
-                <a href="../workerList" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
                         class="material-icons">arrow_back</i></a>
 
                 <?php
