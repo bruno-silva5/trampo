@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once '../Dao/conexao.php';
-
+    echo exec('whoami');
     $upload_image = $_FILES["image"]["name"];//image name
     $folder_move_file = "../View/Main/_img/user_profile_picture/";
     $folder_database = "../_img/user_profile_picture/";

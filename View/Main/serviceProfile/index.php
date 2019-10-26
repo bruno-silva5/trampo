@@ -146,9 +146,9 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <button class="btn"><i class="material-icons">chat</i></button>
-                        <button class="btn green"><i class="material-icons">done</i></button>
-                        <button class="btn red"><i class="material-icons">clear</i></button>
+                        <a href="#!" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a><!-- talk to the worker-->
+                        <a href="#!" class="btn green waves-effect"><i class="material-icons">done</i></a><!-- accept service-->
+                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"><i class="material-icons">clear</i></a><!-- dismiss service-->
                     </div>
                 </div>
                 <?php
@@ -224,6 +224,31 @@
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
             <button class="modal-close waves-effect waves-light btn">Não</button>
+        </div>
+    </div>
+
+    <!-- Modal accept service -->
+    <div class="modal" id="modal-accept-service">
+        <div class="modal-content">
+            <h4 class="center-align">Tem certeza?</h4>
+            <p>Clicando em aceitar, você irá <b>contratar</b> o prestador! </p>
+        </div>
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+
+    <!-- Modal dismiss service -->
+    <div class="modal" id="modal-dismiss-service">
+        <div class="modal-content">
+            <h4 class="center-align">Tem certeza?</h4>
+            <p class="center-align">Clicando em excluir a proposta, você não poderá vê-la novamente!</p>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
+                <div class="col s6 center-align"><button class="btn green waves-effect">Confirmar</button></div>
+            </div>
         </div>
     </div>
 
