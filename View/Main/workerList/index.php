@@ -155,7 +155,7 @@
                         } else {
                     ?>
                         <div>
-                            <img src="../_img/icon/tools_black_and_white.png" alt="black and white tools icon" width="200">
+                            <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon" width="200">
                             <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
                         </div>
                     <?php

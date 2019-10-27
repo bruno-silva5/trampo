@@ -134,7 +134,8 @@
                 ?>
 
                 <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
-                    <a href="../workerProfile/?id_user=<?php echo $row['id_user'] ?>" class="col s12 m12 l3 center-align">
+                    <a href="../workerProfile/?id_user=<?php echo $row['id_user'] ?>"
+                        class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
                         <h6><?php echo $row['full_name'] ?></h6>
@@ -179,10 +180,41 @@
                         //check if the user can do the job/ is worker
                         $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$id_user."'");
                         if(mysqli_num_rows($query) > 0) {
-                            $is_worker = true;
+                            $query = mysqli_query($conn, "SELECT service_request.*, user.full_name, user.id id_user, user.profile_picture 
+                            FROM `service_request` 
+                            INNER JOIN user ON service_request.id_user = user.id
+                            WHERE service_request.id_service = '".$_GET['id_service']."' AND service_request.id_user = '".$id_user."'
+                            ");
+                            if(mysqli_num_rows($query) > 0) {
+                                $row = mysqli_fetch_assoc($query);
                 ?>
                 <div class="row">
-                    <h5 class="center-align blue-text"><strong>Oferecer serviço</strong></h5>
+                    <h5 class="center-align blue-text">Minha atual proposta</h5>
+                </div>
+                <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
+                    <a href="../workerProfile/?id_user=<?php echo $row['id_user'] ?>"
+                        class="col s12 m12 l3 center-align">
+                        <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
+                            width="100" height="100" style="object-fit:cover">
+                        <h6><?php echo $row['full_name'] ?></h6>
+                    </a>
+                    <div class="col s12 m12 l3 center-align">
+                        <p><?php echo $row['description'] ?></p>
+                    </div>
+                    <div class="col s12 m12 l3 center-align">
+                        <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
+                    </div>
+                    <div class="col s12 m12 l3 center-align">
+                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
+                            onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
+                                class="material-icons">clear</i></a><!-- dismiss service-->
+                    </div>
+                </div>
+                <?php
+                            } 
+                ?>
+                <div class="row">
+                    <h5 class="center-align blue-text"><strong>Oferecer nova proposta</strong></h5>
                 </div>
                 <form
                     action="../../../Controller/insertServiceRequest.php/?id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"

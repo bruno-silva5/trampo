@@ -87,6 +87,7 @@
                     if(mysqli_num_rows($query) > 0) {
                 ?>
 
+                <h5 class="center-align grey-text" style="margin-bottom:0 !important">Contratos que você disponibilizou</h5>
                 <div class="wrapper-content">
                     <?php
                         while($row = mysqli_fetch_assoc($query)) {
@@ -165,7 +166,7 @@
                     service_request.id_user  = '".$id_user."')");
                     if(mysqli_num_rows($query) > 0) {
                 ?>
-
+                <h5 class="center-align grey-text" style="margin-bottom:0 !important">Serviços que você propôs</h5>
                 <div class="wrapper-content">
                     <?php
                         while($row = mysqli_fetch_assoc($query)) {
