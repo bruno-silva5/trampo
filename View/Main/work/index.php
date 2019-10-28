@@ -26,6 +26,7 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
+        $id_user = $row['id'];
     ?>
 
     <header>
@@ -133,67 +134,88 @@
                 } else {
                 ?>
 
-                <div class="row z-depth-2">
+                <div class="row z-depth-2 works-list">
                     <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
                     <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
+                    <h6 class="center-align grey-text">Lista de serviços baseados com o que você trabalha</h6>
 
-                    <!-- space -->
-                    <div class="row"></div>
+                    <?php
+                    $query = mysqli_query($conn, 
+                    "SELECT * FROM service WHERE service.id_occupation_subcategory IN
+                     (SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN 
+                      (SELECT occupation.id FROM occupation WHERE occupation.id IN
+                       (SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '".$id_user."'))) AND service.id_user != '".$id_user."'");
+                    if(mysqli_num_rows($query) > 0) {
+                    ?>
 
-                    <div class="col s12 m4 l3">
+                    <div class="wrapper-content">
+                        <?php
+                        while($row = mysqli_fetch_assoc($query)) {
+                        ?>
 
-                        <div class="card hoverable">
-                            <a href="#!">
-                                <div class="card-image waves-effect waves-light">
-                                    <img src="../_img/icon/tools.png">
+                        <div class="card hoverable col s12 m4 l3">
+                            <a
+                                href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                                <div class="card-image">
+                                    <div class="title-over-image">
+                                        <h5><?php echo $row['title'] ?> </h5>
+                                    </div>
+                                    <?php 
+                                    if(!empty($row['picture'])) {
+                                ?>
+                                    <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                    <?php
+                                    }
+                                ?>
                                 </div>
                             </a>
                             <div class="card-content">
-                                <span class="card-title activator">Pedreiro<i
-                                        class="material-icons right">keyboard_arrow_up</i></span>
+                                <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                        class="material-icons md-18">schedule</i> <i
+                                        class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
                             </div>
                             <div class="card-reveal">
-                                <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                    parede toda detonada rapidao</span>
-                                <p>Here is some more information about this product that is only revealed once clicked
-                                    on.
+                                <div class="card-title">
+                                    <i class="material-icons right">close</i>
+                                </div>
+                                <span class="card-title">
+                                    <strong> <?php echo $row['title'] ?> </strong>
+                                </span>
+                                <p>
+                                    <?php echo $row['description'] ?>
                                 </p>
-                                <p><a href="#!">Ver mais > ></a></p>
+                                <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                                        class="valign-wrapper">Ver mais <i
+                                            class="material-icons">keyboard_arrow_right</i></a></p>
                             </div>
                         </div>
+
+                        <?php
+                        }
+                    ?>
                     </div>
-
-                    <div class="col s12 m4 l3">
-
-                        <div class="card hoverable">
-                            <a href="#!">
-                                <div class="card-image waves-effect waves-light">
-                                    <img src="../_img/icon/tools.png">
-                                </div>
-                            </a>
-                            <div class="card-content">
-                                <span class="card-title activator">Pedreiro<i
-                                        class="material-icons right">keyboard_arrow_up</i></span>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                    parede toda detonada rapidao</span>
-                                <p>Here is some more information about this product that is only revealed once clicked
-                                    on.
-                                </p>
-                                <p><a href="#!">Ver mais > ></a></p>
-                            </div>
+                    <?php
+                    } else {
+                    ?>
+                    
+                    <div class="row" style="max-width:700px">
+                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white" class="col s8 m4 offset-s2 offset-m4">
+                        <div class="col s12">
+                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço para você.</h6>
                         </div>
                     </div>
 
                 </div>
 
                 <?php
+                    }
                 }
                 ?>
             </div>
         </section>
     </main>
+
+
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
         <div class="modal-content">
@@ -205,6 +227,7 @@
         </div>
     </div>
 
+    <!-- Modal new worker -->
     <div class="modal" id="modal_worker_tutorial">
         <div class="modal-content">
             <div class="row">

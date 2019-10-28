@@ -9059,12 +9059,15 @@ main {
 main .section-progress .no-hire,
 main .section-progress .no-work,
 main .user-profile .no-hire,
-main .user-profile .no-work {
+main .user-profile .no-work,
+main .works-list .no-hire,
+main .works-list .no-work {
   margin-top: 7em;
 }
 
 main .section-progress .wrapper-content,
-main .user-profile .wrapper-content {
+main .user-profile .wrapper-content,
+main .works-list .wrapper-content {
   width: 92%;
   padding: 2em 1em;
   margin: auto;
@@ -9079,36 +9082,42 @@ main .user-profile .wrapper-content {
 }
 
 main .section-progress .wrapper-content .col,
-main .user-profile .wrapper-content .col {
+main .user-profile .wrapper-content .col,
+main .works-list .wrapper-content .col {
   margin: 1em;
   padding: 0;
 }
 
 main .section-progress .card-reveal,
-main .user-profile .card-reveal {
+main .user-profile .card-reveal,
+main .works-list .card-reveal {
   text-align: justify;
   padding: 1em !important;
 }
 
 main .section-progress .card-content,
-main .user-profile .card-content {
+main .user-profile .card-content,
+main .works-list .card-content {
   padding: 0.6em;
   padding-bottom: 0.3em;
 }
 
 main .section-progress .card-content i,
-main .user-profile .card-content i {
+main .user-profile .card-content i,
+main .works-list .card-content i {
   margin: 0;
 }
 
 main .section-progress .card-image,
-main .user-profile .card-image {
+main .user-profile .card-image,
+main .works-list .card-image {
   height: 150px !important;
   width: 200px;
 }
 
 main .section-progress .card-image .title-over-image,
-main .user-profile .card-image .title-over-image {
+main .user-profile .card-image .title-over-image,
+main .works-list .card-image .title-over-image {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -9120,7 +9129,8 @@ main .user-profile .card-image .title-over-image {
 }
 
 main .section-progress .card-image .title-over-image h5,
-main .user-profile .card-image .title-over-image h5 {
+main .user-profile .card-image .title-over-image h5,
+main .works-list .card-image .title-over-image h5 {
   margin: 0;
   height: 100%;
   line-height: 1.2em;
@@ -9129,14 +9139,16 @@ main .user-profile .card-image .title-over-image h5 {
 }
 
 main .section-progress .card-image img,
-main .user-profile .card-image img {
+main .user-profile .card-image img,
+main .works-list .card-image img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100% !important;
 }
 
 main .section-progress .card-title,
-main .user-profile .card-title {
+main .user-profile .card-title,
+main .works-list .card-title {
   font-size: 1.4em;
   line-height: 1.3em;
   text-align: left;
