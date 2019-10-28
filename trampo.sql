@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Out-2019 às 13:18
+-- Tempo de geração: 28-Out-2019 às 15:52
 -- Versão do servidor: 10.3.16-MariaDB
 -- versão do PHP: 7.3.6
 
@@ -40,7 +40,8 @@ CREATE TABLE `conversation` (
 
 INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
 (25, 30, 31),
-(26, 31, 36);
+(26, 31, 36),
+(27, 31, 31);
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,8 @@ INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text
 (227, 25, 31, 30, 'oiii!'),
 (228, 25, 31, 30, 'sim, posso sim'),
 (229, 26, 31, 36, 'oi me ajude por favor'),
-(230, 26, 36, 31, 'ola ajudo sim');
+(230, 26, 36, 31, 'ola ajudo sim'),
+(231, 26, 36, 31, '?');
 
 -- --------------------------------------------------------
 
@@ -174,17 +176,20 @@ CREATE TABLE `service` (
   `picture` varchar(500) DEFAULT NULL,
   `is_visible` varchar(20) DEFAULT NULL,
   `id_occupation_subcategory` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `id_user` int(11) DEFAULT NULL,
+  `hired_id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `service`
 --
 
-INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`) VALUES
-(103, 'now', 'Entregar um animal', 'preciso que entregue o meu animal de estimação, é um cachorro e possui 3kg, porte médio', '../_img/service_picture/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png', 'false', 43, 30),
-(104, 'next_week', 'Bolo de aniversário ', 'Gostaria de fazer um bolo de aniversário para a festa do meu filho na semana que vem', NULL, 'false', 46, 30),
-(105, 'now', 'Pia com vazamento', 'Minha pia possui um vazamento', NULL, 'true', 24, 31);
+INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `hired_id_user`) VALUES
+(103, 'now', 'Entregar um animal', 'preciso que entregue o meu animal de estimação, é um cachorro e possui 3kg, porte médio', '../_img/service_picture/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png', 'false', 43, 30, 0),
+(104, 'next_week', 'Bolo de aniversário ', 'Gostaria de fazer um bolo de aniversário para a festa do meu filho na semana que vem', NULL, 'false', 46, 30, 0),
+(105, 'now', 'Pia com vazamento', 'Minha pia possui um vazamento', NULL, 'true', 24, 31, 0),
+(106, 'next_week', 'entregar ovo', 'sair entregando ovo pela rua aew', '../_img/service_picture/leonardo.png', 'true', 43, 36, 0),
+(107, 'now', 'adsdasd', 'asdsadasd', NULL, 'false', 46, 31, 0);
 
 -- --------------------------------------------------------
 
@@ -205,10 +210,7 @@ CREATE TABLE `service_request` (
 --
 
 INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(71, 105, 30, '250.50', 'trampo bem'),
-(72, 105, 30, '15.00', 'faço mais barato ta bom?'),
-(73, 105, 30, '10.00', 'faço mais barato ainda'),
-(74, 105, 36, '200.00', 'conserto rapidao mando po pai');
+(80, 106, 31, '2.22', 'asd');
 
 -- --------------------------------------------------------
 
@@ -240,7 +242,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`) VALUES
-(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/bruno.png'),
 (31, 'Marcela Tavares', 'marcela@live.com', 'Defina uma senha', 'F', '(11) 97987-9879', '491.024.080-23', '1998-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '4', 'de 135/136 ao fim', '../_img/user_profile_picture/xmarcela-temer2.jpg.pagespeed.ic.zF7HsPE9tu.jpg'),
 (33, 'sfgsgs', 'julia@live.com', 'Defina uma senha', 'M', '(11) 97123-7983', '503.850.338-18', '1333-12-13', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '2', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
 (35, 'Contratante Teste', 'julio@live.com', 'Defina uma senha', 'M', '(11) 21413-4242', '882.422.920-43', '1998-09-16', '29120-050', 'Rua Luiz Americano', 'ES', 'sp ', 'Aribiri', '45', '', '../_img/user_profile_picture/user.svg'),
@@ -344,13 +346,13 @@ ALTER TABLE `user_occupation`
 -- AUTO_INCREMENT de tabela `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de tabela `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT de tabela `occupation`
@@ -368,13 +370,13 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT de tabela `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de tabela `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT de tabela `user`
