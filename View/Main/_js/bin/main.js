@@ -26,6 +26,10 @@ var instances_collapsible = M.Collapsible.init(elem_collapsible);
 var elems_floating_action_button = document.querySelectorAll('.fixed-action-btn');
 var instances_floating_action_button = M.FloatingActionButton.init(elems_floating_action_button);
 
+//init materialboxed img
+var elems_materialboxed = document.querySelectorAll('.materialboxed');
+var instances = M.Materialbox.init(elems_materialboxed);
+
 try {
 
     var service_list = $(".section-hire .collection");

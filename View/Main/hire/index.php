@@ -93,7 +93,7 @@
                         </div>
                     </form>
                     <div class="row">
-                        <h4 class="center-align hire-title">Serviços Populares</h4>
+                        <h4 class="center-align hire-title grey-text text-darken-3">Serviços Populares</h4>
                     </div>
                     <div class="row popular-services">
                         <a href="../requestService?occupation_subcategory=43">

@@ -224,8 +224,7 @@
 
     var elem_modal_warning = document.querySelector('#modal-warning');
     var instance_modal_warning = M.Modal.init(elem_modal_warning, {
-        dismissible: false,
-        preventScrolling: false
+        dismissible: false
     });
     var btn_warning = document.querySelector(".warning-btn");
     var warning_agreement = document.querySelector("#warning-agreement");

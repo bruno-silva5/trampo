@@ -279,14 +279,13 @@
     <div class="modal" id="modal-dismiss-service">
         <div class="modal-content">
             <h4 class="center-align">Tem certeza?</h4>
-            <p class="center-align">Clicando em excluir a proposta, você não poderá vê-la novamente!</p>
+            <br>
+            <h6 class="center-align">Clicando em <span class="red-text"><b>excluir</b></span> a proposta, você não poderá vê-la novamente!</h6>
         </div>
-        <div class="modal-footer">
-            <div class="row">
-                <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
-                <div class="col s6 center-align"><a href="#!" id="delete-service-request"
-                        class="btn waves-effect red">Excluir</a></div>
-            </div>
+        <div class="modal-footer row">
+            <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
+            <div class="col s6 center-align"><a href="#!" id="delete-service-request"
+                    class="btn waves-effect red">Excluir</a></div>
         </div>
     </div>
 

@@ -9032,6 +9032,14 @@ input[type=range]::-ms-thumb {
   font-size: 48px;
 }
 
+.justify-align {
+  text-align: justify;
+}
+
+.modal-content .justify-align {
+  text-indent: 1.6em;
+}
+
 header {
   z-index: 5 !important;
   position: fixed;

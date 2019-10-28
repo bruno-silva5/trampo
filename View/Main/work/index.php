@@ -37,7 +37,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -46,10 +47,9 @@
             </li>
             <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li><a href="../hire" class="waves-effect"><i
-                        class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li class="active"><a href="../work" class="waves-effect"><i
-                        class="material-icons">build</i>Trabalhar</a></li>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li class="active"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
             <li>
             <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
             </li>
@@ -72,36 +72,33 @@
         <section class="section-work">
             <div class="row blue-background"></div>
 
-            <!-- If it is missing data -->
             <?php
                 $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$row['id']."'");
-                $rows = mysqli_num_rows($query);
-                if(!$rows > 0) {
-                    echo '
-                <div class="row z-depth-3">
+                if(!mysqli_num_rows($query) > 0) {
+            ?>
+            <div class="row z-depth-3">
                 <div class="become-worker">
-                    <form class="row" id="form-becomeWorker" action="../../../Controller/becomeWorker.php" method="POST">
+                    <form class="row" id="form-becomeWorker" action="../../../Controller/becomeWorker.php"
+                        method="POST">
                         <div class="col s12">
                             <h4 class="center-align hide-on-small-only">Tornar-se um prestador</h4>
                             <h5 class="center-align hide-on-med-and-up">Tornar-se um prestador</h5>
                         </div>
                         <div class="col s12">
-                            <h6 class="center-align">Antes de tornar-se um prestador de serviços, conte-nos alguns detalhes</h6>
+                            <h6 class="center-align">Antes de tornar-se um prestador de serviços, conte-nos alguns
+                                detalhes</h6>
                         </div>
                         <div class="input-field col s12"></div>
                         <div class="input-field col s12">
                             Atuo com/como:
                             <div class="input-field inline occupation-option">
                                 <select multiple id="select-occupation">
-                                '?>
-                         <?php
+                                    <?php
                                         $query = mysqli_query($conn, "SELECT * FROM occupation");
                                         while($row = mysqli_fetch_assoc($query)) {
                                             echo "<option value='".$row['id']."'>".$row['name']."</option>";
                                         }
                                     ?>
-                         <?php 
-                                echo '
                                 </select>
                             </div>
                         </div>
@@ -114,7 +111,8 @@
                             <p>
                                 <label>
                                     <input type="checkbox" id="work-agreement">
-                                    <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da plataforma Trampo</span>
+                                    <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da
+                                        plataforma Trampo</span>
                                 </label>
                             </p>
                         </div>
@@ -124,85 +122,72 @@
                         </div>
                     </form>
                 </div>
-                        ' ;
-                    } else {
-                        
-                        echo '
 
+                <?php
+                } else {
+                ?>
 
-            
-            <div class="row z-depth-2">
-                <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
-                <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
-                
-                <!-- space -->
-                <div class="row"></div>
+                <div class="row z-depth-2">
+                    <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
+                    <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
 
-                <div class="col s12 m4 l3">
+                    <!-- space -->
+                    <div class="row"></div>
 
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect waves-light">
-                                <img src="../_img/icon/tools.png">
+                    <div class="col s12 m4 l3">
+
+                        <div class="card hoverable">
+                            <a href="#!">
+                                <div class="card-image waves-effect waves-light">
+                                    <img src="../_img/icon/tools.png">
+                                </div>
+                            </a>
+                            <div class="card-content">
+                                <span class="card-title activator">Pedreiro<i
+                                        class="material-icons right">keyboard_arrow_up</i></span>
                             </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
+                            <div class="card-reveal">
+                                <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                    parede toda detonada rapidao</span>
+                                <p>Here is some more information about this product that is only revealed once clicked
+                                    on.
+                                </p>
+                                <p><a href="#!">Ver mais > ></a></p>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="col s12 m4 l3">
+
+                        <div class="card hoverable">
+                            <a href="#!">
+                                <div class="card-image waves-effect waves-light">
+                                    <img src="../_img/icon/tools.png">
+                                </div>
+                            </a>
+                            <div class="card-content">
+                                <span class="card-title activator">Pedreiro<i
+                                        class="material-icons right">keyboard_arrow_up</i></span>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title"><i class="material-icons right">close</i>Rebocar
+                                    parede toda detonada rapidao</span>
+                                <p>Here is some more information about this product that is only revealed once clicked
+                                    on.
+                                </p>
+                                <p><a href="#!">Ver mais > ></a></p>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <div class="col s12 m4 l3">
-
-                    <div class="card hoverable">
-                        <a href="#!">
-                            <div class="card-image waves-effect waves-light">
-                                <img src="../_img/icon/tools.png">
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator">Pedreiro<i
-                                    class="material-icons right">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title"><i class="material-icons right">close</i>Rebocar
-                                parede toda detonada rapidao</span>
-                            <p>Here is some more information about this product that is only revealed once clicked on.
-                            </p>
-                            <p><a href="#!">Ver mais > ></a></p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
 
 
-            </div>
-
-            '; 
-        }
-            ?>
-
-
-            <!-- showing the work -->
-            <!-- <h4 class="center-align hide-on-small-only">Nome do trabalho</h4>
-                <h5 class="center-align hide-on-med-and-up">Nome do trabalho</h5>
-                <div class="work-info">
-                    <div class="work-img">
-                        <img src="../_img/user.svg" alt="service picture" width="250">
-                    </div>
-                    <h6><strong>Nome do contratante</strong></h6>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente illo maxime nisi ullam illum
-                        molestiae esse quam officia obcaecati nobis.</p>
-                    <h5>2.2 KM distante</h5>
-                    <a href="#!" class="btn waves-effect waves-light modal-trigger">Entrar em contato</a>
-                </div> -->
 
             </div>
 
@@ -224,10 +209,71 @@
         </div>
     </div>
 
+    <div class="modal" id="modal_worker_tutorial">
+        <div class="modal-content">
+            <div class="row">
+                <h4 class="center-align blue-text hide-on-small-only">Parabéns, agora você pode prestar seviços!</h4>
+                <h5 class="center-align blue-text hide-on-med-and-up">Parabéns, agora você pode prestar seviços!</h5>
+            </div>
+
+            <div class="row justify-align">
+                <h6>
+                    Muito bem, mas antes de você começar a sua jornada como prestador de serviços
+                    no trampo iremos lhe passar um breve tutorial, de como usar a plataforma de forma correta,
+                    sem se prejudicar
+                </h6>
+            </div>
+            <div class="row">
+                <h5 class="center-align red-text">Atenção, aviso:</h5>
+            </div>
+
+            <div class="row center-align">
+                <img src="../_img/icon/warning.png" alt="warning icon" width="100">
+            </div>
+            <div class="row">
+                <h6 class="center-align">É de grande importância que você siga este passo-a-passo ao poderá ter futuros
+                    problemas na plataforma!</h6>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <h5 class="blue-text">1º - Serviços disponíveis</h5>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 offset-m2">
+                    <img src="../_img/print_screen_steps/test.png" class="materialboxed col s12">
+                </div>
+            </div>
+            <div class="row">
+                <h6 class="justify-align">Assim que você cadastrar os serviços que você realiza, você verá uma lista com
+                    várias opções de pessoas que precisam os serviços na qual você faz. Basta escolher um, analisar o
+                    serviço, e posteriormente mandar a sua proposta, caso seja de seu interesse. </h6>
+            </div>
+            <div class="row">
+                <h5 class="blue-text">2º - Chat</h5>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 offset-m2">
+                    <img src="../_img/print_screen_steps/test.png" class="materialboxed col s12">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
+    <script type="text/javascript">
+    var elem_modal_worker_tutorial = document.querySelector("#modal_worker_tutorial");
+    var instance_modal_worker_tutorial = M.Modal.init(elem_modal_worker_tutorial, {
+        dismissible: false
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            instance_modal_worker_tutorial.open();
+        }, 500);
+    });
+    </script>
 </body>
 
 </html>
