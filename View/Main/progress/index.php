@@ -20,6 +20,7 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
+        $id_user = $row['id'];
     ?>
 
     <header>
@@ -27,16 +28,12 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Progresso</a>
-                <ul class="right">
-                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
-                                class="material-icons">chat</i></a></li>
-                </ul>
             </div>
             <div class="nav-content">
                 <!-- tab starts hidden -->
                 <ul class="tabs tabs-transparent tabs-fixed-width">
-                    <li class="tab"><a href="#hires" id="tab2">Contratos</a></li>
-                    <li class="tab"><a href="#services" id="tab1">Serviços</a></li>
+                    <li class="tab"><a href="#hires" id="tab2" class="waves-effect waves-light">Contratos</a></li>
+                    <li class="tab"><a href="#services" id="tab1" class="waves-effect waves-light">Serviços</a></li>
                 </ul>
             </div>
         </nav>
@@ -48,25 +45,28 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
                     </div>
                 </div>
             </li>
-            <li id="li-progress" class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li class="active"><a href="" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire"><a href="../hire" class="waves-effect"><i
-                        class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a></li>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
+            <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
+            </li>
             <li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li><a href="../myAccount" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -78,67 +78,66 @@
 
         <!-- Section progress and yours tabs -->
         <section class="section-progress">
+
             <div id="hires">
-                <!-- if there is no hire -->
-                
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT id FROM user WHERE email = '".$_SESSION['email']."'");
-                    $row = mysqli_fetch_assoc($query);
-                    $id_user = $row['id'];
-                    $query = mysqli_query($conn, "SELECT * FROM service WHERE id_user = '".$id_user."'");
-                    $rows = mysqli_fetch_assoc($query);
-                    if($rows > 0) {
-                        echo '
-                    <div class="wrapper-content">
-                        <div class="row">
-    
-                            <div class="col s12 m4 l3">
-    
-                                <div class="card hoverable">
-                                    <a href="#!">
-                                        <div class="card-image waves-effect waves-light">
-                                            <img src="../_img/icon/tools.png">
-                                        </div>
-                                    </a>
-                                    <div class="card-content">
-                                        <span class="card-title activator">João<i
-                                                class="material-icons right">keyboard_arrow_up</i></span>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title"><i class="material-icons right">close</i>
-                                        '.$rows['title'].'
-                                        <p>'.$rows['description'].'
-                                        </p>
-                                        <p><a href="#!">Ver mais > ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>';
-                    } else {
-                        echo '
-                    <div class="container center-align no-hire">
-                        <div class="row">
-                            <div class="col s12">
-                                <img src="../_img/icon/dislike.svg" alt="dislike icon" width="130">
-                            </div>
-                            <div class="col s12">
-                                <h4>Ops!</h4>
-                                <h6>Você não tem nenhum serviço contratado. Clique na aba <strong>Contratar</strong><br> e
-                                    comece a contratar
-                                    agora mesmo!</h6>
-                            </div>
-                        </div>
-                    </div>';
-                    }
+                    $query = mysqli_query($conn, "SELECT * FROM service WHERE 
+                    service.id_user = '".$id_user."'");
+                    if(mysqli_num_rows($query) > 0) {
                 ?>
-                <!-- if there is hire -->
-                
 
-            </div>
-            <div id="services">
-                <!-- if there is no work -->
+                <div class="wrapper-content">
+                    <?php
+                        while($row = mysqli_fetch_assoc($query)) {
+                    ?>
+
+                    <div class="card hoverable col s12 m4 l3">
+                        <a
+                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                            <div class="card-image">
+                                <div class="title-over-image">
+                                    <h5><?php echo $row['title'] ?> </h5>
+                                </div>
+                                <?php 
+                                    if(!empty($row['picture'])) {
+                                ?>
+                                <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                    class="material-icons md-18">schedule</i> <i
+                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <div class="card-title">
+                                <i class="material-icons right">close</i>
+                            </div>
+                            <span class="card-title">
+                                <strong> <?php echo $row['title'] ?> </strong>
+                            </span>
+                            <p>
+                                <?php echo $row['description'] ?>
+                            </p>
+                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                                    class="valign-wrapper">Ver mais <i
+                                        class="material-icons">keyboard_arrow_right</i></a></p>
+                        </div>
+                    </div>
+
+                    <?php
+                        }
+                ?>
+
+                </div>
+
+                <?php
+                    } else {
+                ?>
                 <div class="container center-align no-work">
                     <div class="row">
                         <div class="col s12">
@@ -146,12 +145,96 @@
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
-                            <h6>Você não tem nenhum serviço contratado. Clique na aba contratar<br> e comece a contratar
+                            <h6>Você não tem nenhum serviço <a href="../hire">contratado</a>. Clique na aba <a href="../hire">contratar</a><br> e comece a contratar
                                 agora mesmo!</h6>
                         </div>
                     </div>
                 </div>
+                <?php 
+                    }
+                ?>
+
             </div>
+
+
+            <div id="services">
+
+
+                <?php
+                    $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id IN (SELECT id_service FROM service_request WHERE 
+                    service_request.id_user  = '".$id_user."')");
+                    if(mysqli_num_rows($query) > 0) {
+                ?>
+
+                <div class="wrapper-content">
+                    <?php
+                        while($row = mysqli_fetch_assoc($query)) {
+                    ?>
+
+                    <div class="card hoverable col s12 m4 l3">
+                        <a
+                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                            <div class="card-image">
+                                <div class="title-over-image">
+                                    <h5><?php echo $row['title'] ?> </h5>
+                                </div>
+                                <?php 
+                                    if(!empty($row['picture'])) {
+                                ?>
+                                <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                    class="material-icons md-18">schedule</i> <i
+                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <div class="card-title">
+                                <i class="material-icons right">close</i>
+                            </div>
+                            <span class="card-title">
+                                <strong> <?php echo $row['title'] ?> </strong>
+                            </span>
+                            <p>
+                                <?php echo $row['description'] ?>
+                            </p>
+                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                                    class="valign-wrapper">Ver mais <i
+                                        class="material-icons">keyboard_arrow_right</i></a></p>
+                        </div>
+                    </div>
+
+                    <?php
+                        }
+                ?>
+
+                </div>
+
+                <?php
+                    } else {
+                ?>
+                <div class="container center-align no-work">
+                    <div class="row">
+                        <div class="col s12">
+                            <img src="../_img/icon/tools_black_and_white.png" alt="dislike icon" width="130">
+                        </div>
+                        <div class="col s12">
+                            <h4>Ops!</h4>
+                            <h6>Você não tem nenhum <a href="../work">serviço</a> realizado ou em andamento. Clique na aba <a href="../work">trabalhar</a><br> e comece a trabalhar
+                                agora mesmo!</h6>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    }
+                ?>
+
+            </div>
+
         </section>
 
     </main>
@@ -166,49 +249,9 @@
         </div>
     </div>
 
-    <!-- Modal chat -->
-    <div class="modal" id="modalChat">
-        <div class="modal-content">
-            <div class="conversations">
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
 
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation">
-                <div class="header">
-                    <h4>Fulano de tal - servio de tal coisa</h4>
-                </div>
-                <div class="conversation-content">
-
-                </div>
-                <div class="send-message">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
 </body>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2019 at 02:36 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: 27-Out-2019 às 22:51
+-- Versão do servidor: 10.1.37-MariaDB
+-- versão do PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,81 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `occupation`
+-- Estrutura da tabela `complaint`
+--
+
+CREATE TABLE `complaint` (
+  `id` int(11) NOT NULL,
+  `complainant_id` int(11) NOT NULL,
+  `accused_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `text` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `conversation`
+--
+
+CREATE TABLE `conversation` (
+  `id` int(11) NOT NULL,
+  `id_user_1` int(11) NOT NULL,
+  `id_user_2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `conversation`
+--
+
+INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
+(25, 30, 31),
+(26, 31, 36);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `grade`
+--
+
+CREATE TABLE `grade` (
+  `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `grade` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL,
+  `conversation` int(11) NOT NULL,
+  `id_user_from` int(11) NOT NULL,
+  `id_user_to` int(11) NOT NULL,
+  `text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `message`
+--
+
+INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text`) VALUES
+(226, 25, 30, 31, 'oi, tudo bem, gostaria de saber se você pd fazer o bolo'),
+(227, 25, 31, 30, 'oiii!'),
+(228, 25, 31, 30, 'sim, posso sim'),
+(229, 26, 31, 36, 'oi me ajude por favor'),
+(230, 26, 36, 31, 'ola ajudo sim');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `occupation`
 --
 
 CREATE TABLE `occupation` (
@@ -34,7 +108,7 @@ CREATE TABLE `occupation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `occupation`
+-- Extraindo dados da tabela `occupation`
 --
 
 INSERT INTO `occupation` (`id`, `name`) VALUES
@@ -47,12 +121,15 @@ INSERT INTO `occupation` (`id`, `name`) VALUES
 (7, 'Fretes'),
 (8, 'Serviços de informática'),
 (9, 'Confeitaria'),
-(10, 'Serviços Automotivos');
+(10, 'Serviços Automotivos'),
+(11, 'a'),
+(12, ''),
+(13, 'b');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `occupation_subcategory`
+-- Estrutura da tabela `occupation_subcategory`
 --
 
 CREATE TABLE `occupation_subcategory` (
@@ -62,7 +139,7 @@ CREATE TABLE `occupation_subcategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `occupation_subcategory`
+-- Extraindo dados da tabela `occupation_subcategory`
 --
 
 INSERT INTO `occupation_subcategory` (`id`, `name`, `id_occupation`) VALUES
@@ -118,7 +195,7 @@ INSERT INTO `occupation_subcategory` (`id`, `name`, `id_occupation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Estrutura da tabela `service`
 --
 
 CREATE TABLE `service` (
@@ -126,32 +203,49 @@ CREATE TABLE `service` (
   `time_remaining` varchar(200) DEFAULT NULL,
   `title` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
+  `picture` varchar(500) DEFAULT NULL,
   `is_visible` varchar(20) DEFAULT NULL,
   `id_occupation_subcategory` int(11) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `service`
+-- Extraindo dados da tabela `service`
 --
 
-INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `is_visible`, `id_occupation_subcategory`, `id_user`) VALUES
-(32, 'now', 'asda', 'asda', NULL, 43, 11),
-(33, 'next_week', 'da', 'dad', NULL, 46, 8),
-(34, 'now', 'asd', 'asda', '0', 43, 8),
-(35, 'now', 'asdas', 'asda', '0', 43, 8),
-(36, 'now', 'asda', 'asdasd', '0', 1, 8),
-(37, 'now', 'df', 'sdf', '0', 46, 8),
-(38, 'now', 'adadas', 'asda', '0', 43, 8),
-(39, 'now', 'asdasdadas', 'adasd', '0', 24, 8),
-(40, 'now', 'sário que toda negociação fique registrado no ', 'sário que toda negociação fique registrado no ', 'true', 46, 8),
-(41, 'now', 'sário que toda negociação fique registrado no ', 'sário que toda negociação fique registrado no ', 'false', 46, 8),
-(42, 'now', 'teste', 'testando o servico', 'true', 43, 12);
+INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`) VALUES
+(103, 'now', 'Entregar um animal', 'preciso que entregue o meu animal de estimação, é um cachorro e possui 3kg, porte médio', '../_img/service_picture/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png', 'false', 43, 30),
+(104, 'next_week', 'Bolo de aniversário ', 'Gostaria de fazer um bolo de aniversário para a festa do meu filho na semana que vem', NULL, 'false', 46, 30),
+(105, 'now', 'Pia com vazamento', 'Minha pia possui um vazamento', NULL, 'true', 24, 31);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estrutura da tabela `service_request`
+--
+
+CREATE TABLE `service_request` (
+  `id` int(11) NOT NULL,
+  `id_service` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `price` decimal(14,2) NOT NULL,
+  `description` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `service_request`
+--
+
+INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
+(71, 105, 30, '250.50', 'trampo bem'),
+(72, 105, 30, '15.00', 'faço mais barato ta bom?'),
+(73, 105, 30, '10.00', 'faço mais barato ainda'),
+(74, 105, 36, '200.00', 'conserto rapidao mando po pai');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user`
 --
 
 CREATE TABLE `user` (
@@ -162,7 +256,6 @@ CREATE TABLE `user` (
   `gender` varchar(20) DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `cpf` varchar(20) DEFAULT NULL,
-  `cnpj` varchar(20) DEFAULT NULL,
   `birth_date` varchar(20) DEFAULT NULL,
   `cep` varchar(20) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
@@ -171,49 +264,78 @@ CREATE TABLE `user` (
   `neighborhood` varchar(100) DEFAULT NULL,
   `home_number` varchar(10) DEFAULT NULL,
   `address_complement` varchar(100) DEFAULT NULL,
-  `work_info` varchar(200) DEFAULT NULL
+  `profile_picture` varchar(400) NOT NULL DEFAULT '../_img/user_profile_picture/user.svg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Extraindo dados da tabela `user`
 --
 
-INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `cnpj`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `work_info`) VALUES
-(8, 'Marcos Silva', 'marcao@Live.com', 'Defina uma senha', 'M', '(11) 93425-4333', '272.882.290-50', NULL, '1970-01-01', '55190-536', 'Rua Paulo Lucena de Mendonça', 'PE', 'sp ', 'Malaquias Cardoso', '32', '(Lot S Jorge)', 'Trabalho há mais de 10 anos'),
-(9, 'Bruno Silva', 'brucandido@Live.com', 'Defina uma senha', 'M', '(11) 99453-2845', '824.271.950-06', NULL, '2002-13-01', '57084675', 'Rua C-23', 'AL', 'sp ', 'Benedito Bentes', '32', '(Cj Benedito Bentes)', 'Trabalho com limpeza e também faço trabalhos com conserto de ar-condicionado '),
-(10, ' Marcelo Marques', 'marcelo@live.com', 'Defina uma senha', 'M', '(11) 95884-8424', '937.702.030-11', NULL, '2019-04-09', '44002-248', 'Rua Benjamin Constant', 'BA', 'sp ', 'Centro', '58', '', 'po maneiro meus trampo'),
-(11, 'Julia Silva', 'julia@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '263.910.620-13', NULL, '2019-10-09', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '55', 'de 135/136 ao fim', 'Trabalho há mais de 10 anos na área'),
-(12, 'Breno Tavares Almeida', 'breno@live.com', 'Defina uma senha', 'M', '(11) 93233-4242', '617.295.140-81', NULL, '1990-10-10', '72862-112', 'Quadra 12', 'GO', 'sp ', 'Boa Vista', '21', '', NULL);
+INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`) VALUES
+(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(31, 'Marcela Tavares', 'marcela@live.com', 'Defina uma senha', 'F', '(11) 97987-9879', '491.024.080-23', '1998-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '4', 'de 135/136 ao fim', '../_img/user_profile_picture/xmarcela-temer2.jpg.pagespeed.ic.zF7HsPE9tu.jpg'),
+(33, 'sfgsgs', 'julia@live.com', 'Defina uma senha', 'M', '(11) 97123-7983', '503.850.338-18', '1333-12-13', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '2', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(35, 'Contratante Teste', 'julio@live.com', 'Defina uma senha', 'M', '(11) 21413-4242', '882.422.920-43', '1998-09-16', '29120-050', 'Rua Luiz Americano', 'ES', 'sp ', 'Aribiri', '45', '', '../_img/user_profile_picture/user.svg'),
+(36, 'Paulo Almeida Alencar', 'paulo@live.com', 'Defina uma senha', 'M', '(11) 98987-8986', '882.422.920-43', '1998-12-20', '71725-100', 'QR 1', 'DF', 'sp ', 'Candangolândia', '5', '', '../_img/user_profile_picture/user.svg'),
+(37, 'Mariana Almeida', 'mariana@live.com', 'Defina uma senha', 'F', '(11) 98798-4764', '882.422.920-43', '1999-04-20', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '5', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
+(38, 'Poliana Almeida Tavares Cabral', 'almeida@live.com', 'Defina uma senha', 'F', '(11) 98748-9498', '086.675.870-44', '1991-09-18', '68903-627', 'Travessa SétimaConj. Habitacional da Embrapa', 'AP', 'sp ', 'Universidade', '2', '', '../_img/user_profile_picture/user.svg'),
+(39, 'Roberty Santos', 'ricardo@live.com', '12345678', 'M', '(11) 98749-6764', '518.037.678-55', '1990-09-04', '64039-530', 'Quadra F5', 'PI', 'sp ', 'Esplanada', '2', '(Cj P Alegre)', '../_img/user_profile_picture/user.svg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_occupation`
+-- Estrutura da tabela `user_occupation`
 --
 
 CREATE TABLE `user_occupation` (
   `id` int(11) NOT NULL,
-  `name` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `id_occupation` int(11) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_occupation`
+-- Extraindo dados da tabela `user_occupation`
 --
 
-INSERT INTO `user_occupation` (`id`, `name`, `id_user`) VALUES
-(25, 'Serviços de Limpeza', 9),
-(26, 'Serviços de Ar-condicionado', 9),
-(27, 'Serviços de Ar-condicionado', 10),
-(28, 'Serviços Elétricos', 10),
-(29, 'Serviços Hidráulicos', 10),
-(30, 'Serviços de Limpeza', 11),
-(31, 'Serviços de Reforma', 8),
-(32, 'Montagem de Móveis', 8);
+INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) VALUES
+(143, 'Já trabalhei nos correios, hoje eu trabalho fazendo fretes por conta própria com o meu caminhão próprio', 7, 31),
+(144, 'monto imoveis ', 6, 30),
+(145, 'aaaaaaaa', 4, 36),
+(146, 'aaaaaaaa', 7, 36);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `complaint`
+--
+ALTER TABLE `complaint`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `conversation`
+--
+ALTER TABLE `conversation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user_1` (`id_user_1`),
+  ADD KEY `id_user_2` (`id_user_2`);
+
+--
+-- Indexes for table `grade`
+--
+ALTER TABLE `grade`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `conversation` (`conversation`),
+  ADD KEY `id_user_from` (`id_user_from`),
+  ADD KEY `id_user_to` (`id_user_to`);
 
 --
 -- Indexes for table `occupation`
@@ -237,6 +359,14 @@ ALTER TABLE `service`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Indexes for table `service_request`
+--
+ALTER TABLE `service_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_service` (`id_service`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -247,17 +377,42 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_occupation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_occupation` (`id_occupation`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `complaint`
+--
+ALTER TABLE `complaint`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `conversation`
+--
+ALTER TABLE `conversation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `grade`
+--
+ALTER TABLE `grade`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
+
+--
 -- AUTO_INCREMENT for table `occupation`
 --
 ALTER TABLE `occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `occupation_subcategory`
@@ -269,42 +424,71 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- AUTO_INCREMENT for table `service_request`
+--
+ALTER TABLE `service_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `occupation_subcategory`
+-- Limitadores para a tabela `conversation`
+--
+ALTER TABLE `conversation`
+  ADD CONSTRAINT `conversation_ibfk_1` FOREIGN KEY (`id_user_1`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `conversation_ibfk_2` FOREIGN KEY (`id_user_2`) REFERENCES `user` (`id`);
+
+--
+-- Limitadores para a tabela `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`conversation`) REFERENCES `conversation` (`id`),
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`id_user_from`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`id_user_to`) REFERENCES `user` (`id`);
+
+--
+-- Limitadores para a tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   ADD CONSTRAINT `occupation_subcategory_ibfk_1` FOREIGN KEY (`id_occupation`) REFERENCES `occupation` (`id`);
 
 --
--- Constraints for table `service`
+-- Limitadores para a tabela `service`
 --
 ALTER TABLE `service`
   ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`id_occupation_subcategory`) REFERENCES `occupation_subcategory` (`id`),
   ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `user_occupation`
+-- Limitadores para a tabela `service_request`
+--
+ALTER TABLE `service_request`
+  ADD CONSTRAINT `service_request_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `service` (`id`),
+  ADD CONSTRAINT `service_request_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+
+--
+-- Limitadores para a tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  ADD CONSTRAINT `user_occupation_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `user_occupation_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `user_occupation_ibfk_2` FOREIGN KEY (`id_occupation`) REFERENCES `occupation` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

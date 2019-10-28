@@ -69,12 +69,12 @@
                     <div class="mdl-cell mdl-cell--7-col form-birthday">
                         <label>Data de nascimento: &ensp;</label>
                         <div class="mdl-textfield mdl-js-textfield">
-                            <input type="date" class="mdl-textfield__input input-date" id="birthday" name="birthday">
+                            <input type="date" max="1999-12-31" class="mdl-textfield__input input-date" id="birthday" name="birthday">
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--5-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 150px">
-                            <input class="mdl-textfield__input" type="text" id="input-phone_number"  name = "phone-number">
+                            <input class="mdl-textfield__input" type="text" id="input-phone_number"  name="phone-number">
                             <label class="mdl-textfield__label" for="input-phone_number">Celular</label>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
 
                 <div class="form-step mdl-grid">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col form-cep">
-                        <input type="text" class="mdl-textfield__input" maxlength="9" onblur="pesquisacep(this.value);" id="input" name="cep">
+                        <input type="text" class="mdl-textfield__input" maxlength="9" onblur="pesquisacep(this.value);" id="input-cep" name="cep">
                         <label class="mdl-textfield__label" for="input-cep">CEP*</label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
@@ -154,10 +154,6 @@
                         <input type="password" id="input-password-confirm" class="mdl-textfield__input" minlength="8" maxlength="20">
                         <label for="input-password-confirm" class="mdl-textfield__label">Confirmar senha</label>
                     </div>
-                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell mdl-cell--12-col" for="checkbox-1">
-                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
-                        <span class="mdl-checkbox__label">Concordo com termos de política do Freelas*</span>
-                    </label>
                     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-cell mdl-cell--12-col" for="checkbox-2">
                         <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
                         <span class="mdl-checkbox__label">Desejo receber informações e novidades no meu

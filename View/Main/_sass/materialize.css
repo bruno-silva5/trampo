@@ -6076,16 +6076,16 @@ label {
    ========================================================================== */
 /* Style Placeholders */
 ::-webkit-input-placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 :-ms-input-placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 ::-ms-input-placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 ::placeholder {
-  color: #d1d1d1;
+  color: #383838;
 }
 
 /* Text inputs */
@@ -9016,6 +9016,22 @@ input[type=range]::-ms-thumb {
   }
 }
 
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
 header {
   z-index: 5 !important;
   position: fixed;
@@ -9032,45 +9048,89 @@ main {
 }
 
 main .section-progress .no-hire,
-main .section-progress .no-work {
+main .section-progress .no-work,
+main .user-profile .no-hire,
+main .user-profile .no-work {
   margin-top: 7em;
 }
 
-main .section-progress .wrapper-content {
+main .section-progress .wrapper-content,
+main .user-profile .wrapper-content {
   width: 92%;
   padding: 2em 1em;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-main .section-progress .card {
-  width: -webkit-fit-content !important;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
+main .section-progress .wrapper-content .col,
+main .user-profile .wrapper-content .col {
+  margin: 1em;
+  padding: 0;
 }
 
-main .section-progress .card-content {
-  padding: 0.8em;
+main .section-progress .card-reveal,
+main .user-profile .card-reveal {
+  text-align: justify;
+  padding: 1em !important;
+}
+
+main .section-progress .card-content,
+main .user-profile .card-content {
+  padding: 0.6em;
   padding-bottom: 0.3em;
 }
 
-main .section-progress .card-content i {
+main .section-progress .card-content i,
+main .user-profile .card-content i {
   margin: 0;
 }
 
-main .section-progress .card-image {
+main .section-progress .card-image,
+main .user-profile .card-image {
   height: 150px !important;
   width: 200px;
 }
 
-main .section-progress .card-image img {
+main .section-progress .card-image .title-over-image,
+main .user-profile .card-image .title-over-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: rgba(20, 104, 177, 0.4);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 8.4px 8.4px;
+}
+
+main .section-progress .card-image .title-over-image h5,
+main .user-profile .card-image .title-over-image h5 {
+  margin: 0;
+  height: 100%;
+  line-height: 1.2em;
+  overflow: auto;
+  font-size: 1.5em;
+}
+
+main .section-progress .card-image img,
+main .user-profile .card-image img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100% !important;
 }
 
-main .section-progress .card-title {
-  font-size: 1.5em;
+main .section-progress .card-title,
+main .user-profile .card-title {
+  font-size: 1.4em;
   line-height: 1.3em;
+  text-align: left;
 }
 
 main .section-hire .search-service .collection {
@@ -9111,19 +9171,6 @@ main .section-hire .step img {
   height: 70px;
   -o-object-fit: contain;
      object-fit: contain;
-}
-
-main .section-hire .worker-profile {
-  margin-top: 2em;
-  text-align: center;
-}
-
-main .section-hire .worker-profile h5 {
-  margin: 0 !important;
-}
-
-main .section-hire .worker-profile img {
-  margin: auto;
 }
 
 main .section-hire .container-extended {
@@ -9176,16 +9223,24 @@ main .section-hire .container-extended .list {
 }
 
 main .section-hire .container-extended .list .list-item {
-  max-width: 130px;
-  margin: 2em;
-  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.3em;
+  margin: 1em;
+  max-width: 200px;
+  padding: 0.8em;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-main .section-hire .container-extended .list .list-item a {
+main .section-hire .container-extended .list .list-item:hover {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+main .section-hire .container-extended .list a {
   margin-top: 0.8em;
 }
 
-main .section-hire .container-extended .list .list-item h6 {
+main .section-hire .container-extended .list h6 {
   height: 2.2em;
   overflow: hidden;
 }
@@ -9295,6 +9350,132 @@ main .section-work .row:not(:first-of-type) .card-title {
   line-height: 1.3em;
 }
 
+main .chat {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 2em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+main .chat h5 {
+  padding-top: 1.3em;
+  color: #1b8ae3;
+}
+
+main .chat .conversations {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+main .chat .conversations .boxConversation {
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer !important;
+  padding: 1em 1.3em;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+main .chat .conversations .boxConversation p:first-of-type {
+  font-weight: 500;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+main .chat .conversations .boxConversation:hover {
+  background: #e7e7e7;
+}
+
+main .chat .conversation {
+  width: 100%;
+  height: 100%;
+}
+
+main .chat .conversation .header {
+  background: #1364c0;
+  padding: 0.5em 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 !important;
+  border-top-right-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+}
+
+main .chat .conversation .header h5 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+main .chat .conversation .conversation-content {
+  background-image: url(../_img/background/chat-background.png);
+  background-size: cover;
+  overflow: auto;
+  height: 80vh;
+  max-height: 400px;
+}
+
+main .chat .conversation .conversation-content .message {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 40%;
+  padding: 0.7em;
+  margin: 0.8em 0;
+  cursor: default;
+  word-wrap: break-word;
+  border-radius: 0.2em;
+}
+
+main .chat .conversation .conversation-content .message-left {
+  margin-right: auto;
+  background: #fff;
+  margin-left: 1em;
+}
+
+main .chat .conversation .conversation-content .message-right {
+  margin-left: auto;
+  margin-right: 1em;
+  background: #1b8ae3;
+  color: white;
+}
+
+main .chat .conversation .send-message {
+  background: #fff;
+  overflow: auto;
+  padding: 1em;
+}
+
+main .chat .conversation .send-message .row {
+  height: 100%;
+  margin: 0 !important;
+}
+
+main .chat .conversation .send-message .col {
+  height: 100% !important;
+}
+
+main .chat .conversation .send-message input {
+  width: 100%;
+  height: 100% !important;
+  padding: 0.6em;
+  border-radius: 0.2em;
+  border: none;
+  font-size: 1em;
+  background: rgba(0, 0, 0, 0.061);
+}
+
+main .chat .conversation .send-message button {
+  width: 100%;
+}
+
 main h5 {
   margin-bottom: 1em !important;
 }
@@ -9311,6 +9492,12 @@ main .user-view {
 
 main .user-view .user-info {
   padding-left: 1em;
+  overflow-x: auto !important;
+}
+
+main .user-view img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 main .section-myAccount {
@@ -9337,9 +9524,20 @@ main .section-myAccount .user-view {
   position: relative !important;
 }
 
-main .section-myAccount .user-view img {
-  width: 200px;
+main .section-myAccount .user-view .profile-picture {
+  position: relative;
   z-index: 2;
+}
+
+main .section-myAccount .user-view .profile-picture a {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+}
+
+main .section-myAccount .user-view .profile-picture img {
+  width: 200px;
+  height: 200px;
 }
 
 main .section-myAccount .user-view .user-info {
@@ -9376,7 +9574,13 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  main .section-myAccount .user-view .btn, main .section-myAccount .user-view .btn-large, main .section-myAccount .user-view .btn-small {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
   main .section-myAccount .user-view .user-info {
+    padding: 0 1em;
     position: relative;
     left: 0;
     text-align: center;
@@ -9404,6 +9608,10 @@ main .section-myAccount .btn, main .section-myAccount .btn-large, main .section-
   height: 20em;
   top: 0;
   z-index: -1;
+}
+
+.z-index-materialBoxed {
+  z-index: 9999;
 }
 
 .tabs-content.carousel.carousel-slider .carousel-item.active {
@@ -9465,60 +9673,32 @@ footer {
       justify-content: space-around;
 }
 
+#demo-user-profile-picture,
+#demo-service-picture {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#modalProfilePicture .space {
+  margin: 0.5em;
+}
+
 #modalChat {
   width: 95% !important;
-  max-width: 1100px !important;
+  max-width: 600px !important;
   max-height: 100%;
 }
 
 #modalChat .modal-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  padding: 0;
 }
 
 #modalChat .modal-content h6,
 #modalChat .modal-content h4,
 #modalChat .modal-content p {
   margin: 0;
-}
-
-#modalChat .modal-content .conversations {
-  width: 40%;
-  height: 100%;
-  overflow: auto;
-}
-
-#modalChat .modal-content .conversations .boxConversation {
-  background: red;
-  margin-bottom: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#modalChat .modal-content .conversation {
-  width: 60%;
-  height: 100%;
-}
-
-#modalChat .modal-content .conversation .header {
-  background: blue;
-}
-
-#modalChat .modal-content .conversation .conversation-content {
-  background: #a6a9aa;
-  overflow: auto;
-  height: 300px;
-}
-
-#modalChat .modal-content .conversation .send-message {
-  background: green;
-  height: 60px;
-  overflow: auto;
 }
 
 @media screen and (max-width: 800px) {
@@ -9529,5 +9709,24 @@ footer {
 
 #modal-warning img {
   margin: 2em;
+}
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 }
 /*# sourceMappingURL=materialize.css.map */

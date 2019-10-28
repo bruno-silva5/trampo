@@ -21,7 +21,7 @@
     } else {
         $query = mysqli_query($conn, "SELECT * FROM occupation_subcategory");
         while($row = mysqli_fetch_assoc($query)) {
-            echo "<a href='aa.html' class='collection-item'>".$row['name']."</a> ";
+            echo "<a href='../requestService?occupation_subcategory=".$row['id']."' class='collection-item'>".$row['name']."</a> ";
         }
     }
 

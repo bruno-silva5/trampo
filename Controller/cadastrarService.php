@@ -8,36 +8,37 @@
     $dao_service = new DaoService();
     $service = new Service();
 
-    $error = false;
-
     $query = mysqli_query($conn, "SELECT id FROM user WHERE email = '".$_SESSION['email']."'");
     $row = mysqli_fetch_assoc($query);
     $id_user = $row['id'];
 
-    if(isset($_POST['submit'])) {
-        if(($_POST['id_occupation_subcategory'] && $_POST['time_remaining'] && $_POST['service_title'] && $_POST['service_description'])!= null) {
-            $service->setIdOccupationSubcategory($_POST['id_occupation_subcategory']);
-            $service->setTimeRemaining($_POST['time_remaining']);
-            $service->setTitle($_POST['service_title']);
-            $service->setDescription($_POST['service_description']);
-            $service->setIsVisible($_POST['is_visible']);
-            $service->setIdUser($id_user);
-            $dao_service->cadastrarService($service);
-        } else {
-            echo '<p class="red-text">É obrigatório preencher todos os campos</p>';
-            $error = true;
+    if(($_GET['id_occupation_subcategory'] && $_POST['time-remaining'] && $_POST['service-title'] && $_POST['service-description'])!= null) {
+        $service->setIdOccupationSubcategory($_GET['id_occupation_subcategory']);
+        $service->setTimeRemaining($_POST['time-remaining']);
+        $service->setTitle($_POST['service-title']);
+        $service->setDescription($_POST['service-description']);
+
+        //upload image to the databse
+        if(is_uploaded_file($_FILES['service-picture']['tmp_name']) || file_exists($_FILES['service-picture']['tmp_name'])) {
+            $upload_image = $_FILES["service-picture"]["name"];//image name
+            $folder_move_file = "../View/Main/_img/service_picture/";
+            $folder_database = "../_img/service_picture/";
+            move_uploaded_file($_FILES["service-picture"]["tmp_name"],"$folder_move_file".$upload_image);
+            $service->setPicture($folder_database.$upload_image);
         }
-    }   
+
+        if(isset($_POST['visible-agreement'])) {
+            $service->setIsVisible("true");
+        }else {
+            $service->setIsVisible("false");
+        }
+        $service->setIdUser($id_user);
+        $dao_service->cadastrarService($service);
+        $last_id = $dao_service->getLastRegisteredId();
+        header("Location: ../../View/Main/workerList/?service_register&occupation_subcategory=".$_GET['id_occupation_subcategory']."&id_service=".$last_id['MAX(id)']);
+    } else {
+        header("Location: ../../View/Main/requestService/?occupation_subcategory=".$_GET['id_occupation_subcategory']);
+    }
+
 
 ?>
-
-<script>
-    var error = "<?php echo $error; ?>";
-    if(!error) {
-        M.toast({html: 'Serviço cadastrado!'});
-        $("#submit-requestService").addClass("disabled");
-        setTimeout(function () {
-            window.location.href = "../workerList";
-        }, 2000);
-    }
-</script>

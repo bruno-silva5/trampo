@@ -27,10 +27,6 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
-                <ul class="right">
-                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
-                                class="material-icons">chat</i></a></li>
-                </ul>
             </div>
         </nav>
     </header>
@@ -41,26 +37,28 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire" class="active"><a href="../hire" class="waves-effect"><i
+            <li class="active"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            </li>
+            <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
             </li>
             <li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li><a href="../myAccount" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -74,17 +72,23 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../workerList" class="btn circle waves-effect waves-light hide-on-small-only"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
                         class="material-icons">arrow_back</i></a>
-                <a href="../workerList" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
                         class="material-icons">arrow_back</i></a>
 
-                <h5 class="center-align">Perfil do prestador</h5>
-                <div class="worker-profile">
-                    <img src="../_img/user.svg" alt="user profile" width="150">
-                    <h5 class="blue">Nome do prestador</h5>
-                    <h6>Avaliação</h6>
-                    <a href="#" class="btn">Entrar em contato</a>
+                <?php
+                    $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$_GET['id_user']."'");
+                    $row_worker = mysqli_fetch_assoc($query);
+                ?>
+                <h5 class="center-align"><strong>Perfil do prestador</strong></h5>
+                <div class="divider"></div>
+                <div class="row center-align" style="padding: 2em 2em 1em">
+
+                    <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" width="150">
+                    <h5><?php echo $row_worker['full_name']; ?></h5>
+                    <h6>Avaliação XXX</h6><br>
+                    <a href="../chatMessage/?id_user_from=<?php echo $row['id'] ?>&id_user_to=<?php echo $row_worker['id'] ?>&name_user_to=<?php echo $row_worker['full_name'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>&hire_contact" class="btn modal-trigger">Entrar em contato</a>
                 </div>
             </div>
         </section>
@@ -104,50 +108,9 @@
         </div>
     </div>
 
-    <!-- Modal chat -->
-    <div class="modal" id="modalChat">
-        <div class="modal-content">
-            <div class="conversations">
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
 
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation">
-                <div class="header">
-                    <h4>Fulano de tal - servio de tal coisa</h4>
-                </div>
-                <div class="conversation-content">
-
-                </div>
-                <div class="send-message">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
 </body>

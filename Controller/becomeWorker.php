@@ -43,6 +43,6 @@
         $("#submit-becomeWorker").addClass("disabled");
         setTimeout(function () {
             window.location.href = "../work";
-        }, 2000);
+        }, 600);
     }
 </script>

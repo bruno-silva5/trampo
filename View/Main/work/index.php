@@ -27,10 +27,6 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Trabalhar</a>
-                <ul class="right">
-                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
-                                class="material-icons">chat</i></a></li>
-                </ul>
             </div>
         </nav>
     </header>
@@ -41,26 +37,28 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire"><a href="../hire" class="waves-effect"><i
+            <li><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work" class="active"><a href="../work" class="waves-effect"><i
+            <li class="active"><a href="../work" class="waves-effect"><i
                         class="material-icons">build</i>Trabalhar</a></li>
             <li>
+            <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
+            </li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li><a href="../myAccount" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -76,7 +74,9 @@
 
             <!-- If it is missing data -->
             <?php
-                if(empty($row['work_info'])) {
+                $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$row['id']."'");
+                $rows = mysqli_num_rows($query);
+                if(!$rows > 0) {
                     echo '
                 <div class="row z-depth-3">
                 <div class="become-worker">
@@ -94,13 +94,13 @@
                             <div class="input-field inline occupation-option">
                                 <select multiple id="select-occupation">
                                 '?>
-            <?php
+                         <?php
                                         $query = mysqli_query($conn, "SELECT * FROM occupation");
                                         while($row = mysqli_fetch_assoc($query)) {
-                                            echo "<option value='".$row['name']."'>".$row['name']."</option>";
+                                            echo "<option value='".$row['id']."'>".$row['name']."</option>";
                                         }
                                     ?>
-            <?php 
+                         <?php 
                                 echo '
                                 </select>
                             </div>
@@ -131,7 +131,6 @@
 
 
             
-            <!-- showing the works -->
             <div class="row z-depth-2">
                 <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
                 <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
@@ -202,7 +201,7 @@
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente illo maxime nisi ullam illum
                         molestiae esse quam officia obcaecati nobis.</p>
                     <h5>2.2 KM distante</h5>
-                    <a href="#modalChat" class="btn waves-effect waves-light modal-trigger">Entrar em contato</a>
+                    <a href="#!" class="btn waves-effect waves-light modal-trigger">Entrar em contato</a>
                 </div> -->
 
             </div>
@@ -225,49 +224,8 @@
         </div>
     </div>
 
-    <!-- Modal chat -->
-    <div class="modal" id="modalChat">
-        <div class="modal-content">
-            <div class="conversations">
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation">
-                <div class="header">
-                    <h4>Fulano de tal - servio de tal coisa</h4>
-                </div>
-                <div class="conversation-content">
-
-                </div>
-                <div class="send-message">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
 </body>

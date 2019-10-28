@@ -16,6 +16,18 @@
 </head>
 
 <body>
+
+    <?php
+        $service_register = false;
+        $occupation_subcategory;
+        if(isset($_GET['service_register'])) {
+            $service_register = true;
+        }
+        if(isset($_GET['occupation_subcategory'])) {
+            $occupation_subcategory = $_GET['occupation_subcategory'];
+        }
+    ?>
+
     <?php 
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
@@ -27,10 +39,6 @@
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
-                <ul class="right">
-                    <li><a href="#modalChat" class="waves-effect waves-light modal-trigger"><i
-                                class="material-icons">chat</i></a></li>
-                </ul>
             </div>
         </nav>
     </header>
@@ -41,26 +49,28 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="../_img/user.svg" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
                     </div>
                 </div>
             </li>
-            <li id="li-progress"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li id="li-hire" class="active"><a href="../hire" class="waves-effect"><i
+            <li class="active"><a href="../hire" class="waves-effect"><i
                         class="material-icons">assignment_ind</i>Contratar</a></li>
-            <li id="li-work"><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
+            <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
-            <li>
+            <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
+            </li>
             <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Configurações</a></li>
-            <li id="li-myAccount"><a href="../myAccount" class="waves-effect">Minha conta</a></li>
-            <li id="li-preferences"><a href="#!" class="waves-effect">Preferências</a>
+            <li><a href="../myAccount" class="waves-effect">Minha conta</a></li>
+            <li><a href="#!" class="waves-effect">Preferências</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -74,7 +84,7 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 container-extended padding">
-                <h5 class="center-align">Lista de prestadores</h5>
+                <h5 class="center-align">Lista de prestadores para seu serviço</h5>
                 <div class="row">
                     <div class="col s12">
                         <ul class="collapsible z-depth-0">
@@ -120,28 +130,37 @@
                         </ul>
                     </div>
                 </div>
-                <div class="list">
+                <div class="list center-align">
 
-                    <div class="list-item">
-                        <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
-                        <h6>X X X</h6>
-                        <a href="../workerProfile" class="btn">ver perfil</a>
-                    </div>
+                    <?php
+                        $query = mysqli_query($conn, 
+                        "SELECT * FROM user WHERE user.id IN 
+                        (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
+                        (SELECT occupation.id FROM occupation WHERE occupation.id IN 
+                        (SELECT occupation_subcategory.id_occupation FROM occupation_subcategory 
+                        WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$row['id']."' ");
 
-                    <div class="list-item">
-                        <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6><strong>Alessando Gomes pereira da Silva</strong></h6>
-                        <h6>X X X</h6>
-                        <a href="../workerProfile" class="btn">ver perfil</a>
-                    </div>
+                        if(mysqli_num_rows($query) > 0) {
+                            while($row_worker = mysqli_fetch_assoc($query)) {
 
-                    <div class="list-item">
-                        <img src="../_img/user.svg" alt="user profile" width="130">
-                        <h6><strong>Bruno</strong></h6>
-                        <h6>X X X</h6>
-                        <a href="../workerProfile" class="btn">ver perfil</a>
-                    </div>
+                    ?>
+                        <div class="list-item">
+                            <img src="../_img/user_profile_picture/user.svg" alt="user profile" width="130">
+                            <h6><strong><?php echo $row_worker['full_name']; ?></strong></h6>
+                            <a href="../workerProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>" class="btn waves-effect waves-light">Ver perfil</a>
+                        </div>
+
+                    <?php
+                            }
+                        } else {
+                    ?>
+                        <div>
+                            <img src="../_img/icon/tools_black_and_white.png" alt="black and white tools icon" width="200">
+                            <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                        </div>
+                    <?php
+                        }
+                    ?>
 
                 </div>
             </div>
@@ -162,52 +181,18 @@
         </div>
     </div>
 
-    <!-- Modal chat -->
-    <div class="modal" id="modalChat">
-        <div class="modal-content">
-            <div class="conversations">
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-
-                <div class="boxConversation">
-                    <img src="../_img/user.svg" alt="" width="70" class="circle">
-                    <div>
-                        <h6>Fulano de tal</h6>
-                        <p>Lorem ipsum dolor sit amet </p>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation">
-                <div class="header">
-                    <h4>Fulano de tal - servio de tal coisa</h4>
-                </div>
-                <div class="conversation-content">
-
-                </div>
-                <div class="send-message">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
+    <script type="text/javascript">
+    var service_register = "<?php echo $service_register ?>";
+    if (service_register) {
+        M.toast({
+            html: 'Serviço cadastrado!'
+        });
+    }
+    </script>
 </body>
 
 </html>
