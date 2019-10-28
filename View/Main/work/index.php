@@ -273,7 +273,7 @@
                 </h6>
             </div>
             <div class="row">
-                <img src="../_img/icon/no-rate.png" alt="no rate icon">
+                <img src="../_img/icon/no-rate.svg" alt="no rate icon">
             </div>
         </div>
     </div>
