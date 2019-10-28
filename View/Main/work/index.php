@@ -236,7 +236,7 @@
             </div>
             <div class="divider"></div>
             <div class="row">
-                <h5 class="blue-text">1º - Serviços disponíveis</h5>
+                <h5 class="blue-text">#Serviços disponíveis</h5>
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2">
@@ -249,12 +249,31 @@
                     serviço, e posteriormente mandar a sua proposta, caso seja de seu interesse. </h6>
             </div>
             <div class="row">
-                <h5 class="blue-text">2º - Chat</h5>
+                <h5 class="blue-text">#Chat</h5>
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2">
                     <img src="../_img/print_screen_steps/test.png" class="materialboxed col s12">
                 </div>
+            </div>
+            <div class="row">
+                <h6 class="justify-align">
+                    Fique atento a novas mensagens no seu chat, contratantes poderão entrar em contato com você através
+                    dele. E após negociar, para poder acessar o serviço,
+                    <span class="blue-text text-darken-4"><b>clique no nome do contratante</b></span>, assim você irá
+                    ao perfil do mesmo, e logo sem seguida, escolha o serviço na qual pretende trabalhar, por fim, é só
+                    mandar a proposta.
+                </h6>
+            </div>
+            <div class="row">
+                <h5 class="center-align red-text">Cuidado! Não realize um serviço sem registrar!</h5>
+                <h6 class="justify-align">
+                    Caso você realize um serviço combinado somente pelo chat e não o registrar,
+                    não será possível obter avaliação, e o poderá ser prejudicado em futuras contratações.
+                </h6>
+            </div>
+            <div class="row">
+                <img src="../_img/icon/no-rate.png" alt="no rate icon">
             </div>
         </div>
     </div>
