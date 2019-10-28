@@ -17,6 +17,12 @@
 
 <body>
     <?php 
+        if(isset($_GET['new_worker'])) {
+            $new_worker = true;
+        } else {
+            $new_worker = false;
+        }
+
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
@@ -180,23 +186,13 @@
                         </div>
                     </div>
 
-
                 </div>
 
                 <?php
                 }
                 ?>
-
-
-
             </div>
-
-
-
         </section>
-
-
-
     </main>
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
@@ -273,7 +269,10 @@
                 </h6>
             </div>
             <div class="row">
-                <img src="../_img/icon/no-rate.svg" alt="no rate icon">
+                <img src="../_img/icon/no-rate.svg" alt="no rate icon" class="col s10 m4 offset-s1 offset-m4">
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light col s12 input-field modal-close">Entendi</button>
             </div>
         </div>
     </div>
@@ -287,10 +286,14 @@
     var instance_modal_worker_tutorial = M.Modal.init(elem_modal_worker_tutorial, {
         dismissible: false
     });
+
     document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            instance_modal_worker_tutorial.open();
-        }, 500);
+        var new_worker = "<?php echo $new_worker ?>";
+        if (new_worker) {
+            setTimeout(function() {
+                instance_modal_worker_tutorial.open();
+            }, 500);
+        }
     });
     </script>
 </body>
