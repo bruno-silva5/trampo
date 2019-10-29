@@ -181,7 +181,12 @@ try {
 
 function delete_service_request(id_service_request, id_service, occupation_subcategory) {
     var link_delete = document.getElementById("delete-service-request");
-    link_delete.href = "../../../Controller/dismissService.php?id_service_request="+id_service_request+"&id_service="+id_service+"&occupation_subcategory="+occupation_subcategory;
+    link_delete.href = "../../../Controller/dismissService.php/?id_service_request="+id_service_request+"&id_service="+id_service+"&occupation_subcategory="+occupation_subcategory;
+}
+
+function accept_service_request(id_service_request, id_service, occupation_subcategory, id_user) {
+    var link_accept = document.getElementById("accept-service-request");
+    link_accept.href = "../../../Controller/acceptService.php/?id_service_request="+id_service_request+"&id_service="+id_service+"&occupation_subcategory="+occupation_subcategory+"&id_user="+id_user;
 }
 
 

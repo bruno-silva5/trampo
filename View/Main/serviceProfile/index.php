@@ -149,7 +149,9 @@
                     <div class="col s12 m12 l3 center-align">
                         <a href="#!" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
-                        <a href="#!" class="btn green waves-effect"><i class="material-icons">done</i></a>
+                        <a href="#modal-accept-service" class="btn green waves-effect modal-trigger"><i
+                                class="material-icons"
+                                onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>, <?php echo $row['id_user']; ?>)">done</i></a>
                         <!-- accept service-->
                         <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
                             onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
@@ -267,25 +269,39 @@
     <!-- Modal accept service -->
     <div class="modal" id="modal-accept-service">
         <div class="modal-content">
-            <h4 class="center-align">Tem certeza?</h4>
-            <p>Clicando em aceitar, você irá <b>contratar</b> o prestador! </p>
+            <div class="row">
+                <h4 class="center-align">Tem certeza?</h4>
+            </div>
+            <div class="row">
+                <h6 class="center-align">Clicando em aceitar, você irá <b>contratar</b> o prestador! </h6>
+            </div>
         </div>
-        <div class="modal-footer">
-
+        <div class="modal-footer row">
+            <div class="col s6 center-align">
+                <button class="btn-flat modal-close">Cancelar</button>
+            </div>
+            <div class="col s6 center-align">
+                <a href="#!" id="accept-service-request" class="btn waves-effect waves-light green">Aceitar</a>
+            </div>
         </div>
     </div>
 
     <!-- Modal dismiss service -->
     <div class="modal" id="modal-dismiss-service">
         <div class="modal-content">
-            <h4 class="center-align">Tem certeza?</h4>
-            <br>
-            <h6 class="center-align">Clicando em <span class="red-text"><b>excluir</b></span> a proposta, você não poderá vê-la novamente!</h6>
+            <div class="row">
+                <h4 class="center-align">Tem certeza?</h4>
+            </div>
+            <div class="row">
+                <h6 class="center-align">Clicando em <span class="red-text"><b>excluir</b></span> a proposta, você não
+                    poderá vê-la novamente!</h6>
+            </div>
         </div>
         <div class="modal-footer row">
             <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
-            <div class="col s6 center-align"><a href="#!" id="delete-service-request"
-                    class="btn waves-effect red">Excluir</a></div>
+            <div class="col s6 center-align">
+                <a href="#!" id="delete-service-request" class="btn waves-effect red">Excluir</a>
+            </div>
         </div>
     </div>
 
