@@ -42,7 +42,7 @@
         M.toast({html: 'Informações cadastradas!'});
         $("#submit-becomeWorker").addClass("disabled");
         setTimeout(function () {
-            window.location.href = "../work";
+            window.location.href = "../work/?new_worker";
         }, 600);
     }
 </script>

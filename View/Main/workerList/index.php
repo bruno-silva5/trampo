@@ -144,8 +144,8 @@
                             while($row_worker = mysqli_fetch_assoc($query)) {
 
                     ?>
-                        <div class="list-item">
-                            <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" width="130">
+                        <div class="list-item red">
+                            <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile">
                             <h6><strong><?php echo $row_worker['full_name']; ?></strong></h6>
                             <a href="../workerProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>" class="btn waves-effect waves-light">Ver perfil</a>
                         </div>

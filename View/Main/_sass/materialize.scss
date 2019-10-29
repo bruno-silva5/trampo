@@ -233,6 +233,10 @@ main {
           max-width: 200px;
           padding: 0.8em;
           transition: 0.4s;
+
+          img {
+            width: 100%;
+          }
         }
 
         .list-item:hover {
