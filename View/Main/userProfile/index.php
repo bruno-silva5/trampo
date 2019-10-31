@@ -20,6 +20,24 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
+        
+        $variables = "";
+        $page_to_back = "";
+        $id_user = 0;
+
+        if(isset($_GET['chat'])) {
+            $page_to_back = "chatMessage";
+            $id_user = $_GET['id_user_to'];
+            $variables = "?id_user_from=".$_GET['id_user_from']."&id_user_to=".$_GET['id_user_to']."&name_user_to=".$_GET['name_user_to']."&id_conversation=".$_GET['id_conversation'];
+        } else if(isset($_GET['service_profile'])) {
+            $page_to_back = "serviceProfile";
+            $id_user = $_GET['id_user'];
+            $variables = "?occupation_subcategory=".$_GET['occupation_subcategory']."&id_service=".$_GET['id_service'];
+        } else if(isset($_GET['worker_list'])) {
+            $page_to_back = "workerList";
+            $id_user = $_GET['id_user'];
+            $variables = "?occupation_subcategory=".$_GET['occupation_subcategory']."&id_service=".$_GET['id_service'];
+        }
     ?>
 
     <header>
@@ -70,80 +88,36 @@
 
         <!-- Section HIRE and yours tabs -->
 
-        <section class="section-hire user-profile">
+        <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../chatMessage/?id_user_from=<?php echo $_GET['id_user_from'] ?>&id_user_to=<?php echo $_GET['id_user_to'] ?>&name_user_to=<?php echo $_GET['name_user_to'] ?>&id_conversation=<?php echo (isset($id_conversation['id']))?$id_conversation['id']:$_GET['id_conversation'] ?>"
-                    class="btn circle waves-effect waves-light hide-on-small-only"><i
-                        class="material-icons">arrow_back</i></a>
-                <a href="../chatMessage" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
-                        class="material-icons">arrow_back</i></a>
+                <div class="row">
+                    <a href="../<?php echo $page_to_back ?>/<?php echo $variables ?>"
+                        class="btn circle waves-effect waves-light"><i class="material-icons">arrow_back</i></a>
+                </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$_GET['id_user_to']."'");
-                    $row_user_to = mysqli_fetch_assoc($query);
+                    $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$id_user."'");
+                    $row_worker = mysqli_fetch_assoc($query);
                 ?>
-                <h5 class="center-align"><strong>Perfil</strong></h5>
-                <div class="divider"></div>
-                <div class="row center-align" style="padding: 2em 2em 1em">
-
-                    <img src="<?php echo $row_user_to['profile_picture']; ?>" alt="user profile" width="150" class="circle" height="150" style="object-fit:cover">
-                    <h5><?php echo $row_user_to['full_name']; ?></h5>
-                    <h6>Avaliação XXX</h6>
-                </div>
+                <h5 class="center-align"><strong>Perfil do usuário</strong></h5>
                 <div class="row">
-                    <div class="col s12 grey lighten-3">Serviços de <?php echo $row_user_to['full_name'] ?> pendentes</div>
+                    <div class="divider"></div>
                 </div>
-
-                <div class="wrapper-content">
-                    <?php 
-                        $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id_user = '".$row_user_to['id']."'") ;
-                        if(mysqli_num_rows($query) > 0) {
-                            while($row = mysqli_fetch_assoc($query)) {
-                    ?>
-                    <div class="card hoverable col s12 m4 l3">
-                        <a
-                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
-                            <div class="card-image">
-                                <div class="title-over-image">
-                                    <h5><?php echo $row['title'] ?> </h5>
-                                </div>
-                                <?php 
-                                    if(!empty($row['picture'])) {
-                                ?>
-                                <img src="<?php echo $row['picture'] ?>" alt="card-image">
-                                <?php
-                                    }
-                                ?>
-                            </div>
-                        </a>
-                        <div class="card-content">
-                            <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                    class="material-icons md-18">schedule</i> <i
-                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <div class="card-title">
-                                <i class="material-icons right">close</i>
-                            </div>
-                            <span class="card-title">
-                                <strong> <?php echo $row['title'] ?> </strong>
-                            </span>
-                            <p>
-                                <?php echo $row['description'] ?>
-                            </p>
-                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
-                                    class="valign-wrapper">Ver mais <i
-                                        class="material-icons">keyboard_arrow_right</i></a></p>
-                        </div>
+                <div class="row" style="max-width:900px">
+                    <div class="col s12 m4 center-align">
+                        <img src="<?php echo $row_worker['profile_picture']; ?>" style="object-fit:cover"
+                            class="z-depth-3 circle" height="200" width="200">
                     </div>
-
-                    <?php
-                            }
-                        }
-                    ?>
+                    <div class="col s12 m7 offset-m1">
+                        <h5><?php echo $row_worker['full_name']; ?></h5>
+                        <h6><b>Avaliação:</b> 22</h6>
+                        <h6><b>Localização:</b> <?php echo $row_worker['city'] ?></h6>
+                        <button class="btn" style="margin-top:2em"><i class="material-icons right">chat</i>Entrar em
+                            contato</button>
+                    </div>
                 </div>
-            </div>
+
             </div>
         </section>
 
@@ -161,6 +135,7 @@
             <button class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
+
 
     <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>

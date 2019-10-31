@@ -134,7 +134,7 @@
                 ?>
 
                 <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
-                    <a href="../workerProfile/?id_user=<?php echo $row['id_user'] ?>"
+                    <a href="../userProfile/?id_user=<?php echo $row['id_user']; ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>&service_profile"
                         class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">

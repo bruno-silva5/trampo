@@ -145,9 +145,9 @@
 
                     ?>
                         <div class="list-item z-depth-1 hoverable">
-                            <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" class="circle z-depth-3">
+                            <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" class="circle z-depth-2">
                             <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
-                            <a href="../workerProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>" class="btn waves-effect waves-light">Ver perfil</a>
+                            <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list" class="btn waves-effect waves-light">Ver perfil</a>
                         </div>
 
                     <?php
