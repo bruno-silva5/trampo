@@ -37,7 +37,8 @@
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -72,9 +73,11 @@
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn circle waves-effect waves-light hide-on-small-only"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>"
+                    class="btn circle waves-effect waves-light hide-on-small-only"><i
                         class="material-icons">arrow_back</i></a>
-                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
+                <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>"
+                    class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
                         class="material-icons">arrow_back</i></a>
 
                 <?php
@@ -82,14 +85,22 @@
                     $row_worker = mysqli_fetch_assoc($query);
                 ?>
                 <h5 class="center-align"><strong>Perfil do prestador</strong></h5>
-                <div class="divider"></div>
-                <div class="row center-align" style="padding: 2em 2em 1em">
-
-                    <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" width="150">
-                    <h5><?php echo $row_worker['full_name']; ?></h5>
-                    <h6>Avaliação XXX</h6><br>
-                    <a href="../chatMessage/?id_user_from=<?php echo $row['id'] ?>&id_user_to=<?php echo $row_worker['id'] ?>&name_user_to=<?php echo $row_worker['full_name'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>&hire_contact" class="btn modal-trigger">Entrar em contato</a>
+                <div class="row">
+                    <div class="divider"></div>
                 </div>
+                <div class="row" style="max-width:900px">
+                    <div class="col s12 m4 center-align">
+                        <img src="<?php echo $row_worker['profile_picture']; ?>" style="object-fit:cover"
+                            class="z-depth-3 circle" height="200" width="200">
+                    </div>
+                    <div class="col s12 m7 offset-m1">
+                        <h5><?php echo $row_worker['full_name']; ?></h5>
+                        <h6><b>Avaliação:</b> 22</h6>
+                        <h6><b>Localização:</b> <?php echo $row_worker['city'] ?></h6>
+                        <button class="btn" style="margin-top:2em"><i class="material-icons right">chat</i>Entrar em contato</button>
+                    </div>
+                </div>
+
             </div>
         </section>
 

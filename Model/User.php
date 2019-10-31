@@ -102,7 +102,7 @@
             $this->cidade = $cidade;
         }
         public function getCidade() : string{
-            return "sp ";
+            return $this->cidade;
         }
 
         public function setRua(string $rua){

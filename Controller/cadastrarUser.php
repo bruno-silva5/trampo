@@ -12,6 +12,7 @@
     $user->setSexo($_POST['gender']);
     $user->setDataNasc($_POST['birthday']);
     $user->setCep($_POST['cep']);
+    $user->setCidade($_POST['city']);
     $user->setEstado($_POST['estados-brasil']);
     $user->setRua($_POST['street']);
     $user->setNumero($_POST['number']);
@@ -19,6 +20,7 @@
     $user->setComplemento($_POST['complement']);
     $user->setCelular($_POST['phone-number']);
     $user->setSenha($_POST['password']);
+
 
     $daoUser->cadastrarUser($user);
 
