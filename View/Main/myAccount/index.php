@@ -139,7 +139,7 @@
                     <div class="col s12 m8 l7">
                         Data de nascimento:
                         <div class="input-field inline">
-                            <input type="date" max="1999-01-01" class="center-align"
+                            <input type="date" max="1999-12-31" class="center-align"
                                 value="<?php echo $row['birth_date'] ?>" name="birth_date">
                         </div>
                     </div>

@@ -68,14 +68,13 @@
                         class="material-icons">power_settings_new</i>Sair</a></li>
         </ul>
 
-
         <section class="section-hire">
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
-                <a href="../progress/" class="btn circle waves-effect waves-light hide-on-small-only"><i
-                        class="material-icons">arrow_back</i></a>
-                <a href="../progress/" class="btn-floating circle waves-effect waves-light hide-on-med-and-up"><i
-                        class="material-icons">arrow_back</i></a>
+                <div class="row">
+                    <a href="../progress/" class="btn circle waves-effect waves-light"><i
+                            class="material-icons">arrow_back</i></a>
+                </div>
 
                 <?php
                     $query = mysqli_query($conn, "SELECT service.id, service.description, service.title, service.id_user, service.picture, occupation.name, user.full_name FROM `service` 
@@ -96,22 +95,22 @@
                     <h5><?php echo $row['title']; ?></h5>
                     <div class="divider" style="margin-bottom:1em"></div>
                     <div class="col s12">
-                        <p><strong>Informações do serviço</strong></p>
+                        <h6>Informações do serviço</h6>
                     </div>
                     <div class="col s12 m2 left-align">
-                        <p><strong>Descrição: </strong></p>
+                        <p><b>Descrição: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
                         <p><?php echo $row['description']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
-                        <p><strong>Categoria: </strong></p>
+                        <p><b>Categoria: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
                         <p><?php echo $row['name']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
-                        <p><strong>Contratante: </strong></p>
+                        <p><b>Contratante: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
                         <p><?php echo $row['full_name']; ?></p>
@@ -127,7 +126,7 @@
                         if(mysqli_num_rows($query) > 0) {
                 ?>
                 <div class="row">
-                    <p class="center-align"><strong>Solicitações de trabalho</strong></p>
+                    <h6 class="center-align">Solicitações de trabalho</h6>
                 </div>
                 <?php
                             while($row = mysqli_fetch_assoc($query)) {
@@ -147,7 +146,8 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
+                        <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
+                            class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
                         <a href="#modal-accept-service" class="btn green waves-effect modal-trigger"
                             onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>, <?php echo $row['id_user']; ?>)"><i
@@ -194,7 +194,7 @@
                     <h5 class="center-align blue-text">Minha atual proposta</h5>
                 </div>
                 <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
-                    <a href="../workerProfile/?id_user=<?php echo $row['id_user'] ?>"
+                    <a href="../userProfile/?id_user=<?php echo $row['id_user'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>&service_profile"
                         class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
@@ -213,7 +213,7 @@
                     </div>
                 </div>
                 <?php
-                            } 
+                            }
                 ?>
                 <div class="row">
                     <h5 class="center-align blue-text"><strong>Oferecer nova proposta</strong></h5>

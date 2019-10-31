@@ -97,7 +97,7 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT * FROM user WHERE user.id = '".$id_user."'");
+                    $query = mysqli_query($conn, "SELECT user.* FROM user WHERE user.id = '".$id_user."'");
                     $row_worker = mysqli_fetch_assoc($query);
                 ?>
                 <h5 class="center-align"><strong>Perfil do usuário</strong></h5>
@@ -111,13 +111,40 @@
                     </div>
                     <div class="col s12 m7 offset-m1">
                         <h5><?php echo $row_worker['full_name']; ?></h5>
-                        <h6><b>Avaliação:</b> 22</h6>
-                        <h6><b>Localização:</b> <?php echo $row_worker['city'] ?></h6>
-                        <button class="btn" style="margin-top:2em"><i class="material-icons right">chat</i>Entrar em
-                            contato</button>
+                        <h6><b>Avaliação:</b> N/A</h6>
+                        <h6><b>Cidade:</b> <?php echo $row_worker['city'] ?></h6>
+                        <h6><b>Bairro: </b><?php echo $row_worker['neighborhood']; ?></h6>
+                        <h6>
+                            <b>Trabalha com: </b>
+                            <?php 
+                            
+                            $query = mysqli_query($conn, 
+                            "SELECT occupation.name FROM occupation 
+                            INNER JOIN user_occupation ON user_occupation.id_occupation = occupation.id
+                            WHERE id_user = '".$row_worker['id']."'");
+                            if(mysqli_num_rows($query) > 0) {
+                                while($row_occupation = mysqli_fetch_assoc($query)){
+                                    echo $row_occupation['name']."; ";
+                                }
+                            } else {
+                                echo 'Não disponível';
+                            }
+
+                            ?>
+                        </h6>
+                        <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $id_user; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact" class="btn waves-effect waves-light" style="margin-top:2em"
+                            <?php echo($id_user == $row['id'])?'disabled':''; ?>><i
+                                class="material-icons right">chat</i>Entrar em
+                            contato</a>
                     </div>
                 </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <h6 class="center-align">Serviços pendentes de <?php echo $row_worker['full_name']; ?>:</h6>
+                </div>
+                <div class="row">
 
+                </div>
             </div>
         </section>
 
