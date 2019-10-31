@@ -73,8 +73,6 @@
             </li>
             <li><a class="subheader">Configurações</a></li>
             <li class="active"><a href="" class="waves-effect">Minha conta</a></li>
-            <li><a href="#!" class="waves-effect">Preferências</a>
-            </li>
             <li>
                 <div class="divider"></div>
             </li>
