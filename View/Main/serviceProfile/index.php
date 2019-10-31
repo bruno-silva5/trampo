@@ -147,11 +147,11 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <a href="#!" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
+                        <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact" class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
-                        <a href="#modal-accept-service" class="btn green waves-effect modal-trigger"><i
-                                class="material-icons"
-                                onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>, <?php echo $row['id_user']; ?>)">done</i></a>
+                        <a href="#modal-accept-service" class="btn green waves-effect modal-trigger"
+                            onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>, <?php echo $row['id_user']; ?>)"><i
+                                class="material-icons">done</i></a>
                         <!-- accept service-->
                         <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
                             onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
