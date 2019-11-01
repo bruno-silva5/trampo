@@ -1,6 +1,12 @@
 <?php
     require("../../../Controller/verifica.php");
     include_once '../../../Dao/conexao.php';
+
+    $service_register = false;
+        if(isset($_COOKIE["form_submitted"])) {
+            $service_register = true;
+            setcookie("form_submitted", false, time()+3600, '/');
+        }
 ?>
 
 <!DOCTYPE html>
@@ -16,17 +22,6 @@
 </head>
 
 <body>
-
-    <?php
-        $service_register = false;
-        $occupation_subcategory;
-        if(isset($_GET['service_register'])) {
-            $service_register = true;
-        }
-        if(isset($_GET['occupation_subcategory'])) {
-            $occupation_subcategory = $_GET['occupation_subcategory'];
-        }
-    ?>
 
     <?php 
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
@@ -142,20 +137,23 @@
                             while($row_worker = mysqli_fetch_assoc($query)) {
 
                     ?>
-                        <div class="list-item z-depth-1 hoverable">
-                            <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" class="circle z-depth-2">
-                            <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
-                            <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list" class="btn waves-effect waves-light">Ver perfil</a>
-                        </div>
+                    <div class="list-item z-depth-1 hoverable">
+                        <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile"
+                            class="circle z-depth-2">
+                        <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
+                        <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
+                            class="btn waves-effect waves-light">Ver perfil</a>
+                    </div>
 
                     <?php
                             }
                         } else {
                     ?>
-                        <div>
-                            <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon" width="200">
-                            <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
-                        </div>
+                    <div>
+                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
+                            width="200">
+                        <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                    </div>
                     <?php
                         }
                     ?>
@@ -184,7 +182,7 @@
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
     <script type="text/javascript">
-    var service_register = "<?php echo $service_register ?>";
+    var service_register = "<?php echo $service_register; ?>";
     if (service_register) {
         M.toast({
             html: 'Serviço cadastrado!'

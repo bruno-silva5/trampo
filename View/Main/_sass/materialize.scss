@@ -103,7 +103,7 @@ main {
     }
 
     .card-content {
-      padding: 0.6em;
+      padding: 1em;
       padding-bottom: 0.3em;
 
       i {
@@ -113,7 +113,7 @@ main {
 
     .card-image {
       height: 150px !important;
-      width: 200px;
+      width: 200px !important;
 
       .title-over-image {
         position: absolute;
@@ -141,9 +141,9 @@ main {
     }
 
     .card-title {
-      font-size: 1.4em;
-      line-height: 1.3em;
-      text-align: left;
+      font-size: 1.4em !important;
+      line-height: 1.3em !important;
+      text-align: left !important;
     }
   }
 

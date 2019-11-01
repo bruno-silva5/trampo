@@ -21,30 +21,13 @@
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
         
-        $variables = "";
-        $page_to_back = "";
-        $id_user = 0;
-
-        if(isset($_GET['chat'])) {
-            $page_to_back = "chatMessage";
-            $id_user = $_GET['id_user_to'];
-            $variables = "?id_user_from=".$_GET['id_user_from']."&id_user_to=".$_GET['id_user_to']."&name_user_to=".$_GET['name_user_to']."&id_conversation=".$_GET['id_conversation'];
-        } else if(isset($_GET['service_profile'])) {
-            $page_to_back = "serviceProfile";
-            $id_user = $_GET['id_user'];
-            $variables = "?occupation_subcategory=".$_GET['occupation_subcategory']."&id_service=".$_GET['id_service'];
-        } else if(isset($_GET['worker_list'])) {
-            $page_to_back = "workerList";
-            $id_user = $_GET['id_user'];
-            $variables = "?occupation_subcategory=".$_GET['occupation_subcategory']."&id_service=".$_GET['id_service'];
-        }
     ?>
 
     <header>
         <nav class="nav-extended z-depth-0">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="#!" class="brand-logo center">Contratar</a>
+                <a href="#!" class="brand-logo center">Perfil</a>
             </div>
         </nav>
     </header>
@@ -65,8 +48,7 @@
             </li>
             <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
-            <li class="active"><a href="../hire" class="waves-effect"><i
-                        class="material-icons">assignment_ind</i>Contratar</a></li>
+            <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
             <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
             </li>
             <li><a href="../chatList" class="waves-effect"><i class="material-icons">chat</i>Chat</a>
@@ -90,12 +72,13 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <a href="../<?php echo $page_to_back ?>/<?php echo $variables ?>"
-                        class="btn circle waves-effect waves-light"><i class="material-icons">arrow_back</i></a>
+                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                        <i class="material-icons">arrow_back</i>
+                    </button>
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT user.* FROM user WHERE user.id = '".$id_user."'");
+                    $query = mysqli_query($conn, "SELECT user.* FROM user WHERE user.id = '".$_GET['id_user']."'");
                     $row_worker = mysqli_fetch_assoc($query);
                 ?>
                 <h5 class="center-align"><strong>Perfil do usuário</strong></h5>
@@ -130,8 +113,9 @@
 
                             ?>
                         </h6>
-                        <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $id_user; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact" class="btn waves-effect waves-light" style="margin-top:2em"
-                            <?php echo($id_user == $row['id'])?'disabled':''; ?>><i
+                        <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
+                            class="btn waves-effect waves-light" style="margin-top:2em"
+                            <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>><i
                                 class="material-icons right">chat</i>Entrar em
                             contato</a>
                     </div>
@@ -140,8 +124,59 @@
                 <div class="row">
                     <h6 class="center-align">Serviços pendentes de <?php echo $row_worker['full_name']; ?>:</h6>
                 </div>
-                <div class="row">
+                <div class="user-profile">
 
+                    <div class="wrapper-content" style="padding: 1em 1em;">
+                        <?php
+                        $query = mysqli_query($conn, "SELECT * FROM service WHERE 
+                        service.id_user = '".$_GET['id_user']."'");
+                        if(mysqli_num_rows($query) > 0) {
+                        while($row = mysqli_fetch_assoc($query)) {
+                    ?>
+
+                        <div class="card hoverable col s12 m4 l3">
+                            <a
+                                href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                                <div class="card-image">
+                                    <div class="title-over-image">
+                                        <h5><?php echo $row['title'] ?> </h5>
+                                    </div>
+                                    <?php 
+                                    if(!empty($row['picture'])) {
+                                ?>
+                                    <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                    <?php
+                                    }
+                                ?>
+                                </div>
+                            </a>
+                            <div class="card-content">
+                                <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                        class="material-icons md-18">schedule</i> <i
+                                        class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                            </div>
+                            <div class="card-reveal">
+                                <div class="card-title">
+                                    <i class="material-icons right">close</i>
+                                </div>
+                                <span class="card-title">
+                                    <strong> <?php echo $row['title'] ?> </strong>
+                                </span>
+                                <p>
+                                    <?php echo $row['description'] ?>
+                                </p>
+                                <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
+                                        class="valign-wrapper">Ver mais <i
+                                            class="material-icons">keyboard_arrow_right</i></a></p>
+                            </div>
+                        </div>
+
+                        <?php
+                        }
+                    }
+                    ?>
+
+                    </div>
                 </div>
             </div>
         </section>

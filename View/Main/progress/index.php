@@ -93,7 +93,7 @@
 
                     <div class="card hoverable col s12 m4 l3">
                         <a
-                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                            href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress">
                             <div class="card-image">
                                 <div class="title-over-image">
                                     <h5><?php echo $row['title'] ?> </h5>
@@ -122,7 +122,7 @@
                             <p>
                                 <?php echo $row['description'] ?>
                             </p>
-                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
                                     class="valign-wrapper">Ver mais <i
                                         class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>

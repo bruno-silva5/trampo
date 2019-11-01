@@ -81,6 +81,7 @@
                 $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$row['id']."'");
                 if(!mysqli_num_rows($query) > 0) {
             ?>
+
             <div class="row z-depth-3">
                 <div class="become-worker">
                     <form class="row" id="form-becomeWorker" action="../../../Controller/becomeWorker.php"
@@ -153,7 +154,7 @@
 
                         <div class="card hoverable col s12 m4 l3">
                             <a
-                                href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>">
+                                href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
                                 <div class="card-image">
                                     <div class="title-over-image">
                                         <h5><?php echo $row['title'] ?> </h5>
@@ -182,7 +183,7 @@
                                 <p>
                                     <?php echo $row['description'] ?>
                                 </p>
-                                <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                                <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
                                         class="valign-wrapper">Ver mais <i
                                             class="material-icons">keyboard_arrow_right</i></a></p>
                             </div>

@@ -101,7 +101,7 @@
                     </div>
                     <div class="col">
                         <a
-                            href="../userProfile/?id_user_from=<?php echo $_GET['id_user_from'] ?>&id_user_to=<?php echo $_GET['id_user_to'] ?>&name_user_to=<?php echo $_GET['name_user_to'] ?>&id_conversation=<?php echo (isset($id_conversation['id']))?$id_conversation['id']:$_GET['id_conversation'] ?>&chat">
+                            href="../userProfile/?id_user=<?php echo $_GET['id_user_to']; ?>">
                             <h5 class="white-text"><?php echo $_GET['name_user_to']; ?></h5>
                         </a>
                     </div>

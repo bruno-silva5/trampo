@@ -23,10 +23,6 @@
             header("Location: ../hire");
         }
 
-        $error = false;
-        if(isset($_GET['error'])) {
-            $error = true;
-        }
     ?>
 
     <?php 

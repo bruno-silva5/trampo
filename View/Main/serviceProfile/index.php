@@ -27,7 +27,7 @@
         <nav class="nav-extended z-depth-0">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="#!" class="brand-logo center">Contratar</a>
+                <a href="#!" class="brand-logo center">Serviço</a>
             </div>
         </nav>
     </header>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </li>
-            <li class="active"><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
+            <li><a href="../progress" class="waves-effect"><i class="material-icons">cached</i>Em
                     progresso</a></li>
             <li><a href="../hire" class="waves-effect"><i class="material-icons">assignment_ind</i>Contratar</a></li>
             <li><a href="../work" class="waves-effect"><i class="material-icons">build</i>Trabalhar</a>
@@ -70,8 +70,9 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <a href="../progress/" class="btn circle waves-effect waves-light"><i
-                            class="material-icons">arrow_back</i></a>
+                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                        <i class="material-icons">arrow_back</i>
+                    </button>
                 </div>
 
                 <?php

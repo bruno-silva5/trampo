@@ -9098,7 +9098,7 @@ main .works-list .card-reveal {
 main .section-progress .card-content,
 main .user-profile .card-content,
 main .works-list .card-content {
-  padding: 0.6em;
+  padding: 1em;
   padding-bottom: 0.3em;
 }
 
@@ -9112,7 +9112,7 @@ main .section-progress .card-image,
 main .user-profile .card-image,
 main .works-list .card-image {
   height: 150px !important;
-  width: 200px;
+  width: 200px !important;
 }
 
 main .section-progress .card-image .title-over-image,
@@ -9149,9 +9149,9 @@ main .works-list .card-image img {
 main .section-progress .card-title,
 main .user-profile .card-title,
 main .works-list .card-title {
-  font-size: 1.4em;
-  line-height: 1.3em;
-  text-align: left;
+  font-size: 1.4em !important;
+  line-height: 1.3em !important;
+  text-align: left !important;
 }
 
 main .section-hire .search-service .collection {
