@@ -24,6 +24,7 @@ class daoUser
 
             $insert = mysqli_query($conn, $query);
             if ($insert) {
+                setcookie("registered_user", true, time()+3600, '/');
                 header("Location: ../View/TelaLogin/");
             } else {
                 header("Location: ../View/Error/DadosInvalidos");

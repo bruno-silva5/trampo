@@ -1,3 +1,11 @@
+<?php 
+    $registered_user = false;
+    if(isset($_COOKIE['registered_user'])) {
+        $registered_user = true;
+        setcookie("registered_user", false, time()+3600, '/');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,7 +40,8 @@
                 </div>
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="password" id="senha" minlength="8" maxlength="20" name="senha">
+                        <input class="mdl-textfield__input" type="password" id="senha" minlength="8" maxlength="20"
+                            name="senha">
                         <label class="mdl-textfield__label" for="senha">Senha</label>
                     </div>
                 </div>
@@ -40,15 +49,42 @@
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
                     <a href="../Home"><button type="button"
                             class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">Voltar</button></a>
-                    <button type="submit " class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect " action="../../Controller/logar.php" method="POST">Entrar</button>
+                    <button type="submit "
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect "
+                        action="../../Controller/logar.php" method="POST">Entrar</button>
                 </div>
             </form>
         </div>
 
     </main>
+
+    <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+
     <img src="img/icons/bottom-desktop-background.png " alt="background " class="desktop-bottom-background ">
-    <script src="js/main.js "></script>
-    <script src="js/material.min.js ">
+
+    <script type="text/javascript" src="js/main.js "></script>
+    <script type="text/javascript" src="js/material.min.js "></script>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var service_register = "<?php echo $registered_user; ?>";
+            if (service_register) {
+                (function() {
+                    'use strict';
+                    var snackbarContainer = document.querySelector('#demo-toast-example');
+                    var showToastButton = document.querySelector('#demo-show-toast');
+                    'use strict';
+                    var data = {
+                        message: 'Cadastro realizado! Por favor, faça login. '
+                    };
+                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                }());
+            }
+        }, 100);
+    });
     </script>
 </body>
 

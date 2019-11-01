@@ -23,7 +23,7 @@
         <input type="checkbox" id="toggle">
         <label for="toggle" class="navbar-icon"><img src="img/icon/navbar-icon.svg" alt="navbar icon"></label>
         <nav class="menu">
-            <a href="../TelaLogin/index.html">Entrar</a>
+            <a href="../TelaLogin/">Entrar</a>
             <a href="../UserRegister/">Cadastrar-se</a>
         </nav>
     </header>
