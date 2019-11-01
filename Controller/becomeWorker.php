@@ -42,7 +42,8 @@
         M.toast({html: 'Informações cadastradas!'});
         $("#submit-becomeWorker").addClass("disabled");
         setTimeout(function () {
-            window.location.href = "../work/?new_worker";
+            <?php setcookie("new_worker", true, time()+3600, '/'); ?>
+            window.location.href = "../work/";
         }, 600);
     }
 </script>

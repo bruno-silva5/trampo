@@ -17,8 +17,9 @@
 
 <body>
     <?php 
-        if(isset($_GET['new_worker'])) {
+        if(isset($_COOKIE['new_worker'])) {
             $new_worker = true;
+            setcookie("new_worker", false, time()+3600, '/');
         } else {
             $new_worker = false;
         }
