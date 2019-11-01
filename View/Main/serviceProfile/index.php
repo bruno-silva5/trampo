@@ -1,6 +1,16 @@
 <?php
     require("../../../Controller/verifica.php");
     include_once '../../../Dao/conexao.php';
+
+    //check if there is cookie, then pass it to the javascript for the toast message
+    $toast = "";
+    if(isset($_COOKIE['registered_service_request'])) {
+        $toast = "Proposta enviada!";
+        setcookie("registered_service_request", false, time()+3600, '/');
+    } else if(isset($_COOKIE['deleted_request'])) {
+        $toast = "Proposta excluída!";
+        setcookie("deleted_request", false, time()+3600, '/');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +31,7 @@
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
         $id_user = $row['id'];
+        
     ?>
 
     <header>
@@ -218,7 +229,7 @@
                     <h5 class="center-align blue-text"><strong>Oferecer nova proposta</strong></h5>
                 </div>
                 <form
-                    action="../../../Controller/insertServiceRequest.php/?id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"
+                    action="../../../Controller/insertServiceRequest.php/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"
                     method="POST" class="row">
                     <div class="input-field col s12 m12">
                         <i class="material-icons prefix">create</i>
@@ -309,6 +320,17 @@
     <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
+    <script type="text/javascript">
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var toast = "<?php echo $toast ?>";
+        if (toast != "") {
+            M.toast({
+                html: toast
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>

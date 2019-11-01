@@ -21,9 +21,10 @@
         } else {
             $dao_serviceRequest->updateServiceRequest($model_serviceRequest);
         }
-        header("Location: ../../View/Main/work");
+        setcookie("registered_service_request", true, time()+3600, '/');
+        header("Location: ../../View/Main/serviceProfile/?occupation_subcategory=".$_GET['occupation_subcategory']."&id_service=".$_GET['id_service']);
     } else {
-        header("Location: ../../View/Main/serviceProfile/?id_service=".$_GET['id_service']);
+        header("Location: ../../View/Main/serviceProfile/?id_service=".$_GET['id_service']."&occupation_subcategory=".$_GET['occupation_subcategory']);
     }
 
 ?>
