@@ -87,7 +87,7 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.title, service.id_user, service.picture, occupation.name, user.full_name FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.title, service.id_user, service.picture, occupation.name, user.full_name FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
                     INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id 
@@ -130,10 +130,11 @@
 
                 <?php 
                      if($row['id_user'] == $id_user) {
-                        $query = mysqli_query($conn, "SELECT service_request.*, user.full_name, user.id id_user, user.profile_picture FROM `service_request` 
-                        INNER JOIN user ON service_request.id_user = user.id
-                        WHERE service_request.id IN (SELECT MAX(id) FROM service_request WHERE id_service = '".$row['id']."' GROUP BY id_user) ORDER BY service_request.id DESC");
-                        if(mysqli_num_rows($query) > 0) {
+                        if($row['id_request_accepted'] == null) {
+                            $query = mysqli_query($conn, "SELECT service_request.*, user.full_name, user.id id_user, user.profile_picture FROM `service_request` 
+                            INNER JOIN user ON service_request.id_user = user.id
+                            WHERE service_request.id IN (SELECT MAX(id) FROM service_request WHERE id_service = '".$row['id']."' GROUP BY id_user) ORDER BY service_request.id DESC");
+                            if(mysqli_num_rows($query) > 0) {
                 ?>
                 <div class="row">
                     <h6 class="center-align">Solicitações de trabalho</h6>
@@ -160,7 +161,7 @@
                             class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
                         <a href="#modal-accept-service" class="btn green waves-effect modal-trigger"
-                            onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>, <?php echo $row['id_user']; ?>)"><i
+                            onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>, <?php echo $row['id_request_accepted']; ?>)"><i
                                 class="material-icons">done</i></a>
                         <!-- accept service-->
                         <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
@@ -181,6 +182,12 @@
 
                 <?php
                         }
+                    } else {
+                        echo 'tem neguin contratado';
+                ?>
+
+                <?php
+                    }
                 ?>
                 <div class="row right-align" style="margin-top:4em">
                     <button class="btn-flat">Editar serviço</button>

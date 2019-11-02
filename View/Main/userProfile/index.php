@@ -173,10 +173,15 @@
 
                         <?php
                         }
+                        ?>
+                    </div>
+                    <?php
+                    } else {
+                    ?>
+                    <p class="center-align">Não há serviços deste usuário disponível</p>
+                    <?php 
                     }
                     ?>
-
-                    </div>
                 </div>
             </div>
         </section>
