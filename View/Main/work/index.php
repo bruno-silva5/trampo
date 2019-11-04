@@ -144,7 +144,8 @@
                     "SELECT * FROM service WHERE service.id_occupation_subcategory IN
                      (SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN 
                       (SELECT occupation.id FROM occupation WHERE occupation.id IN
-                       (SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '".$id_user."'))) AND service.id_user != '".$id_user."'");
+                       (SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '".$id_user."'))) 
+                       AND service.id_user != '".$id_user."' AND service.id_request_accepted = null");
                     if(mysqli_num_rows($query) > 0) {
                     ?>
 
@@ -201,7 +202,7 @@
                     <div class="row" style="max-width:700px">
                         <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white" class="col s8 m4 offset-s2 offset-m4">
                         <div class="col s12">
-                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço para você.</h6>
+                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.</h6>
                         </div>
                     </div>
 
