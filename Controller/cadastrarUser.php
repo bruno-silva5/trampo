@@ -20,7 +20,8 @@
     $user->setComplemento($_POST['complement']);
     $user->setCelular($_POST['phone-number']);
     $user->setSenha($_POST['password']);
-
+    $user->setLatitude($_POST['lat']);
+    $user->setLongitude($_POST['lon']); 
 
     $daoUser->cadastrarUser($user);
 

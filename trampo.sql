@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.0-alpha1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Out-2019 às 15:52
--- Versão do servidor: 10.3.16-MariaDB
--- versão do PHP: 7.3.6
+-- Tempo de geração: 31-Out-2019 às 23:00
+-- Versão do servidor: 5.6.15-log
+-- versão do PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -234,22 +234,25 @@ CREATE TABLE `user` (
   `neighborhood` varchar(100) DEFAULT NULL,
   `home_number` varchar(10) DEFAULT NULL,
   `address_complement` varchar(100) DEFAULT NULL,
-  `profile_picture` varchar(400) NOT NULL DEFAULT '../_img/user_profile_picture/user.svg'
+  `profile_picture` varchar(400) NOT NULL DEFAULT '../_img/user_profile_picture/user.svg',
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
-INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`) VALUES
-(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/bruno.png'),
-(31, 'Marcela Tavares', 'marcela@live.com', 'Defina uma senha', 'F', '(11) 97987-9879', '491.024.080-23', '1998-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '4', 'de 135/136 ao fim', '../_img/user_profile_picture/xmarcela-temer2.jpg.pagespeed.ic.zF7HsPE9tu.jpg'),
-(33, 'sfgsgs', 'julia@live.com', 'Defina uma senha', 'M', '(11) 97123-7983', '503.850.338-18', '1333-12-13', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '2', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
-(35, 'Contratante Teste', 'julio@live.com', 'Defina uma senha', 'M', '(11) 21413-4242', '882.422.920-43', '1998-09-16', '29120-050', 'Rua Luiz Americano', 'ES', 'sp ', 'Aribiri', '45', '', '../_img/user_profile_picture/user.svg'),
-(36, 'Paulo Almeida Alencar', 'paulo@live.com', 'Defina uma senha', 'M', '(11) 98987-8986', '882.422.920-43', '1998-12-20', '71725-100', 'QR 1', 'DF', 'sp ', 'Candangolândia', '5', '', '../_img/user_profile_picture/user.svg'),
-(37, 'Mariana Almeida', 'mariana@live.com', 'Defina uma senha', 'F', '(11) 98798-4764', '882.422.920-43', '1999-04-20', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '5', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg'),
-(38, 'Poliana Almeida Tavares Cabral', 'almeida@live.com', 'Defina uma senha', 'F', '(11) 98748-9498', '086.675.870-44', '1991-09-18', '68903-627', 'Travessa SétimaConj. Habitacional da Embrapa', 'AP', 'sp ', 'Universidade', '2', '', '../_img/user_profile_picture/user.svg'),
-(39, 'Roberty Santos', 'ricardo@live.com', 'Defina uma senha', 'M', '(11) 98749-6764', '518.037.678-55', '1990-09-04', '64039-530', 'Quadra F5', 'PI', 'sp ', 'Esplanada', '2', '(Cj P Alegre)', '../_img/user_profile_picture/user.svg');
+INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`, `latitude`, `longitude`) VALUES
+(30, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98969-5672', '494.022.368-05', '1995-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '45', 'de 135/136 ao fim', '../_img/user_profile_picture/bruno.png', NULL, NULL),
+(31, 'Marcela Tavares', 'marcela@live.com', 'Defina uma senha', 'F', '(11) 97987-9879', '491.024.080-23', '1998-01-13', '08246106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '4', 'de 135/136 ao fim', '../_img/user_profile_picture/xmarcela-temer2.jpg.pagespeed.ic.zF7HsPE9tu.jpg', NULL, NULL),
+(33, 'sfgsgs', 'julia@live.com', 'Defina uma senha', 'M', '(11) 97123-7983', '503.850.338-18', '1333-12-13', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '2', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg', NULL, NULL),
+(35, 'Contratante Teste', 'julio@live.com', 'Defina uma senha', 'M', '(11) 21413-4242', '882.422.920-43', '1998-09-16', '29120-050', 'Rua Luiz Americano', 'ES', 'sp ', 'Aribiri', '45', '', '../_img/user_profile_picture/user.svg', NULL, NULL),
+(36, 'Paulo Almeida Alencar', 'paulo@live.com', 'Defina uma senha', 'M', '(11) 98987-8986', '882.422.920-43', '1998-12-20', '71725-100', 'QR 1', 'DF', 'sp ', 'Candangolândia', '5', '', '../_img/user_profile_picture/user.svg', NULL, NULL),
+(37, 'Mariana Almeida', 'mariana@live.com', 'Defina uma senha', 'F', '(11) 98798-4764', '882.422.920-43', '1999-04-20', '08246-106', 'Rua Juçaral', 'SP', 'sp ', 'Parada XV de Novembro', '5', 'de 135/136 ao fim', '../_img/user_profile_picture/user.svg', NULL, NULL),
+(38, 'Poliana Almeida Tavares Cabral', 'almeida@live.com', 'Defina uma senha', 'F', '(11) 98748-9498', '086.675.870-44', '1991-09-18', '68903-627', 'Travessa SétimaConj. Habitacional da Embrapa', 'AP', 'sp ', 'Universidade', '2', '', '../_img/user_profile_picture/user.svg', NULL, NULL),
+(39, 'Roberty Santos', 'ricardo@live.com', 'Defina uma senha', 'M', '(11) 98749-6764', '518.037.678-55', '1990-09-04', '64039-530', 'Quadra F5', 'PI', 'sp ', 'Esplanada', '2', '(Cj P Alegre)', '../_img/user_profile_picture/user.svg', NULL, NULL),
+(40, 'felipe', 'felipepires29@gmail.com', '12345678', 'M', '(11) 95160-6609', '518.037.678-55', '1990-07-23', '08451-030', 'Rua Tingoassuíba', 'SP', 'São Paulo', 'Vila Iolanda(Lajeado)', '12', '', '../_img/user_profile_picture/user.svg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -382,7 +385,7 @@ ALTER TABLE `service_request`
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `user_occupation`
@@ -440,3 +443,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

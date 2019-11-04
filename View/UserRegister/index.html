@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQcUlMxgnSTEZdj7P4JbPcXkFwI2HC-Es" type="text/javascript"></script>
     <title>Cadastre-se</title>
+
 </head>
 
 <body>
@@ -74,7 +76,7 @@
                     </div>
                     <div class="mdl-cell mdl-cell--5-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="max-width: 150px">
-                            <input class="mdl-textfield__input" type="text" id="input-phone_number"  name="phone-number">
+                            <input class="mdl-textfield__input" type="text" id="input-phone_number" name="phone-number">
                             <label class="mdl-textfield__label" for="input-phone_number">Celular</label>
                         </div>
                     </div>
@@ -82,8 +84,10 @@
 
                 <div class="form-step mdl-grid">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--4-col form-cep">
-                        <input type="text" class="mdl-textfield__input" maxlength="9" onblur="pesquisacep(this.value);" id="input-cep" name="cep">
+                        <input type="text" class="mdl-textfield__input" maxlength="9" onblur="pesquisacep(this.value);converteEndereco();" id="input-cep" name="cep">
                         <label class="mdl-textfield__label" for="input-cep">CEP*</label>
+                        <input type="hidden" name="lat" id="lat" value="">
+                        <input type="hidden" name="lon" id="lon" value="">
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
                         <label>Estado&emsp;</label>
@@ -161,8 +165,7 @@
                     </label>
                 </div>
             </form>
-            <a href="../Home"><button
-                    class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary back-button btn-back">Voltar</button>  
+            <a href="../Home"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary back-button btn-back">Voltar</button>
             </a>
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored submit-button" onclick="next()">
                 <i class="material-icons">navigate_next</i>
@@ -174,7 +177,32 @@
     <script src="js/jquery.mask.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/material.min.js"></script>
+    <!-- latitude e longitude -->
+    <script>
+        function converteEndereco() {
+            
+            var cep = document.getElementById("input-cep").value;
+            if (cep == null) {
 
+            } else {
+                geocoder = new google.maps.Geocoder();
+                var lat = '';
+                var lng = '';
+
+                geocoder.geocode({
+                    'address': cep
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        lat = results[0].geometry.location.lat();
+                        lng = results[0].geometry.location.lng();
+                        document.getElementById('lat').value = lat;
+                        document.getElementById('lon').value = lng;
+                    }
+                });
+            }
+        }
+
+    </script>
 </body>
 
 </html>

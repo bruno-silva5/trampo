@@ -133,6 +133,22 @@
                 <div class="list center-align">
 
                     <?php
+                        include "../../../Model/Filter.php";
+                        $f = new Filter();
+
+                        //lat e long da session
+                        
+                        $query = mysqli_query($conn,"SELECT lat, lon FROM user WHERE email = '".$_SESSION['email']."'");
+
+                        if(mysqli_num_rows($query) > 0) {
+                            while($row = mysqli_fetch_assoc($query)) {
+                                $origem = [
+                                    'lat' => $row['lat'],
+                                    'lon' => $row['lon']
+                                ];
+                            }
+                        }
+
                         $query = mysqli_query($conn, 
                         "SELECT * FROM user WHERE user.id IN 
                         (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
@@ -142,7 +158,11 @@
 
                         if(mysqli_num_rows($query) > 0) {
                             while($row_worker = mysqli_fetch_assoc($query)) {
-
+                                $destino = [
+                                    'lat' => $row_worker['lat'],
+                                    'lon' => $row_worker['lon']
+                                ];
+                                if($f->haversine($origem, $destino) < 20){
                     ?>
                         <div class="list-item z-depth-1 hoverable">
                             <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile" class="circle z-depth-2">
@@ -152,6 +172,7 @@
 
                     <?php
                             }
+                        }
                         } else {
                     ?>
                         <div>
