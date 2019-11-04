@@ -15,12 +15,13 @@
         private $bairro;
         private $complemento;
         private $servico;
-        private $curriculo;
         private $disponivel;
         private $emailAntigo;
         private $senhaAntiga;
         private $id_user_occupation;
         private $work_info;
+        private $latitude;
+        private $longitude;
 
         public function setSenhaAntiga($senhaAntiga){
             $this->senhaAntiga = $senhaAntiga;
@@ -161,6 +162,22 @@
 
         public function getWorkInfo() {
             return $this->work_info;
+        }
+        
+        public function setLatitude($latitude){
+            $this->latitude = $latitude;
+        }
+
+        public function getLatitude() {
+            return $this->latitude;
+        }
+        
+         public function setLongitude($longitude){
+            $this->longitude = $longitude;
+        }
+
+        public function getLongitude() {
+            return $this->longitude;
         }
 
         

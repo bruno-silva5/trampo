@@ -13,14 +13,17 @@ class daoUser
         } else {
             $query = "INSERT INTO user(full_name, email, password, birth_date,
                  gender, cpf, uf, city, address, neighborhood,
-                  home_number, address_complement, cep, phone_number)
+                  home_number, address_complement, cep,lat,lon, phone_number)
                             values('" . $user->getNome() . "', '" . $user->getEmail() . "',
                              '" . $user->getSenha() . "', '" . $user->getDataNasc() . "',
                               '" . $user->getSexo() . "', '" . $user->getCPF() . "',
                                '" . $user->getEstado() . "', '" . $user->getCidade() . "',
                                 '" . $user->getRua() . "', '" . $user->getBairro() . "',
                                  '" . $user->getNumero() . "', '" . $user->getComplemento() . "', 
-                                 '" . $user->getCep() . "','" . $user->getCelular() . "')";
+                                 '" . $user->getCep() . "',
+                                 '" . $user->getLatitude() . "',
+                                 '" . $user->getLongitude() . "',
+                                 '" . $user->getCelular() . "')";
 
             $insert = mysqli_query($conn, $query);
             if ($insert) {

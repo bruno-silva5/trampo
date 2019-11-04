@@ -2,7 +2,7 @@
 
     header("content-type: text/html;charset=utf-8");
 
-    $servidor = "localhost";
+    $servidor = "127.0.0.1";
     $usuario = "root";
     $senha = "";
     $dbname = "trampo";
