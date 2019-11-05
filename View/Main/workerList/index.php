@@ -168,7 +168,7 @@
                     <?php
                             }
                         }
-                        } else {
+                    } else {
                     ?>
                     <div>
                         <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"

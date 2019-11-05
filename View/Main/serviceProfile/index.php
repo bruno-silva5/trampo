@@ -90,7 +90,7 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.title, service.id_user, service.picture, occupation.name, user.full_name FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
                     INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id 
@@ -126,7 +126,7 @@
                         <p><b>Contratante: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
-                        <p><?php echo $row['full_name']; ?></p>
+                        <p><a href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a></p>
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -235,8 +235,10 @@
                     </div>
                 </div>
                 <div class="row right-align">
-                    <a href="#!" class="btn waves-effect waves-light orange darken-4"><i
-                            class="material-icons right">report</i>Relatar problema</a>
+                    <a href="#!" class="btn waves-effect waves-light orange darken-4">
+                        <i class="material-icons right">report</i>Relatar problema
+                    </a>
+
                 </div>
                 <?php
                     }
@@ -324,7 +326,8 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <button class="btn waves-effect waves-light disabled"><i class="material-icons">chat</i></button>
+                        <button class="btn waves-effect waves-light disabled"><i
+                                class="material-icons">chat</i></button>
                         <!-- talk to the worker-->
                     </div>
                 </div>

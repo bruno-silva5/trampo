@@ -145,7 +145,7 @@
                      (SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN 
                       (SELECT occupation.id FROM occupation WHERE occupation.id IN
                        (SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '".$id_user."'))) 
-                       AND service.id_user != '".$id_user."' AND service.id_request_accepted = null");
+                       AND service.id_user != '".$id_user."' AND service.id_request_accepted IS NULL");
                     if(mysqli_num_rows($query) > 0) {
                     ?>
 
