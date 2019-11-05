@@ -78,6 +78,7 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 container-extended padding">
                 <h5 class="center-align">Lista de prestadores para seu serviço</h5>
+                <h6 class="center-align grey-text">Prestadores disponíveis próximo de você</h6>
                 <div class="row">
                     <div class="col s12">
                         <ul class="collapsible z-depth-0">
@@ -120,7 +121,10 @@
                                             </select>
                                         </div>
                                         <div class="col s12">
-                                            <h6 class="center-align"><strong>Distância</strong></h6>
+                                            <h6 class="center-align"><strong>Distância (KM)</strong></h6>
+                                            <p class="range-field">
+                                                <input type="range" min="0" max="100" value="20">
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +187,7 @@
                             width="200">
                         <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
                     </div>
-                    
+
                     <?php
                         }
                     ?>

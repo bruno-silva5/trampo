@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.0-alpha1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2019 at 01:26 PM
+-- Generation Time: Nov 05, 2019 at 11:04 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -34,13 +34,6 @@ CREATE TABLE `conversation` (
   `id_user_2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `conversation`
---
-
-INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
-(33, 56, 57);
-
 -- --------------------------------------------------------
 
 --
@@ -54,14 +47,6 @@ CREATE TABLE `message` (
   `id_user_to` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text`) VALUES
-(253, 33, 56, 57, 'Ola, pode fazer o meu serviço?'),
-(254, 33, 57, 56, 'sim, posso sim, vou enviar a proposta no perfil dele e vc aceita blz?');
 
 -- --------------------------------------------------------
 
@@ -171,15 +156,9 @@ CREATE TABLE `service` (
   `is_visible` varchar(20) DEFAULT NULL,
   `id_occupation_subcategory` int(11) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `id_request_accepted` int(11) DEFAULT NULL
+  `id_request_accepted` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `service`
---
-
-INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `id_request_accepted`) VALUES
-(158, 'now', 'Entregar minha geladeira', 'Preciso que entreguem a minha geladeira lá na penha', NULL, 'true', 43, 56, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,13 +173,6 @@ CREATE TABLE `service_request` (
   `price` decimal(14,2) NOT NULL,
   `description` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `service_request`
---
-
-INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(98, 158, 57, '80.00', 'Opa, posso fazer isso, tenho disponibilide para amanhã mesmo');
 
 -- --------------------------------------------------------
 
@@ -225,17 +197,17 @@ CREATE TABLE `user` (
   `home_number` varchar(10) DEFAULT NULL,
   `address_complement` varchar(100) DEFAULT NULL,
   `profile_picture` varchar(400) NOT NULL DEFAULT '../_img/user_profile_picture/user.svg',
-  `latitude` double DEFAULT NULL,
-  `longitude` double DEFAULT NULL
+  `lat` double DEFAULT NULL,
+  `lon` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`) VALUES
-(56, 'Bruno Silva', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 90982-9083', '405.020.590-44', '1990-01-13', '12340-510', 'Estrada do Barreirinho', 'SP', 'Jacareí', 'Chácaras Rurais Guararema', '2', '', '../_img/user_profile_picture/bruno.png'),
-(57, 'Alexia Pereira', 'alexia@live.com', 'Defina uma senha', 'F', '(11) 90982-9083', '148.054.170-21', '1999-02-04', '63018-680', 'Rua Antônio Cardoso de Souza', 'CE', 'Juazeiro do Norte', 'Pedrinhas', '6', '', '../_img/user_profile_picture/alexia.png');
+INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`, `lat`, `lon`) VALUES
+(58, 'Bruno Silva', 'bruno@Live.com', 'Defina uma senha', 'M', '(11) 98120-9381', '742.532.310-98', '1993-01-13', '70673-304', 'SQSW 303 Bloco D', 'DF', 'Brasília', 'Setor Sudoeste', '33', '', '../_img/user_profile_picture/bruno.png', -15.7998967, -47.926236200000005),
+(59, 'Felipe Pires', 'felipe@live.com', 'Defina uma senha', 'M', '(11) 90482-3094', '919.580.250-97', '1990-03-20', '69075-000', 'Avenida Buriti', 'AM', 'Manaus', 'Distrito Industrial I', '2', '', '../_img/user_profile_picture/felipe.png', -3.094542, -59.95207370000003);
 
 -- --------------------------------------------------------
 
@@ -255,10 +227,7 @@ CREATE TABLE `user_occupation` (
 --
 
 INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) VALUES
-(183, 'Tenho uma hilux', 7, 57),
-(184, 'Tenho uma hilux', 9, 57),
-(185, 'Trabalho bem', 2, 56),
-(186, 'Trabalho bem', 6, 56);
+(187, 'Faço carretos com minha hilux', 7, 59);
 
 --
 -- Indexes for dumped tables
@@ -357,25 +326,25 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT for table `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- Constraints for dumped tables
@@ -428,4 +397,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

@@ -90,7 +90,7 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.time_remaining, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
                     INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id 
@@ -123,11 +123,10 @@
                         <p><?php echo $row['name']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
-                        <p><b>Status: </b></p>
+                        <p><b>Para quando: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
-                    <!-- place the service status here -->
-                        <p><?php echo 'mmmmmmm'; ?></p>
+                        <p><?php echo $row['time_remaining']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
                         <p><b>Contratante: </b></p>

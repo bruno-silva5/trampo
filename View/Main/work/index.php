@@ -138,7 +138,35 @@
                     <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
                     <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
                     <h6 class="center-align grey-text">Lista de serviços baseados com o que você trabalha</h6>
-
+                    <div class="col s12">
+                        <ul class="collapsible z-depth-0">
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">search</i>
+                                    Filtros de busca
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="row">
+                                        <div class="col s12 m4">
+                                            <h6><strong>Ordenar por</strong></h6>
+                                            <select>
+                                                <option value="">Maior Avaliação</option>
+                                                <option value="">Menor Avaliação</option>
+                                                <option value="">Menor distância</option>
+                                                <option value="">Maior distância</option>
+                                            </select>
+                                        </div>
+                                        <div class="col s12">
+                                            <h6 class="center-align"><strong>Distância (KM)</strong></h6>
+                                            <p class="range-field">
+                                                <input type="range" min="0" max="100" value="20">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     <?php
                     $query = mysqli_query($conn, 
                     "SELECT * FROM service WHERE service.id_occupation_subcategory IN
@@ -198,11 +226,13 @@
                     <?php
                     } else {
                     ?>
-                    
+
                     <div class="row" style="max-width:700px">
-                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white" class="col s8 m4 offset-s2 offset-m4">
+                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white"
+                            class="col s8 m4 offset-s2 offset-m4">
                         <div class="col s12">
-                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.</h6>
+                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.
+                            </h6>
                         </div>
                     </div>
 

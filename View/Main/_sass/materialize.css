@@ -9056,6 +9056,31 @@ main {
   padding-top: 4em;
 }
 
+main .section-progress .collapsible,
+main .user-profile .collapsible,
+main .works-list .collapsible {
+  border: none !important;
+}
+
+main .section-progress .collapsible .collapsible-header,
+main .user-profile .collapsible .collapsible-header,
+main .works-list .collapsible .collapsible-header {
+  font-size: 1.3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1565c0;
+}
+
+main .section-progress .collapsible .collapsible-body h6,
+main .user-profile .collapsible .collapsible-body h6,
+main .works-list .collapsible .collapsible-body h6 {
+  margin: 1.5em 0;
+}
+
 main .section-progress .no-hire,
 main .section-progress .no-work,
 main .user-profile .no-hire,
@@ -9154,7 +9179,7 @@ main .works-list .card-title {
   text-align: left !important;
 }
 
-main .section-hire .search-service .collection {
+main .section-hire .search-service .collection, main .section-work .search-service .collection {
   position: absolute;
   width: 100%;
   z-index: 2;
@@ -9163,61 +9188,61 @@ main .section-hire .search-service .collection {
   overflow-y: auto;
 }
 
-main .section-hire .card-image {
+main .section-hire .card-image, main .section-work .card-image {
   height: 150px !important;
 }
 
-main .section-hire .card-image img {
+main .section-hire .card-image img, main .section-work .card-image img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100% !important;
 }
 
-main .section-hire .card-content {
+main .section-hire .card-content, main .section-work .card-content {
   padding: 1em !important;
 }
 
-main .section-hire .step {
+main .section-hire .step, main .section-work .step {
   padding: 1em;
   margin-top: 1em;
 }
 
-main .section-hire .step h6 {
+main .section-hire .step h6, main .section-work .step h6 {
   margin-top: 1em !important;
   margin: auto;
   max-width: 200px;
 }
 
-main .section-hire .step img {
+main .section-hire .step img, main .section-work .step img {
   height: 70px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-main .section-hire .container-extended {
+main .section-hire .container-extended, main .section-work .container-extended {
   width: 92%;
   margin: 2em auto;
   background: #fff;
 }
 
-main .section-hire .container-extended .switch {
+main .section-hire .container-extended .switch, main .section-work .container-extended .switch {
   margin: 1em 0;
 }
 
-main .section-hire .container-extended .switch .lever {
+main .section-hire .container-extended .switch .lever, main .section-work .container-extended .switch .lever {
   margin-left: 0;
 }
 
-main .section-hire .container-extended .switch .switch-description {
+main .section-hire .container-extended .switch .switch-description, main .section-work .container-extended .switch .switch-description {
   font-size: 1.3em;
   color: black;
 }
 
-main .section-hire .container-extended .collapsible {
+main .section-hire .container-extended .collapsible, main .section-work .container-extended .collapsible {
   border: none !important;
 }
 
-main .section-hire .container-extended .collapsible .collapsible-header {
+main .section-hire .container-extended .collapsible .collapsible-header, main .section-work .container-extended .collapsible .collapsible-header {
   font-size: 1.3em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9228,11 +9253,11 @@ main .section-hire .container-extended .collapsible .collapsible-header {
   color: #1565c0;
 }
 
-main .section-hire .container-extended .collapsible .collapsible-body h6 {
+main .section-hire .container-extended .collapsible .collapsible-body h6, main .section-work .container-extended .collapsible .collapsible-body h6 {
   margin: 1.5em 0;
 }
 
-main .section-hire .container-extended .list {
+main .section-hire .container-extended .list, main .section-work .container-extended .list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9243,7 +9268,7 @@ main .section-hire .container-extended .list {
       flex-wrap: wrap;
 }
 
-main .section-hire .container-extended .list .list-item {
+main .section-hire .container-extended .list .list-item, main .section-work .container-extended .list .list-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9264,29 +9289,29 @@ main .section-hire .container-extended .list .list-item {
           box-sizing: border-box;
 }
 
-main .section-hire .container-extended .list .list-item img {
+main .section-hire .container-extended .list .list-item img, main .section-work .container-extended .list .list-item img {
   width: 150px;
   height: 150px;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-main .section-hire .container-extended .list a {
+main .section-hire .container-extended .list a, main .section-work .container-extended .list a {
   margin-top: 0.8em;
 }
 
-main .section-hire .container-extended .list h6 {
+main .section-hire .container-extended .list h6, main .section-work .container-extended .list h6 {
   font-size: 1.3em;
   height: 2.2em;
   overflow: hidden;
 }
 
-main .section-hire .padding {
+main .section-hire .padding, main .section-work .padding {
   padding: 2em;
   margin-top: 2em;
 }
 
-main .section-hire .card-title {
+main .section-hire .card-title, main .section-work .card-title {
   margin: 0 !important;
 }
 

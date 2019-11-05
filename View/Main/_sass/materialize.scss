@@ -78,6 +78,22 @@ main {
   .section-progress,
   .user-profile,
   .works-list {
+    .collapsible {
+      border: none !important;
+
+      .collapsible-header {
+        font-size: 1.3em;
+        display: flex;
+        align-items: center;
+        color: #1565c0;
+      }
+
+      .collapsible-body {
+        h6 {
+          margin: 1.5em 0;
+        }
+      }
+    }
     .no-hire,
     .no-work {
       margin-top: 7em;
@@ -147,7 +163,7 @@ main {
     }
   }
 
-  .section-hire {
+  .section-hire, .section-work {  
     .search-service {
       .collection {
         position: absolute;
