@@ -7,6 +7,7 @@
         private $picture;
         private $is_visible;
         private $id_user;
+        private $status;
 
         public function setIdOccupationSubcategory($id_occupation_subcategory) {
             $this->id_occupation_subcategory = $id_occupation_subcategory;
@@ -62,6 +63,14 @@
 
         public function getIdUser() {
             return $this->id_user;
+        }
+
+        public function setStatus($status) {
+            $this->status = $status;
+        }
+
+        public function getStatus() {
+            return $this->status;
         }
 
     }

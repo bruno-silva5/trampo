@@ -104,10 +104,10 @@
                     </div>
                     <div class="input-field col s12">
                         <select name="time-remaining" id="time-remaining">
-                            <option value="now">O quanto antes</option>
-                            <option value="next_week">A próxima semana</option>
-                            <option value="two_weeks">Duas semanas</option>
-                            <option value="no_forecast">Sem previsão</option>
+                            <option value="O quanto antes">O quanto antes</option>
+                            <option value="A próxima semana">A próxima semana</option>
+                            <option value="Duas semanas">Duas semanas</option>
+                            <option value="Sem previsão">Sem previsão</option>
                         </select>
                         <label>Para quando é o serviço?</label>
                     </div>

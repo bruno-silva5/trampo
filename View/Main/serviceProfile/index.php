@@ -123,10 +123,19 @@
                         <p><?php echo $row['name']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
+                        <p><b>Status: </b></p>
+                    </div>
+                    <div class="col s12 m10 left-align">
+                    <!-- place the service status here -->
+                        <p><?php echo 'mmmmmmm'; ?></p>
+                    </div>
+                    <div class="col s12 m2 left-align">
                         <p><b>Contratante: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
-                        <p><a href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a></p>
+                        <p>
+                            <a href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a>
+                        </p>
                     </div>
                 </div>
                 <div class="divider"></div>

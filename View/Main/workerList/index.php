@@ -113,9 +113,14 @@
                                         <div class="col s12 m6">
                                             <h6><strong>Ordenar por</strong></h6>
                                             <select>
-                                                <option value="">Avaliação</option>
-                                                <option value="">Distância</option>
+                                                <option value="">Maior Avaliação</option>
+                                                <option value="">Menor Avaliação</option>
+                                                <option value="">Menor distância</option>
+                                                <option value="">Maior distância</option>
                                             </select>
+                                        </div>
+                                        <div class="col s12">
+                                            <h6 class="center-align"><strong>Distância</strong></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -141,21 +146,23 @@
                                 ];
                             }
                         }
-
+                        //select the users that can do the job
                         $query = mysqli_query($conn, 
                         "SELECT * FROM user WHERE user.id IN 
                         (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
                         (SELECT occupation.id FROM occupation WHERE occupation.id IN 
                         (SELECT occupation_subcategory.id_occupation FROM occupation_subcategory 
                         WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$row['id']."' ");
-
-                        if(mysqli_num_rows($query) > 0) {
-                            while($row_worker = mysqli_fetch_assoc($query)) {
-                                $destino = [
-                                    'lat' => $row_worker['lat'],
-                                    'lon' => $row_worker['lon']
-                                ];
-                                if($f->haversine($origem, $destino) < 20){
+                        
+                        //count the numbers of workers that can do the job
+                        $count_workers = 0;
+                        while($row_worker = mysqli_fetch_assoc($query)) {
+                            $destino = [
+                                'lat' => $row_worker['lat'],
+                                'lon' => $row_worker['lon']
+                            ];
+                            if($f->haversine($origem, $destino) < 20){
+                                $count_workers++;
                     ?>
                     <div class="list-item z-depth-1 hoverable">
                         <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile"
@@ -168,16 +175,19 @@
                     <?php
                             }
                         }
-                    } else {
+                        if($count_workers == 0) {
                     ?>
+
                     <div>
                         <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
                             width="200">
                         <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
                     </div>
+                    
                     <?php
                         }
                     ?>
+
 
                 </div>
             </div>
