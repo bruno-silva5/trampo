@@ -33,7 +33,8 @@
             $service->setIsVisible("false");
         }
         $service->setIdUser($id_user);
-        $service->setStatus("Pendente");
+        //mark it as pendente
+        $service->setStatus(0);
         $dao_service->cadastrarService($service);
         $last_id = $dao_service->getLastRegisteredId();
         setcookie("form_submitted", true, time()+3600, '/');

@@ -85,7 +85,8 @@
                     if(mysqli_num_rows($query) > 0) {
                 ?>
 
-                <h5 class="center-align grey-text" style="margin-bottom:0 !important">Contratos que você disponibilizou</h5>
+                <h5 class="center-align grey-text" style="margin-bottom:0 !important">Contratos que você disponibilizou
+                </h5>
                 <div class="wrapper-content">
                     <?php
                         while($row = mysqli_fetch_assoc($query)) {
@@ -108,9 +109,46 @@
                             </div>
                         </a>
                         <div class="card-content">
-                            <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                    class="material-icons md-18">schedule</i> <i
-                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                        <!-- Check service status -->
+                            <?php
+                            // check if the service is pendente 
+                                if($row['status'] == 0) {
+                            ?>
+
+                            <span class="card-title activator orange-text text-darken-4">
+                                Pendente
+                                <i class="material-icons md-18">schedule</i>
+                                <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                            </span>
+
+                            <?php
+                            // check if the service is in progress
+                                } else if ($row['status'] == 1){
+                            ?>
+
+                            <span class="card-title activator green-text text-darken-4" style="font-size:1.3em !important">
+                                Em progresso
+                                <i class="material-icons md-18">schedule</i>
+                                <!-- change icon -->
+                                <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                            </span>
+
+                            <?php 
+                            // check if the service is done
+                                } else if ($row['status'] == 2){
+                            ?>
+
+                            <span class="card-title activator grey-text text-darken-4">
+                                Encerrado
+                                <i class="material-icons md-18">schedule</i>
+                                <!-- change icon -->
+                                <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                            </span>
+
+                            <?php 
+                                }
+                            ?>
+
                         </div>
                         <div class="card-reveal">
                             <div class="card-title">
@@ -144,7 +182,8 @@
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
-                            <h6>Você não tem nenhum serviço <a href="../hire">contratado</a>. Clique na aba <a href="../hire">contratar</a><br> e comece a contratar
+                            <h6>Você não tem nenhum serviço <a href="../hire">contratado</a>. Clique na aba <a
+                                    href="../hire">contratar</a><br> e comece a contratar
                                 agora mesmo!</h6>
                         </div>
                     </div>
@@ -223,7 +262,8 @@
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
-                            <h6>Você não tem nenhum <a href="../work">serviço</a> realizado ou em andamento. Clique na aba <a href="../work">trabalhar</a><br> e comece a trabalhar
+                            <h6>Você não tem nenhum <a href="../work">serviço</a> realizado ou em andamento. Clique na
+                                aba <a href="../work">trabalhar</a><br> e comece a trabalhar
                                 agora mesmo!</h6>
                         </div>
                     </div>
