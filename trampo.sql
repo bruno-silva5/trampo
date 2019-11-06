@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2019 at 11:04 PM
+-- Generation Time: Nov 07, 2019 at 12:39 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -160,6 +160,14 @@ CREATE TABLE `service` (
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `id_request_accepted`, `status`) VALUES
+(164, 'O quanto antes', '21', '1', NULL, 'false', 46, 58, NULL, 0),
+(165, 'Duas semanas', 'Entregar geladeira', 'Preciso que entreguem a minha geladeira lá na Penha', '../_img/service_picture/geladeira.jpg', 'true', 43, 58, 100, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -173,6 +181,13 @@ CREATE TABLE `service_request` (
   `price` decimal(14,2) NOT NULL,
   `description` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service_request`
+--
+
+INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
+(100, 165, 59, '200.00', 'Consigo entregar na segunda-feira que vem');
 
 -- --------------------------------------------------------
 
@@ -326,13 +341,13 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `user`
