@@ -109,7 +109,7 @@
                             </div>
                         </a>
                         <div class="card-content">
-                        <!-- Check service status -->
+                            <!-- Check service status -->
                             <?php
                             // check if the service is pendente 
                                 if($row['status'] == 0) {
@@ -126,9 +126,10 @@
                                 } else if ($row['status'] == 1){
                             ?>
 
-                            <span class="card-title activator green-text text-darken-4" style="font-size:1.3em !important">
+                            <span class="card-title activator green-text text-darken-4"
+                                style="font-size:1.3em !important">
                                 Em progresso
-                                <i class="material-icons md-18">schedule</i>
+                                <i class="material-icons md-18">autorenew</i>
                                 <!-- change icon -->
                                 <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
                             </span>
@@ -140,7 +141,7 @@
 
                             <span class="card-title activator grey-text text-darken-4">
                                 Encerrado
-                                <i class="material-icons md-18">schedule</i>
+                                <i class="material-icons md-18">done</i>
                                 <!-- change icon -->
                                 <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
                             </span>
@@ -226,9 +227,47 @@
                             </div>
                         </a>
                         <div class="card-content">
-                            <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                    class="material-icons md-18">schedule</i> <i
-                                    class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                            <!-- Check service status -->
+                            <?php
+                            // check if the service is pendente 
+                                if($row['status'] == 0) {
+                            ?>
+
+                            <span class="card-title activator orange-text text-darken-4">
+                                Pendente
+                                <i class="material-icons md-18">schedule</i>
+                                <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                            </span>
+
+                            <?php
+                            // check if the service is in progress
+                                } else if ($row['status'] == 1){
+                            ?>
+
+                            <span class="card-title activator green-text text-darken-4"
+                                style="font-size:1.3em !important">
+                                Em progresso
+                                <i class="material-icons md-18">autorenew</i>
+                                <!-- change icon -->
+                                <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                            </span>
+
+                            <?php 
+                            // check if the service is done
+                                } else if ($row['status'] == 2){
+                            ?>
+
+                            <span class="card-title activator grey-text text-darken-4">
+                                Encerrado
+                                <i class="material-icons md-18">done</i>
+                                <!-- change icon -->
+                                <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                            </span>
+
+                            <?php 
+                                }
+                            ?>
+
                         </div>
                         <div class="card-reveal">
                             <div class="card-title">

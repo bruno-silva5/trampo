@@ -133,7 +133,8 @@
                     </div>
                     <div class="col s12 m10 left-align">
                         <p>
-                            <a href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a>
+                            <a
+                                href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a>
                         </p>
                     </div>
                 </div>
@@ -244,9 +245,15 @@
                 </div>
                 <div class="row right-align">
                     <a href="#!" class="btn waves-effect waves-light orange darken-4">
-                        <i class="material-icons right">report</i>Relatar problema
+                        <i class="material-icons right">report</i>
+                        Relatar problema
                     </a>
-
+                </div>
+                <div class="row right-align">
+                    <a href="#!" class="btn waves-effect waves-light green darken-4">
+                        <i class="material-icons right">done</i>
+                        Finalizar serviço
+                    </a>
                 </div>
                 <?php
                     }
@@ -340,9 +347,19 @@
                     </div>
                 </div>
                 <div class="row right-align">
-                    <a href="#!" class="btn waves-effect orange darken-4"><i
-                            class="material-icons right">report</i>Relatar problema</a>
+                    <a href="#!" class="btn waves-effect orange darken-4">
+                        <i class="material-icons right">report</i>
+                        Relatar problema
+                    </a>
                 </div>
+
+                <div class="row right-align">
+                    <a href="#!" class="btn waves-effect green darken-4">
+                        <i class="material-icons right">done</i>
+                        Finalizar serviço
+                    </a>
+                </div>
+
                 <?php 
                             } else {
                 ?>
