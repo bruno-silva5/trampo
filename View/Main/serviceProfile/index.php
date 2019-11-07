@@ -250,7 +250,7 @@
                     </a>
                 </div>
                 <div class="row right-align">
-                    <a href="#!" class="btn waves-effect waves-light green darken-4">
+                    <a href="#modal-finish-service" class="btn waves-effect waves-light green darken-4 modal-trigger">
                         <i class="material-icons right">done</i>
                         Finalizar serviço
                     </a>
@@ -354,7 +354,7 @@
                 </div>
 
                 <div class="row right-align">
-                    <a href="#!" class="btn waves-effect green darken-4">
+                    <a href="#modal-finish-service" class="btn waves-effect green darken-4 modal-trigger">
                         <i class="material-icons right">done</i>
                         Finalizar serviço
                     </a>
@@ -458,7 +458,7 @@
         </div>
     </div>
 
-    <!-- Modal dismiss service -->
+    <!-- Modal dismiss hired user (NOT USING) -->
     <div class="modal" id="modal-dismiss-hired-user">
         <div class="modal-content">
             <div class="row">
@@ -473,6 +473,34 @@
             <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
             <div class="col s6 center-align">
                 <a href="#!" id="dismiss-hired-user" class="btn waves-effect red">Dispensar prestador</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal finish service -->
+    <div class="modal" id="modal-finish-service">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <h4 class="center-align">Tem certeza?</h4>
+                </div>
+            </div>
+            <div class="row">
+                <h6 class="justify-align">
+                    Clicando em <span class="green-text text-darken-4"><b>Finalizar</b></span> você irá alertar que o serviço 
+                     foi finalizado, e será enviado uma confirmação para o outro usuário indicar que está tudo certo, 
+                     caso haja conflitos, a moderação da plataforma <span class="blue-text"><b>trampo</b></span> irá analisar o caso.
+                </h6>
+            </div>
+        </div>
+        <div class="modal-footer row">
+            <div class="col s6 center-align">
+                <button class="btn-flat waves-effect modal-close">Cancelar</button>    
+            </div>
+            <div class="col s6 center-align">
+                <a href="#!" class="btn waves-effect waves-light green darken-4">
+                    Finalizar <i class="material-icons right">done</i>
+                </a>
             </div>
         </div>
     </div>
