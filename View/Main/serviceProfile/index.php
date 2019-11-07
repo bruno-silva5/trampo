@@ -245,7 +245,7 @@
                 </div>
                 <div class="row right-align">
                     <a href="../report" class="btn waves-effect waves-light orange darken-4">
-                        <i class="material-icons right">report</i>
+                        <i class="material-icons right">warning</i>
                         Relatar problema
                     </a>
                 </div>
@@ -348,7 +348,7 @@
                 </div>
                 <div class="row right-align">
                     <a href="../report" class="btn waves-effect orange darken-4">
-                        <i class="material-icons right">report</i>
+                        <i class="material-icons right">warning</i>
                         Relatar problema
                     </a>
                 </div>

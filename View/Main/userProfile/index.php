@@ -113,11 +113,19 @@
 
                             ?>
                         </h6>
-                        <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
-                            class="btn waves-effect waves-light" style="margin-top:2em"
-                            <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>><i
-                                class="material-icons right">chat</i>Entrar em
-                            contato</a>
+                        <div class="row" style="margin-top:2em">
+                            <div class="col s12">
+                                <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
+                                    class="btn waves-effect waves-light"
+                                    <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>>
+                                    <i class="material-icons right">chat</i>
+                                    Entrar em contato
+                                </a>
+                                <a href="../report" class="btn red darken-4 waves-effect waves-light" <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>>
+                                    <i class="material-icons">warning</i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="divider"></div>
