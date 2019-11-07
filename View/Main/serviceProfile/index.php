@@ -13,6 +13,10 @@
     } else if(isset($_COOKIE['accept_request'])) {
         $toast = "Prestador contratado!";
         setcookie("accept_request", false, time()+3600, '/');
+    } else if(isset($_COOKIE['who_finish_service'])) {
+        $toast = "Aguardando confirmação...";
+        setcookie("who_finish_service", false, time()+3600, '/');
+        
     }
 ?>
 
@@ -90,13 +94,15 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.time_remaining, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.who_finished, service.time_remaining, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
                     INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id 
                     INNER JOIN user ON service.id_user = user.id
                     WHERE service.id = '".$_GET['id_service']."'");
                     $row = mysqli_fetch_assoc($query);
+                    $who_finished = $row['who_finished'];
+                    $confirm_finish_service = ($who_finished != null && $who_finished != $id_user)?true:false;
                 ?>
                 <h5 class="center-align"><strong>Detalhes do serviço</strong></h5>
                 <div class="divider"></div>
@@ -250,9 +256,8 @@
                     </a>
                 </div>
                 <div class="row right-align">
-                    <a href="#modal-finish-service" class="btn waves-effect waves-light green darken-4 modal-trigger">
-                        <i class="material-icons right">done</i>
-                        Finalizar serviço
+                    <a href="#modal-finish-service" class="btn waves-effect waves-light green darken-4 modal-trigger <?php echo($who_finished == $id_user)?'disabled':''; ?>">
+                        <?php echo($who_finished == $id_user)?'Aguardando confirmação...':"Finalizar serviço <i class='material-icons right'>done</i>"; ?>
                     </a>
                 </div>
                 <?php
@@ -488,8 +493,8 @@
             <div class="row">
                 <h6 class="justify-align">
                     Clicando em <span class="green-text text-darken-4"><b>Finalizar</b></span> você irá alertar que o serviço 
-                     foi finalizado, e será enviado uma confirmação para o outro usuário indicar que está tudo certo, 
-                     caso haja conflitos, a moderação da plataforma <span class="blue-text"><b>trampo</b></span> irá analisar o caso.
+                    foi finalizado, e será enviado uma confirmação para o outro usuário indicar que está tudo certo, 
+                    caso haja conflitos, a moderação da plataforma <span class="blue-text"><b>trampo</b></span> irá analisar o caso.
                 </h6>
             </div>
         </div>
@@ -498,13 +503,30 @@
                 <button class="btn-flat waves-effect modal-close">Cancelar</button>    
             </div>
             <div class="col s6 center-align">
-                <a href="#!" class="btn waves-effect waves-light green darken-4">
+                <a href="../../../Controller/finishService.php/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_user=<?php echo $id_user ?>"
+                 class="btn waves-effect waves-light green darken-4">
                     Finalizar <i class="material-icons right">done</i>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- modal confirm finish service -->
+    <div class="modal" id="modal-confirm-finish-service">
+        <div class="modal-content">
+            <div class="row">
+                <h5 class="center-align">Confirmação de serviço finalizado</h5>
+            </div>
+        </div>
+        <div class="footer row center-align">
+            <div class="col s6">
+                <button class="btn waves-effect waves-light red modal-close">Cancelar</button>
+            </div>
+            <div class="col s6 center-align">
+                <a href="#" class="btn waves-effect waves-light green darken-3">Confirmar</a>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
@@ -513,10 +535,18 @@
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var toast = "<?php echo $toast ?>";
+        var confirm_finish_service = "<?php echo $confirm_finish_service ?>";
+        var elem_modal_confirm_finish_service = document.querySelector("#modal-confirm-finish-service");
+        var instance_modal_confirm_finish_service = M.Modal.init(elem_modal_confirm_finish_service);
+
         if (toast != "") {
             M.toast({
                 html: toast
             });
+        }
+
+        if(confirm_finish_service) {
+            instance_modal_confirm_finish_service.open();
         }
     });
     </script>

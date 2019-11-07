@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 07, 2019 at 12:39 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- Host: 127.0.0.1
+-- Tempo de geração: 07-Nov-2019 às 22:55
+-- Versão do servidor: 10.4.8-MariaDB
+-- versão do PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `trampo`
+-- Banco de dados: `trampo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversation`
+-- Estrutura da tabela `conversation`
 --
 
 CREATE TABLE `conversation` (
@@ -37,7 +37,7 @@ CREATE TABLE `conversation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Estrutura da tabela `message`
 --
 
 CREATE TABLE `message` (
@@ -51,7 +51,7 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `occupation`
+-- Estrutura da tabela `occupation`
 --
 
 CREATE TABLE `occupation` (
@@ -60,7 +60,7 @@ CREATE TABLE `occupation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `occupation`
+-- Extraindo dados da tabela `occupation`
 --
 
 INSERT INTO `occupation` (`id`, `name`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `occupation` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `occupation_subcategory`
+-- Estrutura da tabela `occupation_subcategory`
 --
 
 CREATE TABLE `occupation_subcategory` (
@@ -88,7 +88,7 @@ CREATE TABLE `occupation_subcategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `occupation_subcategory`
+-- Extraindo dados da tabela `occupation_subcategory`
 --
 
 INSERT INTO `occupation_subcategory` (`id`, `name`, `id_occupation`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `occupation_subcategory` (`id`, `name`, `id_occupation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Estrutura da tabela `service`
 --
 
 CREATE TABLE `service` (
@@ -157,21 +157,23 @@ CREATE TABLE `service` (
   `id_occupation_subcategory` int(11) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   `id_request_accepted` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
+  `status` int(11) DEFAULT NULL,
+  `who_finished` int(11) DEFAULT NULL,
+  `is_finished` tinyint(1) DEFAULT NULL,
+  `issue_finished` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `service`
+-- Extraindo dados da tabela `service`
 --
 
-INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `id_request_accepted`, `status`) VALUES
-(164, 'O quanto antes', '21', '1', NULL, 'false', 46, 58, NULL, 0),
-(165, 'Duas semanas', 'Entregar geladeira', 'Preciso que entreguem a minha geladeira lá na Penha', '../_img/service_picture/geladeira.jpg', 'true', 43, 58, 100, 1);
+INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `id_request_accepted`, `status`, `who_finished`, `is_finished`, `issue_finished`) VALUES
+(166, 'O quanto antes', 'a', 'a', NULL, 'false', 43, 58, 101, 1, 58, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_request`
+-- Estrutura da tabela `service_request`
 --
 
 CREATE TABLE `service_request` (
@@ -183,16 +185,16 @@ CREATE TABLE `service_request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `service_request`
+-- Extraindo dados da tabela `service_request`
 --
 
 INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(100, 165, 59, '200.00', 'Consigo entregar na segunda-feira que vem');
+(101, 166, 59, '2.00', 'a');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estrutura da tabela `user`
 --
 
 CREATE TABLE `user` (
@@ -217,7 +219,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Extraindo dados da tabela `user`
 --
 
 INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`, `lat`, `lon`) VALUES
@@ -227,7 +229,7 @@ INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_num
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_occupation`
+-- Estrutura da tabela `user_occupation`
 --
 
 CREATE TABLE `user_occupation` (
@@ -238,18 +240,18 @@ CREATE TABLE `user_occupation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_occupation`
+-- Extraindo dados da tabela `user_occupation`
 --
 
 INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) VALUES
 (187, 'Faço carretos com minha hilux', 7, 59);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `conversation`
+-- Índices para tabela `conversation`
 --
 ALTER TABLE `conversation`
   ADD PRIMARY KEY (`id`),
@@ -257,7 +259,7 @@ ALTER TABLE `conversation`
   ADD KEY `id_user_2` (`id_user_2`);
 
 --
--- Indexes for table `message`
+-- Índices para tabela `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
@@ -266,29 +268,30 @@ ALTER TABLE `message`
   ADD KEY `id_user_to` (`id_user_to`);
 
 --
--- Indexes for table `occupation`
+-- Índices para tabela `occupation`
 --
 ALTER TABLE `occupation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `occupation_subcategory`
+-- Índices para tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_occupation` (`id_occupation`);
 
 --
--- Indexes for table `service`
+-- Índices para tabela `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_occupation_subcategory` (`id_occupation_subcategory`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `hired_id_user` (`id_request_accepted`);
+  ADD KEY `hired_id_user` (`id_request_accepted`),
+  ADD KEY `who_finished` (`who_finished`);
 
 --
--- Indexes for table `service_request`
+-- Índices para tabela `service_request`
 --
 ALTER TABLE `service_request`
   ADD PRIMARY KEY (`id`),
@@ -296,13 +299,13 @@ ALTER TABLE `service_request`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `user`
+-- Índices para tabela `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_occupation`
+-- Índices para tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
   ADD PRIMARY KEY (`id`),
@@ -310,70 +313,70 @@ ALTER TABLE `user_occupation`
   ADD KEY `id_occupation` (`id_occupation`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `conversation`
+-- AUTO_INCREMENT de tabela `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `message`
+-- AUTO_INCREMENT de tabela `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
--- AUTO_INCREMENT for table `occupation`
+-- AUTO_INCREMENT de tabela `occupation`
 --
 ALTER TABLE `occupation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `occupation_subcategory`
+-- AUTO_INCREMENT de tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `service`
+-- AUTO_INCREMENT de tabela `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
--- AUTO_INCREMENT for table `service_request`
+-- AUTO_INCREMENT de tabela `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
--- AUTO_INCREMENT for table `user_occupation`
+-- AUTO_INCREMENT de tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
--- Constraints for table `conversation`
+-- Limitadores para a tabela `conversation`
 --
 ALTER TABLE `conversation`
   ADD CONSTRAINT `conversation_ibfk_1` FOREIGN KEY (`id_user_1`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `conversation_ibfk_2` FOREIGN KEY (`id_user_2`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `message`
+-- Limitadores para a tabela `message`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`conversation`) REFERENCES `conversation` (`id`),
@@ -381,28 +384,29 @@ ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`id_user_to`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `occupation_subcategory`
+-- Limitadores para a tabela `occupation_subcategory`
 --
 ALTER TABLE `occupation_subcategory`
   ADD CONSTRAINT `occupation_subcategory_ibfk_1` FOREIGN KEY (`id_occupation`) REFERENCES `occupation` (`id`);
 
 --
--- Constraints for table `service`
+-- Limitadores para a tabela `service`
 --
 ALTER TABLE `service`
   ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`id_occupation_subcategory`) REFERENCES `occupation_subcategory` (`id`),
   ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `service_ibfk_3` FOREIGN KEY (`id_request_accepted`) REFERENCES `service_request` (`id`);
+  ADD CONSTRAINT `service_ibfk_3` FOREIGN KEY (`id_request_accepted`) REFERENCES `service_request` (`id`),
+  ADD CONSTRAINT `service_ibfk_4` FOREIGN KEY (`who_finished`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `service_request`
+-- Limitadores para a tabela `service_request`
 --
 ALTER TABLE `service_request`
   ADD CONSTRAINT `service_request_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `service` (`id`),
   ADD CONSTRAINT `service_request_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `user_occupation`
+-- Limitadores para a tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
   ADD CONSTRAINT `user_occupation_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
