@@ -94,7 +94,7 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT service.id, service.description, service.id_request_accepted, service.who_finished, service.time_remaining, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
+                    $query = mysqli_query($conn, "SELECT service.id, service.description,service.id_request_accepted, service.who_finished, service.is_finished, service.time_remaining, service.title, service.id_user, service.picture, occupation.name, user.full_name, user.id id_user FROM `service` 
                     INNER JOIN occupation_subcategory
                     ON service.id_occupation_subcategory = occupation_subcategory.id
                     INNER JOIN occupation ON occupation_subcategory.id_occupation = occupation.id 
@@ -102,6 +102,7 @@
                     WHERE service.id = '".$_GET['id_service']."'");
                     $row = mysqli_fetch_assoc($query);
                     $who_finished = $row['who_finished'];
+                    $is_finished = $row['is_finished'];
                     $confirm_finish_service = ($who_finished != null && $who_finished != $id_user)?true:false;
                 ?>
                 <h5 class="center-align"><strong>Detalhes do serviço</strong></h5>
@@ -256,8 +257,18 @@
                     </a>
                 </div>
                 <div class="row right-align">
-                    <a href="#modal-finish-service" class="btn waves-effect waves-light green darken-4 modal-trigger <?php echo($who_finished == $id_user)?'disabled':''; ?>">
-                        <?php echo($who_finished == $id_user)?'Aguardando confirmação...':"Finalizar serviço <i class='material-icons right'>done</i>"; ?>
+                    <a href="#modal-finish-service"
+                        class="btn waves-effect waves-light green darken-4 modal-trigger <?php echo($who_finished == $id_user || $is_finished != 0)?'disabled':''; ?>">
+                        <?php 
+                        
+                        if($who_finished == $id_user) {
+                            echo 'Aguardando confirmação...';
+                        } else if($who_finished != null) {
+                            echo 'Confirmar finalização';
+                        } else {
+                            echo "Finalizar serviço <i class='material-icons right'>done</i>";
+                        }
+                        ?>
                     </a>
                 </div>
                 <?php
@@ -359,9 +370,18 @@
                 </div>
 
                 <div class="row right-align">
-                    <a href="#modal-finish-service" class="btn waves-effect green darken-4 modal-trigger">
-                        <i class="material-icons right">done</i>
-                        Finalizar serviço
+                    <a href="#modal-finish-service"
+                        class="btn waves-effect waves-light green darken-4 modal-trigger <?php echo($who_finished == $id_user || $is_finished != 0)?'disabled':''; ?>">
+                        <?php 
+                        
+                        if($who_finished == $id_user) {
+                            echo 'Aguardando confirmação...';
+                        } else if($who_finished != null) {
+                            echo 'Confirmar finalização';
+                        } else {
+                            echo "Finalizar serviço <i class='material-icons right'>done</i>";
+                        }
+                        ?>
                     </a>
                 </div>
 
@@ -406,6 +426,13 @@
                 <?php
                     }
                 }
+                ?>
+                <?php 
+                    if($is_finished != 0) {
+                ?>
+                <h5 class="center-align blue-text text-darken-4">Serviço encerrado.</h5>
+                <?php
+                    }
                 ?>
             </div>
         </section>
@@ -492,19 +519,21 @@
             </div>
             <div class="row">
                 <h6 class="justify-align">
-                    Clicando em <span class="green-text text-darken-4"><b>Finalizar</b></span> você irá alertar que o serviço 
-                    foi finalizado, e será enviado uma confirmação para o outro usuário indicar que está tudo certo, 
-                    caso haja conflitos, a moderação da plataforma <span class="blue-text"><b>trampo</b></span> irá analisar o caso.
+                    Clicando em <span class="green-text text-darken-4"><b>Finalizar</b></span> você irá alertar que o
+                    serviço
+                    foi finalizado, e será enviado uma confirmação para o outro usuário indicar que está tudo certo,
+                    caso haja conflitos, a moderação da plataforma <span class="blue-text"><b>trampo</b></span> irá
+                    analisar o caso.
                 </h6>
             </div>
         </div>
         <div class="modal-footer row">
             <div class="col s6 center-align">
-                <button class="btn-flat waves-effect modal-close">Cancelar</button>    
+                <button class="btn-flat waves-effect modal-close">Cancelar</button>
             </div>
             <div class="col s6 center-align">
                 <a href="../../../Controller/finishService.php/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_user=<?php echo $id_user ?>"
-                 class="btn waves-effect waves-light green darken-4">
+                    class="btn waves-effect waves-light green darken-4">
                     Finalizar <i class="material-icons right">done</i>
                 </a>
             </div>
@@ -545,7 +574,7 @@
             });
         }
 
-        if(confirm_finish_service) {
+        if (confirm_finish_service) {
             instance_modal_confirm_finish_service.open();
         }
     });
