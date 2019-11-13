@@ -33,7 +33,7 @@
             $service->setIsVisible("false");
         }
         $service->setIdUser($id_user);
-        //mark it as pendente
+        //mark it as pending
         $service->setStatus(0);
         $dao_service->cadastrarService($service);
         $last_id = $dao_service->getLastRegisteredId();
