@@ -546,6 +546,16 @@
             <div class="row">
                 <h5 class="center-align">Confirmação de serviço finalizado</h5>
             </div>
+            <div class="row">
+                <h6 class="justify-text">
+                    Foi notado uma confirmação de finalização pelo o outro usuário responsável
+                    pelo serviço. Clique em <span class="green-text text-darken-3"><b>Confirmar</b></span> 
+                    para encerrar o serviço, ou caso haja algum conflito, clique em 
+                    <span><b>CANCELAR</b></span> e logo após vá em 
+                    <span class="orange-text text-darken-4"><b>Relatar problema.</b></span>
+
+                </h6>
+            </div>
         </div>
         <div class="footer row center-align">
             <div class="col s6">
@@ -564,7 +574,7 @@
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var toast = "<?php echo $toast ?>";
-        
+
         var confirm_finish_service = "<?php echo $confirm_finish_service ?>";
 
         var elem_modal_confirm_finish_service = document.querySelector("#modal-confirm-finish-service");
