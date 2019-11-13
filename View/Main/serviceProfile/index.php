@@ -532,7 +532,7 @@
                 <button class="btn-flat waves-effect modal-close">Cancelar</button>
             </div>
             <div class="col s6 center-align">
-                <a href="../../../Controller/finishService.php/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_user=<?php echo $id_user ?>"
+                <a href="../../../Controller/finishService.php/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_user=<?php echo $id_user ?>&confirm_finish_service=<?php echo $confirm_finish_service; ?>"
                     class="btn waves-effect waves-light green darken-4">
                     Finalizar <i class="material-icons right">done</i>
                 </a>
@@ -564,7 +564,9 @@
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var toast = "<?php echo $toast ?>";
+        
         var confirm_finish_service = "<?php echo $confirm_finish_service ?>";
+
         var elem_modal_confirm_finish_service = document.querySelector("#modal-confirm-finish-service");
         var instance_modal_confirm_finish_service = M.Modal.init(elem_modal_confirm_finish_service);
 
