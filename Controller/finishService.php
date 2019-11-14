@@ -16,7 +16,6 @@
         WHERE service.id = '".$_GET['id_service']."'");
         setcookie("who_finish_service", true, time()+3600, '/');
         header("Location: ../../View/Main/serviceProfile/?occupation_subcategory=".$_GET['occupation_subcategory']."&id_service=".$_GET['id_service']);
-        
     }
 
 ?>

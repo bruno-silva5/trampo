@@ -16,7 +16,9 @@
     } else if(isset($_COOKIE['who_finish_service'])) {
         $toast = "Aguardando confirmação...";
         setcookie("who_finish_service", false, time()+3600, '/');
-        
+    } else if(isset($_COOKIE['finish_service'])) {
+        $toast = "O serviço foi encerrado.";
+        setcookie("finish_service", false, time()+3600, '/');
     }
 ?>
 
@@ -257,7 +259,7 @@
                     </a>
                 </div>
                 <div class="row right-align">
-                    <a href="#modal-finish-service"
+                    <a href="#<?php echo($who_finished != null)?'modal-confirm-finish-service':'modal-finish-service'; ?>"
                         class="btn waves-effect waves-light green darken-4 modal-trigger <?php echo($who_finished == $id_user || $is_finished != 0)?'disabled':''; ?>">
                         <?php 
                         
@@ -370,7 +372,8 @@
                 </div>
 
                 <div class="row right-align">
-                    <a href="#modal-finish-service"
+                <!-- change to wich modal have to open -->
+                    <a href="#<?php echo($who_finished != null)?'modal-confirm-finish-service':'modal-finish-service'; ?>"
                         class="btn waves-effect waves-light green darken-4 modal-trigger <?php echo($who_finished == $id_user || $is_finished != 0)?'disabled':''; ?>">
                         <?php 
                         
@@ -540,20 +543,19 @@
         </div>
     </div>
 
-    <!-- modal confirm finish service -->
-    <div class="modal" id="modal-confirm-finish-service">
+    <!-- modal alert finished service -->
+    <div class="modal" id="modal-alert-finish-service">
         <div class="modal-content">
             <div class="row">
                 <h5 class="center-align">Confirmação de serviço finalizado</h5>
             </div>
             <div class="row">
-                <h6 class="justify-text">
+                <h6 class="justify-align">
                     Foi notado uma confirmação de finalização pelo o outro usuário responsável
-                    pelo serviço. Clique em <span class="green-text text-darken-3"><b>Confirmar</b></span> 
-                    para encerrar o serviço, ou caso haja algum conflito, clique em 
-                    <span><b>CANCELAR</b></span> e logo após vá em 
+                    pelo serviço. Clique em <span class="green-text text-darken-3"><b>Confirmar</b></span>
+                    para encerrar o serviço, ou caso haja algum conflito, clique em
+                    <span class="red-text text-darken-1"><b>Cancelar</b></span> e logo após vá em
                     <span class="orange-text text-darken-4"><b>Relatar problema.</b></span>
-
                 </h6>
             </div>
         </div>
@@ -562,7 +564,31 @@
                 <button class="btn waves-effect waves-light red modal-close">Cancelar</button>
             </div>
             <div class="col s6 center-align">
-                <a href="#" class="btn waves-effect waves-light green darken-3">Confirmar</a>
+                <a href="../../../Controller/finishService.php/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_user=<?php echo $id_user ?>&confirm_finish_service=<?php echo $confirm_finish_service; ?>"
+                    class="btn waves-effect waves-light green darken-3">Confirmar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal confirm finish service -->
+    <div class="modal" id="modal-confirm-finish-service">
+        <div class="modal-content">
+            <div class="row">
+                <h5 class="center-align">Confirmar finalização</h5>
+            </div>
+            <div class="row">
+                <h6 class="justify-align">
+                    Ao clicar em <span class="green-text text"><b>Confirmar</b></span>, o serviço
+                    será encerrado, e você será solicitado para avaliar o outro usuário.
+                </h6>
+            </div>
+        </div>
+        <div class="footer row center-align">
+            <div class="col s6">
+                <button class="btn waves-effect waves-light red modal-close">Cancelar</button>
+            </div>
+            <div class="col s6">
+                <a href="../../../Controller/finishService.php/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_user=<?php echo $id_user ?>&confirm_finish_service=<?php echo $confirm_finish_service; ?>" class="btn waves-effect waves-light green darken-3">Confirmar</a>
             </div>
         </div>
     </div>
@@ -577,7 +603,7 @@
 
         var confirm_finish_service = "<?php echo $confirm_finish_service ?>";
 
-        var elem_modal_confirm_finish_service = document.querySelector("#modal-confirm-finish-service");
+        var elem_modal_confirm_finish_service = document.querySelector("#modal-alert-finish-service");
         var instance_modal_confirm_finish_service = M.Modal.init(elem_modal_confirm_finish_service);
 
         if (toast != "") {
