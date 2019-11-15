@@ -1,6 +1,21 @@
 <?php
 require("../../../Controller/verifica.php");
 include_once '../../../Dao/conexao.php';
+
+$list = [];
+
+if (isset($_POST['range'])) {
+    $distancia = $_POST['range'];
+} else {
+    $distancia = 15;
+}
+
+if (isset($_POST['select'])) {
+    $filtro = $_POST['select'];
+} else {
+    $filtro = "menorD";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +60,8 @@ include_once '../../../Dao/conexao.php';
             <h5 class="center-align blue-text ">trampo</h5>
             <li>
                 <div class="user-view">
-                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
+                    <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
+                            alt="user profile picture"></a>
                     <div class="user-info">
                         <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
@@ -68,7 +84,8 @@ include_once '../../../Dao/conexao.php';
             <li>
                 <div class="divider"></div>
             </li>
-            <li><a href="#modalLeave" class="waves-effect modal-trigger"><i class="material-icons">power_settings_new</i>Sair</a></li>
+            <li><a href="#modalLeave" class="waves-effect modal-trigger"><i
+                        class="material-icons">power_settings_new</i>Sair</a></li>
         </ul>
 
 
@@ -81,96 +98,100 @@ include_once '../../../Dao/conexao.php';
             if (!mysqli_num_rows($query) > 0) {
                 ?>
 
-                <div class="row z-depth-3">
-                    <div class="become-worker">
-                        <form class="row" id="form-becomeWorker" action="../../../Controller/becomeWorker.php" method="POST">
-                            <div class="col s12">
-                                <h4 class="center-align hide-on-small-only">Tornar-se um prestador</h4>
-                                <h5 class="center-align hide-on-med-and-up">Tornar-se um prestador</h5>
-                            </div>
-                            <div class="col s12">
-                                <h6 class="center-align">Antes de tornar-se um prestador de serviços, conte-nos alguns
-                                    detalhes</h6>
-                            </div>
-                            <div class="input-field col s12"></div>
-                            <div class="input-field col s12">
-                                Atuo com/como:
-                                <div class="input-field inline occupation-option">
-                                    <select multiple id="select-occupation">
-                                        <?php
+            <div class="row z-depth-3">
+                <div class="become-worker">
+                    <form class="row" id="form-becomeWorker" action="../../../Controller/becomeWorker.php"
+                        method="POST">
+                        <div class="col s12">
+                            <h4 class="center-align hide-on-small-only">Tornar-se um prestador</h4>
+                            <h5 class="center-align hide-on-med-and-up">Tornar-se um prestador</h5>
+                        </div>
+                        <div class="col s12">
+                            <h6 class="center-align">Antes de tornar-se um prestador de serviços, conte-nos alguns
+                                detalhes</h6>
+                        </div>
+                        <div class="input-field col s12"></div>
+                        <div class="input-field col s12">
+                            Atuo com/como:
+                            <div class="input-field inline occupation-option">
+                                <select multiple id="select-occupation">
+                                    <?php
                                             $query = mysqli_query($conn, "SELECT * FROM occupation");
                                             while ($row = mysqli_fetch_assoc($query)) {
                                                 echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
                                             }
                                             ?>
-                                    </select>
-                                </div>
+                                </select>
                             </div>
-                            <div class="input-field col s12">Dê uma descrição sobre seus serviços:</div>
-                            <div class="input-field col s12">
-                                <textarea class="materialize-textarea" id="work-info"></textarea>
-                                <label for="work-info">Informações adicionais</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <p>
-                                    <label>
-                                        <input type="checkbox" id="work-agreement">
-                                        <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da
-                                            plataforma Trampo</span>
-                                    </label>
-                                </p>
-                            </div>
-                            <div id="message-becomeWorker"></div>
-                            <div class="col s12 m2 l3 offset-m9 offset-l9 right-align">
-                                <button class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="input-field col s12">Dê uma descrição sobre seus serviços:</div>
+                        <div class="input-field col s12">
+                            <textarea class="materialize-textarea" id="work-info"></textarea>
+                            <label for="work-info">Informações adicionais</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <p>
+                                <label>
+                                    <input type="checkbox" id="work-agreement">
+                                    <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da
+                                        plataforma Trampo</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div id="message-becomeWorker"></div>
+                        <div class="col s12 m2 l3 offset-m9 offset-l9 right-align">
+                            <button class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
+                        </div>
+                    </form>
+                </div>
 
                 <?php
                 } else {
                     ?>
 
-                    <div class="row z-depth-2 works-list">
-                        <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
-                        <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
-                        <h6 class="center-align grey-text">Lista de serviços baseados com o que você trabalha</h6>
-                        <div class="col s12">
-                            <ul class="collapsible z-depth-0">
-                                <li>
-                                    <div class="collapsible-header">
-                                        <i class="material-icons">search</i>
-                                        Filtros de busca
-                                    </div>
-                                    <div class="collapsible-body">
+                <div class="row z-depth-2 works-list">
+                    <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
+                    <h5 class="center-align hide-on-med-and-up">Recentes trabalhos</h5>
+                    <h6 class="center-align grey-text">Lista de serviços baseados com o que você trabalha</h6>
+                    <div class="col s12">
+                        <ul class="collapsible z-depth-0">
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">search</i>
+                                    Filtros de busca
+                                </div>
+                                <div class="collapsible-body">
+                                    <form action="index.php" method="post">
                                         <div class="row">
                                             <div class="col s12 m4">
                                                 <h6><strong>Ordenar por</strong></h6>
-                                                <select>
-                                                    <option value="">Maior Avaliação</option>
-                                                    <option value="">Menor Avaliação</option>
-                                                    <option value="">Menor distância</option>
-                                                    <option value="">Maior distância</option>
+                                                <select name="select">
+                                                    <option value="menorD" <?=($filtro == 'menorD')?'selected':''?>>Menor distância</option>
+                                                    <option value="maiorD" <?=($filtro == 'maiorD')?'selected':''?>>Maior distância</option>
+                                                    <option value="maiorA" <?=($filtro == 'maiorA')?'selected':''?>>Maior Avaliação</option>
+                                                    <option value="menorA" <?=($filtro == 'menorA')?'selected':''?>>Menor Avaliação</option>
                                                 </select>
                                             </div>
                                             <div class="col s12">
                                                 <h6 class="center-align"><strong>Distância (KM)</strong></h6>
                                                 <p class="range-field">
-                                                    <input type="range" min="0" max="100" value="20">
+                                                    <input type="range" min="0" max="30" value="<?=$distancia?>" name="range">
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <?php
+                                        <input type="submit" name="Filtrar">
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <?php
                             //lat e long da session
-                            
-                            $query = mysqli_query($conn,"SELECT lat, lon FROM user WHERE email = '".$_SESSION['email']."'");
 
-                            if(mysqli_num_rows($query) > 0) {
-                                while($row = mysqli_fetch_assoc($query)) {
+                            $query = mysqli_query($conn, "SELECT lat, lon FROM user WHERE email = '" . $_SESSION['email'] . "'");
+
+                            if (mysqli_num_rows($query) > 0) {
+                                while ($row = mysqli_fetch_assoc($query)) {
                                     $origem = [
                                         'lat' => $row['lat'],
                                         'lon' => $row['lon']
@@ -180,80 +201,149 @@ include_once '../../../Dao/conexao.php';
 
                             $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id_occupation_subcategory IN(SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN (SELECT occupation.id FROM occupation WHERE occupation.id IN(SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '" . $id_user . "'))) AND service.id_user != '" . $id_user . "' AND service.id_request_accepted IS NULL");
                             if (mysqli_num_rows($query) > 0) {
-
-                                ?>
-
-                            <div class="wrapper-content">
-                                <?php
-                                        include "../../../Model/Filter.php";
-                                        $f = new Filter();
-                                        while ($row = mysqli_fetch_assoc($query)) {
-                                            $queryUser = mysqli_query($conn, "SELECT * FROM user WHERE user.id = " . $row['id_user']);
-                                            while ($rowUser = mysqli_fetch_assoc($queryUser)) {
-                                                $destino = [
-                                                    'lat' => $rowUser['lat'],
-                                                    'lon' => $rowUser['lon']
-                                                ];
-                                                if ($f->haversine($origem, $destino) < 20) {
-                                                    ?>
-
-                                            <div class="card hoverable col s12 m4 l3">
-                                                <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory'] ?>&id_service=<?php echo $row['id'] ?>&work">
-                                                    <div class="card-image">
-                                                        <div class="title-over-image">
-                                                            <h5><?php echo $row['title'] ?> </h5>
-                                                        </div>
-                                                        <?php
-                                                                            if (!empty($row['picture'])) {
-                                                                                ?>
-                                                            <img src="<?php echo $row['picture'] ?>" alt="card-image">
-                                                        <?php
-                                                                            }
-                                                                            ?>
-                                                    </div>
-                                                </a>
-                                                <div class="card-content">
-                                                    <span class="card-title activator orange-text text-darken-4">Pendente <i class="material-icons md-18">schedule</i> <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
-                                                </div>
-                                                <div class="card-reveal">
-                                                    <div class="card-title">
-                                                        <i class="material-icons right">close</i>
-                                                    </div>
-                                                    <span class="card-title">
-                                                        <strong> <?php echo $row['title'] ?> </strong>
-                                                    </span>
-                                                    <p>
-                                                        <?php echo $row['description'] ?>
-                                                    </p>
-                                                    <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory'] ?>&id_service=<?php echo $row['id'] ?>&work" class="valign-wrapper">Ver mais <i class="material-icons">keyboard_arrow_right</i></a></p>
-                                                </div>
-                                            </div>
-
-                                <?php
-                                                }
-                                            }
+                                include "../../../Model/Filter.php";
+                                $f = new Filter();
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    $queryUser = mysqli_query($conn, "SELECT * FROM user WHERE user.id = " . $row['id_user']);
+                                    while ($rowUser = mysqli_fetch_assoc($queryUser)) {
+                                        $destino = [
+                                            'lat' => $rowUser['lat'],
+                                            'lon' => $rowUser['lon']
+                                        ];
+                                        if ($f->haversine($origem, $destino) < $distancia) {
+                                            $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
+                                            $list[$aux] = $row['id'];
+                                            ksort($list);
                                         }
-                                        ?>
-                            </div>
+                                    }
+                                }
+                            }
+
+                        ?>
+
+                    <div class="wrapper-content">
                         <?php
-                            } else {
-                                ?>
+                            switch ($filtro) {
+                                case "menorD":
+                                    foreach ($list as $dist => $id) {
+                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$id);
+                                        if(mysqli_num_rows($query) > 0) { ?>
+                                            <div class="wrapper-content">
+                                            <?php  while($row = mysqli_fetch_assoc($query)) { ?>         
+                                             <div class="card hoverable col s12 m4 l3">
+                                             <a
+                                                 href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
+                                                 <div class="card-image">
+                                                     <div class="title-over-image">
+                                                         <h5><?php echo $row['title'] ?> </h5>
+                                                     </div>
+                                                     <?php if(!empty($row['picture'])) {?>
+                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                                     <?php }?>
+                                                     </div>
+                                                    </a>
+                                                    <div class="card-content">
+                                                        <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                                                class="material-icons md-18">schedule</i> <i
+                                                                class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                                                    </div>
+                                                    <div class="card-reveal">
+                                                        <div class="card-title">
+                                                            <i class="material-icons right">close</i>
+                                                        </div>
+                                                        <span class="card-title">
+                                                            <strong> <?php echo $row['title'] ?> </strong>
+                                                        </span>
+                                                        <p>
+                                                            <?php echo $row['description'] ?>
+                                                        </p>
+                                                        <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
+                                                                class="valign-wrapper">Ver mais <i
+                                                                    class="material-icons">keyboard_arrow_right</i></a></p>
+                                                    </div>
+                                                </div>
+                                                     <?php }
+                                                     }else{ ?> 
+                                                     <div class="row" style="max-width:700px">
+                                                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white"
+                                                            class="col s8 m4 offset-s2 offset-m4">
+                                                        <div class="col s12">
+                                                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                
+                                                </div>
+                                                     <?php }
+                                        }
+                                break;
+                                case "maiorD":
+                                    krsort($list);
+                                    foreach ($list as $dist => $id) {
+                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$id);
+                                        if(mysqli_num_rows($query) > 0) { ?>
+                                            <div class="wrapper-content">
+                                            <?php  while($row = mysqli_fetch_assoc($query)) { ?>         
+                                             <div class="card hoverable col s12 m4 l3">
+                                             <a
+                                                 href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
+                                                 <div class="card-image">
+                                                     <div class="title-over-image">
+                                                         <h5><?php echo $row['title'] ?> </h5>
+                                                     </div>
+                                                     <?php if(!empty($row['picture'])) {?>
+                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                                     <?php }?>
+                                                     </div>
+                                                    </a>
+                                                    <div class="card-content">
+                                                        <span class="card-title activator orange-text text-darken-4">Pendente <i
+                                                                class="material-icons md-18">schedule</i> <i
+                                                                class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
+                                                    </div>
+                                                    <div class="card-reveal">
+                                                        <div class="card-title">
+                                                            <i class="material-icons right">close</i>
+                                                        </div>
+                                                        <span class="card-title">
+                                                            <strong> <?php echo $row['title'] ?> </strong>
+                                                        </span>
+                                                        <p>
+                                                            <?php echo $row['description'] ?>
+                                                        </p>
+                                                        <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
+                                                                class="valign-wrapper">Ver mais <i
+                                                                    class="material-icons">keyboard_arrow_right</i></a></p>
+                                                    </div>
+                                                </div>
+                                                     <?php }
+                                                     }else{ ?> 
+                                                     <div class="row" style="max-width:700px">
+                                                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white"
+                                                            class="col s8 m4 offset-s2 offset-m4">
+                                                        <div class="col s12">
+                                                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                
+                                                </div>
+                                                     <?php }
+                                    }
+                                break;
+                                case "maiorA":
+                                    // #
+                                break;
+                                case "maiorA":
+                                    // #
+                                break;
+                                }
+                        }
 
-                            <div class="row" style="max-width:700px">
-                                <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white" class="col s8 m4 offset-s2 offset-m4">
-                                <div class="col s12">
-                                    <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.
-                                    </h6>
-                                </div>
-                            </div>
+                        ?>
 
-                    </div>
-
-            <?php
-                }
-            }
-            ?>
                 </div>
+            </div>
         </section>
     </main>
 
@@ -352,10 +442,10 @@ include_once '../../../Dao/conexao.php';
             dismissible: false
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var new_worker = "<?php echo $new_worker ?>";
             if (new_worker) {
-                setTimeout(function() {
+                setTimeout(function () {
                     instance_modal_worker_tutorial.open();
                 }, 500);
             }
