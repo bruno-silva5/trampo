@@ -1,28 +1,27 @@
 <?php
-    require("../../../Controller/verifica.php");
     include_once '../../../Dao/conexao.php';
+    require("../../../Controller/verifica.php");
     $service_register = false;
-        if(isset($_COOKIE["form_submitted"])) {
-            $service_register = true;
-            setcookie("form_submitted", false, time()+3600, '/');
-        }
-        $list = [];
 
-        
-            
-        if (isset($_GET['range'])) {
-            $distancia = $_GET['range'];
-        } else {
-            $distancia = 15;
-        }
-        
-        if (isset($_GET['select'])) {
-            $filtro = $_GET['select'];
-        } else {
-            $filtro = "menorD";
-        }
+    if(isset($_COOKIE["form_submitted"])) {
+        $service_register = true;
+        setcookie("form_submitted", false, time()+3600, '/');
+    }
+    
+    $list = [];
+                
+    if (isset($_GET['range'])) {
+        $distancia = $_GET['range'];
+    } else {
+        $distancia = 15;
+    }
+    
+    if (isset($_GET['select'])) {
+        $filtro = $_GET['select'];
+    } else {
+        $filtro = "menorD";
+    }
 
-        echo $distancia;
 ?>
 
 <!DOCTYPE html>
@@ -131,22 +130,22 @@
                                         <div class="col s12 m6">
                                             <h6><strong>Ordenar por</strong></h6>
                                             <select name = "select">
-                                                <option value="menorD" <?=($filtro == 'menorD')?'selected':''?>>Menor distância</option>
-                                                <option value="maiorD" <?=($filtro == 'maiorD')?'selected':''?>>Maior distância</option>
-                                                <option value="maiorA" <?=($filtro == 'maiorA')?'selected':''?>>Maior Avaliação</option>
-                                                <option value="menorA" <?=($filtro == 'menorA')?'selected':''?>>Menor Avaliação</option>
+                                                <option value="menorD" <?php ($filtro == 'menorD')?'selected':''?>>Menor distância</option>
+                                                <option value="maiorD" <?php ($filtro == 'maiorD')?'selected':''?>>Maior distância</option>
+                                                <option value="maiorA" <?php ($filtro == 'maiorA')?'selected':''?>>Maior Avaliação</option>
+                                                <option value="menorA" <?php ($filtro == 'menorA')?'selected':''?>>Menor Avaliação</option>
                                             </select>
                                         </div>
                                         <div class="col s12">
                                             <h6 class="center-align"><strong>Distância (KM)</strong></h6>
                                             <p class="range-field">
-                                                <input type="range" name="range" min="0" max="30" value="<?=$distancia?>">
+                                                <input type="range" name="range" min="0" max="30" value="<?php echo $distancia ?>">
                                             </p>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="occupation_subcategory" value="<?=$_GET['occupation_subcategory']?>">
-                                    <input type="hidden" name="id_service" value="<?=$_GET['id_service']?>">
-                                    <input type="submit" name="Filtrar">
+                                    <input type="hidden" name="occupation_subcategory" value="<?php $_GET['occupation_subcategory']; ?>">
+                                    <input type="hidden" name="id_service" value="<?php $_GET['id_service']; ?>">
+                                    <button class="btn" type="submit">Aplicar filtros <i class="material-icons right">search</i></button>
                                     </form>
                                 </div>
                             </li>

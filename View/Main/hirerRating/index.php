@@ -135,22 +135,27 @@
                         </div>
 
                         <div class="col s12 m6 center-align">
-                            <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
-                                    class="material-icons md-24">star</i></a>
-                            <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
-                                    class="material-icons md-24">star</i></a>
-                            <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
-                                    class="material-icons md-24">star</i></a>
-                            <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
-                                    class="material-icons md-24">star</i></a>
-                            <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
-                                    class="material-icons md-24">star</i></a>
-                            <!-- rating description -->
+                            <div class="rating-buttons-wrapper" style="display:table; margin:auto">
+                                <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
+                                        class="material-icons md-24">star</i></a>
+                                <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
+                                        class="material-icons md-24">star</i></a>
+                                <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
+                                        class="material-icons md-24">star</i></a>
+                                <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
+                                        class="material-icons md-24">star</i></a>
+                                <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
+                                        class="material-icons md-24">star</i></a>
+                            </div>
+                                <!-- rating description -->
                             <h6 style="margin-top:1em" id="rating-description"> Não avaliado</h6>
 
                             <!-- total rating -->
                             <input type="hidden" id="total-rating" value="0">
                         </div>
+                    </div>
+                    <div class="row right-align">
+                        <button type="submit" class="btn waves-effect waves-light">Confirmar <i class="material-icons right">done</i></button>
                     </div>
                 </form>
 
@@ -271,7 +276,7 @@
 
     for (let i = 0; i < Object.keys(rating_buttons).length; i++) {
 
-        rating_buttons[i].addEventListener('mouseover', function() {
+        rating_buttons[i].addEventListener('mouseenter', function() {
             deselectRatingButtons();
             for (let j = i; j >= 0; j--) {
                 rating_buttons[j].classList.remove('grey');
@@ -283,8 +288,9 @@
             
         });
 
-        rating_buttons[i].addEventListener('mouseout', function() {
-            if (rated == null) {
+
+        rating_buttons[i].parentElement.addEventListener('mouseleave', function() {
+            if(rated == null) { 
                 deselectRatingButtons();
                 rating_description.innerHTML = changeRatingDescription();
             } else {
