@@ -282,9 +282,7 @@
                 rating_buttons[j].classList.remove('grey');
                 rating_buttons[j].classList.add('yellow', 'darken-4');
             }
-            $(rating_description).fadeOut(100, function() {
-                $(this).html(changeRatingDescription(i)).fadeIn(100);
-            });
+            changeRatingDescription(i)
             
         });
 
@@ -292,10 +290,10 @@
         rating_buttons[i].parentElement.addEventListener('mouseleave', function() {
             if(rated == null) { 
                 deselectRatingButtons();
-                rating_description.innerHTML = changeRatingDescription();
+                changeRatingDescription();
             } else {
                 deselectRatingButtons();
-                rating_description.innerHTML = changeRatingDescription(rated);
+                changeRatingDescription(rated);
                 for (let j = rated; j >= 0; j--) {
                     rating_buttons[j].classList.remove('grey');
                     rating_buttons[j].classList.add('yellow', 'darken-4');
@@ -319,12 +317,17 @@
     }
 
     function changeRatingDescription(index) {
-        return (index == 0) ? 'Insatisfeito'
-             : (index == 1) ? 'Pouco satisfeito'
-             : (index == 2) ? 'Mediano'
-             : (index == 3) ? 'Bom'
-             : (index == 4) ? 'Excelente!'
-             : 'Não avaliado';
+        $(rating_description).fadeOut(150, function() {
+                $(this).html(
+                    (index == 0) ? 'Insatisfeito'
+                    : (index == 1) ? 'Pouco satisfeito'
+                    : (index == 2) ? 'Mediano'
+                    : (index == 3) ? 'Bom'
+                    : (index == 4) ? 'Excelente!'
+        : 'Não avaliado').fadeIn(150);
+        });
+        
+
     }
 
     </script>
