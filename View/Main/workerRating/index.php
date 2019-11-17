@@ -84,13 +84,13 @@
                     </button>
                 </div>
 
-                <h5 class="center-align">Avaliar o contrante</h5>
+                <h5 class="center-align">Avaliar o prestador</h5>
                 <div class="row">
                     <div class="divider"></div>
                 </div>
                 <form action="../../../Controller/registerEvaluation.php" class="row" method="POST">
                     <div class="input-field col s12">
-                        <strong class="grey-text text-darken-1">O serviço era o que foi combinado?</strong>
+                        <strong class="grey-text text-darken-1">O serviço foi realizado como você gostaria?</strong>
                         <select name="answer_1">
                             <option value="0" disabled selected>Selecione uma opção</option>
                             <option value="1" data-icon="../_img/icon/high_satisfaction.svg">Sim, totalmente</option>
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="input-field col s12">
-                        <strong class="grey-text text-darken-1">O contratante manteve ética durante o trabalho?</strong>
+                        <strong class="grey-text text-darken-1">O prestador manteve ética durante o trabalho?</strong>
                         <select name="answer_2">
                             <option value="0" disabled selected>Selecione uma opção</option>
                             <option value="1" data-icon="../_img/icon/high_satisfaction.svg">Sim, totalmente</option>
@@ -110,7 +110,7 @@
                     </div>
 
                     <div class="input-field col s12">
-                        <strong class="grey-text text-darken-1">O pagamento foi devidamente realizado?</strong>
+                        <strong class="grey-text text-darken-1">Você ficou satisfeito com o trabalho?</strong>
                         <select name="answer_3">
                             <option value="" disabled selected>Selecione uma opção</option>
                             <option value="1" data-icon="../_img/icon/high_satisfaction.svg">Sim, totalmente</option>
