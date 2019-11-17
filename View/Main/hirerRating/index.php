@@ -3,7 +3,11 @@
     include_once '../../../Dao/conexao.php';
 
     //check if there is cookie, then pass it to the javascript for the toast message
-    $toast = "";
+    $toast = null;
+    if(isset($_COOKIE['failed_evaluation'])) {
+        $toast = "É obrigatório preencher todas as informações!";
+        setcookie("failed_evaluation", false, time()+3600, '/');
+    }
     
 ?>
 
@@ -84,11 +88,11 @@
                 <div class="row">
                     <div class="divider"></div>
                 </div>
-                <form action="#" class="row">
+                <form action="../../../Controller/registerEvaluation.php" class="row" method="POST">
                     <div class="input-field col s12">
                         <strong class="grey-text text-darken-1">O serviço foi realizado como você gostaria?</strong>
-                        <select>
-                            <option value="" disabled selected>Selecione uma opção</option>
+                        <select name="answer_1">
+                            <option value="0" disabled selected>Selecione uma opção</option>
                             <option value="1" data-icon="../_img/icon/high_satisfaction.svg">Sim, totalmente</option>
                             <option value="2" data-icon="../_img/icon/medium_satisfaction.svg">Parcialmente</option>
                             <option value="3" data-icon="../_img/icon/low_satisfaction.svg">Não</option>
@@ -97,8 +101,8 @@
 
                     <div class="input-field col s12">
                         <strong class="grey-text text-darken-1">O prestador manteve ética durante o trabalho?</strong>
-                        <select>
-                            <option value="" disabled selected>Selecione uma opção</option>
+                        <select name="answer_2">
+                            <option value="0" disabled selected>Selecione uma opção</option>
                             <option value="1" data-icon="../_img/icon/high_satisfaction.svg">Sim, totalmente</option>
                             <option value="2" data-icon="../_img/icon/medium_satisfaction.svg">Parcialmente</option>
                             <option value="3" data-icon="../_img/icon/low_satisfaction.svg">Não</option>
@@ -107,7 +111,7 @@
 
                     <div class="input-field col s12">
                         <strong class="grey-text text-darken-1">Você ficou satisfeito com o trabalho?</strong>
-                        <select>
+                        <select name="answer_3">
                             <option value="" disabled selected>Selecione uma opção</option>
                             <option value="1" data-icon="../_img/icon/high_satisfaction.svg">Sim, totalmente</option>
                             <option value="2" data-icon="../_img/icon/medium_satisfaction.svg">Parcialmente</option>
@@ -116,7 +120,7 @@
                     </div>
 
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <textarea id="textarea1" class="materialize-textarea" name="further_information"></textarea>
                         <label for="textarea1">Relatos adicionais (Opcional)</label>
                     </div>
 
@@ -147,11 +151,11 @@
                                 <a href="#!" class="btn waves-effect waves-light grey lighten-1 rating-button" style="margin-top:0.5em"><i
                                         class="material-icons md-24">star</i></a>
                             </div>
-                                <!-- rating description -->
+                            <!-- rating description -->
                             <h6 style="margin-top:1em" id="rating-description"> Não avaliado</h6>
 
                             <!-- total rating -->
-                            <input type="hidden" id="total-rating" value="0">
+                            <input type="hidden" id="stars-rating" name="stars_rating">
                         </div>
                     </div>
                     <div class="row right-align">
@@ -304,7 +308,7 @@
 
         rating_buttons[i].addEventListener('click', function() {
             rated = i;
-
+            document.querySelector("#stars-rating").value = i;
         });
 
     }
@@ -326,9 +330,16 @@
                     : (index == 4) ? 'Excelente!'
         : 'Não avaliado').fadeIn(150);
         });
-        
-
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var toast = "<?php echo $toast ?>";
+        if(toast) {
+            M.toast({
+                html: toast
+            });
+        }
+    });
 
     </script>
 </body>
