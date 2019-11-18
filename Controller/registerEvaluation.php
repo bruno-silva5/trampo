@@ -27,7 +27,7 @@ $_GET['id_user_from'] && $_GET['id_user_to'] && $_GET['id_service']) {
     header("Location: ../View/Main/progress");
 } else {
     setcookie("failed_evaluation", true, time()+3600, '/');
-    header("Location: ../View/Main/hirerRating/");
+    header("Location: ../View/Main/hirerRating/?id_user_from=".$_GET['id_user_from']."&id_user_to=".$_GET['id_user_to']."&id_service=".$_GET['id_service']);
 }
 
 ?>

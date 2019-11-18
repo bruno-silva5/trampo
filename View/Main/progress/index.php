@@ -8,6 +8,8 @@
     //wich page to go when go to the evaluation
     $page_evaluation = null;
 
+    $is_hirer = null;
+
     if(isset($_COOKIE['successful_evaluation'])) {
         setcookie("successful_evaluation", false, time()+3600, '/');
         $toast = "Avaliação registrada com sucesso!";
@@ -16,7 +18,7 @@
     //check if there is hires by this user
     $query = mysqli_query($conn,
     "SELECT id, title FROM service WHERE service.id_user IN 
-    (SELECT id FROM user WHERE user.email LIKE '".$_SESSION['email']."')");
+    (SELECT id FROM user WHERE user.email LIKE '".$_SESSION['email']."') AND service.is_finished = 1");
     $row = mysqli_fetch_assoc($query);
 
     if(mysqli_num_rows($query) > 0) {
@@ -33,12 +35,37 @@
         if(!mysqli_num_rows($query) > 0) {
             $pending_evaluation = true;
             $page_evaluation = "workerRating";
+            $is_hirer = true;
         }
     }
 
-    //check if he is worker and if there is services that he is working on
-    
 
+    //check if there is any service that he did 
+    $query = mysqli_query($conn, 
+    "SELECT id, title FROM service WHERE service.id_request_accepted IN 
+     (SELECT id FROM service_request WHERE service_request.id_user IN 
+      (SELECT id FROM user WHERE user.email LIKE '".$_SESSION['email']."')) AND service.is_finished = 1");
+    
+    $row = mysqli_fetch_assoc($query);
+
+    if(mysqli_num_rows($query) > 0) {
+        $service_id = $row['id'];
+        $service_title = $row['title'];
+
+        $query = mysqli_query($conn, 
+        "SELECT id FROM evaluation WHERE evaluation.id_service IN
+         (SELECT id FROM service WHERE service.id = '".$service_id."') AND evaluation.id_user_from IN 
+          (SELECT id FROM user WHERE user.email = '".$_SESSION['email']."')");
+    
+        if(!mysqli_num_rows($query) > 0) {
+            $pending_evaluation = true;
+            $page_evaluation = "hirerRating";
+            $is_hirer = false;
+        }
+
+    }
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -379,16 +406,24 @@
                     <!-- get the worker info -->
                     <?php
                         if($pending_evaluation) {
-                            $query = mysqli_query($conn, 
-                            "SELECT user.id, user.full_name, user.profile_picture FROM user WHERE user.id IN 
-                            (SELECT service_request.id_user FROM service_request WHERE service_request.id IN 
-                            (SELECT service.id_request_accepted FROM service 
-                            WHERE service.id = '".$service_id."'))");
+                            if($is_hirer) {
+                                $query = mysqli_query($conn, 
+                                "SELECT user.id, user.full_name, user.profile_picture FROM user WHERE user.id IN 
+                                (SELECT service_request.id_user FROM service_request WHERE service_request.id IN 
+                                (SELECT service.id_request_accepted FROM service 
+                                WHERE service.id = '".$service_id."'))");
+                            } else if(!$is_hirer){
+                                $query = mysqli_query($conn, 
+                                "SELECT user.id, user.full_name, user.profile_picture FROM user WHERE user.id IN  
+                                    (SELECT service.id_user FROM service WHERE service.id = '".$service_id."')");
+                            }
+
+
                             $row = mysqli_fetch_assoc($query);
                     ?>
                     <img src="<?php echo $row['profile_picture'] ?>" alt="user profile picture" 
                     class="circle z-depth-3" width="130" height="130" style="object-fit:cover">
-                    <h6>Contratante: <span class="blue-text text-darken-3"><?php echo $row['full_name'] ?></span> </h6>
+                    <h6>Usuario: <span class="blue-text text-darken-3"><?php echo $row['full_name'] ?></span> </h6>
                     <h6>Serviço: <span class="blue-text text-darken-3"><?php echo $service_title ?></span></h6>
                     <?php
                         }

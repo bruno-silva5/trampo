@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 18-Nov-2019 às 02:34
+-- Tempo de geração: 18-Nov-2019 às 13:17
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -39,7 +39,9 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
-(36, 58, 59);
+(36, 58, 59),
+(37, 60, 63),
+(38, 61, 62);
 
 -- --------------------------------------------------------
 
@@ -64,8 +66,11 @@ CREATE TABLE `evaluation` (
 --
 
 INSERT INTO `evaluation` (`id`, `answer_1`, `answer_2`, `answer_3`, `further_information`, `stars_rating`, `id_user_from`, `id_user_to`, `id_service`) VALUES
-(7, 2, 1, 1, 'Bruno é um bom rapaz', 4, 59, 58, 194),
-(9, 2, 1, 3, '', 2, 58, 59, 194);
+(10, 3, 2, 2, 'mmmm', 2, 58, 59, 194),
+(11, 2, 3, 1, '', 2, 60, 63, 198),
+(12, 2, 3, 2, 'd', 3, 63, 60, 198),
+(13, 1, 2, 3, 'd', 3, 62, 61, 199),
+(14, 2, 3, 2, 'd', 2, 61, 62, 199);
 
 -- --------------------------------------------------------
 
@@ -89,7 +94,9 @@ INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text
 (255, 36, 58, 59, 'Bom dia blz? que horas a tarde você fazer o frete?'),
 (256, 36, 58, 59, 'você consegue*'),
 (257, 36, 59, 58, 'Bom dia, então, consigo fazer a qualquer horario a tarde, umas 16hras estaria bom?'),
-(258, 36, 58, 59, 'Sim, está ótimo, vou aceitar a solicitação.');
+(258, 36, 58, 59, 'Sim, está ótimo, vou aceitar a solicitação.'),
+(259, 37, 60, 63, 'Obrigado, irei aceitar'),
+(260, 38, 61, 62, 'ola');
 
 -- --------------------------------------------------------
 
@@ -211,7 +218,10 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `id_request_accepted`, `status`, `who_finished`, `is_finished`, `issue_finished`) VALUES
-(194, 'O quanto antes', 'Entrega de uma geladeira', 'Preciso que minha geladeira seja entregue lá na Penha', '../_img/service_picture/Geladeira-usada-20180118072250.jpg', 'false', 43, 58, 103, 2, NULL, 1, 0);
+(194, 'O quanto antes', 'Entrega de uma geladeira', 'Preciso que minha geladeira seja entregue lá na Penha', '../_img/service_picture/Geladeira-usada-20180118072250.jpg', 'false', 43, 58, 103, 2, NULL, 1, 0),
+(197, 'Duas semanas', 'adisjdias', 'asuidhaisudadhauida', '../_img/service_picture/Disarmament-and-Education-b.jpg', 'true', 46, 58, NULL, 0, NULL, 0, 0),
+(198, 'O quanto antes', 'Encomenda para Paranapiacaba', 'Uma encomenda leve e pequena para a cidade de Paranapiacaba', NULL, 'true', 43, 60, 104, 2, NULL, 1, 0),
+(199, 'O quanto antes', 'Preciso que limpem a minha casa', 'Tenho uma casa', NULL, 'true', 1, 61, 105, 2, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -232,7 +242,9 @@ CREATE TABLE `service_request` (
 --
 
 INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(103, 194, 59, '150.00', 'Consigo entregar amanhã, porém somente no período da tarde');
+(103, 194, 59, '150.00', 'Consigo entregar amanhã, porém somente no período da tarde'),
+(104, 198, 63, '200.00', 'Consigo realizar amanhã'),
+(105, 199, 62, '100.00', 'Consigo realizar o serviço amanhã');
 
 -- --------------------------------------------------------
 
@@ -267,7 +279,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`, `lat`, `lon`) VALUES
 (58, 'Bruno Silva', 'bruno@Live.com', 'Defina uma senha', 'M', '(11) 98120-9381', '742.532.310-98', '1993-01-13', '70673-304', 'SQSW 303 Bloco D', 'DF', 'Brasília', 'Setor Sudoeste', '33', '', '../_img/user_profile_picture/bruno.png', -15.7998967, -47.926236200000005),
-(59, 'Felipe Pires', 'felipe@live.com', 'Defina uma senha', 'M', '(11) 90482-3094', '919.580.250-97', '1990-03-20', '69075-000', 'Avenida Buriti', 'AM', 'Manaus', 'Distrito Industrial I', '2', '', '../_img/user_profile_picture/felipe.png', -3.094542, -59.95207370000003);
+(59, 'Felipe Pires', 'felipe@live.com', 'Defina uma senha', 'M', '(11) 90482-3094', '919.580.250-97', '1990-03-20', '69075-000', 'Avenida Buriti', 'AM', 'Manaus', 'Distrito Industrial I', '2', '', '../_img/user_profile_picture/felipe.png', -3.094542, -59.95207370000003),
+(60, 'Luiz Amaral', 'luiz@email.com', '12345678', 'M', '(11) 96621-9712', '507.101.938-82', '1999-04-27', '08412-070', 'Rua Antônio Silvestre Ferreira', 'SP', 'São Paulo', 'Vila Cruzeiro', '34', '', '../_img/user_profile_picture/user.svg', -23.5473644, -46.40875140000003),
+(61, 'Vivian Vivi', 'vivi@email.com', '12345678', 'M', '(11) 96621-9713', '507.101.938-82', '1999-01-01', '08411-145', 'Rua Coronel Manuel Machado', 'SP', 'São Paulo', 'Vila Zefira', '32', '', '../_img/user_profile_picture/user.svg', -23.5512292, -46.411528299999986),
+(62, 'Bianca Binaca', 'bianca@email.com', '12345678', 'M', '(11) 96621-9715', '507.101.938-82', '1999-01-01', '08460-526', 'Rua Juvêncio Petra', 'SP', 'São Paulo', 'Jardins Recanto das Rosas', '99', '', '../_img/user_profile_picture/user.svg', -23.5575346, -46.39639239999997),
+(63, 'Felipe Pires', 'felipe@email.com', '12345678', 'M', '(11) 96621-9714', '507.101.938-82', '1999-01-01', '08431-030', 'Rua João das Heras', 'SP', 'São Paulo', 'Jardim Moreno', '33', '', '../_img/user_profile_picture/user.svg', -23.5344281, -46.42406360000001);
 
 -- --------------------------------------------------------
 
@@ -287,7 +303,9 @@ CREATE TABLE `user_occupation` (
 --
 
 INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) VALUES
-(187, 'Faço carretos com minha hilux', 7, 59);
+(187, 'Faço carretos com minha hilux', 7, 59),
+(188, 'Tenho caminhão próprio ', 7, 63),
+(189, 'dasda', 1, 62);
 
 --
 -- Índices para tabelas despejadas
@@ -372,19 +390,19 @@ ALTER TABLE `user_occupation`
 -- AUTO_INCREMENT de tabela `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `evaluation`
 --
 ALTER TABLE `evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- AUTO_INCREMENT de tabela `occupation`
@@ -402,25 +420,25 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT de tabela `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 
 --
 -- AUTO_INCREMENT de tabela `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- Restrições para despejos de tabelas
