@@ -83,7 +83,7 @@
                     snackbarContainer.MaterialSnackbar.showSnackbar(data);
                 }());
             }
-        }, 100);
+        }, 400);
     });
     </script>
 </body>
