@@ -6,6 +6,9 @@
         private $answer_3;
         private $further_information;
         private $stars_rating;
+        private $id_user_from;
+        private $id_user_to;
+        private $id_service;
 
         public function setAnswer1($answer_1) {
             $this->answer_1 = $answer_1;
@@ -45,6 +48,30 @@
 
         public function getStarsRating() {
             return $this->stars_rating;
+        }
+
+        public function setIdUserFrom($id_user_from) {
+            $this->id_user_from = $id_user_from;
+        }
+
+        public function getIdUserFrom() {
+            return $this->id_user_from;
+        }
+
+        public function setIdUserTo($id_user_to) {
+            $this->id_user_to = $id_user_to;
+        }
+
+        public function getIdUserTo() {
+            return $this->id_user_to;
+        }
+
+        public function setIdService($id_service) {
+            $this->id_service = $id_service;
+        }
+
+        public function getIdService() {
+            return $this->id_service;
         }
 
     }

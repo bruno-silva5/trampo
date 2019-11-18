@@ -2,6 +2,11 @@
     require("../../../Controller/verifica.php");
     include_once '../../../Dao/conexao.php';
 
+    //check if there is not missing the required variables
+    if(!isset($_GET['id_user_from'], $_GET['id_user_to'], $_GET['id_service'])) {
+        header("Location: ../progress");
+    }
+
     //check if there is cookie, then pass it to the javascript for the toast message
     $toast = null;
     if(isset($_COOKIE['failed_evaluation'])) {
@@ -88,7 +93,7 @@
                 <div class="row">
                     <div class="divider"></div>
                 </div>
-                <form action="../../../Controller/registerEvaluation.php" class="row" method="POST">
+                <form action="../../../Controller/registerEvaluation.php?id_user_from=<?php echo $_GET['id_user_from'] ?>&id_user_to=<?php echo $_GET['id_user_to'] ?>&id_service=<?php echo $_GET['id_service'] ?>" class="row" method="POST">
                     <div class="input-field col s12">
                         <strong class="grey-text text-darken-1">O serviço foi realizado como você gostaria?</strong>
                         <select name="answer_1">
@@ -124,18 +129,27 @@
                         <label for="textarea1">Relatos adicionais (Opcional)</label>
                     </div>
 
+                    <!-- Getting hirer's information -->
+                    <?php 
+                    
+                    $query = mysqli_query($conn, "SELECT user.full_name, user.profile_picture FROM user 
+                    WHERE user.id = '".$_GET['id_user_to']."'");
+                    $row = mysqli_fetch_assoc($query);
+
+                    ?>
+
                     <div class="row">
                         <h6 class="center-align">
                             De 1 a 5, qual a sua <span class="yellow-text text-darken-4">avaliação</span> total
-                            para Bruno Silva?
+                            para <?php echo $row['full_name'] ?>?
                         </h6>
                     </div>
 
                     <div class="row valign-wrapper" style="flex-wrap:wrap">
                         <div class="col s12 m6 center-align">
-                            <img src="../_img/user_profile_picture/bruno.png" alt="user picture"
+                            <img src="<?php echo $row['profile_picture'] ?>" alt="user picture"
                                 class="circle z-depth-2" style="object-fit:cover" width="130" height="130">
-                            <h6>Bruno Silva</h6>
+                            <h6><?php echo $row['full_name'] ?></h6>
                         </div>
 
                         <div class="col s12 m6 center-align">

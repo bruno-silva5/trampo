@@ -1,6 +1,44 @@
 <?php
     require "../../../Controller/verifica.php";
     require '../../../Dao/conexao.php';
+
+    $toast = null;
+    $pending_evaluation = false;
+    
+    //wich page to go when go to the evaluation
+    $page_evaluation = null;
+
+    if(isset($_COOKIE['successful_evaluation'])) {
+        setcookie("successful_evaluation", false, time()+3600, '/');
+        $toast = "Avaliação registrada com sucesso!";
+    }
+
+    //check if there is hires by this user
+    $query = mysqli_query($conn,
+    "SELECT id, title FROM service WHERE service.id_user IN 
+    (SELECT id FROM user WHERE user.email LIKE '".$_SESSION['email']."')");
+    $row = mysqli_fetch_assoc($query);
+
+    if(mysqli_num_rows($query) > 0) {
+        $service_id = $row['id'];
+        $service_title = $row['title'];
+
+        // check if he had answser his services evaluation
+        $query = mysqli_query($conn, "SELECT * FROM evaluation WHERE evaluation.id_service IN 
+        (SELECT service.id FROM service WHERE service.id_user IN 
+         (SELECT user.id FROM user WHERE user.email LIKE '".$_SESSION['email']."') 
+         AND service.is_finished = 1) AND evaluation.id_user_from IN 
+         (SELECT user.id FROM user WHERE user.email LIKE '".$_SESSION['email']."')");
+
+        if(!mysqli_num_rows($query) > 0) {
+            $pending_evaluation = true;
+            $page_evaluation = "workerRating";
+        }
+    }
+
+    //check if he is worker and if there is services that he is working on
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +68,6 @@
                 <a href="#!" class="brand-logo center">Progresso</a>
             </div>
             <div class="nav-content">
-                <!-- tab starts hidden -->
                 <ul class="tabs tabs-transparent tabs-fixed-width">
                     <li class="tab"><a href="#hires" id="tab2" class="waves-effect waves-light">Contratos</a></li>
                     <li class="tab"><a href="#services" id="tab1" class="waves-effect waves-light">Serviços</a></li>
@@ -316,6 +353,7 @@
         </section>
 
     </main>
+
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
         <div class="modal-content">
@@ -327,11 +365,75 @@
         </div>
     </div>
 
+    <div class="modal" id="modal-evaluation">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center-align">Você possui avaliações pendentes</h5>
+                </div>
+            </div>
+            <div class="row">
+            
+            
+                <div class="col s12 center-align">
+                    <!-- get the worker info -->
+                    <?php
+                        if($pending_evaluation) {
+                            $query = mysqli_query($conn, 
+                            "SELECT user.id, user.full_name, user.profile_picture FROM user WHERE user.id IN 
+                            (SELECT service_request.id_user FROM service_request WHERE service_request.id IN 
+                            (SELECT service.id_request_accepted FROM service 
+                            WHERE service.id = '".$service_id."'))");
+                            $row = mysqli_fetch_assoc($query);
+                    ?>
+                    <img src="<?php echo $row['profile_picture'] ?>" alt="user profile picture" 
+                    class="circle z-depth-3" width="130" height="130" style="object-fit:cover">
+                    <h6>Contratante: <span class="blue-text text-darken-3"><?php echo $row['full_name'] ?></span> </h6>
+                    <h6>Serviço: <span class="blue-text text-darken-3"><?php echo $service_title ?></span></h6>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer row">
+            <div class="col s6 center-align"><button class="btn-flat modal-close">Fechar</button></div>
+            <div class="col s6 center-align">
+                <a href="../<?php echo $page_evaluation?>/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id'] ?>&id_service=<?php echo $service_id ?>" class="btn yellow darken-4">Avaliar</a>
+            </div>
+        </div>
+    </div>
+
 
     <script type="text/javascript" src="../_js/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../_js/jquery/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../_js/bin/materialize.min.js"></script>
     <script type="text/javascript" src="../_js/bin/main.js"></script>
+    <script type="text/javascript">
+    //init modal to alert the user about the evaluation
+    var elem_modal_evaluation = document.querySelector('#modal-evaluation');
+    var instance_modal_evaluation = M.Modal.init(elem_modal_evaluation, {
+        dismissible: false
+    });
+
+    var toast = "<?php echo $toast ?>";
+    if(toast) {
+        M.toast({
+            html: toast
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        if("<?php echo $pending_evaluation ?>") {
+            setTimeout(function() {
+                instance_modal_evaluation.open();
+            }, 800);
+        }
+
+    }, false);
+
+    </script>
 </body>
 
 </html>
