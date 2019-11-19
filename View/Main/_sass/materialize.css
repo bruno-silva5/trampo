@@ -9094,7 +9094,7 @@ main .section-progress .wrapper-content,
 main .user-profile .wrapper-content,
 main .works-list .wrapper-content {
   width: 92%;
-  padding: 2em 1em;
+  padding: 2em 1em 0.5em;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;

@@ -42,6 +42,7 @@
         $consulta = "SELECT * FROM user WHERE email = '".$_SESSION['email']."'";
         $res = mysqli_query($conn,$consulta);
         $row = mysqli_fetch_assoc($res);
+        $id_user = $row['id'];
     ?>
 
     <header>
@@ -174,10 +175,13 @@
                         (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
                         (SELECT occupation.id FROM occupation WHERE occupation.id IN 
                         (SELECT occupation_subcategory.id_occupation FROM occupation_subcategory 
-                        WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$row['id']."'");
+                        WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$id_user."'");
                         
                         //count the numbers of workers that can do the job
                         $count_workers = 0;
+
+                        $no_worker_available = false;
+
                         while($row_worker = mysqli_fetch_assoc($query)) {
                             $destino = [
                                 'lat' => $row_worker['lat'],
@@ -188,12 +192,17 @@
                                 $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
                                 $list[$aux] = $row_worker['id'];
                                 ksort($list);
+                            } else {
+                                $no_worker_available = true;
                             }
+                        }
+                        if(!mysqli_num_rows($query) > 0) {
+                            $no_worker_available = true;
                         }
                     ?>
 
                     <?php
-                        switch($filtro){
+                        switch($filtro) {
                             case "menorD":
                                 foreach($list as $worker => $id){
                                     $query = mysqli_query($conn,"SELECT * FROM user WHERE id = ".$id);
@@ -235,6 +244,16 @@
                             break;
                             case "maiorA":
                             break;
+                        }
+
+                        if($no_worker_available) {
+                    ?>
+                    <div>
+                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
+                            width="200">
+                        <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                    </div>
+                    <?php
                         }
                     ?>
 

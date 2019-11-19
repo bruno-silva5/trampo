@@ -199,6 +199,8 @@ if (isset($_POST['select'])) {
                                 }
                             }
 
+                            $is_no_service_available = false;
+
                             $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id_occupation_subcategory IN(SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN (SELECT occupation.id FROM occupation WHERE occupation.id IN(SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '" . $id_user . "'))) AND service.id_user != '" . $id_user . "' AND service.id_request_accepted IS NULL");
                             if (mysqli_num_rows($query) > 0) {
                                 include "../../../Model/Filter.php";
@@ -214,9 +216,13 @@ if (isset($_POST['select'])) {
                                             $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
                                             $list[$aux] = $row['id'];
                                             ksort($list);
+                                        } else {
+                                            $is_no_service_available = true;            
                                         }
                                     }
                                 }
+                            } else {
+                                $is_no_service_available = true;
                             }
 
                         ?>
@@ -337,6 +343,16 @@ if (isset($_POST['select'])) {
                                 case "maiorA":
                                     // #
                                 break;
+                                }
+
+                                if($is_no_service_available) {
+                        ?>
+                                <div class="row center-align">
+                                    <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
+                                        width="200">
+                                    <h6 style="font-size: 1.3em; height: 2.2em;">Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                                </div>
+                        <?php
                                 }
                         }
 
