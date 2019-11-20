@@ -72,42 +72,42 @@
     //confere gráfico
     switch(count($categoriaBarra)){
         case 0:
-            $categoriaBarra[0] = '"a"';
+            $categoriaBarra[0] = '""';
             $qtdBarra[0] = 0;
-            $categoriaBarra[1] = '"a"';
+            $categoriaBarra[1] = '""';
             $qtdBarra[1] = 0;
-            $categoriaBarra[2] = '"a"';
+            $categoriaBarra[2] = '""';
             $qtdBarra[2] = 0;
         break;
         case 1:
-            $categoriaBarra[1] = '"a"';
+            $categoriaBarra[1] = '""';
             $qtdBarra[1] = 0;
-            $categoriaBarra[2] = '"a"';
+            $categoriaBarra[2] = '""';
             $qtdBarra[2] = 0;
         break;
         case 2:
-            $categoriaBarra[2] = '"a"';
+            $categoriaBarra[2] = '""';
             $qtdBarra[2] = 0;
         break;
     }
 
     switch(count($categoria)){
         case 0:
-            $categoria[0] = '"a"';
+            $categoria[0] = '""';
             $qtd[0] = 0;
-            $categoria[1] = '"a"';
+            $categoria[1] = '""';
             $qtd[1] = 0;
-            $categoria[2] = '"a"';
+            $categoria[2] = '""';
             $qtd[2] = 0;
         break;
         case 1:
-            $categoria[1] = '"a"';
+            $categoria[1] = '""';
             $qtd[1] = 0;
-            $categoria[2] = '"a"';
+            $categoria[2] = '""';
             $qtd[2] = 0;
         break;
         case 2:
-            $categoria[2] = '"a"';
+            $categoria[2] = '""';
             $qtd[2] = 0;
         break;
     }
