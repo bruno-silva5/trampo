@@ -322,7 +322,7 @@
 
         rating_buttons[i].addEventListener('click', function() {
             rated = i;
-            document.querySelector("#stars-rating").value = i;
+            document.querySelector("#stars-rating").value = i+1;
         });
 
     }

@@ -179,7 +179,9 @@ if (isset($_POST['select'])) {
                                                 </p>
                                             </div>
                                         </div>
-                                        <input type="submit" name="Filtrar">
+                                        <button type="submit" class="btn waves-effect" name="Filtrar">
+                                            Aplicar filtros <i class="material-icons right">search</i>
+                                        </button
                                     </form>
                                 </div>
                             </li>
