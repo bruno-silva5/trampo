@@ -22,13 +22,14 @@
     $servico = $row['qtd'];
 
     //seleciona notas
+    /*
     $consulta = "SELECT AVG(grade) as 'nota' FROM grade";
     $res = mysqli_query($conn,$consulta);
     $row = mysqli_fetch_assoc($res);
     $nota = $row['nota'];
     if($nota == null){
         $nota = 0;
-    }
+    }*/
 
     //gráfico pizza
     $categoria = [];
@@ -66,7 +67,50 @@
     $consulta = "SELECT count(id_occupation_subcategory) as 'nota' FROM service";
     $res = mysqli_query($conn,$consulta);
     $row = mysqli_fetch_assoc($res);
-    $outrosBarra = $row['nota'] -($qtdBarra[0]+$qtdBarra[1]+$qtdBarra[2]);
+    $outrosBarra = $row['nota'] -($qtdBarra[0]+$qtdBarra[1]+$qtdBarra[2]); 
+
+    //confere gráfico
+    switch(count($categoriaBarra)){
+        case 0:
+            $categoriaBarra[0] = '""';
+            $qtdBarra[0] = 0;
+            $categoriaBarra[1] = '""';
+            $qtdBarra[1] = 0;
+            $categoriaBarra[2] = '""';
+            $qtdBarra[2] = 0;
+        break;
+        case 1:
+            $categoriaBarra[1] = '""';
+            $qtdBarra[1] = 0;
+            $categoriaBarra[2] = '""';
+            $qtdBarra[2] = 0;
+        break;
+        case 2:
+            $categoriaBarra[2] = '""';
+            $qtdBarra[2] = 0;
+        break;
+    }
+
+    switch(count($categoria)){
+        case 0:
+            $categoria[0] = '""';
+            $qtd[0] = 0;
+            $categoria[1] = '""';
+            $qtd[1] = 0;
+            $categoria[2] = '""';
+            $qtd[2] = 0;
+        break;
+        case 1:
+            $categoria[1] = '""';
+            $qtd[1] = 0;
+            $categoria[2] = '""';
+            $qtd[2] = 0;
+        break;
+        case 2:
+            $categoria[2] = '""';
+            $qtd[2] = 0;
+        break;
+    }
 ?>
 
 <html>
@@ -199,7 +243,7 @@
                             <img src="_img/printer.png" width="30" class="right">
                         </a>
                         <h1 class="blue-text"><i class="fa fa-star"></i></h1>
-                        <h3><?=$nota?></h3>
+                        <h3><?="#"?></h3>
                         <p>
                             Média de Qualidade
                         </p>
