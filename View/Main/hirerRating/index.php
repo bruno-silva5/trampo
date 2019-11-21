@@ -35,6 +35,11 @@
         $row = mysqli_fetch_assoc($res);
         $id_user = $row['id'];
         
+        //avoid the user to rate himself
+        if(isset($_GET['id_user_from'], $_GET['id_user_to']) && $_GET['id_user_from'] == $_GET['id_user_to']) {
+            header("Location: ../progress");
+        }
+        
     ?>
 
     <header>

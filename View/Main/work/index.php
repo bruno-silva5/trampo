@@ -203,7 +203,14 @@ if (isset($_POST['select'])) {
 
                             $is_no_service_available = false;
 
-                            $query = mysqli_query($conn, "SELECT * FROM service WHERE service.id_occupation_subcategory IN(SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN (SELECT occupation.id FROM occupation WHERE occupation.id IN(SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '" . $id_user . "'))) AND service.id_user != '" . $id_user . "' AND service.id_request_accepted IS NULL");
+                            $query = mysqli_query($conn, 
+                            "SELECT * FROM service WHERE service.id_occupation_subcategory IN
+                             (SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN 
+                              (SELECT occupation.id FROM occupation WHERE occupation.id IN
+                              (SELECT user_occupation.id_occupation FROM user_occupation WHERE user_occupation.id_user = '" . $id_user . "'))) 
+                              AND service.id_user != '" . $id_user . "' AND service.id_request_accepted IS NULL 
+                              AND service.is_visible = 'true' ");
+                            
                             if (mysqli_num_rows($query) > 0) {
                                 include "../../../Model/Filter.php";
                                 $f = new Filter();

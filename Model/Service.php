@@ -1,5 +1,6 @@
 <?php
     class Service {
+        private $id;
         private $id_occupation_subcategory;
         private $time_remaining;
         private $title;
@@ -8,6 +9,14 @@
         private $is_visible;
         private $id_user;
         private $status;
+
+        public function setId($id) {
+            $this->id = $id;
+        }
+
+        public function getId() {
+            return $this->id;
+        }
 
         public function setIdOccupationSubcategory($id_occupation_subcategory) {
             $this->id_occupation_subcategory = $id_occupation_subcategory;

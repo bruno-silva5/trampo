@@ -30,6 +30,10 @@ var instances_floating_action_button = M.FloatingActionButton.init(elems_floatin
 var elems_materialboxed = document.querySelectorAll('.materialboxed');
 var instances = M.Materialbox.init(elems_materialboxed);
 
+//init Tooltips
+var elems_tooltips = document.querySelectorAll('.tooltipped');
+var instances_tooltips = M.Tooltip.init(elems_tooltips); 
+
 try {
 
     var service_list = $(".section-hire .collection");

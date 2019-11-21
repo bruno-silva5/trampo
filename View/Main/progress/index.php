@@ -13,57 +13,63 @@
     if(isset($_COOKIE['successful_evaluation'])) {
         setcookie("successful_evaluation", false, time()+3600, '/');
         $toast = "Avaliação registrada com sucesso!";
+    } else if(isset($_COOKIE['successful_deleted'])) {
+        $toast = "O serviço foi excluído";
+        setcookie("successful_deleted", false, time()+3600, '/');
+    } else if(isset($_COOKIE['failed_deleted'])) {
+        $toast = "Erro ao excluir o serviço";
+        setcookie("failed_deleted", false, time()+3600, '/');
     }
 
     //check if there is hires by this user
     $query = mysqli_query($conn,
-    "SELECT id, title FROM service WHERE service.id_user IN 
+    "SELECT id id_service, title FROM service WHERE service.id_user IN 
     (SELECT id FROM user WHERE user.email LIKE '".$_SESSION['email']."') AND service.is_finished = 1");
-    $row = mysqli_fetch_assoc($query);
 
-    if(mysqli_num_rows($query) > 0) {
-        $service_id = $row['id'];
-        $service_title = $row['title'];
+    while ($row = mysqli_fetch_assoc($query)) {
 
-        // check if he had answser his services evaluation
-        $query = mysqli_query($conn, "SELECT * FROM evaluation WHERE evaluation.id_service IN 
-        (SELECT service.id FROM service WHERE service.id_user IN 
-         (SELECT user.id FROM user WHERE user.email LIKE '".$_SESSION['email']."') 
+        $query_evaluation = mysqli_query($conn, "SELECT * FROM evaluation WHERE evaluation.id_service IN 
+        (SELECT service.id FROM service WHERE service.id = '".$row['id_service']."'
          AND service.is_finished = 1) AND evaluation.id_user_from IN 
-         (SELECT user.id FROM user WHERE user.email LIKE '".$_SESSION['email']."')");
-
-        if(!mysqli_num_rows($query) > 0) {
+         (SELECT user.id FROM user WHERE user.email LIKE '".$_SESSION['email']."') 
+         AND evaluation.id_user_to NOT IN (SELECT user.id FROM user WHERE user.email LIKE '".$_SESSION['email']."')");
+    
+        if(!mysqli_num_rows($query_evaluation) > 0) {
             $pending_evaluation = true;
             $page_evaluation = "workerRating";
             $is_hirer = true;
-        }
+            $service_id = $row['id_service'];
+            $service_title = $row['title'];
+        } 
     }
+
 
 
     //check if there is any service that he did 
     $query = mysqli_query($conn, 
-    "SELECT id, title FROM service WHERE service.id_request_accepted IN 
+    "SELECT id id_service, title FROM service WHERE service.id_request_accepted IN 
      (SELECT id FROM service_request WHERE service_request.id_user IN 
       (SELECT id FROM user WHERE user.email LIKE '".$_SESSION['email']."')) AND service.is_finished = 1");
     
-    $row = mysqli_fetch_assoc($query);
+    while($row = mysqli_fetch_assoc($query)) {
+        
 
-    if(mysqli_num_rows($query) > 0) {
-        $service_id = $row['id'];
-        $service_title = $row['title'];
+        $query_evaluation = mysqli_query($conn, 
+        "SELECT id FROM evaluation WHERE evaluation.id_service IN 
+         (SELECT id FROM service WHERE service.id = '".$row['id_service']."') AND evaluation.id_user_from IN
+          (SELECT id FROM user WHERE user.email = '".$_SESSION['email']."') 
+         AND evaluation.id_user_to NOT IN (SELECT id FROM user WHERE user.email = '".$_SESSION['email']."')");
 
-        $query = mysqli_query($conn, 
-        "SELECT id FROM evaluation WHERE evaluation.id_service IN
-         (SELECT id FROM service WHERE service.id = '".$service_id."') AND evaluation.id_user_from IN 
-          (SELECT id FROM user WHERE user.email = '".$_SESSION['email']."')");
-    
-        if(!mysqli_num_rows($query) > 0) {
+        if(!mysqli_num_rows($query_evaluation) > 0) {
             $pending_evaluation = true;
             $page_evaluation = "hirerRating";
             $is_hirer = false;
+            $service_id = $row['id_service'];
+            $service_title = $row['title'];
         }
-
+        
     }
+
     
     
 ?>

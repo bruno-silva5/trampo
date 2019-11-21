@@ -186,24 +186,32 @@
                     </div>
                     <div class="col s12 m12 l3 center-align">
                         <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
-                            class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
+                            class="btn waves-effect waves-light tooltipped" data-position="top" data-tooltip="Entrar em contato"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
-                        <a href="#modal-accept-service" class="btn green waves-effect modal-trigger"
-                            onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>)"><i
+                        <a href="#modal-accept-service" class="btn green waves-effect modal-trigger tooltipped"
+                        data-position="top" data-tooltip="Aceitar proposta"
+                        onclick="accept_service_request(<?php echo $row['id']; ?>, <?php echo $_GET['id_service']; ?>,<?php echo $_GET['occupation_subcategory']; ?>)"><i
                                 class="material-icons">done</i></a>
                         <!-- accept service-->
-                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
-                            onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
+                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger tooltipped"
+                        data-position="top" data-tooltip="Recusar proposta"
+                        onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
                                 class="material-icons">clear</i></a><!-- dismiss service-->
                     </div>
                 </div>
                 <?php
                             }
                 ?>
-                <div class="row right-align" style="margin-top:4em">
-                    <button class="btn-flat">Editar serviço</button>
-                    <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
-                        class="btn waves-effect waves-light">Procurar por prestadores</a>
+                <div class="row" style="margin-top:4em">
+                    <div class="col s6 left-align">
+                        <a href="../editService/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>" class="btn orange darken-3 tooltipped" data-position="right" data-tooltip="Editar serviço">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </div>
+                    <div class="col s6 right-align">
+                        <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                            class="btn waves-effect waves-light">Procurar por prestadores</a>
+                    </div>
                 </div>
                 <?php
                         //if there is no request
@@ -216,9 +224,15 @@
                     <h6 class="center-align">Não há solicitações para seu serviço!</h6>
                 </div>
                 <div class="row right-align" style="margin-top:4em">
-                    <button class="btn-flat">Editar serviço</button>
-                    <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
-                        class="btn waves-effect waves-light">Procurar por prestadores</a>
+                    <div class="col s6 left-align">
+                        <a href="../editService/?id_service=<?php echo $_GET['id_service'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>" class="btn orange darken-3 tooltipped" data-position="right" data-tooltip="Editar serviço">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </div>
+                    <div class="col s6 right-align">
+                        <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                            class="btn waves-effect waves-light">Procurar por prestadores</a>
+                    </div>
                 </div>
                 <?php
                         }
@@ -248,7 +262,8 @@
                     </div>
                     <div class="col s12 m12 l3 center-align">
                         <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
-                            class="btn waves-effect waves-light"><i class="material-icons">chat</i></a>
+                            class="btn waves-effect waves-light tooltipped" 
+                            data-position="top" data-tooltip="Entrar em contato"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
                     </div>
                 </div>
@@ -284,7 +299,7 @@
                         $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '".$id_user."'");
                         if(mysqli_num_rows($query) > 0) {
                             //check if already have sent a request
-                            $query = mysqli_query($conn, "SELECT service_request.*, service.id_request_accepted, user.full_name, user.id id_user, user.profile_picture 
+                            $query = mysqli_query($conn, "SELECT service_request.*, service.id_request_accepted, service.status, user.full_name, user.id id_user, user.profile_picture 
                             FROM `service_request` 
                             INNER JOIN user ON service_request.id_user = user.id
                             INNER JOIN service ON service_request.id_service = service.id
@@ -292,7 +307,7 @@
                             ");
                             $row = mysqli_fetch_assoc($query);
                             //if he is worker and already have sent a request, show the request with the form to a new one request
-                            if(mysqli_num_rows($query) > 0 && $row['id_request_accepted'] == null) {
+                            if(mysqli_num_rows($query) > 0 && $row['id_request_accepted'] == null && $row['status'] == 0) {
                 ?>
                 <div class="row">
                     <h5 class="center-align blue-text">Minha atual proposta</h5>
@@ -311,9 +326,11 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger"
-                            onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)"><i
-                                class="material-icons">clear</i></a><!-- dismiss service-->
+                        <a href="#modal-dismiss-service" class="btn red waves-effect modal-trigger tooltipped"
+                        data-position="top" data-tooltip="Deletar proposta"
+                        onclick="delete_service_request(<?php echo $row['id'] ?>, <?php echo $_GET['id_service']?>, <?php echo $_GET['occupation_subcategory'] ?>)">
+                            <i class="material-icons">clear</i>
+                        </a>
                     </div>
                 </div>
                 <div class="row">
@@ -389,7 +406,7 @@
                 </div>
 
                 <?php 
-                            } else {
+                            } else if($row['status'] === 0) {
                 ?>
                 <!-- the user have not sent a request for this service -->
                 <div class="row">
