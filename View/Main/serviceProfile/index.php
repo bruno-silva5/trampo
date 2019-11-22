@@ -132,13 +132,13 @@
                         <p><?php echo $row['name']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
-                        <p><b>Para quando: </b></p>
+                        <p><b>Quando: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
                         <p><?php echo $row['time_remaining']; ?></p>
                     </div>
                     <div class="col s12 m2 left-align">
-                        <p><b>Contratante: </b></p>
+                        <p><b>Prestador: </b></p>
                     </div>
                     <div class="col s12 m10 left-align">
                         <p>
@@ -406,7 +406,7 @@
                 </div>
 
                 <?php 
-                            } else if($row['status'] === 0) {
+                            } else if($row['status'] == 0 && $row['is_finished'] == 0) {
                 ?>
                 <!-- the user have not sent a request for this service -->
                 <div class="row">

@@ -278,18 +278,9 @@ if (isset($_POST['select'])) {
                                                     </div>
                                                 </div>
                                                      <?php }
-                                                     }else{ ?> 
-                                                     <div class="row" style="max-width:700px">
-                                                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white"
-                                                            class="col s8 m4 offset-s2 offset-m4">
-                                                        <div class="col s12">
-                                                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                
-                                                </div>
-                                                     <?php }
+                                                     }else{ 
+                                                        $is_no_service_available = true;
+                                                     }
                                         }
                                 break;
                                 case "maiorD":
@@ -332,18 +323,9 @@ if (isset($_POST['select'])) {
                                                     </div>
                                                 </div>
                                                      <?php }
-                                                     }else{ ?> 
-                                                     <div class="row" style="max-width:700px">
-                                                        <img src="../_img/icon/tools_black_and_white_padding.png" alt="tools icon black and white"
-                                                            class="col s8 m4 offset-s2 offset-m4">
-                                                        <div class="col s12">
-                                                            <h6 class="center-align">Desculpe, não foi encontrado nenhum serviço disponível para você.
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                
-                                                </div>
-                                                     <?php }
+                                                     }else{ 
+                                                        $is_no_service_available = true;
+                                                     }
                                     }
                                 break;
                                 case "maiorA":
@@ -359,7 +341,7 @@ if (isset($_POST['select'])) {
                                 <div class="row center-align">
                                     <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
                                         width="200">
-                                    <h6 style="font-size: 1.3em; height: 2.2em;">Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                                    <h6 style="font-size: 1.3em; height: 2.2em;">Desculpe, não foi encontrado nenhum serviço disponível para você.</h6>
                                 </div>
                         <?php
                                 }

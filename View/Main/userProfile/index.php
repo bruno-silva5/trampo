@@ -78,7 +78,10 @@
                 </div>
 
                 <?php
-                    $query = mysqli_query($conn, "SELECT user.* FROM user WHERE user.id = '".$_GET['id_user']."'");
+                    $query = mysqli_query($conn, 
+                    "SELECT user.*, AVG(evaluation.stars_rating) avg_evaluation FROM user 
+                    INNER JOIN evaluation ON user.id = evaluation.id_user_from
+                    WHERE user.id = '".$_GET['id_user']."'");
                     $row_worker = mysqli_fetch_assoc($query);
                 ?>
                 <h5 class="center-align"><strong>Perfil do usuário</strong></h5>
@@ -92,7 +95,7 @@
                     </div>
                     <div class="col s12 m7 offset-m1">
                         <h5><?php echo $row_worker['full_name']; ?></h5>
-                        <h6><b>Avaliação:</b> N/A</h6>
+                        <h6 class="yellow-text text-darken-3"><b>Avaliação:</b> <?php echo ($row_worker['avg_evaluation'] <= 0)?'Não avaliado':number_format($row_worker['avg_evaluation'],2); ?></h6>
                         <h6><b>Cidade:</b> <?php echo $row_worker['city'] ?></h6>
                         <h6><b>Bairro: </b><?php echo $row_worker['neighborhood']; ?></h6>
                         <h6>
@@ -121,7 +124,9 @@
                                     <i class="material-icons right">chat</i>
                                     Entrar em contato
                                 </a>
-                                <a href="../report" class="btn red darken-4 waves-effect waves-light" <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>>
+                                <a href="../report" class="btn red darken-4 waves-effect waves-light tooltipped"
+                                data-position="right" data-tooltip="Denunciar"
+                                <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>>
                                     <i class="material-icons">warning</i>
                                 </a>
                             </div>
