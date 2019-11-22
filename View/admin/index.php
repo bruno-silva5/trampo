@@ -70,7 +70,7 @@
     $outrosBarra = $row['nota'] -($qtdBarra[0]+$qtdBarra[1]+$qtdBarra[2]); 
 
     //confere gráfico
-    switch(count($categoriaBarra)){
+    switch(count($categoriaBarra)) {
         case 0:
             $categoriaBarra[0] = '""';
             $qtdBarra[0] = 0;
@@ -165,7 +165,7 @@
     <!-- MENU -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed blue darken-1">
-            <h5 class="center-align white-text ">TRAMPO</h5>
+            <h5 class="center-align white-text ">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="_img/user.png" alt="user profile picture"></a>
