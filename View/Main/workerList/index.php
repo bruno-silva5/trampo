@@ -182,26 +182,29 @@
 
                         $no_worker_available = false;
 
+                        $count = 0.000;
                         while($row_worker = mysqli_fetch_assoc($query)) {
                             $destino = [
                                 'lat' => $row_worker['lat'],
                                 'lon' => $row_worker['lon']
                             ];
+
                             if($f->haversine($origem, $destino) < $distancia){
                                 $count_workers++;
-                                $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
+                                $aux = number_format(($f->haversine($origem, $destino)+$count), 3, ',', '.');
                                 $list[$aux] = $row_worker['id'];
                                 ksort($list);
-                            } else {
-                                $no_worker_available = true;
+                                $count += 0.001;
                             }
                         }
-                        if(!mysqli_num_rows($query) > 0) {
+
+                        if(count($list) == 0){
                             $no_worker_available = true;
                         }
                     ?>
 
                     <?php
+                        if(!$no_worker_available){
                         switch($filtro) {
                             case "menorD":
                                 foreach($list as $worker => $id){
@@ -245,8 +248,7 @@
                             case "maiorA":
                             break;
                         }
-
-                        if($no_worker_available) {
+                    }else{
                     ?>
                     <div>
                         <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"

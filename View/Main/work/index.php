@@ -214,6 +214,7 @@ if (isset($_POST['select'])) {
                             if (mysqli_num_rows($query) > 0) {
                                 include "../../../Model/Filter.php";
                                 $f = new Filter();
+                                $count = 0.000;
                                 while ($row = mysqli_fetch_assoc($query)) {
                                     $queryUser = mysqli_query($conn, "SELECT * FROM user WHERE user.id = " . $row['id_user']);
                                     while ($rowUser = mysqli_fetch_assoc($queryUser)) {
@@ -222,22 +223,23 @@ if (isset($_POST['select'])) {
                                             'lon' => $rowUser['lon']
                                         ];
                                         if ($f->haversine($origem, $destino) < $distancia) {
-                                            $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
+                                            $aux = number_format(($f->haversine($origem, $destino)+$count), 3, ',', '.');
                                             $list[$aux] = $row['id'];
                                             ksort($list);
-                                        } else {
-                                            $is_no_service_available = true;            
+                                            $count+=0.001;
                                         }
                                     }
                                 }
-                            } else {
-                                $is_no_service_available = true;
                             }
 
+                            if(count($list) == 0){
+                                $is_no_service_available = false;
+                            }
                         ?>
 
                     <div class="wrapper-content">
                         <?php
+                            if(!$is_no_service_available){
                             switch ($filtro) {
                                 case "menorD":
                                     foreach ($list as $dist => $id) {
@@ -336,7 +338,7 @@ if (isset($_POST['select'])) {
                                 break;
                                 }
 
-                                if($is_no_service_available) {
+                            }else{
                         ?>
                                 <div class="row center-align">
                                     <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
