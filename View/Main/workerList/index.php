@@ -7,9 +7,8 @@
         $service_register = true;
         setcookie("form_submitted", false, time()+3600, '/');
     }
-    
-    $list = [];
-                
+
+
     if (isset($_GET['range'])) {
         $distancia = $_GET['range'];
     } else {
@@ -144,8 +143,6 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="occupation_subcategory" value="<?php $_GET['occupation_subcategory']; ?>">
-                                    <input type="hidden" name="id_service" value="<?php $_GET['id_service']; ?>">
                                     <button class="btn" type="submit">Aplicar filtros <i class="material-icons right">search</i></button>
                                     </form>
                                 </div>
@@ -175,12 +172,13 @@
                         (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
                         (SELECT occupation.id FROM occupation WHERE occupation.id IN 
                         (SELECT occupation_subcategory.id_occupation FROM occupation_subcategory 
-                        WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$id_user."'");
+                        WHERE occupation_subcategory.id = '".$_SESSION['idSub']."'))) AND user.id != '".$id_user."'");
                         
                         //count the numbers of workers that can do the job
                         $count_workers = 0;
 
                         $no_worker_available = false;
+                        $list = [];
 
                         $count = 0.000;
                         while($row_worker = mysqli_fetch_assoc($query)) {
@@ -196,6 +194,16 @@
                                 ksort($list);
                                 $count += 0.001;
                             }
+                        }
+
+                        if($row_worker = mysqli_fetch_assoc($query) > 0){
+                            ?>
+                                <div>
+                                    <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
+                                        width="200">
+                                    <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                                </div>
+                            <?php
                         }
 
                         if(count($list) == 0){
@@ -216,7 +224,7 @@
                                                 <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile"
                                                     class="circle z-depth-2">
                                                 <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
-                                                <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
+                                                <a href="../userProfile/?occupation_subcategory=<?php echo $_SESSION['idSub']; ?>&id_service=<?php echo $_SESSION['idService'];?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
                                                     class="btn waves-effect waves-light">Ver perfil</a>
                                             </div>
                                         <?php

@@ -1,7 +1,8 @@
 <?php
     require("../../../Controller/verifica.php");
     include_once '../../../Dao/conexao.php';
-
+    $_SESSION['idSub'] = $_GET['occupation_subcategory'];
+    $_SESSION['idService'] = $_GET['id_service'];
     //check if there is cookie, then pass it to the javascript for the toast message
     $toast = "";
     if(isset($_COOKIE['registered_service_request'])) {
@@ -210,7 +211,9 @@
                     </div>
                     <div class="col s6 right-align">
                         <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                        
                             class="btn waves-effect waves-light">Procurar por prestadores</a>
+                            
                     </div>
                 </div>
                 <?php

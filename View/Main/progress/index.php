@@ -7,7 +7,6 @@
     
     //wich page to go when go to the evaluation
     $page_evaluation = null;
-
     $is_hirer = null;
 
     if(isset($_COOKIE['successful_evaluation'])) {
@@ -350,6 +349,7 @@
                                 <?php echo $row['description'] ?>
                             </p>
                             <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+
                                     class="valign-wrapper">Ver mais <i
                                         class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>

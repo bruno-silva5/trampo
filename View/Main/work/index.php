@@ -230,16 +230,24 @@ if (isset($_POST['select'])) {
                                         }
                                     }
                                 }
+                            }else{
+                                ?>
+                                <div class="row center-align">
+                                    <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
+                                        width="200">
+                                    <h6 style="font-size: 1.3em; height: 2.2em;">Desculpe, não foi encontrado nenhum serviço disponível para você.</h6>
+                                </div>
+                                <?php
                             }
 
                             if(count($list) == 0){
-                                $is_no_service_available = false;
+                                $is_no_service_available = true;
                             }
                         ?>
 
                     <div class="wrapper-content">
                         <?php
-                            if(!$is_no_service_available){
+                            if(!$is_no_service_available || isset($filtro)){
                             switch ($filtro) {
                                 case "menorD":
                                     foreach ($list as $dist => $id) {

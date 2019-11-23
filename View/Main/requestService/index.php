@@ -92,6 +92,9 @@
                 <form
                     action="../../../Controller/cadastrarService.php/?id_occupation_subcategory=<?php echo $_GET['occupation_subcategory'];?>"
                     method="POST" class="row padding white" enctype="multipart/form-data" autocomplete="off">
+                    <?php 
+                        $_SESSION['idSub'] = $_GET['occupation_subcategory'];
+                    ?>
                     <a href="../hire" class="btn circle waves-effect waves-light"><i
                             class="material-icons">arrow_back</i></a>
                     <div class="col s12">
