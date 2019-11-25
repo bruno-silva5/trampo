@@ -4,14 +4,14 @@ include_once '../../../Dao/conexao.php';
 
 $list = [];
 
-if (isset($_POST['range'])) {
-    $distancia = $_POST['range'];
+if (isset($_GET['range'])) {
+    $distancia = $_GET['range'];
 } else {
     $distancia = 15;
 }
 
-if (isset($_POST['select'])) {
-    $filtro = $_POST['select'];
+if (isset($_GET['select'])) {
+    $filtro = $_GET['select'];
 } else {
     $filtro = "menorD";
 }
@@ -96,7 +96,7 @@ if (isset($_POST['select'])) {
             <?php
             $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '" . $row['id'] . "'");
             if (!mysqli_num_rows($query) > 0) {
-                ?>
+            ?>
 
             <div class="row z-depth-3">
                 <div class="become-worker">
@@ -147,7 +147,7 @@ if (isset($_POST['select'])) {
 
                 <?php
                 } else {
-                    ?>
+                ?>
 
                 <div class="row z-depth-2 works-list">
                     <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
@@ -161,7 +161,7 @@ if (isset($_POST['select'])) {
                                     Filtros de busca
                                 </div>
                                 <div class="collapsible-body">
-                                    <form action="index.php" method="post">
+                                    <form action="index.php" method="GET">
                                         <div class="row">
                                             <div class="col s12 m4">
                                                 <h6><strong>Ordenar por</strong></h6>
@@ -179,7 +179,7 @@ if (isset($_POST['select'])) {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn waves-effect" name="Filtrar">
+                                        <button type="submit" class="btn waves-effect" name="filtrar">
                                             Aplicar filtros <i class="material-icons right">search</i>
                                         </button
                                     </form>
@@ -215,7 +215,11 @@ if (isset($_POST['select'])) {
                                 include "../../../Model/Filter.php";
                                 $f = new Filter();
                                 while ($row = mysqli_fetch_assoc($query)) {
-                                    $queryUser = mysqli_query($conn, "SELECT * FROM user WHERE user.id = " . $row['id_user']);
+                                    $queryUser = mysqli_query($conn, 
+                                    "SELECT user.*, AVG(evaluation.stars_rating) evaluation FROM user
+                                    INNER JOIN evaluation ON user.id = evaluation.id_user_to
+                                    WHERE user.id = " . $row['id_user']);
+
                                     while ($rowUser = mysqli_fetch_assoc($queryUser)) {
                                         $destino = [
                                             'lat' => $rowUser['lat'],
@@ -223,14 +227,22 @@ if (isset($_POST['select'])) {
                                         ];
                                         if ($f->haversine($origem, $destino) < $distancia) {
                                             $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
+                                            //create a array with services id with distance as index
                                             $list[$aux] = $row['id'];
+                                            
+                                            //create a array with services ids with users evaluation as index
+                                            $list_evaluation[$rowUser['evaluation']] = $row['id'];
+
                                             ksort($list);
+                                            ksort($list_evaluation);
                                         } else {
+                                            //if there is no worker next to him
                                             $is_no_service_available = true;            
                                         }
                                     }
                                 }
                             } else {
+                                //if there is no worker to do the job
                                 $is_no_service_available = true;
                             }
 
@@ -270,7 +282,10 @@ if (isset($_POST['select'])) {
                                                             <strong> <?php echo $row['title'] ?> </strong>
                                                         </span>
                                                         <p>
-                                                            <?php echo $row['description'] ?>
+                                                            <?php echo $row['description']; ?>
+                                                        </p>
+                                                        <p>
+                                                            <b>Distância</b>: <?php echo $dist; ?> KM
                                                         </p>
                                                         <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
                                                                 class="valign-wrapper">Ver mais <i

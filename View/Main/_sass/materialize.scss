@@ -249,24 +249,21 @@ main {
           align-items: center;
           margin: 1em;
           width: 200px;
-          height: 315px;
-          padding: 0.8em;
+          height: 325px;
+          padding: 1em 0.8em;
           box-sizing: border-box;
 
           img {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             object-fit: cover;
           }
         }
 
-        a {
-          margin-top: 0.8em;
-        }
-
         h6 {
-          font-size: 1.3em;
-          height: 2.2em;
+          margin: 0;
+          height: 1.2em;
+          display: block;
           overflow: hidden;
         }
       }

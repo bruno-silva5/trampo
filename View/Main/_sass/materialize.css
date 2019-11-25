@@ -9283,26 +9283,23 @@ main .section-hire .container-extended .list .list-item, main .section-work .con
           align-items: center;
   margin: 1em;
   width: 200px;
-  height: 315px;
-  padding: 0.8em;
+  height: 325px;
+  padding: 1em 0.8em;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 main .section-hire .container-extended .list .list-item img, main .section-work .container-extended .list .list-item img {
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-main .section-hire .container-extended .list a, main .section-work .container-extended .list a {
-  margin-top: 0.8em;
-}
-
 main .section-hire .container-extended .list h6, main .section-work .container-extended .list h6 {
-  font-size: 1.3em;
-  height: 2.2em;
+  margin: 0;
+  height: 1.2em;
+  display: block;
   overflow: hidden;
 }
 
