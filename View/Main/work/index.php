@@ -1,6 +1,7 @@
 <?php
 require("../../../Controller/verifica.php");
 include_once '../../../Dao/conexao.php';
+include "../../../Model/Filter.php";
 
 $list = [];
 
@@ -203,6 +204,7 @@ if (isset($_GET['select'])) {
 
                             $is_no_service_available = false;
 
+                            //select the services that the user can do 
                             $query = mysqli_query($conn, 
                             "SELECT * FROM service WHERE service.id_occupation_subcategory IN
                              (SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN 
@@ -211,8 +213,9 @@ if (isset($_GET['select'])) {
                               AND service.id_user != '" . $id_user . "' AND service.id_request_accepted IS NULL 
                               AND service.is_visible = 'true' ");
                             
+                            $count_services = 0;
+
                             if (mysqli_num_rows($query) > 0) {
-                                include "../../../Model/Filter.php";
                                 $f = new Filter();
                                 while ($row = mysqli_fetch_assoc($query)) {
                                     $queryUser = mysqli_query($conn, 
@@ -226,23 +229,22 @@ if (isset($_GET['select'])) {
                                             'lon' => $rowUser['lon']
                                         ];
                                         if ($f->haversine($origem, $destino) < $distancia) {
-                                            $aux = number_format($f->haversine($origem, $destino), 2, ',', '.');
-                                            //create a array with services id with distance as index
-                                            $list[$aux] = $row['id'];
-                                            
-                                            //create a array with services ids with users evaluation as index
-                                            $list_evaluation[$rowUser['evaluation']] = $row['id'];
+                                            $count_services++;
 
-                                            ksort($list);
-                                            ksort($list_evaluation);
-                                        } else {
-                                            //if there is no worker next to him
-                                            $is_no_service_available = true;            
+                                            $distance = number_format($f->haversine($origem, $destino), 1);
+                                            //create a array with services id with distance as index
+                                            // $list[$aux] = $row['id'];
+                                            
+                                            $hirer_evaluation = ($rowUser['evaluation'] > 0)?number_format($rowUser['evaluation'], 1):'NULL_'.$rowUser['id'];
+
+                                            $list[] = array("id_service" => $row['id'], "hirer_evaluation" => $hirer_evaluation, "distance" => $distance);
+
                                         }
                                     }
                                 }
-                            } else {
-                                //if there is no worker to do the job
+                            }
+
+                            if($count_services <= 0) {
                                 $is_no_service_available = true;
                             }
 
@@ -252,102 +254,118 @@ if (isset($_GET['select'])) {
                         <?php
                             switch ($filtro) {
                                 case "menorD":
-                                    foreach ($list as $dist => $id) {
-                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$id);
-                                        if(mysqli_num_rows($query) > 0) { ?>
-                                            <div class="wrapper-content">
-                                            <?php  while($row = mysqli_fetch_assoc($query)) { ?>         
-                                             <div class="card hoverable col s12 m4 l3">
-                                             <a
-                                                 href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
-                                                 <div class="card-image">
-                                                     <div class="title-over-image">
-                                                         <h5><?php echo $row['title'] ?> </h5>
-                                                     </div>
-                                                     <?php if(!empty($row['picture'])) {?>
-                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
-                                                     <?php }?>
-                                                     </div>
-                                                    </a>
-                                                    <div class="card-content">
-                                                        <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                                                class="material-icons md-18">schedule</i> <i
-                                                                class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <div class="card-title">
-                                                            <i class="material-icons right">close</i>
+                                    usort($list, function ($a, $b) {
+                                        return $a['distance'] <=> $b['distance'];
+                                    });
+                                    foreach ($list as $service) {
+                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$service['id_service']);
+                                        if(mysqli_num_rows($query) > 0) { 
+                                            while($row = mysqli_fetch_assoc($query)) { ?>         
+                                            <div class="card hoverable col s12 m4 l3">
+                                                <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
+                                                    <div class="card-image">
+                                                        <div class="title-over-image">
+                                                            <h5><?php echo $row['title'] ?> </h5>
                                                         </div>
-                                                        <span class="card-title">
-                                                            <strong> <?php echo $row['title'] ?> </strong>
-                                                        </span>
-                                                        <p>
-                                                            <?php echo $row['description']; ?>
-                                                        </p>
-                                                        <p>
-                                                            <b>Distância</b>: <?php echo $dist; ?> KM
-                                                        </p>
-                                                        <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
-                                                                class="valign-wrapper">Ver mais <i
-                                                                    class="material-icons">keyboard_arrow_right</i></a></p>
+                                                        <?php if(!empty($row['picture'])) {?>
+                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                                        <?php }?>
                                                     </div>
+                                                </a>
+                                                <div class="card-content">
+                                                    <span class="card-title activator">
+                                                        <h6 style="display:inline">
+                                                            <?php echo $service['distance'] ?> KM  
+                                                            -
+                                                            <span class="orange-text text-darken-3">
+                                                                <?php echo ($service['hirer_evaluation'] > 0)?$service['hirer_evaluation']:'N/A' ?>     
+                                                            </span>
+                                                        </h6> 
+                                                        <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                                                    </span>
                                                 </div>
-                                                     <?php }
-                                                     }else{ 
-                                                        $is_no_service_available = true;
-                                                     }
+                                                <div class="card-reveal">
+                                                    <div class="card-title">
+                                                        <i class="material-icons right">close</i>
+                                                    </div>
+                                                    <span class="card-title">
+                                                        <strong> <?php echo $row['title'] ?> </strong>
+                                                    </span>
+                                                    <p>
+                                                        <?php echo $row['description']; ?>
+                                                    </p>
+                                                    <p>
+                                                        <b>Distância</b>: <?php echo $service['distance']; ?> KM
+                                                    </p>
+                                                    <p class="orange-text text-darken-3">
+                                                        <b>Avaliação</b>: <?php echo ($service['hirer_evaluation'] > 0)?$service['hirer_evaluation']:'N/A'; ?>
+                                                    </p>
+                                                    <p>
+                                                        <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work" class="valign-wrapper">
+                                                            Ver mais 
+                                                            <i class="material-icons">keyboard_arrow_right</i>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                                <?php 
+                                            }
                                         }
-                                break;
-                                case "maiorD":
-                                    krsort($list);
-                                    foreach ($list as $dist => $id) {
-                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$id);
-                                        if(mysqli_num_rows($query) > 0) { ?>
-                                            <div class="wrapper-content">
-                                            <?php  while($row = mysqli_fetch_assoc($query)) { ?>         
-                                             <div class="card hoverable col s12 m4 l3">
-                                             <a
-                                                 href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
-                                                 <div class="card-image">
-                                                     <div class="title-over-image">
-                                                         <h5><?php echo $row['title'] ?> </h5>
-                                                     </div>
-                                                     <?php if(!empty($row['picture'])) {?>
-                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
-                                                     <?php }?>
-                                                     </div>
-                                                    </a>
-                                                    <div class="card-content">
-                                                        <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                                                class="material-icons md-18">schedule</i> <i
-                                                                class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <div class="card-title">
-                                                            <i class="material-icons right">close</i>
-                                                        </div>
-                                                        <span class="card-title">
-                                                            <strong> <?php echo $row['title'] ?> </strong>
-                                                        </span>
-                                                        <p>
-                                                            <?php echo $row['description'] ?>
-                                                        </p>
-                                                        <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
-                                                                class="valign-wrapper">Ver mais <i
-                                                                    class="material-icons">keyboard_arrow_right</i></a></p>
-                                                    </div>
-                                                </div>
-                                                     <?php }
-                                                     }else{ 
-                                                        $is_no_service_available = true;
-                                                     }
                                     }
                                 break;
                                 case "maiorA":
-                                    // #
-                                break;
-                                case "maiorA":
-                                    // #
+                                    usort($list, function ($a, $b) {
+                                        return $a['hirer_evaluation'] <=> $b['hirer_evaluation'];
+                                    });
+                                    foreach ($list as $service) {
+                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$service['id_service']);
+                                        if(mysqli_num_rows($query) > 0) { 
+                                            while($row = mysqli_fetch_assoc($query)) { ?>         
+                                            <div class="card hoverable col s12 m4 l3">
+                                                <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
+                                                    <div class="card-image">
+                                                        <div class="title-over-image">
+                                                            <h5><?php echo $row['title'] ?> </h5>
+                                                        </div>
+                                                        <?php if(!empty($row['picture'])) {?>
+                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                                        <?php }?>
+                                                    </div>
+                                                </a>
+                                                <div class="card-content">
+                                                    <span class="card-title activator">
+                                                        <h6 style="display:inline">
+                                                            <?php echo $service['distance'] ?> KM     
+                                                            <i class="material-icons md-18">schedule</i> 
+                                                        </h6> 
+                                                        <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                                                    </span>
+                                                </div>
+                                                <div class="card-reveal">
+                                                    <div class="card-title">
+                                                        <i class="material-icons right">close</i>
+                                                    </div>
+                                                    <span class="card-title">
+                                                        <strong> <?php echo $row['title'] ?> </strong>
+                                                    </span>
+                                                    <p>
+                                                        <?php echo $row['description']; ?>
+                                                    </p>
+                                                    <p>
+                                                        <b>Distância</b>: <?php echo $service['distance']; ?> KM
+                                                    </p>
+                                                    <p>
+                                                        <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work" class="valign-wrapper">
+                                                            Ver mais 
+                                                            <i class="material-icons">keyboard_arrow_right</i>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                                <?php 
+                                            }
+                                        }
+                                    }
                                 break;
                                 }
 

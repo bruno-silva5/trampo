@@ -208,16 +208,6 @@
                             }
                         }
 
-                        // usort($list, function($a, $b) {
-                        //     return $a['distance'] <=> $b['distance'];
-                        // });
-
-                        // foreach($list as $worker) {
-                        //     echo "id_worker =".$worker['id_worker'];
-                        //     echo "evaluation =".$worker['evaluation'];
-                        //     echo "distance =".$worker['distance'];
-                        //     echo "<br>";
-                        // }
 
                         if(!mysqli_num_rows($query) > 0 || $count_workers <= 0) {
                             $no_worker_available = true;
