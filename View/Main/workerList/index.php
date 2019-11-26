@@ -105,30 +105,6 @@
                                     <form method="GET" action="index.php">
                                     <div class="row">
                                         <div class="col s12 m6">
-                                            <h6><strong>Formas de pagamento</strong></h6>
-                                            <div class="switch">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <span class="lever"></span>
-                                                    <span class="switch-description">Cartão de cŕedito</span>
-                                                </label>
-                                            </div>
-                                            <div class="switch">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <span class="lever"></span>
-                                                    <span class="switch-description">Cartão de débito</span>
-                                                </label>
-                                            </div>
-                                            <div class="switch">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <span class="lever"></span>
-                                                    <span class="switch-description">Boleto</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col s12 m6">
                                             <h6><strong>Ordenar por</strong></h6>
                                             <select name = "select">
                                                 <option value="menorD" <?= ($filtro == 'menorD')?'selected':''?>>Menor distância</option>

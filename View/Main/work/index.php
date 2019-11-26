@@ -168,15 +168,13 @@ if (isset($_GET['select'])) {
                                                 <h6><strong>Ordenar por</strong></h6>
                                                 <select name="select">
                                                     <option value="menorD" <?=($filtro == 'menorD')?'selected':''?>>Menor distância</option>
-                                                    <option value="maiorD" <?=($filtro == 'maiorD')?'selected':''?>>Maior distância</option>
                                                     <option value="maiorA" <?=($filtro == 'maiorA')?'selected':''?>>Maior Avaliação</option>
-                                                    <option value="menorA" <?=($filtro == 'menorA')?'selected':''?>>Menor Avaliação</option>
                                                 </select>
                                             </div>
                                             <div class="col s12">
                                                 <h6 class="center-align"><strong>Distância (KM)</strong></h6>
                                                 <p class="range-field">
-                                                    <input type="range" min="0" max="30" value="<?=$distancia?>" name="range">
+                                                    <input type="range" min="0" max="50" value="<?=$distancia?>" name="range">
                                                 </p>
                                             </div>
                                         </div>
@@ -232,8 +230,6 @@ if (isset($_GET['select'])) {
                                             $count_services++;
 
                                             $distance = number_format($f->haversine($origem, $destino), 1);
-                                            //create a array with services id with distance as index
-                                            // $list[$aux] = $row['id'];
                                             
                                             $hirer_evaluation = ($rowUser['evaluation'] > 0)?number_format($rowUser['evaluation'], 1):'NULL_'.$rowUser['id'];
 
@@ -335,8 +331,11 @@ if (isset($_GET['select'])) {
                                                 <div class="card-content">
                                                     <span class="card-title activator">
                                                         <h6 style="display:inline">
-                                                            <?php echo $service['distance'] ?> KM     
-                                                            <i class="material-icons md-18">schedule</i> 
+                                                            <?php echo $service['distance'] ?> KM  
+                                                            -
+                                                            <span class="orange-text text-darken-3">
+                                                                <?php echo ($service['hirer_evaluation'] > 0)?$service['hirer_evaluation']:'N/A' ?>     
+                                                            </span> 
                                                         </h6> 
                                                         <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
                                                     </span>
@@ -353,6 +352,9 @@ if (isset($_GET['select'])) {
                                                     </p>
                                                     <p>
                                                         <b>Distância</b>: <?php echo $service['distance']; ?> KM
+                                                    </p>
+                                                    <p class="orange-text text-darken-3">
+                                                        <b>Avaliação</b>: <?php echo ($service['hirer_evaluation'] > 0)?$service['hirer_evaluation']:'N/A'; ?>
                                                     </p>
                                                     <p>
                                                         <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work" class="valign-wrapper">
