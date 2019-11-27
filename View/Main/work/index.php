@@ -433,7 +433,7 @@ if (isset($_GET['select'])) {
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2">
-                    <img src="../_img/print_screen_steps/test.png" class="materialboxed col s12">
+                    <img src="../_img/print_screen_steps/available_services.png" class="materialboxed col s12 z-depth-3">
                 </div>
             </div>
             <div class="row">
@@ -446,7 +446,7 @@ if (isset($_GET['select'])) {
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2">
-                    <img src="../_img/print_screen_steps/test.png" class="materialboxed col s12">
+                    <img src="../_img/print_screen_steps/chat.png" class="materialboxed col s12 z-depth-3">
                 </div>
             </div>
             <div class="row">

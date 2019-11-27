@@ -127,16 +127,6 @@
 
     </main>
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
-            <i class="large material-icons">help</i>
-        </a>
-        <ul>
-            <li><a class="btn-floating red darken-4"><i class="material-icons">assignment_ind</i></a></li>
-            <li><a class="btn-floating red darken-4"><i class="material-icons">build</i></a></li>
-        </ul>
-    </div>
-
     <!-- Modal leave -->
     <div id="modalLeave" class="modal">
         <div class="modal-content">
