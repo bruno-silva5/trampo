@@ -40,11 +40,11 @@
         $row = mysqli_fetch_assoc($res);
     ?>
 
-    <header>
-        <nav class="nav-extended z-depth-0">
+    <header style="background:#1ac3b2;">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="#!" class="brand-logo center">Contratar</a>
+                <a href="#!" class="brand-logo center" >Contratar</a>
             </div>
         </nav>
     </header>
@@ -52,7 +52,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -92,10 +92,7 @@
                 <form
                     action="../../../Controller/cadastrarService.php/?id_occupation_subcategory=<?php echo $_GET['occupation_subcategory'];?>"
                     method="POST" class="row padding white" enctype="multipart/form-data" autocomplete="off">
-                    <?php 
-                        $_SESSION['idSub'] = $_GET['occupation_subcategory'];
-                    ?>
-                    <a href="../hire" class="btn circle waves-effect waves-light"><i
+                    <a style="background:#1ac3b2;" href="../hire" class="btn circle waves-effect waves-light"><i
                             class="material-icons">arrow_back</i></a>
                     <div class="col s12">
                         <br class="hide-on-med-and-up">
@@ -134,8 +131,8 @@
                     </div>
                     <div class="input-field col s12">
                         <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Foto</span>
+                            <div class="btn" style="background:#1ac3b2;">
+                                <span >Foto</span>
                                 <input type="file" name="service-picture" accept="image/*"
                                     onchange="document.getElementById('demo-service-picture').src = window.URL.createObjectURL(this.files[0])">
                             </div>
@@ -178,7 +175,7 @@
                     </div>
                     <div id="form-message"></div>
                     <div class="input-field col s12 right-align">
-                        <button class="btn waves-effect waves-light">Continuar</button>
+                        <button style="background:#16968a" class="btn waves-effect waves-light">Continuar</button>
                     </div>
                 </form>
 
@@ -193,7 +190,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
@@ -216,7 +213,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn modal-close waves-effect waves-light warning-btn disabled">Continuar</button>
+            <button style="background:#1ac3b2;" class="btn modal-close waves-effect waves-light warning-btn disabled">Continuar</button>
         </div>
     </div>
 

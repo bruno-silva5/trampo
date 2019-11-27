@@ -33,7 +33,7 @@ header {
         width: fit-content;
         display: block;
         h2 {
-            color: #514bff;
+            color: #1ac3b2;
             font-size: 1.7em;
             margin: 0;
             font-family: 'Montserrat';
@@ -58,7 +58,7 @@ main {
         h1 {
             font-family: 'Montserrat';
             text-align: center;
-            background: #003bfb;
+            background: #1ac3b2;
             color: #fff;
             padding: 0.4em;
             font-size: 2.3em;
@@ -112,7 +112,23 @@ img.desktop-bottom-background {
     z-index: -1;
     bottom: 0;
 }
+.salvar{
+    width: 84.13px;
+    height: 36px;
+    border: none;
+    background: #16968a;
+    border-radius: 3px;
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.1s;
+}
+.salvar:hover{
 
+    opacity: 0.8;
+}
 @media screen and(max-width: 1150px) {
     .top-desktop-background {
         display: none;
@@ -148,7 +164,7 @@ img.desktop-bottom-background {
     main {
         padding-top: 6em;
         h1 {
-            color: #003bfb !important;
+            color: #1ac3b2 !important;
             background: none !important;
         }
     }

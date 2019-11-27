@@ -24,6 +24,23 @@ body {
     margin: 0;
 }
 
+.voltar{
+    width: 84.13px;
+    height: 36px;
+    border: none;
+    background: #16968a;
+    border-radius: 3px;
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.1s;
+}
+.voltar:hover{
+
+    opacity: 0.8;
+}
 img.top-desktop-background {
     position: absolute;
     top: 0;
@@ -47,7 +64,7 @@ header {
         width: fit-content;
         display: block;
         h2 {
-            color: #514bff;
+            color: #1ac3b2;
             font-size: 1.7em;
             margin: 0;
             font-family: 'Montserrat';

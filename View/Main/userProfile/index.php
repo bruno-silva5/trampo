@@ -23,8 +23,8 @@
         
     ?>
 
-    <header>
-        <nav class="nav-extended z-depth-0">
+    <header style="background:#1ac3b2;">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;"> 
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Perfil</a>
@@ -35,7 +35,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -72,7 +72,7 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                    <button style="background:#1ac3b2;" onclick="window.history.back()" class="btn circle waves-effect waves-light">
                         <i class="material-icons">arrow_back</i>
                     </button>
                 </div>
@@ -80,7 +80,7 @@
                 <?php
                     $query = mysqli_query($conn, 
                     "SELECT user.*, AVG(evaluation.stars_rating) avg_evaluation FROM user 
-                    INNER JOIN evaluation ON user.id = evaluation.id_user_from
+                    INNER JOIN evaluation ON user.id = evaluation.id_user_to
                     WHERE user.id = '".$_GET['id_user']."'");
                     $row_worker = mysqli_fetch_assoc($query);
                 ?>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="col s12 m7 offset-m1">
                         <h5><?php echo $row_worker['full_name']; ?></h5>
-                        <h6 class="yellow-text text-darken-3"><b>Avaliação:</b> <?php echo ($row_worker['avg_evaluation'] <= 0)?'Não avaliado':number_format($row_worker['avg_evaluation'],2); ?></h6>
+                        <h6 class="yellow-text text-darken-3"><b>Avaliação:</b> <?php echo ($row_worker['avg_evaluation'] <= 0)?'Não avaliado':number_format($row_worker['avg_evaluation'],1); ?></h6>
                         <h6><b>Cidade:</b> <?php echo $row_worker['city'] ?></h6>
                         <h6><b>Bairro: </b><?php echo $row_worker['neighborhood']; ?></h6>
                         <h6>
@@ -118,7 +118,7 @@
                         </h6>
                         <div class="row" style="margin-top:2em">
                             <div class="col s12">
-                                <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
+                                <a style="background:#1ac3b2;" href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
                                     class="btn waves-effect waves-light"
                                     <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>>
                                     <i class="material-icons right">chat</i>

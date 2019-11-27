@@ -1,8 +1,7 @@
 <?php
     require("../../../Controller/verifica.php");
     include_once '../../../Dao/conexao.php';
-    $_SESSION['idSub'] = $_GET['occupation_subcategory'];
-    $_SESSION['idService'] = $_GET['id_service'];
+
     //check if there is cookie, then pass it to the javascript for the toast message
     $toast = "";
     if(isset($_COOKIE['registered_service_request'])) {
@@ -44,8 +43,8 @@
         
     ?>
 
-    <header>
-        <nav class="nav-extended z-depth-0">
+    <header style="background:#1ac3b2;">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Serviço</a>
@@ -56,7 +55,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -91,7 +90,7 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                    <button style="background:#1ac3b2;" onclick="window.history.back()" class="btn circle waves-effect waves-light">
                         <i class="material-icons">arrow_back</i>
                     </button>
                 </div>
@@ -141,9 +140,9 @@
                     <div class="col s12 m2 left-align">
                         <p><b>Prestador: </b></p>
                     </div>
-                    <div class="col s12 m10 left-align">
+                    <div class="col s12 m10 left-align" style="color:#1ac3b2;">
                         <p>
-                            <a
+                            <a  style="color:#1ac3b2;"
                                 href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a>
                         </p>
                     </div>
@@ -209,11 +208,9 @@
                             <i class="material-icons">edit</i>
                         </a>
                     </div>
-                    <div class="col s6 right-align">
-                        <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
-                        
-                            class="btn waves-effect waves-light">Procurar por prestadores</a>
-                            
+                    <div class="col s6 right-align" >
+                        <a style="background:#1ac3b2;" href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                            class="btn waves-effect waves-light" >Procurar por prestadores</a>
                     </div>
                 </div>
                 <?php
@@ -233,7 +230,7 @@
                         </a>
                     </div>
                     <div class="col s6 right-align">
-                        <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                        <a style="background:#1ac3b2;" href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
                             class="btn waves-effect waves-light">Procurar por prestadores</a>
                     </div>
                 </div>
@@ -337,7 +334,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <h5 class="center-align blue-text"><strong>Oferecer nova proposta</strong></h5>
+                    <h5 style="color:#16968a;" class="center-align blue-text"><strong  style="color:#1ac3b2;">Oferecer nova proposta</strong></h5>
                 </div>
                 <form
                     action="../../../Controller/insertServiceRequest.php/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"
@@ -354,7 +351,7 @@
                         <label for="service_request_price">Preço R$</label>
                     </div>
                     <div class="input-field col s12 right-align">
-                        <button type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
+                        <button  style="color:#1ac3b2;" type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
                     </div>
                 </form>
 
@@ -430,7 +427,7 @@
                         <label for="service_request_price">Preço R$</label>
                     </div>
                     <div class="input-field col s12 right-align">
-                        <button type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
+                        <button  style="backgorund:#1ac3b2;" type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
                     </div>
                 </form>
                 <?php 
@@ -441,7 +438,7 @@
                         } else {
                 ?>
                 <div class="row">
-                    <h5 class="center-align blue-text"><strong>Oferecer serviço</strong></h5>
+                    <h5  style="color:#1ac3b2;" class="center-align blue-text"><strong  style="color:#1ac3b2;">Oferecer serviço</strong></h5>
                 </div>
                 <div class="row">
                     <h6 class="center-align">Você não pode prestar serviço, pois ainda não é prestador</h6>
@@ -470,7 +467,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 

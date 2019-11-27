@@ -42,8 +42,8 @@
         
     ?>
 
-    <header>
-        <nav class="nav-extended z-depth-0">
+    <header style="background:#1ac3b2;">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Avaliar</a>
@@ -54,7 +54,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -89,7 +89,7 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                    <button style="background:#1ac3b2;" onclick="window.history.back()" class="btn circle waves-effect waves-light">
                         <i class="material-icons">arrow_back</i>
                     </button>
                 </div>
@@ -177,7 +177,7 @@
                         </div>
                     </div>
                     <div class="row right-align">
-                        <button type="submit" class="btn waves-effect waves-light">Confirmar <i class="material-icons right">done</i></button>
+                        <button style="background:#1ac3b2;" type="submit" class="btn waves-effect waves-light">Confirmar <i class="material-icons right">done</i></button>
                     </div>
                 </form>
 
@@ -210,7 +210,7 @@
         </div>
         <div class="modal-footer row">
             <div class="col s6 center-align">
-                <button class="btn-flat modal-close">Cancelar</button>
+                <button style="background:#21ac9e;" class="btn-flat modal-close">Cancelar</button>
             </div>
             <div class="col s6 center-align">
                 <a href="#!" id="accept-service-request" class="btn waves-effect waves-light green">Aceitar</a>
@@ -249,7 +249,7 @@
             </div>
         </div>
         <div class="modal-footer row">
-            <div class="col s6 center-align"><button class="btn-flat modal-close">Cancelar</button></div>
+            <div class="col s6 center-align"><button style="background:#21ac9e;" class="btn-flat modal-close">Cancelar</button></div>
             <div class="col s6 center-align">
                 <a href="#!" id="dismiss-hired-user" class="btn waves-effect red">Dispensar prestador</a>
             </div>
@@ -276,7 +276,7 @@
         </div>
         <div class="modal-footer row">
             <div class="col s6 center-align">
-                <button class="btn-flat waves-effect modal-close">Cancelar</button>
+                <button  style="background:#21ac9e;"class="btn-flat waves-effect modal-close">Cancelar</button>
             </div>
             <div class="col s6 center-align">
                 <a href="#!" class="btn waves-effect waves-light green darken-4">

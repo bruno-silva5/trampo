@@ -43,8 +43,8 @@
         $id_user = $row['id'];
     ?>
 
-    <header>
-        <nav class="nav-extended z-depth-0">
+    <header style="background:#1ac3b2;">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Editar</a>
@@ -55,7 +55,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -102,7 +102,7 @@
                 <form
                     action="../../../Controller/editService.php/?id_occupation_subcategory=<?php echo $_GET['occupation_subcategory'];?>&id_service=<?php echo $row['id'] ?>"
                     method="POST" class="row padding white" enctype="multipart/form-data" autocomplete="off">
-                    <a href="../hire" class="btn circle waves-effect waves-light"><i
+                    <a style="background:#1ac3b2;" href="../hire" class="btn circle waves-effect waves-light"><i
                             class="material-icons">arrow_back</i></a>
                     <div class="col s12">
                         <br class="hide-on-med-and-up">
@@ -141,7 +141,7 @@
                     </div>
                     <div class="input-field col s12">
                         <div class="file-field input-field">
-                            <div class="btn">
+                            <div style="background:#1ac3b2;" class="btn">
                                 <span>Foto</span>
                                 <input type="file" name="service-picture" accept="image/*"
                                     onchange="document.getElementById('demo-service-picture').src = window.URL.createObjectURL(this.files[0])">
@@ -173,7 +173,7 @@
                         </a>
                     </div>
                     <div class="input-field col s6 right-align">
-                        <button type="submit" class="btn waves-effect waves-light">Salvar alterações</button>
+                        <button style="background:#1ac3b2;" type="submit" class="btn waves-effect waves-light">Salvar alterações</button>
                     </div>
                 </form>
 
@@ -189,7 +189,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 

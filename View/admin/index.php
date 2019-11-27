@@ -70,7 +70,7 @@
     $outrosBarra = $row['nota'] -($qtdBarra[0]+$qtdBarra[1]+$qtdBarra[2]); 
 
     //confere gráfico
-    switch(count($categoriaBarra)){
+    switch(count($categoriaBarra)) {
         case 0:
             $categoriaBarra[0] = '""';
             $qtdBarra[0] = 0;
@@ -155,7 +155,7 @@
 <body>
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended" style="background:#21ac9e;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Administrador</a>
@@ -163,9 +163,9 @@
         </nav>
     </header>
     <!-- MENU -->
-    <main style="padding-top: 4em;">
-        <ul id="slide-out" class="sidenav sidenav-fixed blue darken-1">
-            <h5 class="center-align white-text ">TRAMPO</h5>
+    <main style="padding-top: 4em;" >
+        <ul id="slide-out" class="sidenav sidenav-fixed" style="background:#21ac9e;">
+            <h5 class="center-align white-text">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="_img/user.png" alt="user profile picture"></a>
@@ -181,11 +181,6 @@
             </li>
             <li><a href="#" class="waves-effect white-text"><i class="material-icons white-text">autorenew</i>Cadastrar nova categoria</a>
             </li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a href="#" class="waves-effect white-text">Minha conta</a></li>
-            <li>
                 <div class="divider"></div>
             </li>
             <li><a href="#modalLeave" class="waves-effect modal-trigger white-text"><i class="material-icons white-text">power_settings_new</i>Sair</a></li>
@@ -197,7 +192,7 @@
         </div>
         <div class="modal-footer">
             <a href="" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#21ac9e;"  class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
@@ -211,14 +206,12 @@
                         <option value="">Últimos 30 dias</option>
                     </select>
                 </div>
-                <h4 class="blue-text">Visão Geral</h4>
+                <h4 style="color:#21ac9e;">Visão Geral</h4>
 
                 <div class="col s12 m6 l3 center-align">
                     <div class="card-content z-depth-1">
-                        <a href="#">
-                            <img src="_img/printer.png" width="30" class="right">
-                        </a>
-                        <h1 class="blue-text"><i class="fa fa-users"></i></h1>
+                       
+                        <h1 style="color:#21ac9e;"><i class="fa fa-users"></i></h1>
                         <h3><?=$user?></h3>
                         <p>
                             Usuários cadastrados
@@ -227,10 +220,8 @@
                 </div>
                 <div class="col s12 m6 l3  center-align">
                     <div class="card-content z-depth-1">
-                        <a href="#">
-                            <img src="_img/printer.png" width="30" class="right">
-                        </a>
-                        <h1 class="blue-text"><i class="fa fa-desktop"></i></h1>
+                       
+                        <h1 style="color:#21ac9e;"><i class="fa fa-desktop"></i></h1>
                         <h3><?=$servico?></h3>
                         <p>
                             Serviços Realizados
@@ -239,10 +230,8 @@
                 </div>
                 <div class="col s12 m6 l3  center-align">
                     <div class="card-content z-depth-1">
-                        <a href="#">
-                            <img src="_img/printer.png" width="30" class="right">
-                        </a>
-                        <h1 class="blue-text"><i class="fa fa-star"></i></h1>
+                        
+                        <h1 style="color:#21ac9e;"><i class="fa fa-star"></i></h1>
                         <h3><?="#"?></h3>
                         <p>
                             Média de Qualidade
@@ -251,10 +240,8 @@
                 </div>
                 <div class="col s12 m6 l3 center-align">
                     <div class="card-content z-depth-1">
-                        <a href="#">
-                            <img src="_img/printer.png" width="30" class="right">
-                        </a>
-                        <h1 class="blue-text"><i class="fa fa-exclamation-triangle"></i></h1>
+                        
+                        <h1 style="color:#21ac9e;"><i class="fa fa-exclamation-triangle"></i></h1>
                         <h3>7</h3>
                         <p>
                             Reclamações
@@ -270,23 +257,19 @@
                         <option value="">Últimos 30 dias</option>
                     </select>
                 </div>
-                <h4 class="blue-text">Serviços</h4>
+                <h4 style="color:#21ac9e;">Serviços</h4>
                 <div class="col s12 m6  center-align">
                     <div class="card-content z-depth-1">
-                        <a href="#">
-                            <img src="_img/printer.png" width="30" class="right">
-                        </a>
-                        <h5 class="blue-text">Categorias mais frequentes</h5>
+                     
+                        <h5 style="color:#21ac9e;">Categorias mais frequentes</h5>
                         <canvas id="graph" width="300" height="300"></canvas>
 
                     </div>
                 </div>
                 <div class="col m6 s12 center-align">
                     <div class="card-content z-depth-1">
-                        <a href="#">
-                            <img src="_img/printer.png" width="30" class="right">
-                        </a>
-                        <h5 class="blue-text">Número de serviços por categoria</h5>
+                      
+                        <h5 style="color:#21ac9e;">Número de serviços por categoria</h5>
                         <canvas id="graph1" width="300" height="300"></canvas>
                     </div>
                 </div>
@@ -299,7 +282,7 @@
                         <option value="">Últimos 30 dias</option>
                     </select>
                 </div>
-                <h4 class="blue-text">Reclamações</h4>
+                <h4 style="color:#21ac9e;">Reclamações</h4>
 
                 <div class="col m12">
 
@@ -331,10 +314,13 @@
                         </a>
                         <div class="container-fluid left-align" style="padding-top:3px;">
                             <span>Alexia Pereira | Usuária</span>
+                          
+
                             <br>
                             <span style="color:#aaa;">Data da Denúncia: 20/10 - 20h30min</span>
 
                             <div class="container-fluid left-align">
+                           
                                 <h6>Título da Reclamação</h6>
                                 <span style="color:#aaa;">Reclamação Contra: aaaa | Código do Serviço Prestado: 002</span>
                                 <div style="word-wrap: break-word;"> aaaaaaa
@@ -347,7 +333,7 @@
             <!-- Novo serviço ou nova categoria -->
             <div class="row">
 
-                <h4 class="blue-text">Cadastrar Categorias ou Serviços</h4>
+                <h4 style="color:#21ac9e;">Cadastrar Categorias ou Serviços</h4>
                 <a href="#modal_service" class="modal-trigger">
                     <div class="col s6 center-align">
 
@@ -355,7 +341,7 @@
                             <h1>
                                 <img src="_img/customer-support.png" width="120">
                             </h1>
-                            <h4 class="blue-text">Cadastrar Categoria</h4>
+                            <h4 style="color:#21ac9e;">Cadastrar Categoria</h4>
 
                         </div>
                     </div>
@@ -366,7 +352,7 @@
                             <h1>
                                 <img src="_img/list.png" width="120">
                             </h1>
-                            <h4 class="blue-text">#</h4>
+                            <h4 style="color:#21ac9e;">Cadastrar Serviço</h4>
                         </div>
                     </div>
                 </a>
@@ -378,7 +364,7 @@
 
     <div id="modal_category" class="modal">
         <div class="modal-content">
-            <h4 class="center-align blue-text">Cadastrar Categoria</h4>
+            <h4 class="center-align" style="color:#21ac9e;">Cadastrar Categoria</h4>
             <form action="" method="POST">
                 <div class="row">
                     <div class="input-field col s12 m6">
@@ -396,14 +382,14 @@
 
         </div>
         <div class="modal-footer">
-            <a href="" class="modal-close waves-effect btn-flat">Cadastrar</a>
-            <button class="modal-close waves-effect waves-light btn">Cancelar</button>
+        <button style="background:#21ac9e;" class="modal-close waves-effect waves-light btn">Cadastrar</button>
+            <button style="background:#21ac9e;" class="modal-close waves-effect waves-light btn">Cancelar</button>
         </div>
     </div>
     <!-- Modal Serviço -->
     <div id="modal_service" class="modal">
         <div class="modal-content">
-            <h4 class="center-align blue-text">Cadastrar Categoria</h4>
+            <h4 class="center-align" style="color:#21ac9e;">Cadastrar Categoria</h4>
             <form action="../../Controller/occupation.php" method="POST">
                 <div class="row">
                     <div class="input-field col s12">
@@ -414,9 +400,9 @@
             
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="modal-close waves-effect btn-flat"><button type="submit" action="../../Controller/occupation.php" method="POST">Cadastrar</button></a>
+                    <button style="background:#21ac9e;" class="modal-close waves-effect waves-light btn" type="submit" action="../../Controller/occupation.php" method="POST">Cadastrar</button>
                     </form>
-                    <button class="modal-close waves-effect waves-light btn">Cancelar</button>
+                    <button style="background:#21ac9e;" class="modal-close waves-effect waves-light btn">Cancelar</button>
                 </div>
             
     </div>
@@ -437,10 +423,11 @@
                     label: 'dados',
                     data: [<?=$qtd[0]?>, <?=$qtd[1]?>, <?=$qtd[2]?>, <?=$outros?>],
                     backgroundColor: [
-                        '#2b4a6f',
-                        '#3297b4',
                         '#486691',
-                        '#3c7dff'
+                        '#16968a',
+                        '#3297b4',
+                        '#1ac3b2'
+
                     ],
                     borderColor: [
                         'rgba:(34,34,34,.8)'
@@ -461,7 +448,7 @@
                 datasets: [{
                     label: 'Número de Servços',
                     data: [<?=$qtdBarra[0]?>, <?=$qtdBarra[1]?>, <?=$qtdBarra[2]?>, <?=$outrosBarra?>, 0],
-                    backgroundColor: '#2b4a6f',
+                    backgroundColor: '#1ac3b2',
                     borderColor: [
                         'rgba:(34,34,34,.8)'
                     ],

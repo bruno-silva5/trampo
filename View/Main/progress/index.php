@@ -7,6 +7,7 @@
     
     //wich page to go when go to the evaluation
     $page_evaluation = null;
+
     $is_hirer = null;
 
     if(isset($_COOKIE['successful_evaluation'])) {
@@ -94,7 +95,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Progresso</a>
@@ -111,7 +112,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 8em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -230,7 +231,7 @@
                             <p>
                                 <?php echo $row['description'] ?>
                             </p>
-                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
+                            <p><a style="color:#1ac3b2;" href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
                                     class="valign-wrapper">Ver mais <i
                                         class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
@@ -349,7 +350,6 @@
                                 <?php echo $row['description'] ?>
                             </p>
                             <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
-
                                     class="valign-wrapper">Ver mais <i
                                         class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
@@ -394,7 +394,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 

@@ -1,17 +1,18 @@
 <?php
 require("../../../Controller/verifica.php");
 include_once '../../../Dao/conexao.php';
+include "../../../Model/Filter.php";
 
 $list = [];
 
-if (isset($_POST['range'])) {
-    $distancia = $_POST['range'];
+if (isset($_GET['range'])) {
+    $distancia = $_GET['range'];
 } else {
     $distancia = 15;
 }
 
-if (isset($_POST['select'])) {
-    $filtro = $_POST['select'];
+if (isset($_GET['select'])) {
+    $filtro = $_GET['select'];
 } else {
     $filtro = "menorD";
 }
@@ -46,7 +47,7 @@ if (isset($_POST['select'])) {
     ?>
 
     <header>
-        <nav class="nav-extended z-depth-0">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Trabalhar</a>
@@ -57,7 +58,7 @@ if (isset($_POST['select'])) {
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -96,7 +97,7 @@ if (isset($_POST['select'])) {
             <?php
             $query = mysqli_query($conn, "SELECT id FROM user_occupation WHERE id_user = '" . $row['id'] . "'");
             if (!mysqli_num_rows($query) > 0) {
-                ?>
+            ?>
 
             <div class="row z-depth-3">
                 <div class="become-worker">
@@ -133,21 +134,21 @@ if (isset($_POST['select'])) {
                             <p>
                                 <label>
                                     <input type="checkbox" id="work-agreement">
-                                    <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da
+                                    <span class="black-text">Estou ciente com os <a href="#" style="color:#16968a;">termos de política</a> da
                                         plataforma Trampo</span>
                                 </label>
                             </p>
                         </div>
                         <div id="message-becomeWorker"></div>
                         <div class="col s12 m2 l3 offset-m9 offset-l9 right-align">
-                            <button class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
+                            <button style="background:#16968a;" class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
                         </div>
                     </form>
                 </div>
 
                 <?php
                 } else {
-                    ?>
+                ?>
 
                 <div class="row z-depth-2 works-list">
                     <h4 class="center-align hide-on-small-only">Recentes trabalhos</h4>
@@ -161,7 +162,7 @@ if (isset($_POST['select'])) {
                                     Filtros de busca
                                 </div>
                                 <div class="collapsible-body">
-                                    <form action="index.php" method="post">
+                                    <form action="index.php" method="GET">
                                         <div class="row">
                                             <div class="col s12 m4">
                                                 <h6><strong>Ordenar por</strong></h6>
@@ -179,7 +180,7 @@ if (isset($_POST['select'])) {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn waves-effect" name="Filtrar">
+                                        <button type="submit" class="btn waves-effect" name="filtrar">
                                             Aplicar filtros <i class="material-icons right">search</i>
                                         </button
                                     </form>
@@ -203,6 +204,7 @@ if (isset($_POST['select'])) {
 
                             $is_no_service_available = false;
 
+                            //select the services that the user can do 
                             $query = mysqli_query($conn, 
                             "SELECT * FROM service WHERE service.id_occupation_subcategory IN
                              (SELECT occupation_subcategory.id FROM occupation_subcategory WHERE occupation_subcategory.id_occupation IN 
@@ -211,142 +213,163 @@ if (isset($_POST['select'])) {
                               AND service.id_user != '" . $id_user . "' AND service.id_request_accepted IS NULL 
                               AND service.is_visible = 'true' ");
                             
+                            $count_services = 0;
+
                             if (mysqli_num_rows($query) > 0) {
-                                include "../../../Model/Filter.php";
                                 $f = new Filter();
-                                $count = 0.000;
                                 while ($row = mysqli_fetch_assoc($query)) {
-                                    $queryUser = mysqli_query($conn, "SELECT * FROM user WHERE user.id = " . $row['id_user']);
+                                    $queryUser = mysqli_query($conn, 
+                                    "SELECT user.*, AVG(evaluation.stars_rating) evaluation FROM user
+                                    INNER JOIN evaluation ON user.id = evaluation.id_user_to
+                                    WHERE user.id = " . $row['id_user']);
+
                                     while ($rowUser = mysqli_fetch_assoc($queryUser)) {
                                         $destino = [
                                             'lat' => $rowUser['lat'],
                                             'lon' => $rowUser['lon']
                                         ];
                                         if ($f->haversine($origem, $destino) < $distancia) {
-                                            $aux = number_format(($f->haversine($origem, $destino)+$count), 3, ',', '.');
-                                            $list[$aux] = $row['id'];
-                                            ksort($list);
-                                            $count+=0.001;
+                                            $count_services++;
+
+                                            $distance = number_format($f->haversine($origem, $destino), 1);
+                                            //create a array with services id with distance as index
+                                            // $list[$aux] = $row['id'];
+                                            
+                                            $hirer_evaluation = ($rowUser['evaluation'] > 0)?number_format($rowUser['evaluation'], 1):'NULL_'.$rowUser['id'];
+
+                                            $list[] = array("id_service" => $row['id'], "hirer_evaluation" => $hirer_evaluation, "distance" => $distance);
+
                                         }
                                     }
                                 }
-                            }else{
-                                ?>
-                                <div class="row center-align">
-                                    <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
-                                        width="200">
-                                    <h6 style="font-size: 1.3em; height: 2.2em;">Desculpe, não foi encontrado nenhum serviço disponível para você.</h6>
-                                </div>
-                                <?php
                             }
 
-                            if(count($list) == 0){
+                            if($count_services <= 0) {
                                 $is_no_service_available = true;
                             }
+
                         ?>
 
                     <div class="wrapper-content">
                         <?php
-                            if(!$is_no_service_available || isset($filtro)){
                             switch ($filtro) {
                                 case "menorD":
-                                    foreach ($list as $dist => $id) {
-                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$id);
-                                        if(mysqli_num_rows($query) > 0) { ?>
-                                            <div class="wrapper-content">
-                                            <?php  while($row = mysqli_fetch_assoc($query)) { ?>         
-                                             <div class="card hoverable col s12 m4 l3">
-                                             <a
-                                                 href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
-                                                 <div class="card-image">
-                                                     <div class="title-over-image">
-                                                         <h5><?php echo $row['title'] ?> </h5>
-                                                     </div>
-                                                     <?php if(!empty($row['picture'])) {?>
-                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
-                                                     <?php }?>
-                                                     </div>
-                                                    </a>
-                                                    <div class="card-content">
-                                                        <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                                                class="material-icons md-18">schedule</i> <i
-                                                                class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <div class="card-title">
-                                                            <i class="material-icons right">close</i>
+                                    usort($list, function ($a, $b) {
+                                        return $a['distance'] <=> $b['distance'];
+                                    });
+                                    foreach ($list as $service) {
+                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$service['id_service']);
+                                        if(mysqli_num_rows($query) > 0) { 
+                                            while($row = mysqli_fetch_assoc($query)) { ?>         
+                                            <div class="card hoverable col s12 m4 l3">
+                                                <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
+                                                    <div class="card-image">
+                                                        <div class="title-over-image">
+                                                            <h5><?php echo $row['title'] ?> </h5>
                                                         </div>
-                                                        <span class="card-title">
-                                                            <strong> <?php echo $row['title'] ?> </strong>
-                                                        </span>
-                                                        <p>
-                                                            <?php echo $row['description'] ?>
-                                                        </p>
-                                                        <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
-                                                                class="valign-wrapper">Ver mais <i
-                                                                    class="material-icons">keyboard_arrow_right</i></a></p>
+                                                        <?php if(!empty($row['picture'])) {?>
+                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                                        <?php }?>
                                                     </div>
+                                                </a>
+                                                <div class="card-content">
+                                                    <span class="card-title activator">
+                                                        <h6 style="display:inline">
+                                                            <?php echo $service['distance'] ?> KM  
+                                                            -
+                                                            <span class="orange-text text-darken-3">
+                                                                <?php echo ($service['hirer_evaluation'] > 0)?$service['hirer_evaluation']:'N/A' ?>     
+                                                            </span>
+                                                        </h6> 
+                                                        <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                                                    </span>
                                                 </div>
-                                                     <?php }
-                                                     }else{ 
-                                                        $is_no_service_available = true;
-                                                     }
+                                                <div class="card-reveal">
+                                                    <div class="card-title">
+                                                        <i class="material-icons right">close</i>
+                                                    </div>
+                                                    <span class="card-title">
+                                                        <strong> <?php echo $row['title'] ?> </strong>
+                                                    </span>
+                                                    <p>
+                                                        <?php echo $row['description']; ?>
+                                                    </p>
+                                                    <p>
+                                                        <b>Distância</b>: <?php echo $service['distance']; ?> KM
+                                                    </p>
+                                                    <p class="orange-text text-darken-3">
+                                                        <b>Avaliação</b>: <?php echo ($service['hirer_evaluation'] > 0)?$service['hirer_evaluation']:'N/A'; ?>
+                                                    </p>
+                                                    <p>
+                                                        <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work" class="valign-wrapper">
+                                                            Ver mais 
+                                                            <i class="material-icons">keyboard_arrow_right</i>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                                <?php 
+                                            }
                                         }
-                                break;
-                                case "maiorD":
-                                    krsort($list);
-                                    foreach ($list as $dist => $id) {
-                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$id);
-                                        if(mysqli_num_rows($query) > 0) { ?>
-                                            <div class="wrapper-content">
-                                            <?php  while($row = mysqli_fetch_assoc($query)) { ?>         
-                                             <div class="card hoverable col s12 m4 l3">
-                                             <a
-                                                 href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
-                                                 <div class="card-image">
-                                                     <div class="title-over-image">
-                                                         <h5><?php echo $row['title'] ?> </h5>
-                                                     </div>
-                                                     <?php if(!empty($row['picture'])) {?>
-                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
-                                                     <?php }?>
-                                                     </div>
-                                                    </a>
-                                                    <div class="card-content">
-                                                        <span class="card-title activator orange-text text-darken-4">Pendente <i
-                                                                class="material-icons md-18">schedule</i> <i
-                                                                class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i></span>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <div class="card-title">
-                                                            <i class="material-icons right">close</i>
-                                                        </div>
-                                                        <span class="card-title">
-                                                            <strong> <?php echo $row['title'] ?> </strong>
-                                                        </span>
-                                                        <p>
-                                                            <?php echo $row['description'] ?>
-                                                        </p>
-                                                        <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work"
-                                                                class="valign-wrapper">Ver mais <i
-                                                                    class="material-icons">keyboard_arrow_right</i></a></p>
-                                                    </div>
-                                                </div>
-                                                     <?php }
-                                                     }else{ 
-                                                        $is_no_service_available = true;
-                                                     }
                                     }
                                 break;
                                 case "maiorA":
-                                    // #
-                                break;
-                                case "maiorA":
-                                    // #
+                                    usort($list, function ($a, $b) {
+                                        return $a['hirer_evaluation'] <=> $b['hirer_evaluation'];
+                                    });
+                                    foreach ($list as $service) {
+                                        $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$service['id_service']);
+                                        if(mysqli_num_rows($query) > 0) { 
+                                            while($row = mysqli_fetch_assoc($query)) { ?>         
+                                            <div class="card hoverable col s12 m4 l3">
+                                                <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work">
+                                                    <div class="card-image">
+                                                        <div class="title-over-image">
+                                                            <h5><?php echo $row['title'] ?> </h5>
+                                                        </div>
+                                                        <?php if(!empty($row['picture'])) {?>
+                                                        <img src="<?php echo $row['picture'] ?>" alt="card-image">
+                                                        <?php }?>
+                                                    </div>
+                                                </a>
+                                                <div class="card-content">
+                                                    <span class="card-title activator">
+                                                        <h6 style="display:inline">
+                                                            <?php echo $service['distance'] ?> KM     
+                                                            <i class="material-icons md-18">schedule</i> 
+                                                        </h6> 
+                                                        <i class="material-icons right grey-text text-darken-3">keyboard_arrow_up</i>
+                                                    </span>
+                                                </div>
+                                                <div class="card-reveal">
+                                                    <div class="card-title">
+                                                        <i class="material-icons right">close</i>
+                                                    </div>
+                                                    <span class="card-title">
+                                                        <strong> <?php echo $row['title'] ?> </strong>
+                                                    </span>
+                                                    <p>
+                                                        <?php echo $row['description']; ?>
+                                                    </p>
+                                                    <p>
+                                                        <b>Distância</b>: <?php echo $service['distance']; ?> KM
+                                                    </p>
+                                                    <p>
+                                                        <a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&work" class="valign-wrapper">
+                                                            Ver mais 
+                                                            <i class="material-icons">keyboard_arrow_right</i>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                                <?php 
+                                            }
+                                        }
+                                    }
                                 break;
                                 }
 
-                            }else{
+                                if($is_no_service_available) {
                         ?>
                                 <div class="row center-align">
                                     <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
@@ -372,7 +395,7 @@ if (isset($_POST['select'])) {
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#21ac9e;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 

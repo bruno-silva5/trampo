@@ -35,7 +35,20 @@ img.top-desktop-background {
 img.top-mobile-background {
     display: none;
 }
-
+.nv{
+    background: #1ac3b2;
+    color: white;
+    width: 178.59px;
+    height: 36px;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+}
+.nv:hover{
+    opacity: 0.8;
+}
 header {
     box-sizing: border-box;
     width: 100%;
@@ -47,7 +60,7 @@ header {
         width: fit-content;
         display: block;
         h2 {
-            color: #514bff;
+            color: #1ac3b2;
             font-size: 1.7em;
             margin: 0;
             font-family: 'Montserrat';

@@ -50,7 +50,7 @@ header {
         width: fit-content;
         display: block;
         h2 {
-            color: #514bff;
+            color: #21ac9e;
             font-size: 1.7em;
             margin: 0;
             font-family: 'Montserrat';
@@ -75,7 +75,7 @@ main {
         h1 {
             font-family: 'Montserrat';
             text-align: center;
-            background: #003bfb;
+            background: #1ac3b2;
             color: #fff;
             padding: 0.4em;
             font-size: 2.3em;
@@ -129,7 +129,21 @@ img.desktop-bottom-background {
     z-index: -1;
     bottom: 0;
 }
-
+.entrar{
+    width: 89.56px;
+    border: 0;
+    border-radius: 3px;
+    height: 36px;
+    background: #16968a;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+ 
+}
+.entrar:hover{
+    opacity: 0.9;
+}
 @media screen and(max-width: 1150px) {
     .top-desktop-background {
         display: none;
@@ -140,6 +154,7 @@ img.desktop-bottom-background {
     }
     header {
         padding-left: 1em !important;
+        
         h2 {
             color: #fff !important;
             font-size: 2em !important;
@@ -165,7 +180,7 @@ img.desktop-bottom-background {
     main {
         padding-top: 6em;
         h1 {
-            color: #003bfb !important;
+            color: #1ac3b2 !important;
             background: none !important;
         }
     }

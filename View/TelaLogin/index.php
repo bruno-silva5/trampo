@@ -48,9 +48,9 @@
                 <div class="mdl-cell mdl-cell--6-col"></div>
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
                     <a href="../Home"><button type="button"
-                            class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">Voltar</button></a>
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color:#16968a;">Voltar</button></a>
                     <button type="submit "
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect "
+                        class="entrar"
                         action="../../Controller/logar.php" method="POST">Entrar</button>
                 </div>
             </form>

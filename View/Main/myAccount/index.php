@@ -39,7 +39,7 @@
 
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Conta</a>
@@ -50,7 +50,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -82,15 +82,15 @@
 
 
         <!-- Section myAccount -->
-        <section class="section-myAccount">
+        <section class="section-myAccount" >
             <form action="../../../Controller/editarUser.php" method="POST">
-                <div class="row z-depth-1" style="background:#1e88e54b">
+                <div class="row z-depth-1" style="background:rgba(26,195,178,.4);">
                     <!-- <img class="user-background" src="../_img/user-background.jpg" alt="user background"> -->
-                    <div class="user-view">
+                    <div class="user-view" >
                         <div class="profile-picture">
                             <img class="circle z-depth-3" src="<?php echo $row['profile_picture']; ?>"
                                 alt="user profile picture">
-                            <a href="#modalProfilePicture" class="waves-effect waves-light btn modal-trigger"><i
+                            <a style="background:#1ac3b2;" href="#modalProfilePicture" class="waves-effect waves-light btn modal-trigger"><i
                                     class="material-icons">photo_camera</i></a>
                         </div>
                         <div class="user-info z-depth-2">
@@ -218,10 +218,10 @@
                                 class="material-icons">delete</i></a>
                     </div>
                     <div class="input-field col s6 m5 l4 offset-m0 offset-l0 center-align">
-                        <a href="#modalPassword" class="waves-effect waves-light btn modal-trigger">Alterar senha</a>
+                        <a href="#modalPassword" style="background:#16968a;" class="waves-effect waves-light btn modal-trigger">Alterar senha</a>
                     </div>
                     <div class="input-field col s12 m2 l2 offset-m4 offset-l5 right-align">
-                        <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+                        <button type="submit" style="background:#16968a;" class="waves-effect waves-light btn">Salvar</button>
                     </div>
                     <?php
                         }
@@ -301,15 +301,15 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
     <!-- Modal password -->
     <div class="modal" id="modalPassword">
         <div class="modal-content">
-            <h4 class="center-align hide-on-small-only">Alterar senha</h4>
-            <h5 class="center-align hide-on-med-and-up">Alterar senha</h5>
+            <h4  class="center-align hide-on-small-only">Alterar senha</h4>
+            <h5  class="center-align hide-on-med-and-up">Alterar senha</h5>
             <br>
             <form action="#" class="row">
                 <div class="input-field col s12">
@@ -332,7 +332,7 @@
                     <a href="#!" class="btn-flat modal-close waves-light">Cancelar</a>
                 </div>
                 <div class="col s12 m3 center-align">
-                    <a href="#!" class="btn modal-close waves-effect waves-light">Salvar</a>
+                    <a style="background:#1ac3b2;" href="#!" class="btn modal-close waves-effect waves-light">Salvar</a>
                 </div>
             </div>
         </div>

@@ -7,8 +7,9 @@
         $service_register = true;
         setcookie("form_submitted", false, time()+3600, '/');
     }
-
-
+    
+    $list = [];
+                
     if (isset($_GET['range'])) {
         $distancia = $_GET['range'];
     } else {
@@ -44,8 +45,8 @@
         $id_user = $row['id'];
     ?>
 
-    <header>
-        <nav class="nav-extended z-depth-0">
+    <header style="background:#1ac3b2;">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
@@ -56,7 +57,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#21ac9e;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -130,19 +131,20 @@
                                         <div class="col s12 m6">
                                             <h6><strong>Ordenar por</strong></h6>
                                             <select name = "select">
-                                                <option value="menorD" <?php ($filtro == 'menorD')?'selected':''?>>Menor distância</option>
-                                                <option value="maiorD" <?php ($filtro == 'maiorD')?'selected':''?>>Maior distância</option>
-                                                <option value="maiorA" <?php ($filtro == 'maiorA')?'selected':''?>>Maior Avaliação</option>
-                                                <option value="menorA" <?php ($filtro == 'menorA')?'selected':''?>>Menor Avaliação</option>
+                                                <option value="menorD" <?= ($filtro == 'menorD')?'selected':''?>>Menor distância</option>
+                                                <option value="maiorA" <?= ($filtro == 'maiorA')?'selected':''?>>Maior Avaliação</option>
                                             </select>
                                         </div>
                                         <div class="col s12">
                                             <h6 class="center-align"><strong>Distância (KM)</strong></h6>
                                             <p class="range-field">
-                                                <input type="range" name="range" min="0" max="30" value="<?php echo $distancia ?>">
+                                                <input type="range" name="range" min="0" max="100" value="<?php echo $distancia ?>">
                                             </p>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="occupation_subcategory" value="<?php echo $_GET['occupation_subcategory']; ?>">
+                                    <input type="hidden" name="id_service" value="<?php echo $_GET['id_service']; ?>">
+
                                     <button class="btn" type="submit">Aplicar filtros <i class="material-icons right">search</i></button>
                                     </form>
                                 </div>
@@ -168,85 +170,75 @@
                         }
                         //select the users that can do the job
                         $query = mysqli_query($conn, 
-                        "SELECT * FROM user WHERE user.id IN 
+                        "SELECT user.* FROM user 
+                        WHERE user.id IN 
                         (SELECT user_occupation.id_user FROM user_occupation WHERE user_occupation.id_occupation IN
                         (SELECT occupation.id FROM occupation WHERE occupation.id IN 
                         (SELECT occupation_subcategory.id_occupation FROM occupation_subcategory 
-                        WHERE occupation_subcategory.id = '".$_SESSION['idSub']."'))) AND user.id != '".$id_user."'");
+                        WHERE occupation_subcategory.id = '".$_GET['occupation_subcategory']."'))) AND user.id != '".$id_user."'");
                         
                         //count the numbers of workers that can do the job
                         $count_workers = 0;
 
                         $no_worker_available = false;
-                        $list = [];
 
-                        $count = 0.000;
                         while($row_worker = mysqli_fetch_assoc($query)) {
                             $destino = [
                                 'lat' => $row_worker['lat'],
                                 'lon' => $row_worker['lon']
                             ];
-
                             if($f->haversine($origem, $destino) < $distancia){
+                                
+                                //query to get the user evaluation
+                                $query_evaluation = mysqli_query($conn, 
+                                "SELECT AVG(evaluation.stars_rating) evaluation FROM evaluation
+                                WHERE evaluation.id_user_to = '".$row_worker['id']."' ");
+                                
+                                $row_evaluation = mysqli_fetch_assoc($query_evaluation);
+
                                 $count_workers++;
-                                $aux = number_format(($f->haversine($origem, $destino)+$count), 3, ',', '.');
-                                $list[$aux] = $row_worker['id'];
-                                ksort($list);
-                                $count += 0.001;
+                                $aux = number_format($f->haversine($origem, $destino), 1);
+
+                                //get and format the worker evaluation
+                                $worker_evaluation = ($row_evaluation['evaluation'] > 0)?number_format($row_evaluation['evaluation'], 1):'NULL_'.$row_worker['id'];
+                                
+                                //create an array with arrays wich contains workers info
+                                $list[] = array("id_worker" => $row_worker['id'], "evaluation" => $worker_evaluation, "distance" => $aux);
+                                
                             }
                         }
 
-                        if($row_worker = mysqli_fetch_assoc($query) > 0){
-                            ?>
-                                <div>
-                                    <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
-                                        width="200">
-                                    <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
-                                </div>
-                            <?php
-                        }
 
-                        if(count($list) == 0){
+                        if(!mysqli_num_rows($query) > 0 || $count_workers <= 0) {
                             $no_worker_available = true;
                         }
+                        
                     ?>
 
                     <?php
-                        if(!$no_worker_available){
                         switch($filtro) {
                             case "menorD":
-                                foreach($list as $worker => $id){
-                                    $query = mysqli_query($conn,"SELECT * FROM user WHERE id = ".$id);
+                            usort($list, function($a, $b) {
+                                return $a['distance'] <=> $b['distance'];
+                            });
+                                foreach($list as $worker){
+                                    $query = mysqli_query($conn,
+                                    "SELECT user.*, AVG(evaluation.stars_rating) evaluation FROM user 
+                                     INNER JOIN evaluation ON user.id = evaluation.id_user_to
+                                    WHERE user.id = ".$worker['id_worker']);
                                     if(mysqli_num_rows($query) > 0) {
                                         while($row_worker = mysqli_fetch_assoc($query)) {
-                                            ?>
+                    ?>
                                             <div class="list-item z-depth-1 hoverable">
                                                 <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile"
                                                     class="circle z-depth-2">
                                                 <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
-                                                <a href="../userProfile/?occupation_subcategory=<?php echo $_SESSION['idSub']; ?>&id_service=<?php echo $_SESSION['idService'];?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
+                                                <h6 class="center-align valign-wrapper yellow-text text-darken-3">Avaliação: <?php echo ($row_worker['evaluation'] > 0)?number_format($row_worker['evaluation'], 1):'N/A' ?></h6>
+                                                <h6 class="center-align valign-wrapper" style="font-size:1em"><b><?php echo $worker['distance'] ?> KM</b> distante</h6>
+                                                <a style="background:#1ac3b2;" href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
                                                     class="btn waves-effect waves-light">Ver perfil</a>
                                             </div>
-                                        <?php
-                                        }
-                                    }
-                                }
-                            break;
-                            case "maiorD":
-                                krsort($list);
-                                foreach($list as $worker => $id){
-                                    $query = mysqli_query($conn,"SELECT * FROM user WHERE id = ".$id);
-                                    if(mysqli_num_rows($query) > 0) {
-                                        while($row_worker = mysqli_fetch_assoc($query)) {
-                                            ?>
-                                            <div class="list-item z-depth-1 hoverable">
-                                                <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile"
-                                                    class="circle z-depth-2">
-                                                <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
-                                                <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
-                                                    class="btn waves-effect waves-light">Ver perfil</a>
-                                            </div>
-                                        <?php
+                    <?php
                                         }
                                     }
                                 }
@@ -254,14 +246,34 @@
                             case "menorA":
                             break;
                             case "maiorA":
+                                usort($list, function($a, $b) {
+                                    return $a['evaluation'] <=> $b['evaluation'];
+                                });
+                                foreach($list as $worker) {
+                                    $query = mysqli_query($conn, "SELECT user.* FROM user WHERE user.id = '".$worker['id_worker']."'");
+                                    while($row_worker = mysqli_fetch_assoc($query)) {
+                    ?>
+                                    <div class="list-item z-depth-1 hoverable">
+                                        <img src="<?php echo $row_worker['profile_picture']; ?>" alt="user profile"
+                                            class="circle z-depth-2">
+                                        <h6 class="center-align valign-wrapper"><?php echo $row_worker['full_name']; ?></h6>
+                                        <h6 class="center-align valign-wrapper yellow-text text-darken-3">Avaliação: <?php echo ($worker['evaluation'] > 0)?$worker['evaluation']:'N/A' ?></h6>
+                                        <h6 class="center-align valign-wrapper" style="font-size:1em"><b><?php echo $worker['distance'] ?> KM</b> distante</h6>
+                                        <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
+                                            class="btn waves-effect waves-light">Ver perfil</a>
+                                    </div>
+                    <?php
+                                    }
+                                }
                             break;
                         }
-                    }else{
+
+                        if($no_worker_available) {
                     ?>
                     <div>
                         <img src="../_img/icon/tools_black_and_white_padding.png" alt="black and white tools icon"
                             width="200">
-                        <h6>Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
+                        <h6 style="font-size: 1.3em; height: 2.2em;">Desculpe, não foi encontrado nenhum prestador para o seu serviço!</h6>
                     </div>
                     <?php
                         }

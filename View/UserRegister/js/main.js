@@ -20,10 +20,10 @@ function fixStepIndicator(n) {
     var i, x = document.getElementsByClassName("step-number");
     var y = document.getElementsByClassName("line-step");
     for (i = n; i >= 0; i--) {
-        x[i].style.background = "#003bfb";
+        x[i].style.background = "#1ac3b2";
         x[i].style.cursor = "pointer";
         if (i > 0) {
-            y[i - 1].style.background = "#003bfb";
+            y[i - 1].style.background = "#1ac3b2";
         }
     }
 }

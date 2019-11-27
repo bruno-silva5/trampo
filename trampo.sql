@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 18-Nov-2019 às 13:17
+-- Tempo de geração: 26-Nov-2019 às 20:13
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -39,9 +39,7 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
-(36, 58, 59),
-(37, 60, 63),
-(38, 61, 62);
+(44, 73, 74);
 
 -- --------------------------------------------------------
 
@@ -66,11 +64,8 @@ CREATE TABLE `evaluation` (
 --
 
 INSERT INTO `evaluation` (`id`, `answer_1`, `answer_2`, `answer_3`, `further_information`, `stars_rating`, `id_user_from`, `id_user_to`, `id_service`) VALUES
-(10, 3, 2, 2, 'mmmm', 2, 58, 59, 194),
-(11, 2, 3, 1, '', 2, 60, 63, 198),
-(12, 2, 3, 2, 'd', 3, 63, 60, 198),
-(13, 1, 2, 3, 'd', 3, 62, 61, 199),
-(14, 2, 3, 2, 'd', 2, 61, 62, 199);
+(27, 1, 1, 2, 'show!', 3, 74, 73, 214),
+(28, 1, 2, 1, 'Gostei do rapaz', 4, 73, 74, 214);
 
 -- --------------------------------------------------------
 
@@ -85,18 +80,6 @@ CREATE TABLE `message` (
   `id_user_to` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `message`
---
-
-INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text`) VALUES
-(255, 36, 58, 59, 'Bom dia blz? que horas a tarde você fazer o frete?'),
-(256, 36, 58, 59, 'você consegue*'),
-(257, 36, 59, 58, 'Bom dia, então, consigo fazer a qualquer horario a tarde, umas 16hras estaria bom?'),
-(258, 36, 58, 59, 'Sim, está ótimo, vou aceitar a solicitação.'),
-(259, 37, 60, 63, 'Obrigado, irei aceitar'),
-(260, 38, 61, 62, 'ola');
 
 -- --------------------------------------------------------
 
@@ -218,10 +201,14 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`, `is_visible`, `id_occupation_subcategory`, `id_user`, `id_request_accepted`, `status`, `who_finished`, `is_finished`, `issue_finished`) VALUES
-(194, 'O quanto antes', 'Entrega de uma geladeira', 'Preciso que minha geladeira seja entregue lá na Penha', '../_img/service_picture/Geladeira-usada-20180118072250.jpg', 'false', 43, 58, 103, 2, NULL, 1, 0),
-(197, 'Duas semanas', 'adisjdias', 'asuidhaisudadhauida', '../_img/service_picture/Disarmament-and-Education-b.jpg', 'true', 46, 58, NULL, 0, NULL, 0, 0),
-(198, 'O quanto antes', 'Encomenda para Paranapiacaba', 'Uma encomenda leve e pequena para a cidade de Paranapiacaba', NULL, 'true', 43, 60, 104, 2, NULL, 1, 0),
-(199, 'O quanto antes', 'Preciso que limpem a minha casa', 'Tenho uma casa', NULL, 'true', 1, 61, 105, 2, NULL, 1, 0);
+(214, 'A próxima semana', 'Embreagem pesada VW Polo', 'Minha embreagem está muito pesada, mas o KM do meu carro é baixo, então não sei se pode ser outra coisa, ou se realmente preciso que seja feita a troca da minha embreagem', '../_img/service_picture/polao.jpeg', 'true', 48, 73, 114, 2, NULL, 1, 0),
+(215, 'A próxima semana', 'Marea fumaçando', 'Não sei pq meu marea ta dando problema. Isso começou desde q eu coloquei 4kg de pressão na turbina', '../_img/service_picture/marea.jpg', 'true', 48, 73, NULL, 0, NULL, 0, 0),
+(216, 'O quanto antes', 'Ar-condiconado não gela', 'O meu ar-condiconado apenas emite um ar-quente mas não está gelando quando abaixo a temperatura', '../_img/service_picture/ar-condiconado.jpg', 'true', 4, 75, NULL, 0, NULL, 0, 0),
+(217, 'Sem previsão', 'Chuveiro não esquenta', 'Meu chuveiro precisa de manuntencao pois nao fica nem no morno e nem no quente', '../_img/service_picture/fiacao_chuveiro.jpg', 'true', 15, 74, NULL, 0, NULL, 0, 0),
+(218, 'O quanto antes', 'Bolo para meu filho', 'Preciso de um bolo de aniversario para o meu filho', NULL, 'true', 46, 76, NULL, 0, NULL, 0, 0),
+(219, 'O quanto antes', 'Tomada não esta pegando', 'esta é a unica tomada na minha casa que não funciona não sei pq', '../_img/service_picture/tomada.jpg', 'true', 15, 76, NULL, 0, NULL, 0, 0),
+(220, 'O quanto antes', 'Construir muro ', 'Preciso que façam a construção de um muro aqui do lado que caiu semana passada', NULL, 'true', 47, 76, NULL, 0, NULL, 0, 0),
+(221, 'O quanto antes', 'Lampada piscando desligada', 'A minha lampada mesmo apos ser desligada fica piscando', '../_img/service_picture/lampada_piscando.jpg', 'true', 15, 76, NULL, 0, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -242,9 +229,7 @@ CREATE TABLE `service_request` (
 --
 
 INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(103, 194, 59, '150.00', 'Consigo entregar amanhã, porém somente no período da tarde'),
-(104, 198, 63, '200.00', 'Consigo realizar amanhã'),
-(105, 199, 62, '100.00', 'Consigo realizar o serviço amanhã');
+(114, 214, 74, '100.00', 'Opa, blz? consigo fazer hoje mesmo');
 
 -- --------------------------------------------------------
 
@@ -278,12 +263,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_number`, `cpf`, `birth_date`, `cep`, `address`, `uf`, `city`, `neighborhood`, `home_number`, `address_complement`, `profile_picture`, `lat`, `lon`) VALUES
-(58, 'Bruno Silva', 'bruno@Live.com', 'Defina uma senha', 'M', '(11) 98120-9381', '742.532.310-98', '1993-01-13', '70673-304', 'SQSW 303 Bloco D', 'DF', 'Brasília', 'Setor Sudoeste', '33', '', '../_img/user_profile_picture/bruno.png', -15.7998967, -47.926236200000005),
-(59, 'Felipe Pires', 'felipe@live.com', 'Defina uma senha', 'M', '(11) 90482-3094', '919.580.250-97', '1990-03-20', '69075-000', 'Avenida Buriti', 'AM', 'Manaus', 'Distrito Industrial I', '2', '', '../_img/user_profile_picture/felipe.png', -3.094542, -59.95207370000003),
-(60, 'Luiz Amaral', 'luiz@email.com', '12345678', 'M', '(11) 96621-9712', '507.101.938-82', '1999-04-27', '08412-070', 'Rua Antônio Silvestre Ferreira', 'SP', 'São Paulo', 'Vila Cruzeiro', '34', '', '../_img/user_profile_picture/user.svg', -23.5473644, -46.40875140000003),
-(61, 'Vivian Vivi', 'vivi@email.com', '12345678', 'M', '(11) 96621-9713', '507.101.938-82', '1999-01-01', '08411-145', 'Rua Coronel Manuel Machado', 'SP', 'São Paulo', 'Vila Zefira', '32', '', '../_img/user_profile_picture/user.svg', -23.5512292, -46.411528299999986),
-(62, 'Bianca Binaca', 'bianca@email.com', '12345678', 'M', '(11) 96621-9715', '507.101.938-82', '1999-01-01', '08460-526', 'Rua Juvêncio Petra', 'SP', 'São Paulo', 'Jardins Recanto das Rosas', '99', '', '../_img/user_profile_picture/user.svg', -23.5575346, -46.39639239999997),
-(63, 'Felipe Pires', 'felipe@email.com', '12345678', 'M', '(11) 96621-9714', '507.101.938-82', '1999-01-01', '08431-030', 'Rua João das Heras', 'SP', 'São Paulo', 'Jardim Moreno', '33', '', '../_img/user_profile_picture/user.svg', -23.5344281, -46.42406360000001);
+(73, 'Diego Melo', 'diego@Live.com', 'Defina uma senha', 'M', '(11) 90324-8029', '674.810.318-51', '1999-08-20', '04230-000', 'Avenida Almirante Delamare', 'SP', 'São Paulo', 'Cidade Nova Heliópolis', '2', 'lado par', '../_img/user_profile_picture/m.jpeg', -23.6046076, -46.59597480000002),
+(74, 'Gabriel Fernandes', 'gabriel@live.com', 'Defina uma senha', 'M', '(11) 92903-4824', '476.955.638-11', '1993-01-30', '04446-240', 'Rua Misarela de Agualva', 'SP', 'São Paulo', 'Jardim Sabará', '2', '', '../_img/user_profile_picture/m2.jpeg', -23.6843282, -46.68238029999998),
+(75, 'Yasmin Goncalves Araujo', 'yasmin@live.com', 'Defina uma senha', 'F', '(11) 93940-2942', '313.071.168-68', '1993-11-20', '08235-800', 'Rua Benjoeiro', 'SP', 'São Paulo', 'Parque Guarani', '2', '', '../_img/user_profile_picture/f.jpeg', -23.5218054, -46.4652949),
+(76, 'Larissa Souza Lima', 'larissa@live.com', 'Defina uma senha', 'F', '(11) 99234-2342', '301.942.708-82', '1993-01-12', '01048-903', 'Rua Coronel Xavier de Toledo', 'SP', 'São Paulo', 'Centro', '2', '161', '../_img/user_profile_picture/f2.jpeg', -23.5473484, -46.63942610000004),
+(77, 'Matilde Azevedo', 'matilde@live.com', 'Defina uma senha', 'M', '(11) 90283-4789', '363.321.958-78', '1990-03-05', '04533-002', 'Rua Tabapuã', 'SP', 'São Paulo', 'Itaim Bibi', '2', 'de 572 a 780 - lado par', '../_img/user_profile_picture/f3.jpeg', -23.5834163, -46.67709819999999),
+(78, 'Leonardo Barbosa', 'leonardo@live.com', 'Defina uma senha', 'M', '(11) 94203-4829', '964.932.078-43', '1990-03-12', '08290-110', 'Rua Reverendo Saulo Gonçalves', 'SP', 'São Paulo', 'Vila Carmosina', '1', '', '../_img/user_profile_picture/m3.jpeg', -23.5569699, -46.4484678),
+(79, 'Rebeca Santos', 'rebeca@live.com', 'Defina uma senha', 'F', '(11) 92094-2094', '236.517.358-69', '1992-04-03', '01229-904', 'Rua São Vicente de Paulo', 'SP', 'São Paulo', 'Santa Cecília', '312', '501', '../_img/user_profile_picture/f5.jpeg', -23.5390605, -46.661481500000036),
+(80, 'Carla Souza Rodrigues', 'carla@live.com', 'Defina uma senha', 'F', '(11) 92903-4720', '643.224.758-68', '1993-08-30', '05410-010', 'Rua Amália de Noronha', 'SP', 'São Paulo', 'Pinheiros', '12', '', '../_img/user_profile_picture/f6.jpeg', -23.5520867, -46.680644700000016),
+(81, 'Mariana Rodrigues', 'mariana@live.com', 'Defina uma senha', 'F', '(11) 92039-8420', '263.158.558-57', '1993-01-12', '08161-210', 'Rua Faveira do Igapó', 'SP', 'São Paulo', 'Jardim dos Ipês', '1221', '', '../_img/user_profile_picture/f7.jpeg', -23.4993749, -46.41362979999997),
+(82, 'Carlos Gomes', 'carlos@live.com', 'Defina uma senha', 'M', '(11) 93208-4203', '373.507.098-11', '1993-02-02', '05653-110', 'Rua Monsenhor Henrique Magalhães', 'SP', 'São Paulo', 'Jardim Leonor', '21', '', '../_img/user_profile_picture/m5.jpeg', -23.6007621, -46.716501100000016),
+(83, 'Bruno Tavares', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98989-7464', '084.792.300-29', '1998-04-15', '01229-904', 'Rua São Vicente de Paulo', 'SP', 'São Paulo', 'Santa Cecília', '5', '501', '../_img/user_profile_picture/user.svg', -23.5390605, -46.661481500000036);
 
 -- --------------------------------------------------------
 
@@ -303,9 +293,31 @@ CREATE TABLE `user_occupation` (
 --
 
 INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) VALUES
-(187, 'Faço carretos com minha hilux', 7, 59),
-(188, 'Tenho caminhão próprio ', 7, 63),
-(189, 'dasda', 1, 62);
+(210, 'Tenho experiencia há mais de 10 anos e também faço carretos', 7, 74),
+(211, 'Tenho experiencia há mais de 10 anos e também faço carretos', 10, 74),
+(212, 'Tenho uma oficina e também faço entregas', 7, 75),
+(213, 'Tenho uma oficina e também faço entregas', 10, 75),
+(214, 'Faço entregar e também mexo com carros', 7, 76),
+(215, 'Faço entregar e também mexo com carros', 10, 76),
+(216, 'Há mais de 10 anos eu faço carretos e também estou na área da mecânica ha quase 20 anos', 7, 77),
+(217, 'Há mais de 10 anos eu faço carretos e também estou na área da mecânica ha quase 20 anos', 10, 77),
+(220, 'Faço rápidos fretes e também bons reparos automotivos', 7, 78),
+(221, 'Faço rápidos fretes e também bons reparos automotivos', 10, 78),
+(222, 'Trablaho bem', 7, 79),
+(223, 'Trablaho bem', 10, 79),
+(224, 'tenho boa experiencia nessa areas', 7, 80),
+(225, 'tenho boa experiencia nessa areas', 10, 80),
+(226, 'trabalho muito bem e tabem tenho uma grande experiencia na area', 7, 81),
+(227, 'trabalho muito bem e tabem tenho uma grande experiencia na area', 10, 81),
+(228, 'Monto móveis, faço carretos e também tenho experiência na parte elétrica de carros', 6, 82),
+(229, 'Monto móveis, faço carretos e também tenho experiência na parte elétrica de carros', 7, 82),
+(230, 'Monto móveis, faço carretos e também tenho experiência na parte elétrica de carros', 10, 82),
+(231, 'Trabalho muito bem!', 7, 83),
+(232, 'Trabalho muito bem!', 10, 83),
+(233, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 2, 73),
+(234, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 3, 73),
+(235, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 5, 73),
+(236, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 9, 73);
 
 --
 -- Índices para tabelas despejadas
@@ -390,19 +402,19 @@ ALTER TABLE `user_occupation`
 -- AUTO_INCREMENT de tabela `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `evaluation`
 --
 ALTER TABLE `evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 
 --
 -- AUTO_INCREMENT de tabela `occupation`
@@ -420,25 +432,25 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT de tabela `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT de tabela `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- Restrições para despejos de tabelas
