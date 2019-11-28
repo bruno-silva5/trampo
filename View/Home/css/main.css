@@ -548,12 +548,18 @@ footer hr {
 }
 
 @media (max-width: 1200px) {
+  .normal-logo {
+    display: none;
+  }
   header span h1 {
     color: #ffffff;
   }
 }
 
 @media only screen and (min-width: 1200px) {
+  .white-logo {
+    display: none;
+  }
   .show-desktop {
     display: block;
   }

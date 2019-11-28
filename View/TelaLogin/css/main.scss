@@ -37,25 +37,12 @@ img.top-mobile-background {
 header {
     box-sizing: border-box;
     width: 100%;
-    padding: 0.5em 1.5em;
+    padding: 0em 1.5em;
     position: absolute;
     z-index: 1;
     @media screen and (max-width: 412px) {
         display: flex;
         justify-content: center;
-    }
-    top: 0;
-    a {
-        text-decoration: none;
-        width: fit-content;
-        display: block;
-        h2 {
-            color: #514bff;
-            font-size: 1.7em;
-            margin: 0;
-            font-family: 'Montserrat';
-            font-weight: 700;
-        }
     }
 }
 
@@ -131,6 +118,10 @@ img.desktop-bottom-background {
 }
 
 @media screen and(max-width: 1150px) {
+    .normal-logo {
+        display: none;
+    }
+
     .top-desktop-background {
         display: none;
     }
@@ -182,5 +173,11 @@ img.desktop-bottom-background {
     }
     h3 {
         font-size: 2em;
+    }
+}
+
+@media screen and(min-width: 1150px) {
+    .white-logo {
+        display: none;
     }
 }

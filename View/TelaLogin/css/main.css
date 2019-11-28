@@ -38,10 +38,9 @@ header {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 0.5em 1.5em;
+  padding: 0em 1.5em;
   position: absolute;
   z-index: 1;
-  top: 0;
 }
 
 @media screen and (max-width: 412px) {
@@ -53,22 +52,6 @@ header {
         -ms-flex-pack: center;
             justify-content: center;
   }
-}
-
-header a {
-  text-decoration: none;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  display: block;
-}
-
-header a h2 {
-  color: #514bff;
-  font-size: 1.7em;
-  margin: 0;
-  font-family: 'Montserrat';
-  font-weight: 700;
 }
 
 main {
@@ -162,6 +145,9 @@ img.desktop-bottom-background {
 }
 
 @media screen and (max-width: 1150px) {
+  .normal-logo {
+    display: none;
+  }
   .top-desktop-background {
     display: none;
   }
@@ -214,6 +200,12 @@ img.desktop-bottom-background {
   }
   h3 {
     font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .white-logo {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */

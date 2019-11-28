@@ -41,7 +41,7 @@ img.top-mobile-background {
 header {
     box-sizing: border-box;
     width: 100%;
-    padding: 0.5em 1.5em;
+    padding: 0em 1.5em;
     position: absolute;
     z-index: 1;
     @media screen and (max-width: 412px) {
@@ -207,6 +207,10 @@ input.invalid {
 }
 
 @media screen and(max-width: 1150px) {
+    .normal-logo {
+        display: none;
+    }
+
     .top-desktop-background {
         display: none;
     }
@@ -266,6 +270,12 @@ input.invalid {
         margin-bottom: 2em;
     }
     .desktop-bottom-background {
+        display: none;
+    }
+}
+
+@media screen and(min-width: 1150px) {
+    .white-logo {
         display: none;
     }
 }

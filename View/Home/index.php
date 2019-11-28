@@ -17,7 +17,8 @@
 <body>
     <header>
         <span>
-            <h1>Trampo</h1>
+            <img src="img/logo/trampo_logo_normal.png" alt="trampo logo" width="100" class="normal-logo">
+            <img src="img/logo/trampo_logo_white.png" alt="trampo logo" width="100" class="white-logo">
         </span>
 
         <input type="checkbox" id="toggle">
@@ -179,7 +180,7 @@
         </div>
         <div>
             <hr>
-            <h2>Trampo</h2>
+            <img src="img/logo/trampo_logo_normal.png" alt="trampo logo" width="100" class="normal-logo" style="display:inline">
             <p>© 2019 Trampo, todos os direitos resevados</p>
         </div>
     </footer>

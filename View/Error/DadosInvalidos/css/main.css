@@ -40,7 +40,7 @@ header {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 0.5em 1.5em;
+  padding: 0em 1.5em;
   position: absolute;
   top: 0;
 }
@@ -141,6 +141,9 @@ img.desktop-bottom-background {
 }
 
 @media screen and (max-width: 720px) {
+  .normal-logo {
+    display: none;
+  }
   img.top-desktop-background {
     display: none;
   }
@@ -159,6 +162,12 @@ img.desktop-bottom-background {
     color: #fff !important;
   }
   img.desktop-bottom-background {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .white-logo {
     display: none;
   }
 }
