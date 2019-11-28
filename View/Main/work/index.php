@@ -231,7 +231,7 @@ if (isset($_GET['select'])) {
 
                                             $distance = number_format($f->haversine($origem, $destino), 1);
                                             
-                                            $hirer_evaluation = ($rowUser['evaluation'] > 0)?number_format($rowUser['evaluation'], 1):'NULL_'.$rowUser['id'];
+                                            $hirer_evaluation = ($rowUser['evaluation'] > 0)?floatval(number_format($rowUser['evaluation'], 1)):'NULL_'.$rowUser['id'];
 
                                             $list[] = array("id_service" => $row['id'], "hirer_evaluation" => $hirer_evaluation, "distance" => $distance);
 
@@ -311,7 +311,7 @@ if (isset($_GET['select'])) {
                                 break;
                                 case "maiorA":
                                     usort($list, function ($a, $b) {
-                                        return $a['hirer_evaluation'] <=> $b['hirer_evaluation'];
+                                        return $b['hirer_evaluation'] <=> $a['hirer_evaluation'];
                                     });
                                     foreach ($list as $service) {
                                         $query = mysqli_query($conn, "SELECT * FROM service WHERE id = ".$service['id_service']);

@@ -176,7 +176,7 @@
                                 $aux = number_format($f->haversine($origem, $destino), 1);
 
                                 //get and format the worker evaluation
-                                $worker_evaluation = ($row_evaluation['evaluation'] > 0)?number_format($row_evaluation['evaluation'], 1):'NULL_'.$row_worker['id'];
+                                $worker_evaluation = ($row_evaluation['evaluation'] > 0)?floatval(number_format($row_evaluation['evaluation'], 1)):'NULL_'.$row_worker['id'];
                                 
                                 //create an array with arrays wich contains workers info
                                 $list[] = array("id_worker" => $row_worker['id'], "evaluation" => $worker_evaluation, "distance" => $aux);
@@ -223,8 +223,9 @@
                             break;
                             case "maiorA":
                                 usort($list, function($a, $b) {
-                                    return $a['evaluation'] <=> $b['evaluation'];
+                                    return $b['evaluation'] <=> $a['evaluation'];
                                 });
+
                                 foreach($list as $worker) {
                                     $query = mysqli_query($conn, "SELECT user.* FROM user WHERE user.id = '".$worker['id_worker']."'");
                                     while($row_worker = mysqli_fetch_assoc($query)) {
