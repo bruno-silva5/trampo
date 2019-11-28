@@ -44,7 +44,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended z-depth-0">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Serviço</a>
@@ -55,13 +55,13 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#1ac3b2;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
                             alt="user profile picture"></a>
                     <div class="user-info">
-                        <a href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
+                        <a style="color:#1ac3b2;" href="#name"><span class="black-text name"><?php echo $row['full_name'] ?></span></a>
                         <a href="#email"><span class="black-text email"><?php echo $row['email'] ?></span></a>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                    <button style="background:#1ac3b2;" onclick="window.history.back()" class="btn circle waves-effect waves-light">
                         <i class="material-icons">arrow_back</i>
                     </button>
                 </div>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="col s12 m10 left-align">
                         <p>
-                            <a
+                            <a style="color:#1ac3b2;"
                                 href="../userProfile/?id_user=<?php echo $row['id_user'] ?>"><?php echo $row['full_name']; ?></a>
                         </p>
                     </div>
@@ -176,7 +176,7 @@
                         class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
-                        <h6><?php echo $row['full_name'] ?></h6>
+                        <h6 style="color:#1ac3b2;"><?php echo $row['full_name'] ?></h6>
                     </a>
                     <div class="col s12 m12 l3 center-align">
                         <p><?php echo $row['description'] ?></p>
@@ -185,7 +185,7 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
+                        <a style="background:#16968a;" href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
                             class="btn waves-effect waves-light tooltipped" data-position="top" data-tooltip="Entrar em contato"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
                         <a href="#modal-accept-service" class="btn green waves-effect modal-trigger tooltipped"
@@ -209,8 +209,8 @@
                         </a>
                     </div>
                     <div class="col s6 right-align">
-                        <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
-                            class="btn waves-effect waves-light">Procurar por prestadores</a>
+                        <a  href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
+                        style="background:#1ac3b2;" class="btn waves-effect waves-light">Procurar por prestadores</a>
                     </div>
                 </div>
                 <?php
@@ -231,7 +231,7 @@
                     </div>
                     <div class="col s6 right-align">
                         <a href="../workerList/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']?>&id_service=<?php echo $_GET['id_service']; ?>"
-                            class="btn waves-effect waves-light">Procurar por prestadores</a>
+                        style="background:#1ac3b2;" class="btn waves-effect waves-light">Procurar por prestadores</a>
                     </div>
                 </div>
                 <?php
@@ -252,7 +252,7 @@
                         class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
-                        <h6><?php echo $row['full_name'] ?></h6>
+                        <h6 style="color:#1ac3b2;"><?php echo $row['full_name'] ?></h6>
                     </a>
                     <div class="col s12 m12 l3 center-align">
                         <p><?php echo $row['description'] ?></p>
@@ -261,7 +261,7 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <a href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
+                        <a style="background:#16968a;"  href="../chatMessage/?id_user_from=<?php echo $id_user ?>&id_user_to=<?php echo $row['id_user']; ?>&name_user_to=<?php echo $row['full_name']; ?>&hire_contact"
                             class="btn waves-effect waves-light tooltipped" 
                             data-position="top" data-tooltip="Entrar em contato"><i class="material-icons">chat</i></a>
                         <!-- talk to the worker-->
@@ -310,14 +310,14 @@
                             if(mysqli_num_rows($query) > 0 && $row['id_request_accepted'] == null && $row['status'] == 0) {
                 ?>
                 <div class="row">
-                    <h5 class="center-align blue-text">Minha atual proposta</h5>
+                    <h5 class="center-align" style="color:#1ac3b2;">Minha atual proposta</h5>
                 </div>
                 <div class="row valign-wrapper z-depth-1" style="flex-wrap: wrap; padding:1.3em; border-radius:0.2em">
                     <a href="../userProfile/?id_user=<?php echo $row['id_user'] ?>&occupation_subcategory=<?php echo $_GET['occupation_subcategory'] ?>&id_service=<?php echo $_GET['id_service'] ?>&service_profile"
                         class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
-                        <h6><?php echo $row['full_name'] ?></h6>
+                        <h6 style="color:#1ac3b2;"><?php echo $row['full_name'] ?></h6>
                     </a>
                     <div class="col s12 m12 l3 center-align">
                         <p><?php echo $row['description'] ?></p>
@@ -334,7 +334,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <h5 class="center-align blue-text"><strong>Oferecer nova proposta</strong></h5>
+                    <h5 class="center-align"><strong style="color:#1ac3b2;">Oferecer nova proposta</strong></h5>
                 </div>
                 <form
                     action="../../../Controller/insertServiceRequest.php/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"
@@ -351,7 +351,7 @@
                         <label for="service_request_price">Preço R$</label>
                     </div>
                     <div class="input-field col s12 right-align">
-                        <button type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
+                        <button type="submit" style="background:#1ac3b2;" class="btn waves-effect waves-light">Oferecer serviço</button>
                     </div>
                 </form>
 
@@ -367,7 +367,7 @@
                         class="col s12 m12 l3 center-align">
                         <img src="<?php echo $row['profile_picture'] ?>" alt="user profile" class="circle z-depth-2"
                             width="100" height="100" style="object-fit:cover">
-                        <h6><?php echo $row['full_name'] ?></h6>
+                        <h6 style="color:#1ac3b2;"><?php echo $row['full_name'] ?></h6>
                     </a>
                     <div class="col s12 m12 l3 center-align">
                         <p><?php echo $row['description'] ?></p>
@@ -376,7 +376,7 @@
                         <h5>R$ <?php echo(str_replace(".",",",$row['price'])) ?></h5>
                     </div>
                     <div class="col s12 m12 l3 center-align">
-                        <button class="btn waves-effect waves-light disabled"><i
+                        <button   class="btn waves-effect waves-light disabled" ><i
                                 class="material-icons">chat</i></button>
                         <!-- talk to the worker-->
                     </div>
@@ -410,7 +410,7 @@
                 ?>
                 <!-- the user have not sent a request for this service -->
                 <div class="row">
-                    <h5 class="center-align blue-text"><strong>Oferecer nova proposta</strong></h5>
+                    <h5 class="center-align"><strong style="color:#1ac3b2;">Oferecer nova proposta</strong></h5>
                 </div>
                 <form
                     action="../../../Controller/insertServiceRequest.php/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service'] ?>&id_user=<?php echo $id_user ?>"
@@ -427,7 +427,7 @@
                         <label for="service_request_price">Preço R$</label>
                     </div>
                     <div class="input-field col s12 right-align">
-                        <button type="submit" class="btn waves-effect waves-light">Oferecer serviço</button>
+                        <button type="submit" style="background:#1ac3b2;" class="btn waves-effect waves-light">Oferecer serviço</button>
                     </div>
                 </form>
                 <?php 
@@ -438,7 +438,7 @@
                         } else {
                 ?>
                 <div class="row">
-                    <h5 class="center-align blue-text"><strong>Oferecer serviço</strong></h5>
+                    <h5 class="center-align"><strong style="color:#1ac3b2;">Oferecer serviço</strong></h5>
                 </div>
                 <div class="row">
                     <h6 class="center-align">Você não pode prestar serviço, pois ainda não é prestador</h6>
@@ -467,7 +467,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
@@ -542,7 +542,7 @@
                     Clicando em <span class="green-text text-darken-4"><b>Finalizar</b></span> você irá alertar que o
                     serviço
                     foi finalizado, e será enviado uma confirmação para o outro usuário indicar que está tudo certo,
-                    caso haja conflitos, a moderação da plataforma <span class="blue-text"><b>trampo</b></span> irá
+                    caso haja conflitos, a moderação da plataforma <span style="color:#1ac3b2;"><b>trampo</b></span> irá
                     analisar o caso.
                 </h6>
             </div>

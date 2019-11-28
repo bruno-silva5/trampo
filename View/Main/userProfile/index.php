@@ -24,7 +24,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended z-depth-0">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Perfil</a>
@@ -35,7 +35,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#1ac3b2;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -72,7 +72,7 @@
             <div class="blue-background"></div>
             <div class="z-depth-1 padding container-extended">
                 <div class="row">
-                    <button onclick="window.history.back()" class="btn circle waves-effect waves-light">
+                    <button style="background:#1ac3b2;" onclick="window.history.back()" class="btn circle waves-effect waves-light">
                         <i class="material-icons">arrow_back</i>
                     </button>
                 </div>
@@ -118,7 +118,7 @@
                         </h6>
                         <div class="row" style="margin-top:2em">
                             <div class="col s12">
-                                <a href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
+                                <a style="background:#1ac3b2;" href="../chatMessage/?id_user_from=<?php echo $row['id']; ?>&id_user_to=<?php echo $_GET['id_user']; ?>&name_user_to=<?php echo $row_worker['full_name']; ?>&hire_contact"
                                     class="btn waves-effect waves-light"
                                     <?php echo($_GET['id_user'] == $row['id'])?'disabled':''; ?>>
                                     <i class="material-icons right">chat</i>
@@ -215,7 +215,7 @@
                                 <p>
                                     <?php echo $row['description'] ?>
                                 </p>
-                                <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
+                                <p><a style="color:#1ac3b2;" href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
                                         class="valign-wrapper">Ver mais <i
                                             class="material-icons">keyboard_arrow_right</i></a></p>
                             </div>

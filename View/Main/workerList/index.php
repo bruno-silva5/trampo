@@ -46,7 +46,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended z-depth-0">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
@@ -57,7 +57,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#1ac3b2;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -212,7 +212,7 @@
                                                 <h6 class="center-align valign-wrapper yellow-text text-darken-3">Avaliação: <?php echo ($row_worker['evaluation'] > 0)?number_format($row_worker['evaluation'], 1):'N/A' ?></h6>
                                                 <h6 class="center-align valign-wrapper" style="font-size:1em"><b><?php echo $worker['distance'] ?> KM</b> distante</h6>
                                                 <a href="../userProfile/?occupation_subcategory=<?php echo $_GET['occupation_subcategory']; ?>&id_service=<?php echo $_GET['id_service']?>&id_user=<?php echo $row_worker['id']; ?>&worker_list"
-                                                    class="btn waves-effect waves-light">Ver perfil</a>
+                                                style="background:#1ac3b2;"  class="btn waves-effect waves-light">Ver perfil</a>
                                             </div>
                     <?php
                                         }

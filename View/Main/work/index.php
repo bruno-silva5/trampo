@@ -47,7 +47,7 @@ if (isset($_GET['select'])) {
     ?>
 
     <header>
-        <nav class="nav-extended z-depth-0">
+        <nav class="nav-extended z-depth-0" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Trabalhar</a>
@@ -134,14 +134,14 @@ if (isset($_GET['select'])) {
                             <p>
                                 <label>
                                     <input type="checkbox" id="work-agreement">
-                                    <span class="black-text">Estou ciente com os <a href="#">termos de política</a> da
+                                    <span class="black-text">Estou ciente com os <a style="color:#1ac3b2;" href="#">termos de política</a> da
                                         plataforma Trampo</span>
                                 </label>
                             </p>
                         </div>
                         <div id="message-becomeWorker"></div>
                         <div class="col s12 m2 l3 offset-m9 offset-l9 right-align">
-                            <button class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
+                            <button style="background:#1ac3b2;" class="btn waves-effect waves-light" id="submit-becomeWorker">Continuar</button>
                         </div>
                     </form>
                 </div>
@@ -178,7 +178,7 @@ if (isset($_GET['select'])) {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn waves-effect" name="filtrar">
+                                        <button style="background:#1ac3b2;" type="submit" class="btn waves-effect" name="filtrar">
                                             Aplicar filtros <i class="material-icons right">search</i>
                                         </button
                                     </form>
@@ -397,7 +397,7 @@ if (isset($_GET['select'])) {
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
@@ -405,8 +405,8 @@ if (isset($_GET['select'])) {
     <div class="modal" id="modal_worker_tutorial">
         <div class="modal-content">
             <div class="row">
-                <h4 class="center-align blue-text hide-on-small-only">Parabéns, agora você pode prestar seviços!</h4>
-                <h5 class="center-align blue-text hide-on-med-and-up">Parabéns, agora você pode prestar seviços!</h5>
+                <h4 style="color:#1ac3b2;" class="center-align blue-text hide-on-small-only">Parabéns, agora você pode prestar seviços!</h4>
+                <h5 style="color:#1ac3b2;" class="center-align blue-text hide-on-med-and-up">Parabéns, agora você pode prestar seviços!</h5>
             </div>
 
             <div class="row justify-align">
@@ -429,7 +429,7 @@ if (isset($_GET['select'])) {
             </div>
             <div class="divider"></div>
             <div class="row">
-                <h5 class="blue-text">#Serviços disponíveis</h5>
+                <h5 style="color:#1ac3b2;">#Serviços disponíveis</h5>
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2">
@@ -453,7 +453,7 @@ if (isset($_GET['select'])) {
                 <h6 class="justify-align">
                     Fique atento a novas mensagens no seu chat, contratantes poderão entrar em contato com você através
                     dele. E após negociar, para poder acessar o serviço,
-                    <span class="blue-text text-darken-4"><b>clique no nome do contratante</b></span>, assim você irá
+                    <span class="text-darken-4" style="color:#1ac3b2;"><b>clique no nome do contratante</b></span>, assim você irá
                     ao perfil do mesmo, e logo sem seguida, escolha o serviço na qual pretende trabalhar, por fim, é só
                     mandar a proposta.
                 </h6>
@@ -469,7 +469,7 @@ if (isset($_GET['select'])) {
                 <img src="../_img/icon/no-rate.svg" alt="no rate icon" class="col s10 m4 offset-s1 offset-m4">
             </div>
             <div class="row">
-                <button class="btn waves-effect waves-light col s12 input-field modal-close">Entendi</button>
+                <button style="background:#1ac3b2;" class="btn waves-effect waves-light col s12 input-field modal-close">Entendi</button>
             </div>
         </div>
     </div>

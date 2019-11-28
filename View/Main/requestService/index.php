@@ -42,7 +42,7 @@
 
     <header>
         <nav class="nav-extended z-depth-0">
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" style="background:#1ac3b2;">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
             </div>
@@ -92,7 +92,7 @@
                 <form
                     action="../../../Controller/cadastrarService.php/?id_occupation_subcategory=<?php echo $_GET['occupation_subcategory'];?>"
                     method="POST" class="row padding white" enctype="multipart/form-data" autocomplete="off">
-                    <a href="../hire" class="btn circle waves-effect waves-light"><i
+                    <a style="background:#1ac3b2;" href="../hire" class="btn circle waves-effect waves-light"><i
                             class="material-icons">arrow_back</i></a>
                     <div class="col s12">
                         <br class="hide-on-med-and-up">
@@ -131,7 +131,7 @@
                     </div>
                     <div class="input-field col s12">
                         <div class="file-field input-field">
-                            <div class="btn">
+                            <div class="btn" style="background:#1ac3b2;">
                                 <span>Foto</span>
                                 <input type="file" name="service-picture" accept="image/*"
                                     onchange="document.getElementById('demo-service-picture').src = window.URL.createObjectURL(this.files[0])">
@@ -175,7 +175,7 @@
                     </div>
                     <div id="form-message"></div>
                     <div class="input-field col s12 right-align">
-                        <button class="btn waves-effect waves-light">Continuar</button>
+                        <button style="background:#1ac3b2;" class="btn waves-effect waves-light">Continuar</button>
                     </div>
                 </form>
 
@@ -190,7 +190,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
@@ -213,7 +213,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn modal-close waves-effect waves-light warning-btn disabled">Continuar</button>
+            <button style="background:#1ac3b2;" class="btn modal-close waves-effect waves-light warning-btn disabled">Continuar</button>
         </div>
     </div>
 

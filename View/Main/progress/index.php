@@ -95,7 +95,7 @@
     ?>
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Progresso</a>
@@ -112,7 +112,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 8em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#1ac3b2;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>"
@@ -231,7 +231,7 @@
                             <p>
                                 <?php echo $row['description'] ?>
                             </p>
-                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
+                            <p><a style="color:#1ac3b2;" href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>&progress"
                                     class="valign-wrapper">Ver mais <i
                                         class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
@@ -253,7 +253,7 @@
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
-                            <h6>Você não tem nenhum serviço <a href="../hire">contratado</a>. Clique na aba <a
+                            <h6>Você não tem nenhum serviço <a style="color:#1ac3b2;" href="../hire">contratado</a>. Clique na aba <a style="color:#1ac3b2;"
                                     href="../hire">contratar</a><br> e comece a contratar
                                 agora mesmo!</h6>
                         </div>
@@ -349,7 +349,7 @@
                             <p>
                                 <?php echo $row['description'] ?>
                             </p>
-                            <p><a href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
+                            <p><a style="color:#1ac3b2;" href="../serviceProfile/?occupation_subcategory=<?php echo $row['id_occupation_subcategory']?>&id_service=<?php echo $row['id'] ?>"
                                     class="valign-wrapper">Ver mais <i
                                         class="material-icons">keyboard_arrow_right</i></a></p>
                         </div>
@@ -371,8 +371,8 @@
                         </div>
                         <div class="col s12">
                             <h4>Ops!</h4>
-                            <h6>Você não tem nenhum <a href="../work">serviço</a> realizado ou em andamento. Clique na
-                                aba <a href="../work">trabalhar</a><br> e comece a trabalhar
+                            <h6>Você não tem nenhum <a style="color:#1ac3b2;" href="../work">serviço</a> realizado ou em andamento. Clique na
+                                aba <a style="color:#1ac3b2;" href="../work">trabalhar</a><br> e comece a trabalhar
                                 agora mesmo!</h6>
                         </div>
                     </div>
@@ -394,7 +394,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
@@ -429,8 +429,8 @@
                     ?>
                     <img src="<?php echo $row['profile_picture'] ?>" alt="user profile picture" 
                     class="circle z-depth-3" width="130" height="130" style="object-fit:cover">
-                    <h6>Usuario: <span class="blue-text text-darken-3"><?php echo $row['full_name'] ?></span> </h6>
-                    <h6>Serviço: <span class="blue-text text-darken-3"><?php echo $service_title ?></span></h6>
+                    <h6>Usuario: <span style="color:#1ac3b2;" class="text-darken-3"><?php echo $row['full_name'] ?></span> </h6>
+                    <h6>Serviço: <span style="color:#1ac3b2;" class="text-darken-3"><?php echo $service_title ?></span></h6>
                     <?php
                         }
                     ?>
