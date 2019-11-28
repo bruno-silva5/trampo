@@ -24,7 +24,7 @@
 
     <header>
         <nav class="nav-extended">
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" style="background:#1ac3b2;">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Contratar</a>
             </div>
@@ -34,7 +34,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#1ac3b2;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
@@ -73,7 +73,7 @@
                     <form action="#" id="form-search">
                         <br>
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s12" >
                                 <i class="material-icons prefix">search</i>
                                 <input type="text" id="search-bar">
                                 <label for="search-bar" class="noselect" id="label-search-bar">Digite o serviço que procura</label>
@@ -191,7 +191,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 

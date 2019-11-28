@@ -65,7 +65,7 @@ header {
     h1 {
       font-family: "Montserrat";
       float: left;
-      color: #514bff;
+      color: #1ac3b2;
       text-transform: capitalize;
       font-size: 1.5em;
       cursor: default;
@@ -124,7 +124,7 @@ header {
       width: 70%;
       max-width: 200px;
       padding: 0.5em 2em;
-      background: #384288;
+      background: #16968a;
       color: white;
       cursor: pointer;
       img {
@@ -168,7 +168,7 @@ header {
 
 .about {
   h1 {
-    color: #384288;
+    color: #1ac3b2;
     font-weight: normal;
     font-size: 1.7em;
   }
@@ -205,7 +205,7 @@ header {
       }
       h2 {
         width: 100%;
-        color: #2989af;
+        color: #21ac9e;
         font-size: 1.3em;
       }
       p {
@@ -218,7 +218,7 @@ header {
 
 .previous-experience {
   h1 {
-    color: #384288;
+    color: #1ac3b2;
     font-weight: normal;
     font-size: 1.7em;
   }
@@ -242,7 +242,7 @@ header {
       h2 {
         width: 100%;
         margin-top: 0.4em;
-        color: #384288;
+        color: #1ac3b2;
       }
       p {
         margin-top: 0.5em;
@@ -281,7 +281,7 @@ section.become-professional {
     max-width: 600px;
   }
   > a {
-    background: #514bff;
+    background: #1ac3b2;
     color: white;
     margin-top: 1.5em;
     width: 80%;
@@ -304,7 +304,7 @@ section.become-professional {
   div.call-to-action {
     padding: 3em 1em;
     text-align: center;
-    background: rgba($color: #514bff, $alpha: 0.9);
+    background: linear-gradient(to right,#1DE1CE,#C7FF94);
     margin-bottom: 2.5em;
     h1 {
       font-weight: normal;
@@ -316,7 +316,7 @@ section.become-professional {
 }
 
 footer {
-  background: rgba($color: #514bff, $alpha: 0.05);
+  background: rgba($color: #1ac3b2, $alpha: 0.05);
   padding: 3em 1em;
   display: grid;
   p,
@@ -331,14 +331,14 @@ footer {
     font-size: 0.97em;
   }
   h2 {
-    color: #514bff;
+    color: #16968a;
     font-weight: 500;
     font-size: 1.5em;
     margin-top: 1em;
     margin-bottom: 0.5em;
   }
   h2:nth-child(2) {
-    color: #514bff;
+    color: #16968a;
     font-weight: bold;
   }
   div {
@@ -383,7 +383,7 @@ footer {
         width: fit-content;
       }
       a:nth-of-type(2) {
-        background: #384288;
+        background: #16968a;
         padding: 0.8em 2em;
         margin-left: 2em;
         border-radius: 3em;
@@ -561,7 +561,7 @@ footer {
         text-align: center;
       }
       a:nth-of-type(2) {
-        background: #384288;
+        background: #16968a;
         padding: 0.8em 2em;
         border-radius: 3em;
       }

@@ -24,7 +24,7 @@
     <input type="hidden" value="<?php echo $row['id'] ?>" id="id_user">
 
     <header>
-        <nav class="nav-extended">
+        <nav class="nav-extended" style="background:#1ac3b2;">
             <div class="nav-wrapper">
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#!" class="brand-logo center">Chat</a>
@@ -35,7 +35,7 @@
     <!-- padding top due the fixed navbar -->
     <main style="padding-top: 4em;">
         <ul id="slide-out" class="sidenav sidenav-fixed">
-            <h5 class="center-align blue-text ">trampo</h5>
+            <h5 class="center-align" style="color:#1ac3b2;">trampo</h5>
             <li>
                 <div class="user-view">
                     <a href="#user"><img class="circle z-depth-1" src="<?php echo $row['profile_picture']; ?>" alt="user profile picture"></a>
@@ -108,7 +108,7 @@
                     <div class='col s12 m6 offset-m3'>
                         <img src='../_img/icon/dislike.svg' width='100'>
                     </div>
-                    <div class='col s12 m6 offset-m3'><h6>Você não tem nenhuma conversa, <a href='../hire'>contrate</a> ou <a href='../work'>preste um serviço</a> para iniciar uma conversa</h6></div>
+                    <div class='col s12 m6 offset-m3'><h6>Você não tem nenhuma conversa, <a style='color:#1ac3b2;' href='../hire'>contrate</a> ou <a style=color:#1ac3b2;' href='../work'>preste um serviço</a> para iniciar uma conversa</h6></div>
                 </div>
                 ";
             }
@@ -128,7 +128,7 @@
         </div>
         <div class="modal-footer">
             <a href="../../../Controller/logout.php" class="modal-close waves-effect btn-flat">Sim</a>
-            <button class="modal-close waves-effect waves-light btn">Não</button>
+            <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Não</button>
         </div>
     </div>
 
