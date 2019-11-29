@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 26-Nov-2019 às 20:13
+-- Tempo de geração: 29-Nov-2019 às 02:07
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -39,7 +39,12 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id`, `id_user_1`, `id_user_2`) VALUES
-(44, 73, 74);
+(44, 73, 74),
+(45, 84, 76),
+(46, 76, 73),
+(47, 85, 73),
+(48, 76, 85),
+(49, 89, 88);
 
 -- --------------------------------------------------------
 
@@ -65,7 +70,15 @@ CREATE TABLE `evaluation` (
 
 INSERT INTO `evaluation` (`id`, `answer_1`, `answer_2`, `answer_3`, `further_information`, `stars_rating`, `id_user_from`, `id_user_to`, `id_service`) VALUES
 (27, 1, 1, 2, 'show!', 3, 74, 73, 214),
-(28, 1, 2, 1, 'Gostei do rapaz', 4, 73, 74, 214);
+(28, 1, 2, 1, 'Gostei do rapaz', 4, 73, 74, 214),
+(29, 1, 2, 1, 'Serviço muito bom, gostei', 4, 74, 73, 217),
+(30, 1, 1, 1, 'Rapaz muito bem educado', 1, 73, 74, 217),
+(31, 1, 1, 1, 'Muito legal a experiencia, curti!', 5, 73, 85, 224),
+(32, 1, 2, 1, 'Sensacional', 5, 85, 73, 224),
+(33, 2, 2, 2, 'Bom, desempenho médio mas aceitável', 3, 85, 76, 220),
+(34, 1, 3, 1, 'Goste, foi legal', 2, 76, 85, 220),
+(35, 1, 2, 1, 'Sensacional a experiencia', 4, 88, 89, 229),
+(36, 1, 2, 1, 'Muito bom o prestador!', 5, 89, 88, 229);
 
 -- --------------------------------------------------------
 
@@ -80,6 +93,27 @@ CREATE TABLE `message` (
   `id_user_to` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `message`
+--
+
+INSERT INTO `message` (`id`, `conversation`, `id_user_from`, `id_user_to`, `text`) VALUES
+(271, 46, 76, 73, 'Oi! Tudo bem? então, você acha mesmo que dá pra resolver tranquilo isso?'),
+(272, 46, 73, 76, 'dá sim, é de boa para poder resolver'),
+(273, 46, 73, 76, 'pode ficar sossegada'),
+(274, 46, 76, 73, 'Ah que ótimo, irei aceitar a proposta!'),
+(275, 46, 73, 76, 'Ok'),
+(276, 46, 73, 76, 'Muito obrigado!!!'),
+(277, 47, 85, 73, 'oii, tudo bem? '),
+(278, 47, 73, 85, 'oi, pode aceitar?'),
+(279, 47, 85, 73, 'sim, posso sim, vou aceitar la'),
+(280, 47, 85, 73, 'ob'),
+(281, 47, 85, 73, 'obg*'),
+(282, 48, 76, 85, 'Ooi! tudo bem, vou aceitar la a solicitação'),
+(283, 48, 85, 76, 'Oi! Tudo bem sim, que ótimo! fico no aguardo'),
+(284, 49, 89, 88, 'Opa, eae, blz? Consegue mesmo fazer o serviço amanhã?'),
+(285, 49, 88, 89, 'Opa eae, sim consigo sim, pode deixar!');
 
 -- --------------------------------------------------------
 
@@ -204,11 +238,16 @@ INSERT INTO `service` (`id`, `time_remaining`, `title`, `description`, `picture`
 (214, 'A próxima semana', 'Embreagem pesada VW Polo', 'Minha embreagem está muito pesada, mas o KM do meu carro é baixo, então não sei se pode ser outra coisa, ou se realmente preciso que seja feita a troca da minha embreagem', '../_img/service_picture/polao.jpeg', 'true', 48, 73, 114, 2, NULL, 1, 0),
 (215, 'A próxima semana', 'Marea fumaçando', 'Não sei pq meu marea ta dando problema. Isso começou desde q eu coloquei 4kg de pressão na turbina', '../_img/service_picture/marea.jpg', 'true', 48, 73, NULL, 0, NULL, 0, 0),
 (216, 'O quanto antes', 'Ar-condiconado não gela', 'O meu ar-condiconado apenas emite um ar-quente mas não está gelando quando abaixo a temperatura', '../_img/service_picture/ar-condiconado.jpg', 'true', 4, 75, NULL, 0, NULL, 0, 0),
-(217, 'Sem previsão', 'Chuveiro não esquenta', 'Meu chuveiro precisa de manuntencao pois nao fica nem no morno e nem no quente', '../_img/service_picture/fiacao_chuveiro.jpg', 'true', 15, 74, NULL, 0, NULL, 0, 0),
+(217, 'Sem previsão', 'Chuveiro não esquenta', 'Meu chuveiro precisa de manuntencao pois nao fica nem no morno e nem no quente', '../_img/service_picture/fiacao_chuveiro.jpg', 'true', 15, 74, 115, 2, NULL, 1, 0),
 (218, 'O quanto antes', 'Bolo para meu filho', 'Preciso de um bolo de aniversario para o meu filho', NULL, 'true', 46, 76, NULL, 0, NULL, 0, 0),
 (219, 'O quanto antes', 'Tomada não esta pegando', 'esta é a unica tomada na minha casa que não funciona não sei pq', '../_img/service_picture/tomada.jpg', 'true', 15, 76, NULL, 0, NULL, 0, 0),
-(220, 'O quanto antes', 'Construir muro ', 'Preciso que façam a construção de um muro aqui do lado que caiu semana passada', NULL, 'true', 47, 76, NULL, 0, NULL, 0, 0),
-(221, 'O quanto antes', 'Lampada piscando desligada', 'A minha lampada mesmo apos ser desligada fica piscando', '../_img/service_picture/lampada_piscando.jpg', 'true', 15, 76, NULL, 0, NULL, 0, 0);
+(220, 'O quanto antes', 'Construir muro ', 'Preciso que façam a construção de um muro aqui do lado que caiu semana passada', NULL, 'true', 47, 76, 118, 2, NULL, 1, 0),
+(221, 'O quanto antes', 'Lampada piscando desligada', 'A minha lampada mesmo apos ser desligada fica piscando', '../_img/service_picture/lampada_piscando.jpg', 'true', 15, 76, NULL, 0, NULL, 0, 0),
+(222, 'O quanto antes', 'Motor fervendo', 'O motor do carro está esquentando muito rápido a parte de arrefecimento ja foi revisada em uma mecanica aqui perto, não sei o que pode ser, talvez seja sensor mas nao sei', '../_img/service_picture/corsa.jpg', 'true', 48, 76, NULL, 0, NULL, 0, 0),
+(224, 'O quanto antes', 'Rebocar parede', 'Preciso de algum pedreiro ou alguem que possa rebocar a parede aqui em casa', '../_img/service_picture/rebocar_parede.jpeg', 'true', 47, 85, 117, 2, NULL, 1, 0),
+(225, 'O quanto antes', 'Pintar frente da casa', 'Preciso de alguém que possa estar apto a pintar a frente da minha casa', '../_img/service_picture/fachada_casa.jpg', 'false', 25, 85, NULL, 0, NULL, 0, 0),
+(226, 'O quanto antes', 'Remover ar-condicionado', 'Quero remover o ar-condiconado da minha sala, ele nao esta com problemas apenas nao quero mais ar-condiconado', NULL, 'true', 5, 85, NULL, 0, NULL, 0, 0),
+(229, 'O quanto antes', 'Entregar geladeira', 'Preciso que entreguem uma geladeira na Penha', '../_img/service_picture/entregar_geladeira.jpg', 'true', 43, 89, 120, 2, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -229,7 +268,12 @@ CREATE TABLE `service_request` (
 --
 
 INSERT INTO `service_request` (`id`, `id_service`, `id_user`, `price`, `description`) VALUES
-(114, 214, 74, '100.00', 'Opa, blz? consigo fazer hoje mesmo');
+(114, 214, 74, '100.00', 'Opa, blz? consigo fazer hoje mesmo'),
+(115, 217, 73, '100.00', 'Consigo realizar entre hoje e amanha'),
+(116, 222, 73, '120.00', 'Isto deve ser por causa de sensores, ja tive isso no meu GM também'),
+(117, 224, 73, '100.00', 'Oi, tudo bem? consigo realizar o serviço amanhã'),
+(118, 220, 85, '200.00', 'Consigo fazer issto ainda hoje se vc tiver disponibilidade ok'),
+(120, 229, 88, '100.00', 'Opa, consigo fazer essa entrega amanha mesmo!');
 
 -- --------------------------------------------------------
 
@@ -273,7 +317,12 @@ INSERT INTO `user` (`id`, `full_name`, `email`, `password`, `gender`, `phone_num
 (80, 'Carla Souza Rodrigues', 'carla@live.com', 'Defina uma senha', 'F', '(11) 92903-4720', '643.224.758-68', '1993-08-30', '05410-010', 'Rua Amália de Noronha', 'SP', 'São Paulo', 'Pinheiros', '12', '', '../_img/user_profile_picture/f6.jpeg', -23.5520867, -46.680644700000016),
 (81, 'Mariana Rodrigues', 'mariana@live.com', 'Defina uma senha', 'F', '(11) 92039-8420', '263.158.558-57', '1993-01-12', '08161-210', 'Rua Faveira do Igapó', 'SP', 'São Paulo', 'Jardim dos Ipês', '1221', '', '../_img/user_profile_picture/f7.jpeg', -23.4993749, -46.41362979999997),
 (82, 'Carlos Gomes', 'carlos@live.com', 'Defina uma senha', 'M', '(11) 93208-4203', '373.507.098-11', '1993-02-02', '05653-110', 'Rua Monsenhor Henrique Magalhães', 'SP', 'São Paulo', 'Jardim Leonor', '21', '', '../_img/user_profile_picture/m5.jpeg', -23.6007621, -46.716501100000016),
-(83, 'Bruno Tavares', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98989-7464', '084.792.300-29', '1998-04-15', '01229-904', 'Rua São Vicente de Paulo', 'SP', 'São Paulo', 'Santa Cecília', '5', '501', '../_img/user_profile_picture/user.svg', -23.5390605, -46.661481500000036);
+(83, 'Bruno Tavares', 'bruno@live.com', 'Defina uma senha', 'M', '(11) 98989-7464', '084.792.300-29', '1998-04-15', '01229-904', 'Rua São Vicente de Paulo', 'SP', 'São Paulo', 'Santa Cecília', '5', '501', '../_img/user_profile_picture/user.svg', -23.5390605, -46.661481500000036),
+(84, 'Miguel Cunha', 'miguel@live.com', 'Defina uma senha', 'M', '(11) 98897-8946', '176.185.770-30', '1998-01-20', '04007-003', 'Rua Tutóia', 'SP', 'São Paulo', 'Vila Mariana', '12', 'de 541/542 a 699/700', '../_img/user_profile_picture/m4.jpeg', -23.5760185, -46.65054509999999),
+(85, 'Marina Correia', 'marina@live.com', 'Defina uma senha', 'F', '(11) 92472-3492', '510.841.930-94', '1990-01-30', '08235-630', 'Avenida Augusto Antunes', 'SP', 'São Paulo', 'Parque Guarani', '1221', 'de 933/934 ao fim', '../_img/user_profile_picture/f10.jpeg', -23.5183426, -46.465595399999984),
+(87, 'Paulo Almeida', 'paulo@live.com', '12345678', 'M', '(11) 90348-2039', '273.799.330-00', '1993-01-13', '03813-030', 'Rua Otávio Mendes dos Santos', 'SP', 'São Paulo', 'Jardim Matarazzo', '234', '', '../_img/user_profile_picture/m7.jpeg', -23.4865289, -46.46988249999998),
+(88, 'Henrique Almeida', 'henrique@live.com', '12345678', 'M', '(11) 92304-9982', '302.038.780-94', '1993-01-30', '01236-010', 'Rua Gustavo Teixeira', 'SP', 'São Paulo', 'Pacaembu', '123', '', '../_img/user_profile_picture/m6.jpeg', -23.5442365, -46.668270699999994),
+(89, 'Pedro Oliveira', 'pedro@live.com', '12345678', 'M', '(11) 90329-3240', '973.995.170-88', '1993-01-10', '04467-090', 'Rua Euclides Castro de Carvalho', 'SP', 'São Paulo', 'Jardim Itapura', '363', '', '../_img/user_profile_picture/user.svg', -23.6937015, -46.65680499999996);
 
 -- --------------------------------------------------------
 
@@ -314,10 +363,22 @@ INSERT INTO `user_occupation` (`id`, `description`, `id_occupation`, `id_user`) 
 (230, 'Monto móveis, faço carretos e também tenho experiência na parte elétrica de carros', 10, 82),
 (231, 'Trabalho muito bem!', 7, 83),
 (232, 'Trabalho muito bem!', 10, 83),
-(233, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 2, 73),
-(234, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 3, 73),
-(235, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 5, 73),
-(236, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 9, 73);
+(244, 'Faço diversos trampos e trabalho bem', 3, 84),
+(245, 'Faço diversos trampos e trabalho bem', 5, 84),
+(246, 'Faço diversos trampos e trabalho bem', 7, 84),
+(247, 'Faço diversos trampos e trabalho bem', 9, 84),
+(248, 'Faço diversos trampos e trabalho bem', 10, 84),
+(249, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 2, 73),
+(250, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 3, 73),
+(251, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 5, 73),
+(252, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 9, 73),
+(253, 'Tenho experiencia em reformar casas, sei consertar ar-condiconado, e também com a ajuda de minha esposa faço bolos e doces', 10, 73),
+(254, 'Tenho experiencia em diversas areas', 3, 85),
+(255, 'Tenho experiencia em diversas areas', 5, 85),
+(256, 'Tenho experiencia em diversas areas', 10, 85),
+(264, 'Trabalho muito bem há mais de 5 anos nestas areas', 3, 88),
+(265, 'Trabalho muito bem há mais de 5 anos nestas areas', 7, 88),
+(266, 'Trabalho muito bem há mais de 5 anos nestas areas', 10, 88);
 
 --
 -- Índices para tabelas despejadas
@@ -402,19 +463,19 @@ ALTER TABLE `user_occupation`
 -- AUTO_INCREMENT de tabela `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de tabela `evaluation`
 --
 ALTER TABLE `evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de tabela `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=286;
 
 --
 -- AUTO_INCREMENT de tabela `occupation`
@@ -432,25 +493,25 @@ ALTER TABLE `occupation_subcategory`
 -- AUTO_INCREMENT de tabela `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 
 --
 -- AUTO_INCREMENT de tabela `service_request`
 --
 ALTER TABLE `service_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT de tabela `user_occupation`
 --
 ALTER TABLE `user_occupation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- Restrições para despejos de tabelas
