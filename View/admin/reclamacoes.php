@@ -9,6 +9,9 @@
     $email = $row['email'];
     $nome = $row['full_name'];
 
+
+    $consulta = mysqli_query($conn,"SELECT * FROM claims WHERE finalized > 0 ORDER BY dates ASC ");
+    $claims = $consulta;
 ?>
 
 <html>
@@ -74,6 +77,7 @@
                 </div>
             </li>
           
+          
             <li><a href="tela_adm.php" class="waves-effect white-text"><i class="material-icons white-text">new_releases</i>Dashboard</a>
             </li>
             <li>
@@ -95,7 +99,48 @@
     <!-- Visao Geral -->
     <div class="row">
         <div class="container container-adm">
+        <?php while($row = mysqli_fetch_assoc($claims)){ ?>
+            <?php 
+                    $consulta = "SELECT * FROM user WHERE id = '".$row['id_user']."'";
+                    $res = mysqli_query($conn,$consulta);
+                    $rows = mysqli_fetch_assoc($res);
 
+                    $consulta = "SELECT * FROM user WHERE id = '".$row['id_denuncied']."'";
+                    $res = mysqli_query($conn,$consulta);
+                    $denuncied = mysqli_fetch_assoc($res);
+                    ?>
+
+        <form action = "../../Controller/desativaUserADM.php/?id=<?php echo $denuncied['id']?>" method="Post">
+        
+                <div class="col m12">
+                <br>
+                    
+
+                    <div class="card horizontal" style="padding: 5px;">
+                        <a href="#" class="circle">
+						<img src="_img/user.png" width="50">
+                            
+                        </a>
+                        <div class="container-fluid left-align" style="padding-top:3px;">
+                            <span><?php echo $rows['full_name']?>| Usuario</span>
+                            <br>
+                            <span style="color:#aaa;">Data da Denúncia: <?php echo $row['dates'] ?></span>
+
+                            <div class="container-fluid left-align">
+                                <h6><?php echo $row['title'] ?></h6>
+                                <span style="color:#aaa;">Reclamação Contra: <?php echo $denuncied['full_name']?> | Código do Serviço Prestado: <?php echo $row['id_service'] ?></span>
+                                <div style="word-wrap: break-word;"><?php echo $row['complaint'] ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container right-align">
+                             <button style="background:#1ac3b2;" action = "../../Controller/desativaUserADM.php/?id=<?php echo $denuncied['id']?>" method="Post" class="modal-close waves-effect waves-light btn">Desativar Conta</button>
+                        </div>
+                    </div>
+                </div>
+               
+                <?php } ?>
+                </form>
         </div>
             
     </div>

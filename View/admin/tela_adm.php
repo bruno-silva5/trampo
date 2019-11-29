@@ -28,19 +28,19 @@
     $row = mysqli_fetch_assoc($res);
     $reclamacoes = $row['qtd'];
 
-    $consulta = mysqli_query($conn,"SELECT * FROM claims ORDER BY dates ASC");
+    $consulta = mysqli_query($conn,"SELECT * FROM claims WHERE finalized = 0 ORDER BY  dates ASC");
     $claims = $consulta;
 
 
     //seleciona notas
-    /*
-    $consulta = "SELECT AVG(grade) as 'nota' FROM grade";
+    
+    $consulta = "SELECT AVG(stars_rating) as 'nota' FROM evaluation";
     $res = mysqli_query($conn,$consulta);
     $row = mysqli_fetch_assoc($res);
     $nota = $row['nota'];
     if($nota == null){
         $nota = 0;
-    }*/
+    }
 
     //gráfico pizza
     $categoria = [];
@@ -241,7 +241,7 @@
                     <div class="card-content z-depth-1">
                         
                         <h1 style="color:#1ac3b2;"><i class="fa fa-star"></i></h1>
-                        <h3><?="#"?></h3>
+                        <h3><?=$nota?></h3>
                         <p>
                             Média de Qualidade
                         </p>
@@ -292,19 +292,25 @@
                     </select>
                 </div>
                 <h4 style="color:#1ac3b2;">Reclamações</h4>
-
                 <?php while($row = mysqli_fetch_assoc($claims)){ ?>
-                <div class="col m12">
-                    <?php 
+            <?php 
                     $consulta = "SELECT * FROM user WHERE id = '".$row['id_user']."'";
                     $res = mysqli_query($conn,$consulta);
                     $rows = mysqli_fetch_assoc($res);
+
+                    $consulta = "SELECT * FROM user WHERE id = '".$row['id_denuncied']."'";
+                    $res = mysqli_query($conn,$consulta);
+                    $denuncied = mysqli_fetch_assoc($res);
                     ?>
+                <form action = "../../Controller/desativaUserADM.php/?id=<?php echo $denuncied['id']?>" method="Post">
+        
+                <div class="col m12">
+                <br>
+                    
 
                     <div class="card horizontal" style="padding: 5px;">
                         <a href="#" class="circle">
-                            <div class="circle" style="width:50px; height: 50px;background: #000;margin:2px;">
-                            </div>
+                            <img src="_img/user.png" width="50">
                         </a>
                         <div class="container-fluid left-align" style="padding-top:3px;">
                             <span><?php echo $rows['full_name']?>| Usuario</span>
@@ -313,18 +319,19 @@
 
                             <div class="container-fluid left-align">
                                 <h6><?php echo $row['title'] ?></h6>
-                                <span style="color:#aaa;">Reclamação Contra: aaaa | Código do Serviço Prestado: <?php echo $row['id_service'] ?></span>
+                                <span style="color:#aaa;">Reclamação Contra: <?php echo $denuncied['full_name']?> | Código do Serviço Prestado: <?php echo $row['id_service'] ?></span>
                                 <div style="word-wrap: break-word;"><?php echo $row['complaint'] ?>
                                 </div>
                             </div>
                         </div>
                         <div class="container right-align">
-                             <button style="background:#1ac3b2;" class="modal-close waves-effect waves-light btn">Desativar Conta</button>
+                             <button style="background:#1ac3b2;" action = "../../Controller/desativaUserADM.php/?id=<?php echo $denuncied['id']?>" method="Post" class="modal-close waves-effect waves-light btn">Desativar Conta</button>
                         </div>
                     </div>
                 </div>
                
                 <?php } ?>
+                </form>
 
                     
                         
