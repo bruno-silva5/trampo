@@ -2,7 +2,7 @@
 > A web platform where workers can connect with customers.
 
 
-> <img src="assets/trampo_logo.png" width="450">
+> <img src="assets/trampo_logo.png" width="450" alt="trampo logo">
 
 
 A final school project called T.C.C. (Trabalho de conclusão de curso), that aim to connect workers with customers, using their geolocations and filters.
@@ -79,9 +79,4 @@ Below, there are some screenshots of the project on the desktop screen.
 > ![Account settings](assets/web/account.png)
 
 ## Project Screenshots (Mobile)
-
-> ### Home page
-> ![Home page](assets/mobile/1_mobile.png)
-
-
 
