@@ -80,3 +80,20 @@ Below, there are some screenshots of the project on the desktop screen.
 
 ## Project Screenshots (Mobile)
 
+> ### Home page
+> <img src="assets/mobile/1.png" alt="home page" height="500">
+
+> ### Login form
+> <img src="assets/mobile/3.png" alt="login form" height="500">
+
+> ### Chat
+> <img src="assets/mobile/2.png" alt="chat" height="500">
+
+> ### Account settings
+> <img src="assets/mobile/4.png" alt="account settings" height="500">
+
+> ### Works list
+> <img src="assets/mobile/5.png" alt="works list" height="500">
+
+> ### Rating
+> <img src="assets/mobile/6.png" alt="rating" height="500">
